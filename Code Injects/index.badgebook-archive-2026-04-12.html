@@ -1,0 +1,2176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Showcase 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Norwester";
+      src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+      font-display: swap;
+    }
+
+    :root {
+      --site-bg: #7f9662;
+      --paper: #ece4cf;
+      --card: #f3eddc;
+      --ink: #1f2a25;
+      --muted: #56645c;
+      --line: #c7bc9f;
+      --deep-green: #123d33;
+      --deep-green-2: #0f332b;
+      --rust: #bf4613;
+      --steel: #3e678d;
+      --amber: #e37700;
+      --sage: #8fa06d;
+      --cream: #f7f2e6;
+      --white: #fff;
+
+      --rainbow-red: #c75145;
+      --rainbow-orange: #cd7028;
+      --rainbow-amber: #d6a034;
+      --rainbow-green: #4e985f;
+      --rainbow-blue: #3f6f9b;
+      --rainbow-indigo: #4e64b6;
+      --rainbow-violet: #8d5aa9;
+
+      --trail-cc: var(--rainbow-blue);
+      --trail-ct: var(--rainbow-violet);
+      --trail-df: var(--rainbow-green);
+      --trail-gp: var(--rainbow-red);
+      --trail-mt: var(--rainbow-amber);
+      --trail-vs: var(--rainbow-orange);
+
+      --font-display: "Norwester", "Arial Narrow", "Franklin Gothic Condensed", "Impact", sans-serif;
+      --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --shadow-soft: 0 12px 30px rgba(15, 51, 43, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: #879d68;
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 14px 40px;
+      position: relative;
+    }
+
+    .countdown-chip {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 260;
+      border: 1px solid #cabd9f;
+      background: rgba(242, 233, 212, 0.95);
+      border-radius: 12px;
+      padding: 7px 10px;
+      box-shadow: 0 8px 18px rgba(13, 35, 30, 0.18);
+      min-width: 200px;
+    }
+
+    .countdown-chip strong {
+      display: block;
+      margin: 0;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+      color: var(--deep-green);
+      line-height: 0.95;
+    }
+
+    .countdown-chip span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #51615a;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(236, 228, 207, 0.96);
+      border: 1px solid rgba(199, 188, 159, 0.95);
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 6px 20px rgba(18, 61, 51, 0.12);
+      margin-bottom: 14px;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      color: var(--deep-green);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid #c4b694;
+      background: #f5efdd;
+      color: #1d2c25;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 8px 10px;
+      cursor: pointer;
+      min-height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .nav-links button {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      border-radius: 0;
+      padding: 4px 0;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+      color: var(--deep-green);
+      border-bottom-color: #c8b181;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      display: none;
+      min-width: 170px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 12px;
+      border-bottom: 1px solid #d8ccb0;
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      background: var(--paper);
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: 0;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .palette-bar {
+      height: 34px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #d7caaa;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    .palette-bar span:nth-child(1) { background: var(--rainbow-red); }
+    .palette-bar span:nth-child(2) { background: var(--rainbow-orange); }
+    .palette-bar span:nth-child(3) { background: var(--rainbow-amber); }
+    .palette-bar span:nth-child(4) { background: var(--rainbow-green); }
+    .palette-bar span:nth-child(5) { background: var(--rainbow-blue); }
+    .palette-bar span:nth-child(6) { background: var(--rainbow-indigo); }
+    .palette-bar span:nth-child(7) { background: var(--rainbow-violet); }
+
+
+    .hero {
+      border-radius: var(--radius-lg);
+      border: 1px solid #d6cbaf;
+      background: var(--card);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .hero-media {
+      min-height: clamp(420px, 55vw, 640px);
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #d7e0cd;
+      border-bottom: 1px solid #d0c4a6;
+    }
+
+    .hero-stack {
+      width: min(760px, 100%);
+      display: grid;
+      gap: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-card {
+      width: 100%;
+      border-radius: 20px;
+      border: 3px solid #e6d39f;
+      background: #17483c;
+      padding: 18px 20px 16px;
+      color: #f3ecdb;
+      position: relative;
+      box-shadow: 0 14px 28px rgba(8, 26, 21, 0.34);
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px solid #e4d1a1;
+      background: #0f352d;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 14px rgba(5, 20, 16, 0.35);
+    }
+
+    .hero-badge img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9fb6c7;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4.3rem);
+      line-height: 0.94;
+      margin: 9px 0 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.3vw, 1.25rem);
+      color: #c8d7d2;
+      margin: 0;
+      font-weight: 600;
+      max-width: 40ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions button {
+      border-radius: 10px;
+      border: 1px solid #d8c9a3;
+      padding: 11px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #f2ecdf;
+      background: #17483c;
+    }
+
+    .hero-actions button.primary {
+      background: var(--rust);
+      border-color: #d96d2f;
+    }
+
+    .hero-palette-card {
+      border-radius: 18px;
+      border: 1px solid #d7c7a5;
+      background: #efe7d2;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(12, 31, 26, 0.2);
+    }
+
+    .hero-palette-card p {
+      margin: 0 0 9px;
+      font-family: var(--font-display);
+      color: var(--rust);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 1.05rem;
+    }
+
+    .hero-merch-card {
+      border-radius: 18px;
+      border: 1px solid #d7c7a5;
+      background: #17483c;
+      color: #f1ebdc;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 14px;
+      box-shadow: 0 8px 18px rgba(12, 31, 26, 0.24);
+    }
+
+    .hero-merch-card img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .hero-merch-card strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .hero-merch-card span {
+      color: #a9c4bf;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 14px;
+      background: #ece2cb;
+      border-top: 1px solid #d7c9ab;
+    }
+
+    .meta-card {
+      border-radius: 14px;
+      background: #143f34;
+      color: #ecf2ef;
+      border: 1px solid #d4bf94;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .meta-card img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .meta-card h4 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      line-height: 1.1;
+    }
+
+    .meta-card p {
+      margin: 2px 0 0;
+      color: #b3c5c0;
+      font-weight: 600;
+    }
+
+    .section-panel {
+      margin-top: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid #d7caab;
+      background: var(--paper);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid #dacdaf;
+      background: #f3e9d3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--deep-green);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .map-wrap {
+      padding: 14px;
+      background: #f2ebd9;
+    }
+
+    .map-header {
+      text-align: center;
+      margin: 6px 0 12px;
+    }
+
+    .map-header h1 {
+      margin: 0 0 4px;
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 5vw, 3.1rem);
+      color: var(--deep-green);
+      letter-spacing: 0.03em;
+    }
+
+    .map-header p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .floor-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .floor-btn {
+      border: 1px solid #c9bfa6;
+      background: var(--cream);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .floor-display {
+      font-family: var(--font-display);
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .map-scroller {
+      overflow-x: auto;
+      border: 2px solid #cabd9f;
+      border-radius: 16px;
+      background: #efe6d0;
+      cursor: grab;
+    }
+
+    .map-scroller:active {
+      cursor: grabbing;
+    }
+
+    .map-container {
+      min-width: 920px;
+      height: 630px;
+      position: relative;
+      margin: 0 auto;
+      background: radial-gradient(circle at 22% 25%, rgba(137, 160, 109, 0.16), transparent 32%),
+                  radial-gradient(circle at 82% 78%, rgba(191, 70, 19, 0.08), transparent 35%),
+                  #f4ecda;
+    }
+
+    .map-layer { position: absolute; inset: 0; }
+    .map-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+    .trail-line { fill: none; stroke: #8f7357; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; }
+    .trail-path { fill: none; stroke: #f5efdf; stroke-width: 4; stroke-dasharray: 12 12; }
+    .lake-feature { fill: #73c2be; opacity: 0.7; stroke: #4a9492; stroke-width: 2; }
+    .topo-lines { fill: none; stroke: #8ca06e; stroke-width: 1; opacity: 0.6; }
+    .forest-patch { fill: #95ad74; opacity: 0.35; }
+
+    .map-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      border: 3px solid var(--zone-color);
+      background: #f8f2e4;
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 4px 0 rgba(16, 51, 43, 0.24);
+      cursor: pointer;
+      z-index: 9;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .map-node:hover {
+      transform: translate(-50%, -60%) scale(1.12);
+      box-shadow: 0 8px 0 rgba(16, 51, 43, 0.24);
+      background: var(--zone-color);
+      color: #fff;
+      z-index: 13;
+    }
+
+    .room-popover {
+      position: absolute;
+      width: 350px;
+      background: #f8f3e6;
+      border: 2px solid #cabfa4;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow-soft);
+      display: none;
+      z-index: 120;
+      transition: opacity 0.18s ease;
+    }
+
+    .popover-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--deep-green);
+      letter-spacing: 0.04em;
+      border-bottom: 1px dashed #cfbf9d;
+      padding-bottom: 7px;
+      margin-bottom: 10px;
+    }
+
+    .popover-student {
+      margin-bottom: 10px;
+      border: 1px solid #d8ccb0;
+      border-left-width: 6px;
+      border-radius: 8px;
+      background: var(--cream);
+      padding: 9px;
+    }
+
+    .popover-student:last-child { margin-bottom: 0; }
+
+    .student-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .student-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #cabfa4;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .student-proj {
+      margin-top: 4px;
+      font-weight: 800;
+      color: var(--deep-green);
+      font-size: 14px;
+    }
+
+    .student-blurb {
+      margin: 5px 0 8px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .student-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .map-legend {
+      margin-top: 12px;
+      border: 1px solid #d6c9aa;
+      border-radius: 12px;
+      background: var(--paper);
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px 14px;
+      justify-content: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid #b8ac90;
+    }
+
+    .directory-wrap {
+      padding: 14px;
+      background: #f2ebd9;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #d7caab;
+      border-radius: 12px;
+      background: var(--paper);
+      position: sticky;
+      top: 75px;
+      z-index: 90;
+      margin-bottom: 12px;
+    }
+
+    .filter-btn {
+      border: 1px solid #ccbda0;
+      background: var(--cream);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--deep-green);
+      border-color: var(--deep-green);
+      color: #f4ede0;
+    }
+
+    .directory-controls {
+      display: grid;
+      grid-template-columns: 1.5fr auto;
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .progress-card {
+      border: 1px solid #d7caab;
+      border-radius: 12px;
+      background: #f3ead6;
+      padding: 12px;
+    }
+
+    .progress-row {
+      display: flex;
+      gap: 6px 14px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .progress-row strong {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .progress-row span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .meter {
+      height: 11px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #e0d3b6;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: 0;
+      transition: width 0.2s ease;
+      background: linear-gradient(
+        90deg,
+        var(--trail-gp),
+        var(--trail-vs),
+        var(--trail-mt),
+        var(--trail-df),
+        var(--trail-cc),
+        var(--rainbow-indigo),
+        var(--trail-ct)
+      );
+    }
+
+    .view-switch {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .view-btn {
+      border: 1px solid #ccbda0;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      min-height: 42px;
+    }
+
+    .view-btn.active {
+      background: var(--deep-green);
+      border-color: var(--deep-green);
+      color: #f4ede0;
+    }
+
+    .category-section {
+      margin-bottom: 22px;
+    }
+
+    .category-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #d3c5a8;
+      background: #f3ead6;
+      margin-bottom: 10px;
+    }
+
+    .category-logo {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f4ebd6;
+      border: 1px solid #d6c8aa;
+      padding: 4px;
+    }
+
+    .category-heading h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      color: var(--deep-green);
+      font-size: 1.35rem;
+    }
+
+    .category-heading small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: auto;
+    }
+
+    .directory-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .directory-grid.hidden,
+    .directory-book.hidden,
+    .table-wrap.hidden {
+      display: none;
+    }
+
+    .badge-card {
+      border: 1px solid #ccbfa2;
+      border-radius: 12px;
+      background: #f7f1e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      box-shadow: 0 4px 0 rgba(35, 79, 66, 0.12);
+    }
+
+    .badge-card:hover {
+      transform: translateY(-2px);
+      border-color: #bda984;
+      box-shadow: 0 10px 16px rgba(26, 52, 45, 0.14);
+    }
+
+    .badge-card.is-collected {
+      border-color: #5f8a70;
+      box-shadow: 0 8px 14px rgba(35, 79, 66, 0.2);
+    }
+
+    .badge-head {
+      padding: 9px 10px;
+      border-bottom: 1px solid #d9ccaf;
+    }
+
+    .badge-title {
+      font-family: var(--font-display);
+      letter-spacing: 0.03em;
+      font-size: 1.25rem;
+      color: #2c352e;
+      margin: 0 0 3px;
+      line-height: 1.05;
+    }
+
+    .badge-student {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .badge-body {
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      flex: 1;
+    }
+
+    .badge-logo-wrap {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      padding: 0;
+      position: relative;
+    }
+
+    .badge-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .badge-logo-wrap.is-wide {
+      aspect-ratio: 20 / 8;
+      padding: 0;
+    }
+
+    .badge-logo-wrap.is-tall {
+      aspect-ratio: 1 / 1;
+      padding: 0;
+    }
+
+    .badge-emblem {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(11, 33, 28, 0.35));
+      opacity: 0.9;
+      transition: transform 0.16s ease;
+      pointer-events: none;
+    }
+
+    .badge-card:hover .badge-emblem {
+      transform: scale(1.1);
+    }
+
+    .badge-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cat-pill {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 999px;
+      border: 1px solid #cabda0;
+      padding: 5px 9px;
+      background: #eee3cd;
+      color: #243027;
+    }
+
+    .room-pill {
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 5px 8px;
+      border: 1px solid #cabda0;
+      color: #233028;
+      background: #f4ecda;
+    }
+
+    .badge-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .collect-btn,
+    .project-link {
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid #cabda0;
+      cursor: pointer;
+      min-height: 40px;
+    }
+
+    .collect-btn {
+      flex: 1;
+      background: #d9e0d6;
+      color: #1d3d34;
+    }
+
+    .collect-btn.collected {
+      background: #234f42;
+      color: #eff3ef;
+      border-color: #234f42;
+    }
+
+    .project-link {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      background: #f2e7d0;
+      color: #213229;
+      display: grid;
+      place-items: center;
+    }
+
+    .directory-book {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: min(92vw, 520px);
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+    }
+
+    .book-page {
+      scroll-snap-align: start;
+      border: 1px solid #cebfa1;
+      border-radius: 12px;
+      background: #f7f1e2;
+      padding: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .book-page h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--deep-green);
+      letter-spacing: 0.03em;
+    }
+
+    .book-page p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .book-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #cebfa1;
+      border-radius: 12px;
+      background: #f7f1e2;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #dacdaf;
+      padding: 10px 11px;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    th {
+      font-family: var(--font-display);
+      color: var(--deep-green);
+      letter-spacing: 0.05em;
+      background: #f0e6d2;
+      font-size: 1.2rem;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .row-actions button {
+      border: 1px solid #ccbda0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #dce4da;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .row-actions button.collected {
+      background: #234f42;
+      color: #fff;
+      border-color: #234f42;
+    }
+
+    .opening-wrap {
+      padding: 14px;
+      background: #f2ebd9;
+      display: grid;
+      gap: 12px;
+    }
+
+    .opening-ad {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #cabd9f;
+      box-shadow: var(--shadow-soft);
+      display: block;
+      background: #102f28;
+    }
+
+    .opening-meta {
+      border: 1px solid #d7caab;
+      border-radius: 12px;
+      background: #f7f1e2;
+      padding: 12px;
+      color: #4f5f58;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .opening-meta a {
+      color: var(--deep-green);
+      font-weight: 700;
+    }
+
+    .opening-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      padding: 14px;
+      background: rgba(8, 22, 19, 0.72);
+    }
+
+    .opening-modal.open {
+      display: flex;
+    }
+
+    .opening-dialog {
+      width: min(900px, 100%);
+      max-height: min(92vh, 900px);
+      overflow: auto;
+      border: 1px solid #cabd9f;
+      border-radius: 16px;
+      background: #f6efdd;
+      box-shadow: 0 24px 42px rgba(6, 17, 14, 0.45);
+      padding: 12px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .opening-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .opening-actions button,
+    .opening-actions a {
+      border: 1px solid #cabd9f;
+      border-radius: 9px;
+      background: #f3ead6;
+      color: #223029;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 9px 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .brandkit-wrap {
+      padding: 14px;
+      background: #f2ebd9;
+      display: grid;
+      gap: 10px;
+    }
+
+    .brandkit-frame {
+      width: 100%;
+      min-height: 880px;
+      border: 1px solid #cabd9f;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    footer {
+      margin-top: 16px;
+      border: 1px solid #cdbf9f;
+      border-radius: 14px;
+      background: #f2e9d4;
+      padding: 14px;
+      font-size: 12px;
+      color: #506059;
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: #294e44;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+      .directory-controls {
+        grid-template-columns: 1fr;
+      }
+      .view-switch {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app { padding: 0 8px 24px; }
+      .nav-row { padding: 9px 10px; position: relative; }
+      .nav-logo { font-size: 1.05rem; }
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% - 2px);
+        left: 8px;
+        right: 8px;
+        border: 1px solid #ccbfa0;
+        border-radius: 12px;
+        background: #f3ead6;
+        box-shadow: 0 10px 20px rgba(14, 36, 31, 0.18);
+        padding: 10px 12px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links a, .nav-links button { font-size: 12px; width: 100%; text-align: left; }
+      .dropdown { width: 100%; }
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: 6px;
+        box-shadow: none;
+      }
+      .hero-media { padding: 12px; min-height: 560px; }
+      .hero-stack { gap: 12px; }
+      .hero-card { padding: 13px 12px 12px; }
+      .hero-title { font-size: clamp(1.95rem, 11vw, 3rem); }
+      .hero-actions button { width: 100%; }
+      .hero-badge { width: 48px; height: 48px; right: 10px; top: 10px; }
+      .hero-badge img { width: 32px; height: 32px; }
+      .hero-merch-card strong { font-size: 1.55rem; }
+      .hero-merch-card span { font-size: 13px; line-height: 1.3; display: block; }
+      .section-head h2 { font-size: 1.5rem; }
+      .floor-display { font-size: 1.35rem; }
+      .map-container { min-width: 860px; }
+      .filter-bar { top: 68px; }
+      .directory-grid { grid-template-columns: 1fr; }
+      .badge-title { font-size: 1.13rem; }
+      .badge-student { font-size: 12px; }
+      .badge-logo-wrap { aspect-ratio: 16 / 9; }
+      .badge-logo-wrap.is-wide { aspect-ratio: 20 / 8; }
+      .badge-logo-wrap.is-tall { aspect-ratio: 1 / 1; }
+      .collect-btn, .project-link { font-size: 13px; }
+      .countdown-chip {
+        top: 8px;
+        right: 8px;
+        min-width: 176px;
+        padding: 6px 8px;
+      }
+      .countdown-chip strong { font-size: 0.9rem; }
+      .countdown-chip span { font-size: 10px; }
+      .brandkit-frame { min-height: 640px; }
+      .opening-dialog { padding: 10px; }
+      .opening-actions { justify-content: stretch; }
+      .opening-actions button, .opening-actions a { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="countdown-chip" aria-live="polite">
+    <strong id="countdownValue">Loading…</strong>
+    <span id="countdownTarget">Friday, May 8, 2026 at 6:00 PM ET</span>
+  </aside>
+
+  <div class="app">
+    <nav>
+      <div class="nav-row">
+        <div class="nav-logo" onclick="showPage('home')">IMM Senior Showcase</div>
+        <button type="button" class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Toggle navigation" aria-expanded="false">Menu ☰</button>
+        <div class="nav-links" id="mainNavLinks">
+          <a onclick="showPage('home')">Home</a>
+          <a onclick="showPage('map')">Map</a>
+          <a onclick="showPage('projects')">Directory</a>
+          <button type="button" onclick="openOpeningModal()">Opening Card</button>
+          <a onclick="showPage('brandkit')">Brand Kit</a>
+          <div class="dropdown" id="yearsDD">
+            <button type="button" onclick="toggleDD()">Previous Years ▼</button>
+            <div class="dropdown-menu">
+              <a href="https://www.immseniorshow.com/projects-25" target="_blank" rel="noreferrer">2025 Projects</a>
+              <a href="https://www.immseniorshow.com/projects-24" target="_blank" rel="noreferrer">2024 Projects</a>
+              <a href="https://www.immseniorshow.com/projects-23" target="_blank" rel="noreferrer">2023 Projects</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="hero-media">
+          <div class="hero-stack">
+            <article class="hero-card">
+              <div class="hero-badge"><img src="../AlyosiusPatrimonoAssets/23.png" alt="Trail badge icon"></div>
+              <p class="hero-kicker">IMM Senior Show 2026 • TCNJ</p>
+              <h1 class="hero-title">Find Your Trail</h1>
+              <p class="hero-sub">Interactive map and badgebook directory for all 36 senior projects. Start by classroom, then collect individual project badges.</p>
+              <div class="hero-actions">
+                <button class="primary" onclick="showPage('map')">Explore Map</button>
+                <button onclick="showPage('projects')">Open Badge Directory</button>
+                <button onclick="openOpeningModal()">View Opening Card</button>
+              </div>
+            </article>
+            <article class="hero-palette-card">
+              <p>Palette Strip</p>
+              <div class="palette-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+            <article class="hero-merch-card">
+              <img src="../AlyosiusPatrimonoAssets/31.png" alt="">
+              <div>
+                <strong>Ready for merch.</strong>
+                <span>Stickers • tees • tote bags • lanyards</span>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <img src="../Section Logos So far/GamesLogo.png" alt="">
+            <div><h4>36</h4><p>Total projects in 2026 directory</p></div>
+          </div>
+          <div class="meta-card">
+            <img src="../AlyosiusPatrimonoAssets/33.png" alt="">
+            <div><h4>Badgebook</h4><p>Track progress by classroom + student on each device</p></div>
+          </div>
+          <div class="meta-card">
+            <img src="../AlyosiusPatrimonoAssets/29.png" alt="">
+            <div><h4>Opening Card</h4><p>Launch event details are available as a popup from Home.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-map">
+      <div class="section-panel">
+        <div class="section-head">
+          <h2>Map Directory</h2>
+          <p>Hover/tap map rooms to preview projects and jump to category badges.</p>
+        </div>
+        <div class="map-wrap">
+          <div class="map-header">
+            <h1>Explore the Grounds</h1>
+            <p>Select a room to view who's there and open the matching directory trail.</p>
+          </div>
+          <div class="floor-controls">
+            <button class="floor-btn" onclick="switchFloor(1)">← Floor 1</button>
+            <div class="floor-display" id="currentFloorDisplay">FLOOR 2</div>
+            <button class="floor-btn" onclick="switchFloor(2)">Floor 2 →</button>
+          </div>
+          <div class="map-scroller" id="mapScroller">
+            <div class="map-container" id="mapContainer">
+              <div class="room-popover" id="roomPopover"></div>
+              <div id="floor1-layer" class="map-layer" style="display: none;">
+                <svg class="map-svg" viewBox="0 0 1000 700">
+                  <rect x="200" y="250" width="600" height="200" class="trail-line" fill="#fff8ea" />
+                  <text x="500" y="360" text-anchor="middle" font-family="var(--font-display)" font-size="40" fill="#5e6f65">Floor 1 Trail Map Coming Soon</text>
+                </svg>
+              </div>
+              <div id="floor2-layer" class="map-layer" style="display: block;">
+                <svg class="map-svg" viewBox="0 0 1000 700">
+                  <path class="topo-lines" d="M 50 150 Q 250 100 450 300 T 950 150"></path>
+                  <path class="topo-lines" d="M -50 200 Q 250 150 450 350 T 1050 200"></path>
+                  <path class="topo-lines" d="M -50 600 Q 300 550 500 650 T 1050 550"></path>
+                  <path class="forest-patch" d="M 200 150 Q 250 100 320 180 T 260 280 Q 180 250 200 150 Z"></path>
+                  <path class="forest-patch" d="M 750 250 Q 820 200 880 300 T 800 400 Q 700 350 750 250 Z"></path>
+                  <path class="lake-feature" d="M 380 250 C 420 150, 580 180, 620 280 C 650 360, 550 420, 480 380 C 420 340, 340 320, 380 250 Z"></path>
+                  <g><line x1="150" y1="520" x2="900" y2="520" class="trail-line"></line><line x1="150" y1="520" x2="900" y2="520" class="trail-path"></line></g>
+                  <g><line x1="280" y1="520" x2="280" y2="150" class="trail-line"></line><line x1="280" y1="520" x2="280" y2="150" class="trail-path"></line></g>
+                  <g><line x1="720" y1="520" x2="720" y2="150" class="trail-line"></line><line x1="720" y1="520" x2="720" y2="150" class="trail-path"></line></g>
+                  <g><line x1="500" y1="520" x2="500" y2="590" class="trail-line"></line><line x1="500" y1="520" x2="500" y2="590" class="trail-path"></line></g>
+                </svg>
+
+                <div class="map-node" style="top:61%;left:38%;--zone-color:var(--trail-cc);" onmouseenter="showTooltip('220', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Creative Coding')">220</div>
+                <div class="map-node" style="top:63%;left:44%;--zone-color:var(--trail-cc);" onmouseenter="showTooltip('221', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Creative Coding')">221</div>
+                <div class="map-node" style="top:63%;left:56%;--zone-color:var(--trail-cc);" onmouseenter="showTooltip('222', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Creative Coding')">222</div>
+
+                <div class="map-node" style="top:20%;left:23%;--zone-color:var(--trail-df);" onmouseenter="showTooltip('217', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Digital Fabrication')">217</div>
+                <div class="map-node" style="top:30%;left:23%;--zone-color:var(--trail-df);" onmouseenter="showTooltip('215', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Digital Fabrication')">215</div>
+                <div class="map-node" style="top:28%;left:33%;--zone-color:var(--trail-df);" onmouseenter="showTooltip('216', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Digital Fabrication')">216</div>
+                <div class="map-node" style="top:81%;left:18%;--zone-color:var(--trail-df);" onmouseenter="showTooltip('206', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Digital Fabrication')">206</div>
+
+                <div class="map-node" style="top:42%;left:23%;--zone-color:var(--trail-ct);" onmouseenter="showTooltip('214', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Culture &amp; Technology')">214</div>
+
+                <div class="map-node" style="top:20%;left:78%;--zone-color:var(--trail-vs);" onmouseenter="showTooltip('226', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Visual Storytelling &amp; Animation')">226</div>
+                <div class="map-node" style="top:30%;left:78%;--zone-color:var(--trail-vs);" onmouseenter="showTooltip('227', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Visual Storytelling &amp; Animation')">227</div>
+                <div class="map-node" style="top:40%;left:78%;--zone-color:var(--trail-vs);" onmouseenter="showTooltip('228', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Visual Storytelling &amp; Animation')">228</div>
+                <div class="map-node" style="top:50%;left:78%;--zone-color:var(--trail-vs);" onmouseenter="showTooltip('230', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Visual Storytelling &amp; Animation')">230</div>
+
+                <div class="map-node" style="top:45%;left:67%;--zone-color:var(--trail-gp);" onmouseenter="showTooltip('225', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Games &amp; Playable Media')">225</div>
+                <div class="map-node" style="top:57%;left:67%;--zone-color:var(--trail-gp);" onmouseenter="showTooltip('224', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Games &amp; Playable Media')">224</div>
+                <div class="map-node" style="top:81%;left:60%;--zone-color:var(--trail-gp);" onmouseenter="showTooltip('236', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Games &amp; Playable Media')">236</div>
+
+                <div class="map-node" style="top:61%;left:78%;--zone-color:var(--trail-mt);" onmouseenter="showTooltip('233', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Music Technology')">233</div>
+                <div class="map-node" style="top:81%;left:86%;--zone-color:var(--trail-mt);" onmouseenter="showTooltip('235', this)" onmouseleave="startHideTooltip()" onclick="jumpToCategory('Music Technology')">235</div>
+              </div>
+            </div>
+          </div>
+          <div class="map-legend">
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-cc);"></span>Creative Coding</div>
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-ct);"></span>Culture &amp; Technology</div>
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-df);"></span>Digital Fabrication</div>
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-gp);"></span>Games &amp; Playable Media</div>
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-mt);"></span>Music Technology</div>
+            <div class="legend-item"><span class="legend-color" style="background:var(--trail-vs);"></span>Visual Storytelling &amp; Animation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-projects">
+      <div class="section-panel">
+        <div class="section-head">
+          <h2>Explore The Projects</h2>
+          <p>Select a category, then collect badges per project and track classroom completion by device.</p>
+        </div>
+        <div class="directory-wrap">
+          <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all" onclick="filterCat('all', this)">All Trails</button>
+            <button class="filter-btn" data-filter="Creative Coding" onclick="filterCat('Creative Coding', this)">Creative Coding</button>
+            <button class="filter-btn" data-filter="Culture &amp; Technology" onclick="filterCat('Culture &amp; Technology', this)">Culture &amp; Tech</button>
+            <button class="filter-btn" data-filter="Digital Fabrication" onclick="filterCat('Digital Fabrication', this)">Digital Fabrication</button>
+            <button class="filter-btn" data-filter="Games &amp; Playable Media" onclick="filterCat('Games &amp; Playable Media', this)">Games</button>
+            <button class="filter-btn" data-filter="Music Technology" onclick="filterCat('Music Technology', this)">Music Tech</button>
+            <button class="filter-btn" data-filter="Visual Storytelling &amp; Animation" onclick="filterCat('Visual Storytelling &amp; Animation', this)">Storytelling</button>
+          </div>
+
+          <div class="directory-controls">
+            <div class="progress-card">
+              <div class="progress-row">
+                <strong id="projectProgress">0 / 36 project badges</strong>
+                <span id="classroomProgress">0 / 6 classroom badges</span>
+              </div>
+              <div class="meter"><span id="progressMeter"></span></div>
+              <div class="progress-row" style="margin-top:7px;"><span id="saveStatus">Saved on this device.</span></div>
+            </div>
+            <div class="view-switch">
+              <button class="view-btn active" id="viewGridBtn" onclick="switchView('grid')">Grid</button>
+              <button class="view-btn" id="viewBookBtn" onclick="switchView('book')">Badge Book</button>
+              <button class="view-btn" id="viewTableBtn" onclick="switchView('table')">Table</button>
+            </div>
+          </div>
+
+          <div class="directory-grid" id="gridView"></div>
+          <div class="directory-book hidden" id="bookView"></div>
+          <div class="table-wrap hidden" id="tableView"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-brandkit">
+      <div class="section-panel">
+        <div class="section-head">
+          <h2>Brand Kit</h2>
+          <p>Dedicated page view for palette, badges, and rollout checklist.</p>
+        </div>
+        <div class="brandkit-wrap">
+          <iframe class="brandkit-frame" src="./brandkit-preview.html" title="IMM Senior Show 2026 brand kit preview"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="opening-modal" id="openingModal" aria-hidden="true">
+      <div class="opening-dialog" role="dialog" aria-modal="true" aria-label="Opening card">
+        <img class="opening-ad" src="../imm_2026.webp" alt="IMM Senior Show 2026 opening ad concept">
+        <div class="opening-meta">
+          Opening card reference for IMM Senior Showcase 2026.
+          <a href="../imm_2026.webp" target="_blank" rel="noreferrer">Open image in a new tab</a>.
+        </div>
+        <div class="opening-actions">
+          <button type="button" onclick="closeOpeningModal()">Close</button>
+          <a href="../imm_2026.webp" target="_blank" rel="noreferrer">Open Full Image</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <strong>Credits & usage notes</strong><br>
+      Site inspiration and background illustration style include assets credited to <strong>Aloysius Patrimonio</strong> via Canva Pro content. Assets are used decoratively in web composition and not as standalone downloadable files or merch art.<br>
+      Attribution links: <a href="https://www.canva.com/policies/content-license-agreement/" target="_blank" rel="noreferrer">Canva Content License Agreement</a> · <a href="https://aloysius-patrimonio.pixels.com/" target="_blank" rel="noreferrer">Aloysius Patrimonio</a>
+    </footer>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "imm2026.directory.badges.v3";
+    const SHOWCASE_TARGET_LABEL = "Friday, May 8, 2026 at 6:00 PM ET";
+    const SHOWCASE_TARGET_TIME = new Date("2026-05-08T18:00:00-04:00").getTime();
+    const popover = document.getElementById("roomPopover");
+    const openingModal = document.getElementById("openingModal");
+    const mainNavLinks = document.getElementById("mainNavLinks");
+    const navToggle = document.getElementById("navToggle");
+    const logoFitCache = new Map();
+    let hideTimeout;
+    let currentCat = "all";
+    let currentView = "grid";
+    let store = { done: {}, updatedAt: null };
+
+    const CATEGORY_META = {
+      "Creative Coding": { color: "var(--trail-cc)", icon: "CC", short: "Creative Coding", logo: "../Section Logos So far/CreativeCodingLogo.png" },
+      "Culture & Technology": { color: "var(--trail-ct)", icon: "CT", short: "Culture & Technology", logo: "../Section Logos So far/CultureTechLogo.png" },
+      "Digital Fabrication": { color: "var(--trail-df)", icon: "DF", short: "Digital Fabrication", logo: "../Section Logos So far/DigitalFabLogo.png" },
+      "Games & Playable Media": { color: "var(--trail-gp)", icon: "GP", short: "Games & Playable Media", logo: "../Section Logos So far/GamesLogo.png" },
+      "Music Technology": { color: "var(--trail-mt)", icon: "MT", short: "Music Technology", logo: "../Section Logos So far/MusicTechLogo2.png" },
+      "Visual Storytelling & Animation": { color: "var(--trail-vs)", icon: "VS", short: "Visual Storytelling & Animation", logo: "../Section Logos So far/VisStoryAnimationLogo.png" }
+    };
+
+    const CATEGORY_ORDER = [
+      "Creative Coding",
+      "Culture & Technology",
+      "Digital Fabrication",
+      "Games & Playable Media",
+      "Music Technology",
+      "Visual Storytelling & Animation"
+    ];
+
+    const PROJECT_LOGOS = {
+      "caelan-arroyo": "../Project Logos/Caelan_Arroyo_Mumbo_Block_Logo.png",
+      "kelsey-daly": "../Project Logos/Kelsey Daly RTL/Respect The Locals Logo.png",
+      "michael-berrios": "../Project Logos/Michael Berrios - Toadstool Town/Michael_Berrios_Toadstool_Town_wordmark.png",
+      "collin-della-sala": "../Project Logos/Collin Della Sala Post-Fantasy/Post-Fantasy Logo(No Background).png",
+      "robyn-maggio": "../Project Logos/Robyn Maggio - M.A.E./MAE_Logo_Vector_Ver5.png",
+      "anthony-resto": "../Project Logos/RestoAnthonyLogo.png",
+      "kai-macedo": "../Project Logos/Kai Macedo - Color/kai_macedo_color_project_logo.png",
+      "alex-cook-1": "../Project Logos/Alex Cook - Cleanup Crew Logo.png",
+      "maya-randall": "../Project Logos/Maya Randall Liminal/2.png"
+    };
+
+    const BADGE_EMBLEMS = {
+      "Creative Coding": "../AlyosiusPatrimonoAssets/21.png",
+      "Culture & Technology": "../AlyosiusPatrimonoAssets/20.png",
+      "Digital Fabrication": "../AlyosiusPatrimonoAssets/24.png",
+      "Games & Playable Media": "../AlyosiusPatrimonoAssets/29.png",
+      "Music Technology": "../AlyosiusPatrimonoAssets/23.png",
+      "Visual Storytelling & Animation": "../AlyosiusPatrimonoAssets/33.png"
+    };
+
+    const PROJECTS = [
+      { id: "chase-dimarzio", name: "Chase Dimarzio", project: "Designer Depths", cat: "Creative Coding", room: "220", url: "https://immseniorshow.com/chase-dimarzio", blurb: "An interactive deep-sea exploration built with code." },
+      { id: "jeffrey-ernest", name: "Jeffrey Ernest", project: "OpenTomorrow", cat: "Creative Coding", room: "220", url: "https://immseniorshow.com/jeffrey-ernest", blurb: "A speculative coding project looking at future networks." },
+      { id: "idrissa-fofana", name: "Idrissa Fofana", project: "Sentinel Watch", cat: "Creative Coding", room: "221", url: "https://immseniorshow.com/idrissa-fofana", blurb: "A generative piece powered by real-time data." },
+      { id: "jennea-jeter", name: "Jennéa Jeter", project: "Sonic Lineage: Sampling History", cat: "Creative Coding", room: "222", url: "https://immseniorshow.com/jennea-jeter", blurb: "A visual and auditory coding experience analyzing music samples." },
+      { id: "rushil-desai", name: "Rushil Desai", project: "Eyes can see", cat: "Culture & Technology", room: "214", url: "https://immseniorshow.com/rushil-desai", blurb: "An interactive exhibit exploring surveillance and society." },
+      { id: "caelan-arroyo", name: "Caelan Arroyo", project: "Mumbo Block", cat: "Digital Fabrication", room: "217", url: "https://immseniorshow.com/caelan-arroyo", blurb: "Physical puzzle blocks constructed using CNC and 3D printing." },
+      { id: "kelsey-daly", name: "Kelsey Daly", project: "Respect The Locals", cat: "Digital Fabrication", room: "217", url: "https://immseniorshow.com/kelsey-daly", blurb: "Poster and sticker designs raising awareness for wildlife conservation." },
+      { id: "daniel-deleon", name: "Daniel DeLeon", project: "CV Lamp", cat: "Digital Fabrication", room: "215", url: "https://immseniorshow.com/daniel-deleon", blurb: "A custom-fabricated smart lamp responding to computer vision." },
+      { id: "isabel-difabio", name: "Isabel DiFabio", project: "Reactive Runway", cat: "Digital Fabrication", room: "215", url: "https://immseniorshow.com/isabel-difabio", blurb: "Wearable tech garments utilizing fabrication techniques." },
+      { id: "caleb-kim", name: "Caleb Kim", project: "Restart Energy", cat: "Digital Fabrication", room: "216", url: "https://immseniorshow.com/caleb-kim", blurb: "A prototype for kinetic energy harvesting." },
+      { id: "shane-maccarone", name: "Shane Maccarone", project: "Layered Perspectives", cat: "Digital Fabrication", room: "216", url: "https://immseniorshow.com/shane-maccarone", blurb: "A multi-depth installation created with laser cutters." },
+      { id: "jared-morris", name: "Jared Morris", project: "3D-Printed Magnetic Poker Chips", cat: "Digital Fabrication", room: "206", url: "https://immseniorshow.com/jared-morris", blurb: "Custom tabletop accessories with embedded magnets." },
+      { id: "asa-wong", name: "Asa Wong", project: "Signage of the Times", cat: "Digital Fabrication", room: "206", url: "https://immseniorshow.com/asa-wong", blurb: "Interactive, LED-infused wayfinding signage." },
+      { id: "muhammadabdulwadud", name: "Mohammad Abdul Wadud", project: "The Hidden Magic of Action Games", cat: "Games & Playable Media", room: "225", url: "https://immseniorshow.com/muhammadabdulwadud", blurb: "A playable exploration of action game design mechanics." },
+      { id: "michael-berrios", name: "Michael Berrios", project: "Toadstool Town", cat: "Games & Playable Media", room: "225", url: "https://immseniorshow.com/michael-berrios", blurb: "A cozy, flyable fungal village environment." },
+      { id: "madison-braithwaite", name: "Madison Braithwaite", project: "A Rat's Tail", cat: "Games & Playable Media", room: "225", url: "https://immseniorshow.com/madison-braithwaite", blurb: "A narrative-driven puzzle platformer." },
+      { id: "collin-della-sala", name: "Collin Della Sala", project: "Post-Fantasy", cat: "Games & Playable Media", room: "225", url: "https://immseniorshow.com/collin-della-sala", blurb: "An RPG where magic has industrialized." },
+      { id: "robyn-maggio", name: "Robyn Maggio", project: "M.A.E.: Music As Energy", cat: "Games & Playable Media", room: "224", url: "https://immseniorshow.com/robyn-maggio", blurb: "A reverse rhythm game where music drives movement." },
+      { id: "aidan-michaels", name: "Aidan Michaels", project: "Lumber", cat: "Games & Playable Media", room: "224", url: "https://immseniorshow.com/aidan-michaels", blurb: "Co-developer of a chaotic logging simulation." },
+      { id: "griffin-petry", name: "Griffin Petry", project: "Lumber", cat: "Games & Playable Media", room: "224", url: "https://immseniorshow.com/griffin-petry", blurb: "Co-developer of a chaotic logging simulation." },
+      { id: "anthony-resto", name: "Anthony Resto", project: "Guns en Roses", cat: "Games & Playable Media", room: "224", url: "https://immseniorshow.com/anthony-resto", blurb: "A fast-paced twin-stick shooter with a floral twist." },
+      { id: "andrew-romano", name: "Andrew Romano", project: "Ransom: Chaos with a Keyboard", cat: "Games & Playable Media", room: "236", url: "https://immseniorshow.com/andrew-romano", blurb: "A typing-based hacker simulation game." },
+      { id: "tyler-spressert", name: "Tyler Spressert", project: "Escape Through Time", cat: "Games & Playable Media", room: "236", url: "https://immseniorshow.com/tyler-spressert", blurb: "A puzzle experience with time-travel mechanics." },
+      { id: "zach-wade", name: "Zachary Wade", project: "Funny Fencing", cat: "Games & Playable Media", room: "236", url: "https://immseniorshow.com/zach-wade", blurb: "A comedic multiplayer dueling game." },
+      { id: "jack-dinnigan", name: "Jack Dinnigan", project: "The Dintracks", cat: "Music Technology", room: "233", url: "https://immseniorshow.com/jack-dinnigan", blurb: "An interactive spatial audio installation." },
+      { id: "kai-macedo", name: "Kai Macedo", project: "Color", cat: "Music Technology", room: "235", url: "https://immseniorshow.com/kai-macedo", blurb: "A hardware synthesizer linking frequencies to color shifts." },
+      { id: "alex-cook-1", name: "Alex Cook", project: "Helldivers 2 Animation", cat: "Visual Storytelling & Animation", room: "226", url: "https://immseniorshow.com/alex-cook-1", blurb: "A high-octane 3D animated fan film." },
+      { id: "naheda-hussain", name: "Naheda Hussain", project: "Coffee Outage Brand Book", cat: "Visual Storytelling & Animation", room: "226", url: "https://immseniorshow.com/naheda-hussain", blurb: "A full identity and story world for a fictional cafe." },
+      { id: "ari-lugassy", name: "Ari Lugassy", project: "The Flock", cat: "Visual Storytelling & Animation", room: "226", url: "https://immseniorshow.com/ari-lugassy", blurb: "A 2D short about finding your group." },
+      { id: "kiara-manon", name: "Kiara Manon", project: "From Fear to Future", cat: "Visual Storytelling & Animation", room: "227", url: "https://immseniorshow.com/kiara-manon", blurb: "A visual essay on innovation and art." },
+      { id: "carolyn-mcdonough", name: "Carolyn McDonough", project: "We Fated Few", cat: "Visual Storytelling & Animation", room: "227", url: "https://immseniorshow.com/carolyn-mcdonough", blurb: "A graphic novel prototype with illustrated worldbuilding." },
+      { id: "shane-mcgowan", name: "Shane Mcgowan", project: "Therapy: An Animated Music Video", cat: "Visual Storytelling & Animation", room: "227", url: "https://immseniorshow.com/shane-mcgowan", blurb: "A rotoscoped and digitally painted music video." },
+      { id: "aaron-pettiford", name: "Aaron Pettiford", project: "Project ABO-X03", cat: "Visual Storytelling & Animation", room: "228", url: "https://immseniorshow.com/aaron-pettiford", blurb: "Concept art and story development for a sci-fi world." },
+      { id: "michael-rasimowicz", name: "Michael Rasimowicz", project: "AIMM City", cat: "Visual Storytelling & Animation", room: "228", url: "https://immseniorshow.com/michael-rasimowicz", blurb: "An interactive comic using AIMM architecture." },
+      { id: "maya-randall", name: "Maya Randall", project: "Liminal", cat: "Visual Storytelling & Animation", room: "230", url: "https://immseniorshow.com/maya-randall", blurb: "A short film exploring transitional emotional spaces." },
+      { id: "mehmet-sezer", name: "Mehmet Sezer", project: "S&M Distributes Brand Book", cat: "Visual Storytelling & Animation", room: "230", url: "https://mehmetsdesign.com", blurb: "A comprehensive storytelling and branding guide." }
+    ];
+
+    const yearsDD = document.getElementById("yearsDD");
+    document.addEventListener("click", (event) => {
+      if (!yearsDD.contains(event.target)) yearsDD.classList.remove("open");
+    });
+
+    function toggleDD() {
+      yearsDD.classList.toggle("open");
+    }
+
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach((page) => page.classList.remove("active"));
+      document.getElementById("page-" + id).classList.add("active");
+      closeNav();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (id === "projects") renderDirectory();
+    }
+
+    function toggleNav() {
+      const isOpen = mainNavLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
+
+    function closeNav() {
+      mainNavLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function openOpeningModal() {
+      openingModal.classList.add("open");
+      openingModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeNav();
+    }
+
+    function closeOpeningModal() {
+      openingModal.classList.remove("open");
+      openingModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function updateCountdown() {
+      const valueNode = document.getElementById("countdownValue");
+      const targetNode = document.getElementById("countdownTarget");
+      if (!valueNode || !targetNode) return;
+      targetNode.textContent = SHOWCASE_TARGET_LABEL;
+
+      const now = Date.now();
+      const diff = SHOWCASE_TARGET_TIME - now;
+      if (diff <= 0) {
+        valueNode.textContent = "Showcase is live";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      valueNode.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function switchFloor(floor) {
+      document.getElementById("floor1-layer").style.display = floor === 1 ? "block" : "none";
+      document.getElementById("floor2-layer").style.display = floor === 2 ? "block" : "none";
+      document.getElementById("currentFloorDisplay").textContent = "FLOOR " + floor;
+    }
+
+    function showTooltip(room, anchor) {
+      clearTimeout(hideTimeout);
+      const occupants = PROJECTS.filter((project) => project.room === room);
+      if (!occupants.length) return;
+
+      let html = `<div class="popover-title">Room ${room}</div>`;
+      occupants.forEach((project) => {
+        const meta = CATEGORY_META[project.cat];
+        html += `
+          <div class="popover-student" style="border-left-color:${meta.color};">
+            <div class="student-head">
+              <span class="student-badge" style="color:${meta.color};">${meta.icon}</span>
+              ${project.name}
+            </div>
+            <div class="student-proj">${project.project}</div>
+            <p class="student-blurb">${project.blurb}</p>
+            <a class="student-link" style="background:${meta.color};" href="${project.url}" target="_blank" rel="noreferrer">View Project</a>
+          </div>`;
+      });
+
+      popover.innerHTML = html;
+      popover.style.display = "block";
+      popover.style.opacity = "1";
+
+      const container = document.getElementById("mapContainer");
+      let top = anchor.offsetTop - popover.offsetHeight - 16;
+      let left = anchor.offsetLeft - popover.offsetWidth / 2;
+
+      if (top < 8) top = anchor.offsetTop + 42;
+      if (left < 8) left = 8;
+      if (left + popover.offsetWidth > container.offsetWidth - 8) {
+        left = container.offsetWidth - popover.offsetWidth - 8;
+      }
+
+      popover.style.top = top + "px";
+      popover.style.left = left + "px";
+    }
+
+    function startHideTooltip() {
+      hideTimeout = setTimeout(() => {
+        popover.style.opacity = "0";
+        setTimeout(() => {
+          if (popover.style.opacity === "0") popover.style.display = "none";
+        }, 180);
+      }, 260);
+    }
+
+    popover.addEventListener("mouseenter", () => clearTimeout(hideTimeout));
+    popover.addEventListener("mouseleave", startHideTooltip);
+
+    function jumpToCategory(category) {
+      currentCat = category;
+      document.querySelectorAll(".filter-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.filter === category);
+      });
+      showPage("projects");
+    }
+
+    function filterCat(category, button) {
+      currentCat = category;
+      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+      if (button) button.classList.add("active");
+      renderDirectory();
+    }
+
+    const TRACK_QUERY_MAP = {
+      "creative-coding": "Creative Coding",
+      "culture-technology": "Culture & Technology",
+      "digital-fabrication": "Digital Fabrication",
+      "games-playable-media": "Games & Playable Media",
+      "music-technology": "Music Technology",
+      "visual-storytelling-animation": "Visual Storytelling & Animation"
+    };
+
+    function applyTrackQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const track = TRACK_QUERY_MAP[params.get("track") || ""];
+      if (!track) return false;
+      const button = document.querySelector('.filter-btn[data-filter="' + track.replace(/"/g, '\\"') + '"]');
+      currentCat = track;
+      document.querySelectorAll(".filter-btn").forEach((b) => {
+        b.classList.toggle("active", b === button);
+      });
+      showPage("projects");
+      return true;
+    }
+
+    function switchView(view) {
+      currentView = view;
+      document.getElementById("viewGridBtn").classList.toggle("active", view === "grid");
+      document.getElementById("viewBookBtn").classList.toggle("active", view === "book");
+      document.getElementById("viewTableBtn").classList.toggle("active", view === "table");
+      renderDirectory();
+    }
+
+    function loadStore() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          store.done = parsed.done && typeof parsed.done === "object" ? parsed.done : {};
+          store.updatedAt = parsed.updatedAt || null;
+        }
+      } catch (_error) {
+        store = { done: {}, updatedAt: null };
+      }
+    }
+
+    function saveStore() {
+      store.updatedAt = Date.now();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+      document.getElementById("saveStatus").textContent =
+        "Saved on this device: " + new Date(store.updatedAt).toLocaleString();
+    }
+
+    function sortProjects(projects) {
+      const categoryIndex = new Map(CATEGORY_ORDER.map((cat, index) => [cat, index]));
+      return projects.slice().sort((a, b) => {
+        const catDiff = (categoryIndex.get(a.cat) ?? 99) - (categoryIndex.get(b.cat) ?? 99);
+        if (catDiff !== 0) return catDiff;
+        const projectDiff = a.project.localeCompare(b.project, undefined, { sensitivity: "base" });
+        if (projectDiff !== 0) return projectDiff;
+        return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+      });
+    }
+
+    function getVisibleProjects() {
+      const base = currentCat === "all"
+        ? PROJECTS
+        : PROJECTS.filter((project) => project.cat === currentCat);
+      return sortProjects(base);
+    }
+
+    function getProjectLogo(project) {
+      return PROJECT_LOGOS[project.id] || CATEGORY_META[project.cat].logo;
+    }
+
+    function getBadgeEmblem(project) {
+      return BADGE_EMBLEMS[project.cat] || "../AlyosiusPatrimonoAssets/24.png";
+    }
+
+    function toggleCollected(projectId) {
+      store.done[projectId] = !store.done[projectId];
+      saveStore();
+      renderDirectory();
+    }
+
+    function getClassroomProgress() {
+      const categories = [...new Set(PROJECTS.map((project) => project.cat))];
+      const done = categories.filter((category) =>
+        PROJECTS.some((project) => project.cat === category && store.done[project.id])
+      ).length;
+      return { done, total: categories.length };
+    }
+
+    function updateProgressUI() {
+      const total = PROJECTS.length;
+      const collected = PROJECTS.filter((project) => store.done[project.id]).length;
+      const classroom = getClassroomProgress();
+      const percent = Math.round((collected / total) * 100);
+
+      document.getElementById("projectProgress").textContent = `${collected} / ${total} project badges`;
+      document.getElementById("classroomProgress").textContent = `${classroom.done} / ${classroom.total} classroom badges`;
+      document.getElementById("progressMeter").style.width = percent + "%";
+      if (store.updatedAt) {
+        document.getElementById("saveStatus").textContent =
+          "Saved on this device: " + new Date(store.updatedAt).toLocaleString();
+      }
+    }
+
+    function createBadgeCard(project) {
+      const meta = CATEGORY_META[project.cat];
+      const collected = !!store.done[project.id];
+      const emblem = getBadgeEmblem(project);
+      const card = document.createElement("article");
+      card.className = "badge-card" + (collected ? " is-collected" : "");
+      card.dataset.projectId = project.id;
+      card.innerHTML = `
+        <div class="badge-head">
+          <h4 class="badge-title">${project.project}</h4>
+          <p class="badge-student">${project.name}</p>
+        </div>
+        <div class="badge-body">
+          <div class="badge-logo-wrap">
+            <img class="badge-logo" src="${encodeURI(getProjectLogo(project))}" alt="${project.project} logo" loading="lazy" decoding="async">
+            <img class="badge-emblem" src="${encodeURI(emblem)}" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
+          <div class="badge-meta">
+            <span class="cat-pill" style="background:${meta.color}22;border-color:${meta.color};">${meta.short}</span>
+            <span class="room-pill">Room ${project.room}</span>
+          </div>
+          <div class="badge-actions">
+            <button class="collect-btn ${collected ? "collected" : ""}" data-project-id="${project.id}">
+              ${collected ? "Collected ✓" : "Mark Collected"}
+            </button>
+            <a class="project-link" href="${project.url}" target="_blank" rel="noreferrer">Open</a>
+          </div>
+        </div>`;
+      return card;
+    }
+
+    function renderGridView(projects) {
+      const root = document.getElementById("gridView");
+      root.innerHTML = "";
+
+      const cats = currentCat === "all" ? CATEGORY_ORDER : [currentCat];
+      cats.forEach((category) => {
+        const items = projects.filter((project) => project.cat === category);
+        if (!items.length) return;
+        const meta = CATEGORY_META[category];
+        const categoryCollected = items.filter((project) => store.done[project.id]).length;
+
+        const section = document.createElement("section");
+        section.className = "category-section";
+        section.innerHTML = `
+          <div class="category-heading">
+            <img class="category-logo" src="${encodeURI(meta.logo)}" alt="${category} logo">
+            <h3>${meta.short}</h3>
+            <small>${categoryCollected}/${items.length} collected</small>
+          </div>`;
+        const grid = document.createElement("div");
+        grid.className = "directory-grid";
+        items.forEach((project) => grid.appendChild(createBadgeCard(project)));
+        section.appendChild(grid);
+        root.appendChild(section);
+      });
+    }
+
+    function renderBookView(projects) {
+      const root = document.getElementById("bookView");
+      root.innerHTML = "";
+      const cats = currentCat === "all" ? CATEGORY_ORDER : [currentCat];
+
+      cats.forEach((category) => {
+        const items = projects.filter((project) => project.cat === category);
+        if (!items.length) return;
+        const collected = items.filter((project) => store.done[project.id]).length;
+        const page = document.createElement("section");
+        page.className = "book-page";
+        page.innerHTML = `
+          <h3>${CATEGORY_META[category].short}</h3>
+          <p>${collected} / ${items.length} collected in this trail</p>`;
+        const grid = document.createElement("div");
+        grid.className = "book-grid";
+        items.forEach((project) => grid.appendChild(createBadgeCard(project)));
+        page.appendChild(grid);
+        root.appendChild(page);
+      });
+    }
+
+    function renderTableView(projects) {
+      const root = document.getElementById("tableView");
+      let rows = "";
+      projects.forEach((project) => {
+        const meta = CATEGORY_META[project.cat];
+        const collected = !!store.done[project.id];
+        rows += `
+          <tr>
+            <td>${project.name}</td>
+            <td>${project.project}</td>
+            <td><span class="cat-pill" style="background:${meta.color}22;border-color:${meta.color};">${meta.short}</span></td>
+            <td>Room ${project.room}</td>
+            <td class="row-actions">
+              <button class="${collected ? "collected" : ""}" data-project-id="${project.id}">${collected ? "Collected" : "Collect"}</button>
+              <a class="project-link" style="min-height:unset;padding:6px 10px;flex:0;" href="${project.url}" target="_blank" rel="noreferrer">Open</a>
+            </td>
+          </tr>`;
+      });
+      root.innerHTML = `
+        <table>
+          <thead><tr><th>Student</th><th>Project</th><th>Trail</th><th>Room</th><th>Actions</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    function bindCollectButtons() {
+      document.querySelectorAll("[data-project-id]").forEach((element) => {
+        if (element.dataset.bound === "1") return;
+        element.dataset.bound = "1";
+        element.addEventListener("click", (event) => {
+          if (!element.matches("button")) return;
+          event.preventDefault();
+          toggleCollected(element.dataset.projectId);
+        });
+      });
+    }
+
+    function setLogoFrameModeByRatio(img, ratio) {
+      const frame = img.closest(".badge-logo-wrap");
+      if (!frame || !ratio || !Number.isFinite(ratio)) return;
+      frame.classList.remove("is-wide", "is-tall");
+      if (ratio >= 2.35) {
+        frame.classList.add("is-wide");
+      } else if (ratio <= 0.78) {
+        frame.classList.add("is-tall");
+      }
+    }
+
+    function cropTransparentWhitespace(img) {
+      if (img.dataset.fitDone === "1") return;
+      const sourceKey = img.currentSrc || img.src;
+      if (!sourceKey || sourceKey.startsWith("data:image")) {
+        img.dataset.fitDone = "1";
+        return;
+      }
+      if (logoFitCache.has(sourceKey)) {
+        const cached = logoFitCache.get(sourceKey);
+        img.dataset.fitDone = "1";
+        if (cached) {
+          img.addEventListener("load", () => {
+            setLogoFrameModeByRatio(img, img.naturalWidth / img.naturalHeight);
+          }, { once: true });
+          img.src = cached;
+        } else {
+          setLogoFrameModeByRatio(img, (img.naturalWidth || 1) / (img.naturalHeight || 1));
+        }
+        return;
+      }
+
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+      if (!width || !height) {
+        img.dataset.fitDone = "1";
+        return;
+      }
+
+      const maxSide = 800;
+      const drawScale = Math.min(1, maxSide / Math.max(width, height));
+      const drawWidth = Math.max(1, Math.round(width * drawScale));
+      const drawHeight = Math.max(1, Math.round(height * drawScale));
+      const canvas = document.createElement("canvas");
+      canvas.width = drawWidth;
+      canvas.height = drawHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        setLogoFrameModeByRatio(img, width / height);
+        return;
+      }
+
+      try {
+        ctx.drawImage(img, 0, 0, drawWidth, drawHeight);
+        const pixels = ctx.getImageData(0, 0, drawWidth, drawHeight).data;
+        let minX = drawWidth;
+        let minY = drawHeight;
+        let maxX = -1;
+        let maxY = -1;
+        for (let y = 0; y < drawHeight; y += 1) {
+          for (let x = 0; x < drawWidth; x += 1) {
+            const alpha = pixels[(y * drawWidth + x) * 4 + 3];
+            if (alpha > 16) {
+              if (x < minX) minX = x;
+              if (y < minY) minY = y;
+              if (x > maxX) maxX = x;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+        if (maxX < 0 || maxY < 0) {
+          logoFitCache.set(sourceKey, null);
+          img.dataset.fitDone = "1";
+          setLogoFrameModeByRatio(img, width / height);
+          return;
+        }
+        const widthBox = maxX - minX + 1;
+        const heightBox = maxY - minY + 1;
+        const coverage = (widthBox * heightBox) / (drawWidth * drawHeight);
+        if (coverage > 0.94) {
+          logoFitCache.set(sourceKey, null);
+          img.dataset.fitDone = "1";
+          setLogoFrameModeByRatio(img, width / height);
+          return;
+        }
+
+        const pad = Math.max(2, Math.round(Math.max(widthBox, heightBox) * 0.06));
+        const sx = Math.max(0, minX - pad);
+        const sy = Math.max(0, minY - pad);
+        const sw = Math.min(drawWidth - sx, widthBox + pad * 2);
+        const sh = Math.min(drawHeight - sy, heightBox + pad * 2);
+        if (sw < 8 || sh < 8) {
+          logoFitCache.set(sourceKey, null);
+          img.dataset.fitDone = "1";
+          setLogoFrameModeByRatio(img, width / height);
+          return;
+        }
+
+        const out = document.createElement("canvas");
+        out.width = sw;
+        out.height = sh;
+        const outCtx = out.getContext("2d");
+        if (!outCtx) {
+          setLogoFrameModeByRatio(img, width / height);
+          return;
+        }
+        outCtx.drawImage(canvas, sx, sy, sw, sh, 0, 0, sw, sh);
+        const cropped = out.toDataURL("image/png");
+        logoFitCache.set(sourceKey, cropped);
+        img.dataset.fitDone = "1";
+        setLogoFrameModeByRatio(img, sw / sh);
+        img.src = cropped;
+      } catch (_error) {
+        logoFitCache.set(sourceKey, null);
+        img.dataset.fitDone = "1";
+        setLogoFrameModeByRatio(img, width / height);
+      }
+    }
+
+    function autoFitLogos() {
+      document.querySelectorAll(".badge-logo").forEach((img) => {
+        if (img.dataset.fitBound === "1") return;
+        img.dataset.fitBound = "1";
+        const run = () => cropTransparentWhitespace(img);
+        if (img.complete) run();
+        img.addEventListener("load", run, { once: true });
+      });
+    }
+
+    function renderDirectory() {
+      const projects = getVisibleProjects();
+      renderGridView(projects);
+      renderBookView(projects);
+      renderTableView(projects);
+      bindCollectButtons();
+      autoFitLogos();
+      updateProgressUI();
+
+      document.getElementById("gridView").classList.toggle("hidden", currentView !== "grid");
+      document.getElementById("bookView").classList.toggle("hidden", currentView !== "book");
+      document.getElementById("tableView").classList.toggle("hidden", currentView !== "table");
+    }
+
+    const mapScroller = document.getElementById("mapScroller");
+    let isDragging = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    mapScroller.addEventListener("pointerdown", (event) => {
+      isDragging = true;
+      startX = event.pageX - mapScroller.offsetLeft;
+      startScroll = mapScroller.scrollLeft;
+      mapScroller.setPointerCapture(event.pointerId);
+    });
+
+    mapScroller.addEventListener("pointerup", () => {
+      isDragging = false;
+    });
+
+    mapScroller.addEventListener("pointercancel", () => {
+      isDragging = false;
+    });
+
+    mapScroller.addEventListener("pointermove", (event) => {
+      if (!isDragging) return;
+      const x = event.pageX - mapScroller.offsetLeft;
+      const walk = (x - startX) * 1.8;
+      mapScroller.scrollLeft = startScroll - walk;
+    });
+
+    openingModal.addEventListener("click", (event) => {
+      if (event.target === openingModal) closeOpeningModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeOpeningModal();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (window.innerWidth > 760) return;
+      if (mainNavLinks.contains(event.target) || navToggle.contains(event.target)) return;
+      closeNav();
+    });
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    loadStore();
+    if (!applyTrackQuery()) renderDirectory();
+    setTimeout(openOpeningModal, 450);
+  </script>
+</body>
+</html>

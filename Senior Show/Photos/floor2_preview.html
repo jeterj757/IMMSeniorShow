@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floor 2 Map Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-color: #F7F5F0;
+    --white: #ffffff;
+    --light-gray: #EAE6DF;
+    --text-dark: #122115;
+    --text-muted: #4A5D4E;
+    --border: #1A6329;
+    --forest-green: #1A6329;
+    --sage-green: #A3C082;
+    --trail-cc: #009FB7;
+    --trail-ct: #7CB518;
+    --trail-df: #F2A900;
+    --trail-gp: #F95738;
+    --trail-mt: #7209B7;
+    --trail-vs: #EE4266;
+    --font-head: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', Arial, sans-serif;
+  }
+  body { font-family: var(--font-body); background: var(--bg-color); color: var(--text-dark); padding: 20px; }
+
+  h2 { font-family: var(--font-head); font-size: 2rem; color: var(--forest-green); text-align: center; margin-bottom: 6px; }
+  .sub { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 16px; letter-spacing: 2px; text-transform: uppercase; }
+
+  .map-scroller { width: 100%; overflow-x: auto; border: 3px solid var(--forest-green); background: var(--light-gray); }
+  .map-container {
+    min-width: 900px; height: 650px; position: relative; margin: 0 auto; max-width: 1100px;
+    background-color: var(--bg-color);
+    background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 18px, rgba(26,99,41,0.04) 19px, rgba(26,99,41,0.04) 20px);
+  }
+  .map-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .map-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* Trail aesthetics */
+  .topo-lines { fill: none; stroke: var(--sage-green); stroke-width: 1; opacity: 0.5; }
+
+  /* Nodes */
+  .map-node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 3px solid var(--zone-color);
+    color: var(--text-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    box-shadow: 0 4px 0 var(--forest-green);
+    font-family: var(--font-body);
+  }
+  .map-node:hover {
+    transform: translate(-50%, -60%) scale(1.15);
+    background: var(--zone-color);
+    color: white;
+    box-shadow: 0 8px 0 var(--forest-green);
+    z-index: 20;
+  }
+
+  /* Popover */
+  .room-popover {
+    position: absolute; background: var(--white); border: 3px solid var(--border); border-radius: 8px;
+    padding: 1.2rem; width: 300px; box-shadow: 6px 6px 0px var(--sage-green); display: none;
+    z-index: 1000; pointer-events: auto; text-align: left;
+  }
+  .popover-title { font-family: var(--font-head); font-size: 1.4rem; color: var(--forest-green); border-bottom: 2px dashed var(--sage-green); margin-bottom: 10px; padding-bottom: 6px; }
+  .popover-student { margin-bottom: 12px; background: var(--bg-color); padding: 10px; border-radius: 4px; border: 1px solid var(--light-gray); }
+  .student-head { font-weight: 900; font-size: 0.95rem; color: var(--text-dark); }
+  .student-proj { font-weight: 700; color: var(--forest-green); font-size: 0.85rem; margin-top: 3px; }
+  .student-blurb { font-size: 0.8rem; color: var(--text-muted); margin: 5px 0 8px; line-height: 1.4; }
+  .student-link { display: inline-block; padding: 5px 10px; background: var(--forest-green); color: white; font-size: 0.72rem; text-decoration: none; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; padding: 1rem; background: white; border-top: 3px solid var(--forest-green); margin-top: 0; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; font-family: var(--font-body); }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); }
+
+  /* instruction */
+  .hint { text-align:center; font-size:11px; color:var(--text-muted); margin-bottom:8px; font-style:italic; }
+</style>
+</head>
+<body>
+
+<h2>Floor 2 — Trail Map</h2>
+<div class="sub">ART &amp; IMM BUILDING · SECOND FLOOR</div>
+<p class="hint">Hover over a room node to see students. This is a drop-in preview — copy the floor2-layer div into your main HTML.</p>
+
+<div class="map-scroller">
+  <div class="map-container" id="mapContainer">
+    <div class="room-popover" id="roomPopover"></div>
+
+    <!-- FLOOR 2 LAYER -->
+    <div id="floor2-layer" class="map-layer" style="display: block;">
+      <svg class="map-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Topo atmosphere -->
+        <path class="topo-lines" d="M 0 120 Q 250 80 500 130 T 1000 100" />
+        <path class="topo-lines" d="M 0 560 Q 300 530 600 570 T 1000 540" />
+        <path class="topo-lines" d="M 0 625 Q 300 595 600 635 T 1000 615" />
+
+        <!-- Tree clusters -->
+        <g fill="#1A6329" opacity="0.65">
+          <polygon points="48,320 56,300 64,320" /><polygon points="60,335 68,315 76,335" />
+          <polygon points="940,320 948,300 956,320" /><polygon points="928,340 936,320 944,340" />
+          <polygon points="488,635 496,615 504,635" /><polygon points="503,650 511,630 519,650" />
+        </g>
+
+        <!-- ── BUILDING SHELL ── -->
+        <!-- Left wing -->
+        <rect x="80" y="50" width="200" height="440" fill="#FEFCF6" stroke="#1A6329" stroke-width="2.5" rx="3"/>
+        <!-- Right wing -->
+        <rect x="720" y="50" width="200" height="440" fill="#FEFCF6" stroke="#1A6329" stroke-width="2.5" rx="3"/>
+        <!-- Top strip (comp labs above arch) -->
+        <rect x="280" y="50" width="440" height="110" fill="#FEFCF6" stroke="#1A6329" stroke-width="2.5" rx="3"/>
+
+        <!-- ── ARCH / ATRIUM ── -->
+        <!-- Open courtyard fill -->
+        <path d="M 385,160 L 385,400 Q 385,470 500,470 Q 615,470 615,400 L 615,160 Z"
+          fill="#E8DCC8" opacity="0.75"/>
+        <!-- Arch wall stroke -->
+        <path d="M 385,160 L 385,400 Q 385,470 500,470 Q 615,470 615,400 L 615,160"
+          fill="none" stroke="#8C6A4F" stroke-width="4.5" stroke-linejoin="round"/>
+        <!-- Atrium label -->
+        <text x="500" y="335" text-anchor="middle" font-family="'Bebas Neue', sans-serif"
+          font-size="17" fill="#9A7A50" opacity="0.7" letter-spacing="3">ATRIUM</text>
+
+        <!-- ── ROOM DIVIDERS (dashed) ── -->
+        <!-- Left wing -->
+        <line x1="80" y1="148" x2="280" y2="148" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="80" y1="235" x2="280" y2="235" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="80" y1="315" x2="280" y2="315" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="180" y1="148" x2="180" y2="315" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <!-- Right wing -->
+        <line x1="720" y1="148" x2="920" y2="148" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="720" y1="235" x2="920" y2="235" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="720" y1="315" x2="920" y2="315" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="720" y1="400" x2="820" y2="400" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="820" y1="315" x2="820" y2="490" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <!-- Top strip comp labs -->
+        <line x1="360" y1="50" x2="360" y2="160" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="432" y1="50" x2="432" y2="160" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="568" y1="50" x2="568" y2="160" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+        <line x1="640" y1="50" x2="640" y2="160" stroke="#1A6329" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.45"/>
+
+        <!-- ── HALLWAY SPINE ── -->
+        <rect x="80" y="490" width="840" height="50" fill="#DDD5C0" stroke="#1A6329" stroke-width="2" opacity="0.85"/>
+        <line x1="80" y1="515" x2="920" y2="515" stroke="#8C6A4F" stroke-width="12" stroke-linecap="round" opacity="0.55"/>
+        <line x1="80" y1="515" x2="920" y2="515" stroke="#F7F5F0" stroke-width="3" stroke-dasharray="14 10" opacity="0.85"/>
+
+        <!-- Left vertical corridor -->
+        <line x1="280" y1="50" x2="280" y2="490" stroke="#8C6A4F" stroke-width="9" opacity="0.35"/>
+        <line x1="280" y1="50" x2="280" y2="490" stroke="#F7F5F0" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.7"/>
+
+        <!-- Right vertical corridor -->
+        <line x1="720" y1="50" x2="720" y2="490" stroke="#8C6A4F" stroke-width="9" opacity="0.35"/>
+        <line x1="720" y1="50" x2="720" y2="490" stroke="#F7F5F0" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.7"/>
+
+        <!-- Center stub to lobby -->
+        <line x1="500" y1="540" x2="500" y2="615" stroke="#8C6A4F" stroke-width="9" opacity="0.35"/>
+        <line x1="500" y1="540" x2="500" y2="615" stroke="#F7F5F0" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.7"/>
+
+        <!-- ── BELOW HALLWAY ROOMS ── -->
+        <rect x="80" y="540" width="200" height="110" fill="#FEFCF6" stroke="#1A6329" stroke-width="2" rx="3"/>
+        <text x="180" y="603" text-anchor="middle" font-size="10" fill="#4A5D4E" opacity="0.55" font-family="'Inter',sans-serif">U-Lab / 206</text>
+
+        <rect x="380" y="540" width="240" height="110" fill="#FEFCF6" stroke="#1A6329" stroke-width="2" rx="3"/>
+        <text x="500" y="603" text-anchor="middle" font-size="10" fill="#4A5D4E" opacity="0.55" font-family="'Inter',sans-serif">Lobby · 202/203/204</text>
+
+        <rect x="720" y="540" width="200" height="110" fill="#FEFCF6" stroke="#1A6329" stroke-width="2" rx="3"/>
+        <text x="820" y="603" text-anchor="middle" font-size="10" fill="#4A5D4E" opacity="0.55" font-family="'Inter',sans-serif">Recording · 235</text>
+
+        <!-- ── GHOST ROOM LABELS ── -->
+        <g font-size="9" fill="#4A5D4E" opacity="0.4" text-anchor="middle" font-family="'Inter',sans-serif">
+          <!-- top strip -->
+          <text x="320" y="113">220</text>
+          <text x="396" y="113">221</text>
+          <text x="500" y="113">★ YOU ARE HERE</text>
+          <text x="604" y="113">222</text>
+          <text x="680" y="113">223/224</text>
+          <!-- left wing -->
+          <text x="130" y="108">217</text>
+          <text x="130" y="198">215</text>
+          <text x="228" y="198">216</text>
+          <text x="180" y="278">214</text>
+          <!-- right wing -->
+          <text x="870" y="108">226</text>
+          <text x="870" y="198">227</text>
+          <text x="870" y="278">228</text>
+          <text x="870" y="368">230</text>
+          <text x="770" y="365">225</text>
+          <text x="770" y="448">224</text>
+          <text x="870" y="448">233</text>
+          <!-- below hallway -->
+          <text x="600" y="572">236</text>
+          <text x="820" y="572">235</text>
+        </g>
+
+      </svg>
+
+      <!-- ══ NODES (positions match your original HTML) ══ -->
+
+      <!-- Creative Coding -->
+      <div class="map-node" style="top:61%;left:38%;--zone-color:var(--trail-cc)" onmouseenter="showTooltip('220',this)" onmouseleave="startHide()">220</div>
+      <div class="map-node" style="top:63%;left:44%;--zone-color:var(--trail-cc)" onmouseenter="showTooltip('221',this)" onmouseleave="startHide()">221</div>
+      <div class="map-node" style="top:63%;left:56%;--zone-color:var(--trail-cc)" onmouseenter="showTooltip('222',this)" onmouseleave="startHide()">222</div>
+
+      <!-- Digital Fabrication -->
+      <div class="map-node" style="top:20%;left:23%;--zone-color:var(--trail-df)" onmouseenter="showTooltip('217',this)" onmouseleave="startHide()">217</div>
+      <div class="map-node" style="top:30%;left:23%;--zone-color:var(--trail-df)" onmouseenter="showTooltip('215',this)" onmouseleave="startHide()">215</div>
+      <div class="map-node" style="top:28%;left:33%;--zone-color:var(--trail-df)" onmouseenter="showTooltip('216',this)" onmouseleave="startHide()">216</div>
+      <div class="map-node" style="top:81%;left:18%;--zone-color:var(--trail-df)" onmouseenter="showTooltip('206',this)" onmouseleave="startHide()">206</div>
+
+      <!-- Culture & Tech -->
+      <div class="map-node" style="top:42%;left:23%;--zone-color:var(--trail-ct)" onmouseenter="showTooltip('214',this)" onmouseleave="startHide()">214</div>
+
+      <!-- Visual Storytelling -->
+      <div class="map-node" style="top:20%;left:78%;--zone-color:var(--trail-vs)" onmouseenter="showTooltip('226',this)" onmouseleave="startHide()">226</div>
+      <div class="map-node" style="top:30%;left:78%;--zone-color:var(--trail-vs)" onmouseenter="showTooltip('227',this)" onmouseleave="startHide()">227</div>
+      <div class="map-node" style="top:40%;left:78%;--zone-color:var(--trail-vs)" onmouseenter="showTooltip('228',this)" onmouseleave="startHide()">228</div>
+      <div class="map-node" style="top:50%;left:78%;--zone-color:var(--trail-vs)" onmouseenter="showTooltip('230',this)" onmouseleave="startHide()">230</div>
+
+      <!-- Games & Playable Media -->
+      <div class="map-node" style="top:45%;left:67%;--zone-color:var(--trail-gp)" onmouseenter="showTooltip('225',this)" onmouseleave="startHide()">225</div>
+      <div class="map-node" style="top:57%;left:67%;--zone-color:var(--trail-gp)" onmouseenter="showTooltip('224',this)" onmouseleave="startHide()">224</div>
+      <div class="map-node" style="top:81%;left:60%;--zone-color:var(--trail-gp)" onmouseenter="showTooltip('236',this)" onmouseleave="startHide()">236</div>
+
+      <!-- Music Tech -->
+      <div class="map-node" style="top:61%;left:78%;--zone-color:var(--trail-mt)" onmouseenter="showTooltip('233',this)" onmouseleave="startHide()">233</div>
+      <div class="map-node" style="top:81%;left:86%;--zone-color:var(--trail-mt)" onmouseenter="showTooltip('235',this)" onmouseleave="startHide()">235</div>
+
+    </div>
+    <!-- END FLOOR 2 LAYER -->
+
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-cc)"></div>Creative Coding</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-ct)"></div>Culture &amp; Tech</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-df)"></div>Digital Fabrication</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-gp)"></div>Games</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-mt)"></div>Music Tech</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--trail-vs)"></div>Visual Storytelling</div>
+</div>
+
+<script>
+const PROJECTS = [
+  {name:"Chase Dimarzio",       project:"Designer Depths",                      cat:"Creative Coding",               room:"220", blurb:"An interactive deep-sea exploration built with code."},
+  {name:"Jeffrey Ernest",       project:"OpenTomorrow",                         cat:"Creative Coding",               room:"220", blurb:"A speculative coding project looking at future networks."},
+  {name:"Idrissa Fofana",       project:"Sentinel Watch",                       cat:"Creative Coding",               room:"221", blurb:"A generative art piece powered by real-time data."},
+  {name:"Jennéa Jeter",         project:"Sonic Lineage: Sampling History",      cat:"Creative Coding",               room:"222", blurb:"A visual and auditory coding experience analyzing music samples."},
+  {name:"Rushil Desai",         project:"Eyes Can See",                         cat:"Culture & Technology",          room:"214", blurb:"An interactive exhibit exploring surveillance and society."},
+  {name:"Caelan Arroyo",        project:"Mumbo Block",                          cat:"Digital Fabrication",           room:"217", blurb:"Physical puzzle blocks constructed using CNC and 3D printing."},
+  {name:"Kelsey Daly",          project:"zSecret",                              cat:"Digital Fabrication",           room:"217", blurb:"An intricate laser-cut box holding encrypted secrets."},
+  {name:"Daniel DeLeon",        project:"CV Lamp",                              cat:"Digital Fabrication",           room:"215", blurb:"A custom-fabricated smart lamp responding to computer vision."},
+  {name:"Isabel DiFabio",       project:"Reactive Runway",                      cat:"Digital Fabrication",           room:"215", blurb:"Wearable tech garments utilizing 3D printed fabrics."},
+  {name:"Caleb Kim",            project:"Restart Energy",                       cat:"Digital Fabrication",           room:"216", blurb:"A physical prototype for a kinetic energy harvesting device."},
+  {name:"Shane Maccarone",      project:"Layered Perspectives",                 cat:"Digital Fabrication",           room:"216", blurb:"A multi-depth acrylic installation created with laser cutters."},
+  {name:"Jared Morris",         project:"3D-Printed Magnetic Poker Chips",      cat:"Digital Fabrication",           room:"206", blurb:"Custom tabletop gaming accessories with embedded magnets."},
+  {name:"Asa Wong",             project:"Signage of the Times",                 cat:"Digital Fabrication",           room:"206", blurb:"Interactive, LED-infused wayfinding signage."},
+  {name:"Mohammad Abdul Wadud", project:"The Hidden Magic of Action Games",     cat:"Games & Playable Media",        room:"225", blurb:"An essayistic playable experience on game design mechanics."},
+  {name:"Michael Berrios",      project:"Toadstool Town",                       cat:"Games & Playable Media",        room:"225", blurb:"A cozy, isometric village simulation game."},
+  {name:"Madison Braithwaite",  project:"A Rat's Tail",                         cat:"Games & Playable Media",        room:"225", blurb:"A narrative-driven puzzle platformer."},
+  {name:"Collin Della Sala",    project:"Post-Fantasy",                         cat:"Games & Playable Media",        room:"225", blurb:"An RPG set in a world where magic has rapidly industrialized."},
+  {name:"Robyn Maggio",         project:"M.A.E.: Music As Energy",              cat:"Games & Playable Media",        room:"224", blurb:"A rhythm-based action game where beats control combat."},
+  {name:"Aidan Michaels",       project:"Lumber",                               cat:"Games & Playable Media",        room:"224", blurb:"Co-developer of the chaotic logging simulation game."},
+  {name:"Griffin Petry",        project:"Lumber",                               cat:"Games & Playable Media",        room:"224", blurb:"Co-developer of the chaotic logging simulation game."},
+  {name:"Anthony Resto",        project:"Guns en Roses",                        cat:"Games & Playable Media",        room:"224", blurb:"A fast-paced twin-stick shooter with a floral twist."},
+  {name:"Andrew Romano",        project:"Ransom: Chaos with a Keyboard",        cat:"Games & Playable Media",        room:"236", blurb:"A typing-based hacker simulation game."},
+  {name:"Tyler Spressert",      project:"Escape Through Time",                  cat:"Games & Playable Media",        room:"236", blurb:"A VR puzzle game utilizing time-travel mechanics."},
+  {name:"Zachary Wade",         project:"Funny Fencing",                        cat:"Games & Playable Media",        room:"236", blurb:"A physics-based, comedic multiplayer dueling game."},
+  {name:"Jack Dinnigan",        project:"The Dintracks",                        cat:"Music Technology",              room:"233", blurb:"An interactive spatial audio installation."},
+  {name:"Kai Macedo",           project:"Color",                                cat:"Music Technology",              room:"235", blurb:"A hardware synthesizer linking audio frequencies to LED color shifts."},
+  {name:"Alex Cook",            project:"Helldivers 2 Animation",               cat:"Visual Storytelling & Animation",room:"226",blurb:"A high-octane 3D animated fan-film."},
+  {name:"Naheda Hussain",       project:"Coffee Outage Brand Book",             cat:"Visual Storytelling & Animation",room:"226",blurb:"A complete brand identity for a fictional cafe."},
+  {name:"Ari Lugassy",          project:"The Flock",                            cat:"Visual Storytelling & Animation",room:"226",blurb:"A 2D animated short about finding your group."},
+  {name:"Kiara Manon",          project:"From Fear to Future",                  cat:"Visual Storytelling & Animation",room:"227",blurb:"A visual essay on the integration of AI in art."},
+  {name:"Carolyn McDonough",    project:"We Fated Few",                         cat:"Visual Storytelling & Animation",room:"227",blurb:"A beautifully illustrated graphic novel prototype."},
+  {name:"Shane Mcgowan",        project:"Therapy: An Animated Music Video",     cat:"Visual Storytelling & Animation",room:"227",blurb:"A rotoscoped and digitally painted music video."},
+  {name:"Aaron Pettiford",      project:"Project ABO-X03",                      cat:"Visual Storytelling & Animation",room:"228",blurb:"Concept art and worldbuilding for a sci-fi universe."},
+  {name:"Michael Rasimowicz",   project:"AIMM City",                            cat:"Visual Storytelling & Animation",room:"228",blurb:"An interactive comic exploring the architecture of the AIMM building."},
+  {name:"Maya Randall",         project:"Liminal",                              cat:"Visual Storytelling & Animation",room:"230",blurb:"A short film exploring transitional emotional spaces."},
+  {name:"Mehmet Sezer",         project:"S&M Distributes Brand Book",           cat:"Visual Storytelling & Animation",room:"230",blurb:"A comprehensive storytelling and branding guide."},
+];
+
+const THEME = {
+  "Creative Coding":               {color:"var(--trail-cc)", icon:"🛶"},
+  "Culture & Technology":          {color:"var(--trail-ct)", icon:"🧭"},
+  "Digital Fabrication":           {color:"var(--trail-df)", icon:"⚒️"},
+  "Games & Playable Media":        {color:"var(--trail-gp)", icon:"🎲"},
+  "Music Technology":              {color:"var(--trail-mt)", icon:"📻"},
+  "Visual Storytelling & Animation":{color:"var(--trail-vs)",icon:"⛺"},
+};
+
+const popover = document.getElementById('roomPopover');
+let hideT;
+
+function showTooltip(room, el) {
+  clearTimeout(hideT);
+  const occ = PROJECTS.filter(p => p.room === room);
+  if (!occ.length) return;
+  let html = `<div class="popover-title">Campsite ${room}</div>`;
+  occ.forEach(p => {
+    const t = THEME[p.cat] || {};
+    html += `<div class="popover-student" style="border-left:4px solid ${t.color}">
+      <div class="student-head">${t.icon || ''} ${p.name}</div>
+      <div class="student-proj">${p.project}</div>
+      <p class="student-blurb">${p.blurb}</p>
+      <a href="#" class="student-link" style="background:${t.color}">View Expedition</a>
+    </div>`;
+  });
+  popover.innerHTML = html;
+  popover.style.display = 'block';
+
+  const map = document.getElementById('mapContainer');
+  let top = el.offsetTop - popover.offsetHeight - 15;
+  let left = el.offsetLeft - popover.offsetWidth / 2;
+  if (top < 10) top = el.offsetTop + 44;
+  if (left < 10) left = 10;
+  if (left + popover.offsetWidth > map.offsetWidth) left = map.offsetWidth - popover.offsetWidth - 10;
+  popover.style.top = top + 'px';
+  popover.style.left = left + 'px';
+}
+
+function startHide() {
+  hideT = setTimeout(() => { popover.style.display = 'none'; }, 350);
+}
+popover.addEventListener('mouseenter', () => clearTimeout(hideT));
+popover.addEventListener('mouseleave', startHide);
+</script>
+</body>
+</html>

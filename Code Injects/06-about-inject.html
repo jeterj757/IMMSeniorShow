@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Show 2026 — About</title>
+  <style>
+  @font-face {
+    font-family: "Norwester";
+    src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+    font-display: swap;
+  }
+
+  html, body { margin: 0; padding: 0; background: #efe9c4; }
+
+  .imm-about *, .imm-about *::before, .imm-about *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .imm-about a { text-decoration: none; color: inherit; }
+  .imm-about img { display: block; max-width: 100%; }
+
+  .imm-about {
+    --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
+    --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+    --pill:   999px;
+    --forest: #123f36;
+    --paper:  #f3edda;
+    --rust:   #c75145;
+    --moss:   #4e985f;
+    --amber:  #d6a034;
+    --blue:   #3f6f9b;
+    --line:   rgba(18,63,54,0.16);
+    font-family: var(--ui);
+    letter-spacing: -0.012em;
+    color: #1c2422;
+    background: #f0ece0;
+    background-image:
+      linear-gradient(180deg, rgba(240,236,224,0.88), rgba(240,236,224,0.90)),
+      radial-gradient(rgba(18,63,54,0.07) 1.2px, transparent 1.2px);
+    background-size: auto, 22px 22px;
+    background-position: center top, center;
+    background-repeat: repeat, repeat;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: clip;
+    isolation: isolate;
+  }
+  .imm-about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url("../SIGNATURES/Rect - Black.svg") center top / 100% auto repeat-y;
+    opacity: 0.11;
+  }
+  .imm-about > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Event bar ── */
+  .imm-event-bar {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--rust);
+    color: #fff4ea;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 12px 8px;
+    border-bottom: 2px solid rgba(126,40,28,0.52);
+    box-shadow: 0 4px 14px rgba(8,24,16,0.35);
+  }
+  .imm-event-date {
+    display: block;
+    font-family: var(--d);
+    font-size: clamp(1.06rem, 2.8vw, 1.55rem);
+    letter-spacing: 0.04em; line-height: 1;
+  }
+  .imm-event-place {
+    display: block; margin-top: 3px;
+    font-size: clamp(0.7rem, 1.4vw, 0.86rem);
+    font-weight: 700; letter-spacing: 0.06em;
+    opacity: 0.88;
+  }
+
+  /* ── Hero: centered, full-bleed ── */
+  .imm-hero {
+    position: relative;
+    min-height: clamp(380px, 52vw, 620px);
+    overflow: hidden;
+    display: flex; align-items: flex-end; justify-content: center;
+    background: var(--forest);
+  }
+  .imm-hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8,28,22,0.12) 0%, rgba(8,28,22,0.74) 62%, rgba(8,28,22,0.88) 100%),
+      url("../AlyosiusPatrimonoAssets/landscapes/6.png") center / cover no-repeat;
+  }
+  .imm-hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../SIGNATURES/Rect - White.svg") center top / 100% auto repeat-y;
+    opacity: 0.14;
+    mix-blend-mode: screen;
+  }
+  .imm-hero-bg::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(243,237,218,0.06) 0 1px, transparent 1px 20px);
+    background-size: 24px 24px;
+  }
+  .imm-hero-inner {
+    position: relative; z-index: 2;
+    width: 100%;
+    padding: clamp(32px, 6vw, 72px) clamp(24px, 6vw, 80px) clamp(36px, 6vw, 72px);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 0;
+  }
+  .imm-hero-eyebrow {
+    display: none;
+  }
+  .imm-hero-h1 {
+    font-family: var(--d);
+    font-size: clamp(3.6rem, 11vw, 9rem);
+    line-height: 1.04; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--paper);
+    text-shadow: 0 4px 0 rgba(4,18,12,0.38);
+  }
+  .imm-hero-sub {
+    margin-top: 24px;
+    color: rgba(255,250,231,0.94);
+    font-size: clamp(1.04rem, 1.9vw, 1.24rem);
+    font-weight: 560;
+    line-height: 1.68; max-width: 58ch;
+    text-shadow: 0 2px 14px rgba(4,18,12,0.64);
+  }
+
+  /* ── Page wrap ── */
+  .imm-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(34px, 5vw, 64px) clamp(16px, 4vw, 40px) 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(34px, 5vw, 58px);
+  }
+
+  /* ── Section card ── */
+  .imm-card {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    position: relative;
+  }
+  .imm-card + .imm-card {
+    padding-top: clamp(28px, 4.4vw, 46px);
+    border-top: 2px solid rgba(18,63,54,0.16);
+  }
+  .imm-card + .imm-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: min(180px, 42vw);
+    height: 2px;
+    background: var(--rust);
+  }
+  .imm-card-title {
+    font-family: var(--d);
+    font-size: clamp(1.55rem, 3.5vw, 2.4rem);
+    line-height: 1.02; letter-spacing: 0.04em;
+    color: var(--forest); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .imm-card:nth-of-type(2) {
+    position: relative;
+    overflow: hidden;
+  }
+  .imm-card:nth-of-type(2)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url("../SIGNATURES/Rect - White.svg") center top / 100% auto repeat-y;
+    opacity: 0.10;
+    mix-blend-mode: screen;
+  }
+  .imm-card:nth-of-type(2) > * {
+    position: relative;
+    z-index: 1;
+  }
+  .imm-card p {
+    color: #20352f; font-size: 1.02rem; line-height: 1.72;
+  }
+  .imm-card p + p { margin-top: 10px; }
+
+  /* ── Steps grid ── */
+  .imm-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .imm-step {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fffdf5;
+    border: 1.5px solid rgba(18,63,54,0.12);
+    display: flex; flex-direction: column;
+    box-shadow: 0 2px 0 rgba(18,63,54,0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+  .imm-step:hover,
+  .imm-step:focus-within {
+    transform: translateY(-4px) rotate(-0.35deg);
+    border-color: color-mix(in srgb, var(--step-color, var(--moss)) 46%, rgba(18,63,54,0.12) 54%);
+    box-shadow: 0 9px 20px rgba(18,63,54,0.13);
+  }
+  .imm-step-accent {
+    height: 8px;
+    background: var(--step-color, var(--moss));
+  }
+  .imm-step-body { padding: 14px 14px 16px; flex: 1; }
+  .imm-step-num {
+    font-family: var(--d);
+    font-size: 2rem; line-height: 1;
+    color: var(--step-color, var(--moss));
+    opacity: 0.28; margin-bottom: 6px;
+  }
+  .imm-step strong {
+    display: block;
+    font-family: var(--d);
+    font-size: 1.12rem; line-height: 1.08;
+    letter-spacing: 0.025em; text-transform: uppercase;
+    color: var(--forest); margin-bottom: 8px;
+  }
+  .imm-step p {
+    font-size: 0.86rem; color: #3a4a3e; line-height: 1.46;
+  }
+
+  /* ── Faculty: horizontal cards ── */
+  .imm-faculty {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .imm-faculty-card {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fffdf5;
+    border: 1.5px solid rgba(18,63,54,0.12);
+    display: flex; flex-direction: row;
+    box-shadow: 0 2px 0 rgba(18,63,54,0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .imm-faculty-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(18,63,54,0.12);
+  }
+  /* Left: landscape panel with centered circle */
+  .imm-faculty-photo-wrap {
+    width: 238px;
+    flex-shrink: 0;
+    background:
+      linear-gradient(160deg, rgba(8,28,22,0.66), rgba(18,63,54,0.30)),
+      var(--faculty-scene, url("../AlyosiusPatrimonoAssets/landscapes/14.png")) center / cover no-repeat;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .imm-faculty-card:nth-child(2) .imm-faculty-photo-wrap {
+    --faculty-scene: url("../AlyosiusPatrimonoAssets/landscapes/16.png");
+  }
+  .imm-faculty-photo {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 3px solid rgba(243,237,218,0.68);
+    background: color-mix(in srgb, var(--forest) 58%, #e8dc95 42%);
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(4,18,12,0.44), 0 0 0 5px rgba(243,237,218,0.14);
+  }
+  .imm-faculty-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 18%;
+    transform: scale(1.14);
+    display: block;
+  }
+  .imm-faculty-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px;
+    color: rgba(243,237,218,0.50);
+    font-family: var(--ui); font-size: 0.58rem;
+    font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  }
+  .imm-faculty-photo-placeholder::before {
+    content: "";
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(243,237,218,0.12);
+    border: 2px dashed rgba(243,237,218,0.40);
+  }
+  /* Right: text body */
+  .imm-faculty-body {
+    padding: 18px 18px 18px;
+    flex: 1; display: flex; flex-direction: column; gap: 5px;
+    min-width: 0;
+  }
+  .imm-faculty-name {
+    font-family: var(--d);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    line-height: 1.08; letter-spacing: 0.035em;
+    color: var(--forest); text-transform: uppercase;
+  }
+  .imm-faculty-role {
+    font-size: 0.7rem; font-weight: 560;
+    letter-spacing: 0.035em; text-transform: uppercase;
+    color: #9a3128;
+  }
+  .imm-faculty-bio {
+    font-size: 0.9rem; color: #20352f; line-height: 1.62;
+    margin-top: 4px; flex: 1;
+  }
+  .imm-about .imm-faculty-link {
+    align-self: flex-start;
+    margin-top: 10px;
+    display: inline-flex; align-items: center;
+    height: 32px; border-radius: var(--pill);
+    padding: 0 14px;
+    background: var(--forest);
+    color: var(--paper);
+    font-size: 0.64rem; font-weight: 620;
+    letter-spacing: 0.045em; text-transform: uppercase;
+    box-shadow: 0 3px 0 rgba(4,18,12,0.28);
+    transition: filter 0.14s, transform 0.14s, box-shadow 0.14s;
+  }
+  .imm-about .imm-faculty-link:hover {
+    filter: brightness(1.14);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 rgba(4,18,12,0.28);
+  }
+
+  /* ── About text two-col ── */
+  .imm-text-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 14px;
+  }
+  .imm-text-col p {
+    color: #20352f; font-size: 1.04rem; line-height: 1.74;
+  }
+  .imm-text-col p + p { margin-top: 10px; }
+
+  /* ── Full-bleed CTA footer ── */
+  .imm-cta-footer {
+    margin-top: 34px;
+    background:
+      linear-gradient(180deg, rgba(6,18,14,0.78), rgba(6,18,14,0.88)),
+      radial-gradient(rgba(243,237,218,0.06) 1.2px, transparent 1.2px),
+      url("../AlyosiusPatrimonoAssets/landscapes/18.png") center / cover no-repeat;
+    background-size: auto, 22px 22px, cover;
+    padding: clamp(42px, 7vw, 78px) clamp(24px, 6vw, 80px);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 20px;
+  }
+  .imm-cta-footer-h {
+    font-family: var(--d);
+    font-size: clamp(2.15rem, 5vw, 4.25rem);
+    line-height: 1.06; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-shadow: 0 4px 0 rgba(4,18,12,0.32);
+    white-space: nowrap;
+  }
+  .imm-cta-footer-sub {
+    color: rgba(255,250,231,0.86);
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    line-height: 1.62; max-width: 48ch;
+    margin-top: -2px;
+  }
+  .imm-cta-row {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  }
+  .imm-about .imm-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: clamp(48px, 6vw, 62px);
+    border-radius: var(--pill);
+    padding: 0 clamp(22px, 3vw, 36px);
+    background: rgba(243,237,218,0.16);
+    border: 1.5px solid rgba(243,237,218,0.38);
+    color: var(--paper);
+    font-family: var(--ui);
+    font-size: clamp(0.82rem, 1.3vw, 1rem);
+    font-weight: 650; letter-spacing: 0.045em; text-transform: uppercase;
+    box-shadow: 0 2px 0 rgba(4,18,12,0.20);
+    transition: transform 0.14s, background 0.14s, box-shadow 0.14s, filter 0.14s;
+  }
+  .imm-about .imm-cta:hover {
+    transform: translateY(-3px);
+    background: rgba(243,237,218,0.24);
+    box-shadow: 0 6px 0 rgba(4,18,12,0.24);
+  }
+  .imm-about .imm-cta.primary {
+    background: var(--rust); border-color: rgba(199,81,69,0.5);
+    color: #fff4ea; box-shadow: 0 4px 0 rgba(120,35,25,0.38);
+  }
+  .imm-about .imm-cta.primary:hover { filter: brightness(1.08); transform: translateY(-2px); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .imm-steps { grid-template-columns: 1fr 1fr; }
+    .imm-faculty { grid-template-columns: 1fr; }
+    .imm-text-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .imm-faculty-card { flex-direction: column; }
+    .imm-faculty-photo-wrap { width: 100%; height: 188px; }
+    .imm-faculty-photo { width: 134px; height: 134px; }
+    .imm-steps { grid-template-columns: 1fr; }
+    .imm-cta-row { flex-direction: column; align-items: stretch; }
+    .imm-about .imm-cta { justify-content: center; }
+  }
+  </style>
+</head>
+<body>
+<div class="imm-about">
+
+  <div class="imm-event-bar" role="banner">
+    <span class="imm-event-date">Friday, May 8, 2026 · 6–9 PM</span>
+    <span class="imm-event-place">AIMM · The College of New Jersey · Ewing, NJ</span>
+  </div>
+
+  <!-- Hero: centered, no badge -->
+  <header class="imm-hero">
+    <div class="imm-hero-bg" aria-hidden="true"></div>
+    <div class="imm-hero-inner">
+      <span class="imm-hero-eyebrow">Interactive Multimedia · TCNJ</span>
+      <h1 class="imm-hero-h1">About<br>the Show</h1>
+      <p class="imm-hero-sub">The IMM Senior Showcase brings together games, animation, music technology, fabrication, culture, and creative code — one night, one building, 36 projects built to be experienced.</p>
+    </div>
+  </header>
+
+  <main class="imm-page">
+
+    <!-- How to experience -->
+    <section class="imm-card" aria-label="How to experience the show">
+      <h2 class="imm-card-title">How to Experience It</h2>
+      <div class="imm-steps">
+
+        <article class="imm-step" style="--step-color:#c75145">
+          <div class="imm-step-accent"></div>
+          <div class="imm-step-body">
+            <div class="imm-step-num">01</div>
+            <strong>Browse Projects</strong>
+            <p>Use the directory to search, filter by specialization, and preview each student project before you arrive.</p>
+          </div>
+        </article>
+
+        <article class="imm-step" style="--step-color:#3f6f9b">
+          <div class="imm-step-accent"></div>
+          <div class="imm-step-body">
+            <div class="imm-step-num">02</div>
+            <strong>Find the Rooms</strong>
+            <p>Open the floor map to locate each project room and plan your path through the building.</p>
+          </div>
+        </article>
+
+        <article class="imm-step" style="--step-color:#4e985f">
+          <div class="imm-step-accent"></div>
+          <div class="imm-step-body">
+            <div class="imm-step-num">03</div>
+            <strong>Scan Hunt Stops</strong>
+            <p>Each track poster stamps your scavenger hunt passport — collect all six to complete the trail.</p>
+          </div>
+        </article>
+
+        <article class="imm-step" style="--step-color:#d6a034">
+          <div class="imm-step-accent"></div>
+          <div class="imm-step-body">
+            <div class="imm-step-num">04</div>
+            <strong>Grab Some Merch</strong>
+            <p>Pick up official IMM Senior Show 2026 gear from the online store — tees, hoodies, accessories and more.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- About the program -->
+    <section class="imm-card">
+      <h2 class="imm-card-title">Design + Technology</h2>
+      <div class="imm-text-cols">
+        <div class="imm-text-col">
+          <p>Interactive Multimedia at TCNJ connects design, storytelling, production, and technology. Senior Show is where those skills meet a live audience: playable systems, visual stories, fabricated objects, installations, prototypes, and experiments built to be experienced.</p>
+        </div>
+        <div class="imm-text-col">
+          <p>The work is varied by design. Some projects invite play, some ask for reflection, and some show the craft behind a tool, scene, or system. Six specializations. One night. Walk through all of them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faculty -->
+    <section class="imm-card" aria-label="Faculty advisors">
+      <h2 class="imm-card-title">Faculty Advisors</h2>
+      <div class="imm-faculty">
+
+        <article class="imm-faculty-card">
+          <div class="imm-faculty-photo-wrap">
+            <div class="imm-faculty-photo">
+              <img src="../Photos/Sorraya-Brashear-Evans.png" alt="Sorraya Brashear-Evans">
+            </div>
+          </div>
+          <div class="imm-faculty-body">
+            <div class="imm-faculty-name">Sorraya Brashear-Evans</div>
+            <div class="imm-faculty-role">Senior Clinical Specialist · Design &amp; Creative Technology</div>
+            <p class="imm-faculty-bio">Sorraya supports project development, production process, and polish as students shape their ideas into final presentation pieces.</p>
+            <a class="imm-faculty-link" href="https://artscomm.tcnj.edu/artscomm-faculty/sorraya-brashear-evans/" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </article>
+
+        <article class="imm-faculty-card">
+          <div class="imm-faculty-photo-wrap">
+            <div class="imm-faculty-photo">
+              <img src="../Photos/Warren.jpeg" alt="Warren Buckleitner">
+            </div>
+          </div>
+          <div class="imm-faculty-body">
+            <div class="imm-faculty-name">Warren Buckleitner</div>
+            <div class="imm-faculty-role">Visiting Assistant Professor · Interactive Multimedia</div>
+            <p class="imm-faculty-bio">Warren offers practical critique and interactive media guidance, helping projects stay focused, playful, and audience-aware.</p>
+            <a class="imm-faculty-link" href="https://artscomm.tcnj.edu/artscomm-faculty/warren-buckleitner/" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Full-bleed CTA footer -->
+  <footer class="imm-cta-footer">
+    <h2 class="imm-cta-footer-h">Ready to Explore?</h2>
+    <p class="imm-cta-footer-sub">Browse all 36 projects or learn more about the Interactive Multimedia program at TCNJ.</p>
+    <div class="imm-cta-row">
+      <a class="imm-cta primary" href="03-directory-inject.html">Browse Projects</a>
+      <a class="imm-cta" href="https://dct.tcnj.edu/" target="_blank" rel="noopener">DCT at TCNJ ↗</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

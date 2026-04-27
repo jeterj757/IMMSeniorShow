@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMM Senior Showcase Wireframes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f0ece0;color:#1c2422}
+
+.frame-label{font-size:10px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:#C4501A;padding:28px 0 12px 0;text-align:center}
+
+.browser{background:#fff;border-radius:16px;overflow:hidden;border:2px solid rgba(28,36,34,0.1);margin-bottom:12px;max-width:860px;margin-left:auto;margin-right:auto}
+.browser-bar{background:#e8e4da;padding:10px 14px;display:flex;align-items:center;gap:8px}
+.browser-dot{width:10px;height:10px;border-radius:50%;background:#d0cbc0}
+.browser-url{background:#fff;border-radius:6px;padding:4px 12px;font-size:11px;color:#888;flex:1;text-align:center;font-family:monospace}
+
+.annotation{font-size:11px;color:#7B3F1E;padding:6px 12px;background:rgba(196,80,26,0.08);border-left:3px solid #C4501A;border-radius:0 6px 6px 0;margin:4px 0 4px 16px;line-height:1.5}
+.annotation.good{border-color:#1E3A2F;background:rgba(30,58,47,0.06);color:#1E3A2F}
+.annotation.new{border-color:#3D6B8E;background:rgba(61,107,142,0.07);color:#3D6B8E}
+
+.divider-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#aaa;text-align:center;padding:40px 0 8px;display:flex;align-items:center;gap:12px;max-width:860px;margin:0 auto}
+.divider-label::before,.divider-label::after{content:'';flex:1;height:1px;background:#d0cbc0}
+
+/* ─── HOMEPAGE MOCKUP ─── */
+.hp{font-family:'Plus Jakarta Sans',sans-serif}
+
+.hp-nav{background:#1E3A2F;padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.hp-nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#F5EDD8;letter-spacing:0.02em}
+.hp-nav-links{display:flex;gap:20px}
+.hp-nav-link{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A8C8D8}
+
+.hp-hero{background:#1E3A2F;padding:52px 32px 0;position:relative;overflow:hidden}
+.hp-hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(232,213,160,0.14) 1px,transparent 1px);background-size:22px 22px;pointer-events:none}
+.hp-hero-inner{position:relative;z-index:1;max-width:520px}
+.hp-hero-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:#E8D5A0;background:rgba(232,213,160,0.12);border:1px solid rgba(232,213,160,0.25);border-radius:100px;padding:5px 14px;margin-bottom:16px}
+.hp-hero-h1{font-family:'DM Serif Display',serif;font-size:48px;color:#F5EDD8;line-height:0.95;margin-bottom:8px}
+.hp-hero-h1 em{color:#E8831A;font-style:italic}
+.hp-hero-sub{font-size:13px;color:#A8C8D8;line-height:1.6;margin-bottom:20px;max-width:380px}
+.hp-hero-btns{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:32px}
+.hp-btn-primary{background:#C4501A;color:#fff;border:none;border-radius:100px;padding:11px 22px;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase}
+.hp-btn-sec{background:transparent;color:#A8C8D8;border:1.5px solid rgba(168,200,216,0.35);border-radius:100px;padding:10px 20px;font-size:12px;font-weight:700}
+
+.hp-treeline{display:block;width:100%;height:48px;background:#1E3A2F;position:relative}
+
+.hp-event-banner{background:#C4501A;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hp-event-text{font-size:13px;font-weight:700;color:#fff;letter-spacing:0.04em}
+.hp-event-sub{font-size:11px;color:rgba(255,255,255,0.75);margin-top:2px}
+.hp-event-cta{background:#fff;color:#C4501A;border:none;border-radius:100px;padding:8px 18px;font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap}
+
+.hp-tracks{background:#F5EDD8;padding:40px 32px}
+.hp-tracks-h{font-family:'DM Serif Display',serif;font-size:30px;color:#1E3A2F;margin-bottom:6px}
+.hp-tracks-sub{font-size:12px;color:#7B3F1E;margin-bottom:20px}
+.hp-track-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hp-track{border-radius:12px;overflow:hidden;background:#fff;border:1.5px solid rgba(28,36,34,0.08)}
+.hp-track-color{height:6px}
+.hp-track-body{padding:12px 14px 14px}
+.hp-track-name{font-size:12px;font-weight:800;color:#1c2422;letter-spacing:0.02em;margin-bottom:2px}
+.hp-track-count{font-size:10px;color:#aaa;font-weight:600}
+
+.hp-projects-strip{background:#fff;padding:28px 32px}
+.hp-projects-h{font-size:13px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#C4501A;margin-bottom:14px}
+.hp-proj-cards{display:flex;gap:10px;overflow:hidden}
+.hp-proj-card{border-radius:12px;background:#F5EDD8;border:1.5px solid rgba(28,36,34,0.07);padding:14px;flex:0 0 160px}
+.hp-proj-thumb{height:80px;border-radius:8px;margin-bottom:10px;background:#E8D5A0;display:flex;align-items:center;justify-content:center}
+.hp-proj-thumb-inner{width:40px;height:40px;border-radius:8px;opacity:0.5}
+.hp-proj-name{font-size:11px;font-weight:700;color:#1c2422;line-height:1.3;margin-bottom:3px}
+.hp-proj-student{font-size:10px;color:#888}
+.hp-proj-tag{display:inline-block;margin-top:6px;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+
+.hp-footer-strip{background:#1E3A2F;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+.hp-footer-text{font-size:11px;color:#A8C8D8}
+
+/* ─── DIRECTORY MOCKUP ─── */
+.dir{font-family:'Plus Jakarta Sans',sans-serif}
+.dir-nav{background:#1E3A2F;padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.dir-nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#F5EDD8}
+.dir-nav-links{display:flex;gap:20px}
+.dir-nav-link{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A8C8D8}
+.dir-nav-link.active{color:#E8831A;border-bottom:2px solid #E8831A;padding-bottom:2px}
+
+.dir-header{background:#F5EDD8;padding:32px 32px 0;border-bottom:4px solid #C4501A}
+.dir-h{font-family:'DM Serif Display',serif;font-size:36px;color:#1E3A2F;margin-bottom:4px}
+.dir-sub{font-size:12px;color:#7B3F1E;margin-bottom:20px}
+
+.dir-filter-row{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:20px}
+.dir-filter{border:1.5px solid rgba(28,36,34,0.15);border-radius:100px;padding:6px 14px;font-size:11px;font-weight:700;background:#fff;color:#1c2422;cursor:pointer}
+.dir-filter.active{background:#1E3A2F;color:#F5EDD8;border-color:#1E3A2F}
+.dir-filter-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+
+.dir-search{background:#fff;border:1.5px solid rgba(28,36,34,0.12);border-radius:100px;padding:8px 16px;font-size:12px;color:#888;min-width:180px}
+
+.dir-body{background:#fff;padding:24px 32px}
+.dir-section-label{font-size:10px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:#888;margin-bottom:12px;margin-top:20px;display:flex;align-items:center;gap:8px}
+.dir-section-label::after{content:'';flex:1;height:1px;background:#e8e4da}
+.dir-section-label:first-child{margin-top:0}
+
+.dir-track-accent{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:middle}
+
+.dir-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.dir-card{border-radius:12px;border:1.5px solid rgba(28,36,34,0.08);background:#FAFAF8;overflow:hidden;transition:all 0.15s}
+.dir-card-accent{height:4px}
+.dir-card-body{padding:12px 14px 14px}
+.dir-card-thumb{height:64px;border-radius:8px;background:#E8D5A0;margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa;font-weight:600}
+.dir-card-name{font-size:12px;font-weight:800;color:#1c2422;margin-bottom:2px}
+.dir-card-project{font-size:11px;color:#555;line-height:1.35;margin-bottom:6px}
+.dir-card-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+
+.dir-list-view{display:none}
+</style>
+</head>
+<body>
+
+<div class="frame-label">Homepage — What it should look like</div>
+
+<div class="browser" style="max-width:760px">
+  <div class="browser-bar">
+    <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+    <div class="browser-url">immseniorshow.com</div>
+  </div>
+  <div class="hp">
+
+    <div class="hp-nav">
+      <div class="hp-nav-logo">IMM '26</div>
+      <div class="hp-nav-links">
+        <span class="hp-nav-link">Projects</span>
+        <span class="hp-nav-link">Tracks</span>
+        <span class="hp-nav-link">About</span>
+        <span class="hp-nav-link" style="color:#E8831A">May 8 →</span>
+      </div>
+    </div>
+
+    <div class="hp-hero">
+      <div class="hp-hero-dots"></div>
+      <svg style="position:absolute;right:0;bottom:0;opacity:0.18;height:100%" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="100,10 30,140 170,140" fill="#A8C8D8"/>
+        <polygon points="100,10 70,70 130,70" fill="#F5EDD8"/>
+        <polygon points="20,140 5,140 10,120 7,120 14,104" fill="#8B9E6E"/>
+        <polygon points="180,140 165,140 172,120 169,120 176,104" fill="#8B9E6E"/>
+      </svg>
+      <div class="hp-hero-inner">
+        <div class="hp-hero-tag">TCNJ · Dept. of Design &amp; Creative Technology</div>
+        <div class="hp-hero-h1">Senior<br>Show <em>'26</em></div>
+        <div class="hp-hero-sub">36 students. 6 tracks. One night. Come see what a year of thesis work looks like in person.</div>
+        <div class="hp-hero-btns">
+          <button class="hp-btn-primary">Explore Projects</button>
+          <button class="hp-btn-sec">Event Info →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hp-event-banner">
+      <div>
+        <div class="hp-event-text">Friday, May 8, 2026 · 6–9 PM</div>
+        <div class="hp-event-sub">AIMM Building · The College of New Jersey · Ewing, NJ</div>
+      </div>
+      <button class="hp-event-cta">Add to Calendar</button>
+    </div>
+
+    <div class="hp-tracks">
+      <div class="hp-tracks-h">6 tracks. 36 students.</div>
+      <div class="hp-tracks-sub">Each student specializes in one area of Interactive Multimedia — click to filter the project directory.</div>
+      <div class="hp-track-grid">
+        <div class="hp-track"><div class="hp-track-color" style="background:#2e7ecb"></div><div class="hp-track-body"><div class="hp-track-name">Creative Coding</div><div class="hp-track-count">4 students</div></div></div>
+        <div class="hp-track"><div class="hp-track-color" style="background:#ce6e9f"></div><div class="hp-track-body"><div class="hp-track-name">Culture &amp; Technology</div><div class="hp-track-count">1 student</div></div></div>
+        <div class="hp-track"><div class="hp-track-color" style="background:#4f9a5f"></div><div class="hp-track-body"><div class="hp-track-name">Digital Fabrication</div><div class="hp-track-count">7 students</div></div></div>
+        <div class="hp-track"><div class="hp-track-color" style="background:#c64b4b"></div><div class="hp-track-body"><div class="hp-track-name">Games &amp; Playable Media</div><div class="hp-track-count">12 students</div></div></div>
+        <div class="hp-track"><div class="hp-track-color" style="background:#c4a33a"></div><div class="hp-track-body"><div class="hp-track-name">Music Technology</div><div class="hp-track-count">2 students</div></div></div>
+        <div class="hp-track"><div class="hp-track-color" style="background:#da8a44"></div><div class="hp-track-body"><div class="hp-track-name">Visual Storytelling &amp; Animation</div><div class="hp-track-count">11 students</div></div></div>
+      </div>
+    </div>
+
+    <div class="hp-projects-strip">
+      <div class="hp-projects-h">Featured projects</div>
+      <div class="hp-proj-cards">
+        <div class="hp-proj-card"><div class="hp-proj-thumb" style="background:#dde8f5"><div class="hp-proj-thumb-inner" style="background:#2e7ecb;border-radius:50%"></div></div><div class="hp-proj-name">Designer Depths</div><div class="hp-proj-student">Chase Dimarzio</div><div class="hp-proj-tag" style="background:rgba(46,126,203,0.12);color:#1e5c97">Creative Coding</div></div>
+        <div class="hp-proj-card"><div class="hp-proj-thumb" style="background:#fceee0"><div class="hp-proj-thumb-inner" style="background:#da8a44;border-radius:4px"></div></div><div class="hp-proj-name">The Flock</div><div class="hp-proj-student">Ari Lugassy</div><div class="hp-proj-tag" style="background:rgba(218,138,68,0.13);color:#9b5822">VS&amp;A</div></div>
+        <div class="hp-proj-card"><div class="hp-proj-thumb" style="background:#f0e8f3"><div class="hp-proj-thumb-inner" style="background:#ce6e9f;border-radius:8px 0 8px 0"></div></div><div class="hp-proj-name">A Rat's Tail</div><div class="hp-proj-student">Madison Braithwaite</div><div class="hp-proj-tag" style="background:rgba(198,75,75,0.12);color:#903535">Games</div></div>
+        <div class="hp-proj-card" style="opacity:0.45"><div class="hp-proj-thumb"><div class="hp-proj-thumb-inner" style="background:#4f9a5f;border-radius:50% 0 50% 0"></div></div><div class="hp-proj-name">Reactive Runway</div><div class="hp-proj-student">Isabel DiFabio</div><div class="hp-proj-tag" style="background:rgba(79,154,95,0.14);color:#2d6c3c">Dig. Fab</div></div>
+      </div>
+    </div>
+
+    <div class="hp-footer-strip">
+      <div class="hp-footer-text">TCNJ · Department of Design &amp; Creative Technology · dct@tcnj.edu</div>
+      <div style="font-size:11px;color:#E8831A;font-weight:700">May 8 — AIMM Building</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="annotation new" style="max-width:760px">+ Nav has "May 8 →" as a live countdown anchor — always visible, always urgent</div>
+<div class="annotation new" style="max-width:760px">+ Canyon event banner is impossible to miss — date, time, location, calendar link all in one bar</div>
+<div class="annotation new" style="max-width:760px">+ Tracks section solves the "what is IMM?" problem for every parent and recruiter who visits</div>
+<div class="annotation new" style="max-width:760px">+ Featured projects strip teases the directory and gives the page visual life</div>
+
+<div class="divider-label">Directory Page — What it should look like</div>
+
+<div class="browser" style="max-width:760px">
+  <div class="browser-bar">
+    <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+    <div class="browser-url">immseniorshow.com/projects-26</div>
+  </div>
+  <div class="dir">
+
+    <div class="dir-nav">
+      <div class="dir-nav-logo">IMM '26</div>
+      <div class="dir-nav-links">
+        <span class="dir-nav-link active">Projects</span>
+        <span class="dir-nav-link">Tracks</span>
+        <span class="dir-nav-link">About</span>
+        <span class="dir-nav-link" style="color:#E8831A">May 8 →</span>
+      </div>
+    </div>
+
+    <div class="dir-header">
+      <div class="dir-h">Explore the Projects</div>
+      <div class="dir-sub">36 students · 6 tracks · Class of 2026</div>
+      <div class="dir-filter-row">
+        <input class="dir-search" placeholder="Search student or project...">
+        <button class="dir-filter active">All</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#c64b4b"></span>Games</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#da8a44"></span>VS&amp;A</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#4f9a5f"></span>Dig. Fab</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#2e7ecb"></span>Coding</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#c4a33a"></span>Music</button>
+        <button class="dir-filter"><span class="dir-filter-dot" style="background:#ce6e9f"></span>Culture</button>
+      </div>
+    </div>
+
+    <div class="dir-body">
+
+      <div class="dir-section-label"><span class="dir-track-accent" style="background:#c64b4b"></span>Games &amp; Playable Media — 12 students</div>
+      <div class="dir-card-grid">
+        <div class="dir-card"><div class="dir-card-accent" style="background:#c64b4b"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Madison Braithwaite</div><div class="dir-card-project">A Rat's Tail</div><div class="dir-card-tag" style="background:rgba(198,75,75,0.12);color:#903535">Games</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#c64b4b"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Aidan Michaels</div><div class="dir-card-project">Lumber</div><div class="dir-card-tag" style="background:rgba(198,75,75,0.12);color:#903535">Games</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#c64b4b"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Anthony Resto</div><div class="dir-card-project">Guns en Roses</div><div class="dir-card-tag" style="background:rgba(198,75,75,0.12);color:#903535">Games</div></div></div>
+      </div>
+
+      <div class="dir-section-label"><span class="dir-track-accent" style="background:#da8a44"></span>Visual Storytelling &amp; Animation — 11 students</div>
+      <div class="dir-card-grid">
+        <div class="dir-card"><div class="dir-card-accent" style="background:#da8a44"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Ari Lugassy</div><div class="dir-card-project">The Flock</div><div class="dir-card-tag" style="background:rgba(218,138,68,0.13);color:#9b5822">VS&amp;A</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#da8a44"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Naheda Hussain</div><div class="dir-card-project">Coffee Outage Brand Book</div><div class="dir-card-tag" style="background:rgba(218,138,68,0.13);color:#9b5822">VS&amp;A</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#da8a44"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Shane Mcgowan</div><div class="dir-card-project">Therapy: An Animated Music Video</div><div class="dir-card-tag" style="background:rgba(218,138,68,0.13);color:#9b5822">VS&amp;A</div></div></div>
+      </div>
+
+      <div class="dir-section-label"><span class="dir-track-accent" style="background:#4f9a5f"></span>Digital Fabrication — 7 students</div>
+      <div class="dir-card-grid">
+        <div class="dir-card"><div class="dir-card-accent" style="background:#4f9a5f"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Kelsey Daly</div><div class="dir-card-project">Respect The Locals</div><div class="dir-card-tag" style="background:rgba(79,154,95,0.14);color:#2d6c3c">Dig. Fab</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#4f9a5f"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Isabel DiFabio</div><div class="dir-card-project">Reactive Runway</div><div class="dir-card-tag" style="background:rgba(79,154,95,0.14);color:#2d6c3c">Dig. Fab</div></div></div>
+        <div class="dir-card"><div class="dir-card-accent" style="background:#4f9a5f"></div><div class="dir-card-body"><div class="dir-card-thumb">project thumbnail</div><div class="dir-card-name">Jared Morris</div><div class="dir-card-project">3D-Printed Magnetic Poker Chips</div><div class="dir-card-tag" style="background:rgba(79,154,95,0.14);color:#2d6c3c">Dig. Fab</div></div></div>
+      </div>
+
+      <div style="text-align:center;padding:20px 0 6px">
+        <button style="background:#F5EDD8;border:1.5px solid rgba(28,36,34,0.12);border-radius:100px;padding:10px 24px;font-size:12px;font-weight:700;color:#1E3A2F;cursor:pointer">Show all 36 projects ↓</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="annotation new" style="max-width:760px">+ Filter bar replaces the table — one click to see only Games, only VS&A, etc.</div>
+<div class="annotation new" style="max-width:760px">+ Each track gets its color accent bar at the top of every card — instant visual grouping</div>
+<div class="annotation new" style="max-width:760px">+ Card thumbnails: just ask each student to submit one screenshot/image — huge difference vs. a table</div>
+<div class="annotation new" style="max-width:760px">+ Grouped by track with headings + student count — makes 36 names scannable instead of overwhelming</div>
+</body>
+</html>

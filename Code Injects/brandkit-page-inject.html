@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Showcase 2026 - Brand Kit Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Norwester";
+      src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+      font-display: swap;
+    }
+
+    :root {
+      --site-bg: #879d68;
+      --paper: #ece4cf;
+      --line: #c7bc9f;
+      --deep-green: #123d33;
+      --font-display: "Norwester", "Arial Narrow", "Franklin Gothic Condensed", "Impact", sans-serif;
+      --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--site-bg);
+      color: #1f2a25;
+    }
+
+    .app {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    .topbar {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(236, 228, 207, 0.95);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      letter-spacing: 0.03em;
+      color: var(--deep-green);
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: #1f2a25;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f7f2e6;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .section-panel {
+      border-radius: 14px;
+      border: 1px solid #d7caab;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(18, 61, 51, 0.12);
+    }
+
+    .section-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid #dacdaf;
+      background: #f3e9d3;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--deep-green);
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: #56645c;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .brandkit-wrap {
+      padding: 14px;
+      background: #f2ebd9;
+    }
+
+    .brandkit-frame {
+      width: 100%;
+      min-height: 880px;
+      border: 1px solid #cabd9f;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    @media (max-width: 760px) {
+      .app { padding: 8px; }
+      .topbar h1 { font-size: 1.45rem; }
+      .brandkit-frame { min-height: 700px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1>IMM Senior Showcase - Brand Kit</h1>
+      <a href="./index.html">Back to Wireframes</a>
+    </header>
+
+    <section class="section-panel">
+      <div class="section-head">
+        <h2>Brand Kit</h2>
+        <p>Dedicated page view for palette, badges, and rollout checklist.</p>
+      </div>
+      <div class="brandkit-wrap">
+        <iframe class="brandkit-frame" src="./brandkit-preview.html" title="IMM Senior Show 2026 brand kit preview"></iframe>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

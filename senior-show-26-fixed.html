@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Show 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      /* Norwester-style fallback stack — Barlow Condensed is the closest free match */
+      --font-display: "Barlow Condensed", "Arial Narrow", "Franklin Gothic Condensed", Impact, sans-serif;
+      --font-ui: "Barlow", "Avenir Next", "Segoe UI", Arial, sans-serif;
+
+      --forest:       #123f36;
+      --forest-deep:  #0c2b24;
+      --forest-mid:   #1e5444;
+      --paper:        #f3edda;
+      --paper-dark:   #e8e0c8;
+      --ink:          #1c2422;
+      --soft:         #5e6a66;
+
+      --rust:         #c75145;
+      --orange:       #cd7028;
+      --amber:        #d6a034;
+      --green:        #4e985f;
+      --blue:         #3f6f9b;
+      --indigo:       #4e64b6;
+      --violet:       #8d5aa9;
+
+      --trail-gp:     var(--rust);
+      --trail-vs:     var(--orange);
+      --trail-mt:     var(--amber);
+      --trail-df:     var(--green);
+      --trail-cc:     var(--blue);
+      --trail-ct:     var(--violet);
+
+      --pill:         999px;
+      --shadow-btn:   0 6px 0 rgba(20, 50, 38, 0.55);
+      --shadow-card:  0 12px 28px rgba(12, 43, 36, 0.28);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ui);
+      color: var(--ink);
+      background:
+        radial-gradient(circle, rgba(18,63,54,0.07) 1px, transparent 1px) 0 0 / 18px 18px,
+        #edeae0;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── SITE WRAPPER ─── */
+    .site { width: min(1080px, 100%); margin: 0 auto; }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #eef2e6;
+      border-bottom: 4px solid rgba(240,234,218,0.88);
+    }
+
+    /* SVG landscape fills the bg */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* colour-theme overlays */
+    .hero-tint {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      transition: background 0.6s ease;
+    }
+    body[data-theme="blue"]  .hero-tint { background: linear-gradient(170deg, rgba(30,58,88,0.72) 0%, rgba(20,42,66,0.55) 100%); }
+    body[data-theme="green"] .hero-tint { background: linear-gradient(170deg, rgba(30,62,44,0.72) 0%, rgba(18,44,32,0.55) 100%); }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 18px 18px;
+      gap: 0;
+    }
+
+    /* ── NAV ── */
+    .hero-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: #ebf2e2;
+      text-transform: uppercase;
+    }
+    .hero-menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2vw, 20px);
+    }
+    .hero-menu a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.72rem, 1.4vw, 0.94rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #d8e8f0;
+      transition: color 0.15s;
+    }
+    .hero-menu a:hover { color: #fff; }
+
+    /* ── COUNTDOWN PILL ── */
+    .status-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: -8px;
+    }
+    .countdown {
+      border-radius: var(--pill);
+      border: 1px solid rgba(220,240,220,0.32);
+      background: linear-gradient(180deg, #6db578, #4d8f58);
+      color: #f0ffe6;
+      text-shadow: 0 2px 0 rgba(28,58,38,0.35);
+      box-shadow: var(--shadow-btn);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1rem, 2.6vw, 1.5rem);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      white-space: nowrap;
+    }
+
+    /* ── EVENT STRIP ── */
+    .event-strip {
+      background: var(--rust);
+      border-top: 1px solid rgba(255,210,200,0.3);
+      border-bottom: 1px solid rgba(255,210,200,0.3);
+      box-shadow: inset 0 6px 14px rgba(100,28,24,0.3);
+      text-align: center;
+      text-transform: uppercase;
+      padding: 14px 12px 12px;
+      color: #fff4eb;
+      margin: 0 -18px;
+    }
+    .event-strip .date {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.1rem, 3vw, 1.8rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .event-strip .place {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.78rem, 2vw, 1.1rem);
+      letter-spacing: 0.03em;
+      margin-top: 4px;
+      opacity: 0.88;
+    }
+
+    /* ── DEPT PILL ── */
+    .dept-pill {
+      display: inline-block;
+      align-self: center;
+      border-radius: var(--pill);
+      border: 1px solid rgba(210,230,240,0.38);
+      background: rgba(120,160,195,0.42);
+      color: #e4f0f8;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.7rem, 1.5vw, 0.96rem);
+      letter-spacing: 0.06em;
+      padding: 7px 16px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO TITLE ── */
+    .hero-main {
+      text-align: center;
+      text-transform: uppercase;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 4px;
+      position: relative;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      color: #ecefdd;
+      text-shadow: 0 4px 12px rgba(20,42,60,0.42);
+      line-height: 0.87;
+      letter-spacing: 0.02em;
+    }
+    .hero-title .imm  {
+      display: block;
+      font-size: clamp(5rem, 16vw, 10rem);
+      line-height: 0.78;
+    }
+    .hero-title .line {
+      display: block;
+      font-size: clamp(3.2rem, 10vw, 6.4rem);
+    }
+    .hero-title .year { color: #e4913e; }
+
+    .hero-copy {
+      margin: 16px auto 0;
+      max-width: 22ch;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      letter-spacing: 0.02em;
+      line-height: 1.08;
+      text-shadow: 0 3px 8px rgba(20,42,60,0.3);
+      text-transform: uppercase;
+    }
+
+    /* ── BUTTONS ── */
+    .hero-actions {
+      display: grid;
+      gap: 11px;
+      padding: 0 4px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+    .hero-btn {
+      display: block;
+      border: 0;
+      border-radius: var(--pill);
+      box-shadow: var(--shadow-btn);
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      font-size: clamp(1.1rem, 3.8vw, 1.9rem);
+      line-height: 1;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .hero-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 rgba(20,50,38,0.55);
+    }
+    .hero-btn.map {
+      background: linear-gradient(180deg, #6aaa74, #4d8b58);
+      color: #f0fcea;
+    }
+    body[data-theme="blue"]  .hero-btn.calendar { background: linear-gradient(180deg, rgba(220,234,246,0.92), rgba(200,220,240,0.96)); color: #2e5580; border: 1px solid rgba(255,255,255,0.3); }
+    body[data-theme="green"] .hero-btn.calendar { background: linear-gradient(180deg, rgba(220,238,224,0.92), rgba(200,228,208,0.96)); color: #2d5e3a; border: 1px solid rgba(255,255,255,0.28); }
+
+    /* ── SCROLL HINT ── */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin: 14px auto 6px;
+      opacity: 0.72;
+    }
+    .scroll-dots {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .scroll-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(230,244,228,0.88);
+    }
+    .scroll-arrow {
+      width: 0;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      border-top: 15px solid rgba(230,244,228,0.92);
+    }
+
+    /* ════════════════════════════════════════
+       CATEGORIES
+    ════════════════════════════════════════ */
+    .categories {
+      position: relative;
+      overflow: hidden;
+      padding: 22px 14px 28px;
+      color: #edf4e8;
+    }
+
+    /* SVG forest bg for categories section */
+    .cat-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .cat-bg svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* dynamic colour overlay driven by JS scroll */
+    .cat-tint {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba(var(--cat-rgb, 78,152,95), 0.72);
+      transition: background 0.18s linear;
+    }
+
+    .cat-inner {
+      position: relative;
+      z-index: 3;
+    }
+
+    .cat-title {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 8vw, 4.4rem);
+      line-height: 0.9;
+      text-shadow: 0 4px 10px rgba(20,50,36,0.44);
+      letter-spacing: 0.02em;
+    }
+    .cat-sub {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.92rem, 2.8vw, 1.32rem);
+      color: #dde6c4;
+      margin: 6px 0 14px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TRAIL CARDS ── */
+    .trail-scroller {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 10px 4px 12px;
+      align-items: center;
+    }
+    .trail-scroller::-webkit-scrollbar { display: none; }
+
+    .trail-card {
+      flex: 0 0 min(78vw, 380px);
+      scroll-snap-align: center;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 340px;
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      justify-items: center;
+      padding: 16px 12px 10px;
+      transform: scale(0.94);
+      opacity: 0.78;
+      transition: transform 240ms ease, opacity 240ms ease;
+      box-shadow: var(--shadow-card);
+    }
+    .trail-card.is-active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Each card has an inline SVG bg — set per card via class */
+    .trail-card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .trail-card-bg svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* colour overlay per track */
+    .trail-card-tint {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: 24px;
+      opacity: 0.62;
+    }
+    .trail-gp .trail-card-tint  { background: var(--trail-gp); }
+    .trail-vs .trail-card-tint  { background: var(--trail-vs); }
+    .trail-mt .trail-card-tint  { background: var(--trail-mt); }
+    .trail-df .trail-card-tint  { background: var(--trail-df); }
+    .trail-cc .trail-card-tint  { background: var(--trail-cc); }
+    .trail-ct .trail-card-tint  { background: var(--trail-ct); }
+
+    .trail-card > * { position: relative; z-index: 3; }
+
+    /* logo placeholder — swap with real <img> when you have assets */
+    .trail-logo {
+      display: grid;
+      place-items: center;
+      align-self: center;
+      padding: 24px 12px 16px;
+      width: 100%;
+    }
+    .trail-logo svg {
+      width: min(200px, 70%);
+      height: auto;
+      filter: drop-shadow(0 8px 14px rgba(16,36,28,0.38));
+    }
+    /* If you have real logo images, use this pattern instead:
+       .trail-logo img { width: min(240px, 78%); height: auto; object-fit: contain; filter: drop-shadow(...); } */
+
+    .trail-meta {
+      padding: 0 12px 14px;
+      text-align: center;
+    }
+    .trail-chip {
+      display: inline-block;
+      border-radius: var(--pill);
+      padding: 8px 16px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(0.84rem, 2.4vw, 1rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      border: 1px solid rgba(235,248,230,0.34);
+      box-shadow: 0 5px 0 rgba(18,44,34,0.5);
+      color: #f0f8ea;
+    }
+    .trail-gp .trail-chip { background: var(--trail-gp); }
+    .trail-vs .trail-chip { background: var(--trail-vs); }
+    .trail-mt .trail-chip { background: var(--trail-mt); color: #3a2f0e; }
+    .trail-df .trail-chip { background: var(--trail-df); }
+    .trail-cc .trail-chip { background: var(--trail-cc); }
+    .trail-ct .trail-chip { background: var(--trail-ct); }
+
+    .trail-count {
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.88rem, 2.2vw, 1rem);
+      color: #dce6be;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── DOT NAV ── */
+    .trail-dots {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      position: relative;
+    }
+    .trail-dots::before {
+      content: "";
+      position: absolute;
+      left: 20%; right: 20%;
+      top: 50%;
+      border-top: 3px dotted rgba(18,44,34,0.75);
+      transform: translateY(-50%);
+    }
+    .trail-dots button {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      border: 2px solid rgba(230,244,226,0.9);
+      box-shadow: 0 0 0 1px rgba(20,50,36,0.48);
+      cursor: pointer;
+      z-index: 2;
+      padding: 0;
+      transition: transform 0.15s;
+    }
+    .trail-dots button.active { transform: scale(1.26); }
+    .trail-dots .gp { background: var(--trail-gp); }
+    .trail-dots .vs { background: var(--trail-vs); }
+    .trail-dots .mt { background: var(--trail-mt); }
+    .trail-dots .df { background: var(--trail-df); }
+    .trail-dots .cc { background: var(--trail-cc); }
+    .trail-dots .ct { background: var(--trail-ct); }
+
+    /* ─── UTILITY ─── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 700px) {
+      .hero-actions { max-width: 680px; margin-left: auto; margin-right: auto; }
+      .hero-main    { max-width: 860px; margin-left: auto; margin-right: auto; }
+      .trail-card   { flex-basis: min(44vw, 420px); }
+    }
+    @media (min-width: 1000px) {
+      .hero-inner  { padding: 18px 28px 22px; }
+      .trail-card  { flex-basis: min(36vw, 400px); }
+      .event-strip { margin: 0 -28px; }
+    }
+  </style>
+</head>
+
+<!-- Theme randomises between blue and green on each load -->
+<body data-theme="blue">
+<main class="site">
+
+  <!-- ════════════ HERO SECTION ════════════ -->
+  <section class="hero" id="home">
+
+    <!-- SVG background landscape — no external images needed -->
+    <div class="hero-bg" aria-hidden="true">
+      <svg viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- sky -->
+        <rect width="375" height="812" fill="#1a3a5c"/>
+        <!-- stars -->
+        <circle cx="40"  cy="60"  r="1.2" fill="#d8eaf8" opacity="0.7"/>
+        <circle cx="110" cy="38"  r="0.9" fill="#d8eaf8" opacity="0.6"/>
+        <circle cx="200" cy="52"  r="1.4" fill="#d8eaf8" opacity="0.8"/>
+        <circle cx="300" cy="30"  r="1"   fill="#d8eaf8" opacity="0.5"/>
+        <circle cx="340" cy="72"  r="0.8" fill="#d8eaf8" opacity="0.6"/>
+        <circle cx="60"  cy="120" r="0.7" fill="#d8eaf8" opacity="0.4"/>
+        <circle cx="260" cy="90"  r="1.1" fill="#d8eaf8" opacity="0.6"/>
+        <!-- moon -->
+        <circle cx="310" cy="80" r="22" fill="#c8dff0" opacity="0.88"/>
+        <circle cx="320" cy="74" r="18" fill="#1a3a5c"/>
+        <!-- far mountains -->
+        <polygon points="0,480 60,310 130,400 200,280 270,360 340,290 375,340 375,812 0,812" fill="#1e4a6a" opacity="0.9"/>
+        <!-- mid mountains with snow -->
+        <polygon points="0,540 50,370 110,450 170,320 240,420 310,340 375,400 375,812 0,812" fill="#265874"/>
+        <polygon points="170,320 155,352 185,352" fill="#d8eaf8" opacity="0.82"/>
+        <polygon points="50,370  36,400  64,400"  fill="#d8eaf8" opacity="0.72"/>
+        <polygon points="310,340 298,368 322,368" fill="#d8eaf8" opacity="0.68"/>
+        <!-- lake reflection -->
+        <ellipse cx="188" cy="620" rx="160" ry="28" fill="#1e4060" opacity="0.7"/>
+        <!-- close treeline left -->
+        <polygon points="0,812 0,580 18,542 36,580 54,530 72,568 90,514 108,556 126,504 144,548 162,812" fill="#0e2a1e"/>
+        <!-- close treeline right -->
+        <polygon points="213,812 213,548 230,508 248,550 266,496 284,538 302,486 320,530 338,500 356,542 375,520 375,812" fill="#0e2a1e"/>
+        <!-- ground -->
+        <rect x="0" y="720" width="375" height="92" fill="#0c2018"/>
+        <!-- path/trail -->
+        <path d="M140,812 Q188,740 188,640" stroke="#d8c898" stroke-width="3" fill="none" opacity="0.28" stroke-dasharray="8 6"/>
+      </svg>
+    </div>
+
+    <div class="hero-tint" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <!-- Nav -->
+      <header class="hero-nav">
+        <div class="logo">IMM</div>
+        <nav class="hero-menu" aria-label="Main navigation">
+          <a href="#categories">Projects</a>
+          <a href="#">About</a>
+          <a href="#">Past Shows</a>
+        </nav>
+      </header>
+
+      <!-- Countdown -->
+      <div class="status-row">
+        <div class="countdown" id="countdown" aria-live="polite" aria-label="Countdown to event">--D --H --M --S</div>
+      </div>
+
+      <!-- Event info bar -->
+      <div class="event-strip" role="banner">
+        <p class="date">Friday, May 8, 2026 · 6–9 PM</p>
+        <p class="place">AIMM · The College of New Jersey · Ewing, NJ</p>
+      </div>
+
+      <!-- Main title block -->
+      <div class="hero-main">
+        <div class="dept-pill">TCNJ | Design &amp; Creative Technology</div>
+        <h1 class="hero-title">
+          <span class="imm">IMM</span>
+          <span class="line">Senior</span>
+          <span class="line">Show <span class="year">'26</span></span>
+        </h1>
+        <p class="hero-copy">Come explore what a year of thesis work looks like in person.</p>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="hero-actions">
+        <a class="hero-btn map" href="#categories">Explore Projects</a>
+        <a class="hero-btn calendar" href="#" id="add-calendar">Add to Calendar</a>
+      </div>
+
+      <!-- Scroll hint -->
+      <a class="scroll-hint" href="#categories" aria-label="Scroll to project categories">
+        <div class="scroll-dots">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="scroll-arrow"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════ CATEGORIES SECTION ════════════ -->
+  <section class="categories" id="categories">
+
+    <!-- SVG forest background -->
+    <div class="cat-bg" aria-hidden="true">
+      <svg viewBox="0 0 375 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="375" height="560" fill="#1a4030"/>
+        <!-- misty far mountains -->
+        <polygon points="0,300 50,200 110,260 170,180 240,250 310,190 375,230 375,560 0,560" fill="#1e4a30" opacity="0.6"/>
+        <!-- treeline back -->
+        <polygon points="0,560 0,340 16,304 32,340 50,296 68,336 86,282 104,326 122,278 140,320 158,272 176,318 194,268 212,316 230,274 248,318 266,278 284,322 302,284 320,326 338,290 356,330 375,310 375,560" fill="#122e20"/>
+        <!-- treeline front -->
+        <polygon points="0,560 0,400 20,356 40,400 60,342 80,390 100,330 120,378 140,322 160,370 180,316 200,364 220,332 240,380 260,344 280,392 300,360 320,408 340,374 360,416 375,400 375,560" fill="#0c2018"/>
+        <!-- ground -->
+        <rect x="0" y="500" width="375" height="60" fill="#0a1c14"/>
+      </svg>
+    </div>
+
+    <!-- colour tint driven by JS -->
+    <div class="cat-tint" id="cat-tint" aria-hidden="true"></div>
+
+    <div class="cat-inner">
+      <h2 class="cat-title">Explore the Projects</h2>
+      <p class="cat-sub">36 Students · 6 Trails to cover</p>
+
+      <!-- Horizontal card scroller -->
+      <div class="trail-scroller" id="trail-scroller" role="list" aria-label="Project track cards">
+
+        <!-- GAMES & PLAYABLE MEDIA -->
+        <article class="trail-card trail-gp is-active" data-index="0" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#3a1414"/>
+              <circle cx="280" cy="60" r="50" fill="#c74040" opacity="0.4"/>
+              <!-- grid lines like a game map -->
+              <line x1="0" y1="85" x2="380" y2="85" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <line x1="0" y1="170" x2="380" y2="170" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <line x1="0" y1="255" x2="380" y2="255" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <line x1="95"  y1="0" x2="95"  y2="340" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <line x1="190" y1="0" x2="190" y2="340" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <line x1="285" y1="0" x2="285" y2="340" stroke="#c75145" stroke-width="1" opacity="0.2"/>
+              <!-- pixel character suggestion -->
+              <rect x="170" y="140" width="12" height="12" fill="#f0a0a0" opacity="0.5"/>
+              <rect x="182" y="132" width="12" height="12" fill="#f0a0a0" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <!-- Replace this SVG with: <img src="YOUR_SQUARESPACE_URL/GamesLogo.png" alt="Games and Playable Media"> -->
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Games and Playable Media">
+              <!-- controller icon -->
+              <rect x="20" y="38" width="120" height="60" rx="30" fill="none" stroke="#f0f8ea" stroke-width="5"/>
+              <circle cx="62" cy="68" r="10" fill="none" stroke="#f0f8ea" stroke-width="4"/>
+              <line x1="62" y1="58" x2="62" y2="50" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="62" y1="78" x2="62" y2="86" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="52" y1="68" x2="44" y2="68" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="72" y1="68" x2="80" y2="68" stroke="#f0f8ea" stroke-width="3"/>
+              <circle cx="102" cy="58" r="5" fill="#f0f8ea"/>
+              <circle cx="116" cy="68" r="5" fill="#f0f8ea"/>
+              <circle cx="102" cy="78" r="5" fill="#f0f8ea"/>
+              <circle cx="88"  cy="68" r="5" fill="#f0f8ea"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Games &amp; Playable Media</span>
+            <div class="trail-count">12 Students</div>
+          </footer>
+        </article>
+
+        <!-- VISUAL STORYTELLING & ANIMATION -->
+        <article class="trail-card trail-vs" data-index="1" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#3a1e08"/>
+              <circle cx="190" cy="80" r="60" fill="#cd7028" opacity="0.35"/>
+              <!-- film strip lines -->
+              <rect x="0"   y="130" width="380" height="80" fill="#cd7028" opacity="0.1"/>
+              <rect x="20"  y="140" width="50" height="60" rx="4" fill="none" stroke="#cd7028" stroke-width="2" opacity="0.35"/>
+              <rect x="90"  y="140" width="50" height="60" rx="4" fill="none" stroke="#cd7028" stroke-width="2" opacity="0.35"/>
+              <rect x="160" y="140" width="50" height="60" rx="4" fill="none" stroke="#cd7028" stroke-width="2" opacity="0.35"/>
+              <rect x="230" y="140" width="50" height="60" rx="4" fill="none" stroke="#cd7028" stroke-width="2" opacity="0.35"/>
+              <rect x="300" y="140" width="60" height="60" rx="4" fill="none" stroke="#cd7028" stroke-width="2" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Visual Storytelling and Animation">
+              <!-- clapperboard -->
+              <rect x="20" y="40" width="120" height="70" rx="6" fill="none" stroke="#f0f8ea" stroke-width="5"/>
+              <rect x="20" y="40" width="120" height="22" rx="6" fill="#f0f8ea" opacity="0.22"/>
+              <line x1="20" y1="52" x2="140" y2="52" stroke="#f0f8ea" stroke-width="3"/>
+              <!-- diagonal slats -->
+              <line x1="38"  y1="40" x2="28"  y2="28" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="62"  y1="40" x2="52"  y2="28" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="86"  y1="40" x2="76"  y2="28" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="110" y1="40" x2="100" y2="28" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="134" y1="40" x2="124" y2="28" stroke="#f0f8ea" stroke-width="3"/>
+              <!-- play triangle -->
+              <polygon points="75,64 75,96 104,80" fill="#f0f8ea" opacity="0.88"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Visual Storytelling &amp; Animation</span>
+            <div class="trail-count">11 Students</div>
+          </footer>
+        </article>
+
+        <!-- MUSIC TECHNOLOGY -->
+        <article class="trail-card trail-mt" data-index="2" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#2e2208"/>
+              <!-- waveform -->
+              <polyline points="0,170 30,140 60,200 90,110 120,230 150,90 180,210 210,120 240,190 270,140 300,180 330,150 380,170" fill="none" stroke="#d6a034" stroke-width="3" opacity="0.38"/>
+              <circle cx="190" cy="80" r="55" fill="#d6a034" opacity="0.28"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Music Technology">
+              <!-- musical note -->
+              <line x1="80" y1="30" x2="80" y2="95" stroke="#f0f8ea" stroke-width="5" stroke-linecap="round"/>
+              <ellipse cx="68" cy="95" rx="14" ry="10" fill="#f0f8ea"/>
+              <!-- beam to second note -->
+              <line x1="108" y1="22" x2="108" y2="87" stroke="#f0f8ea" stroke-width="5" stroke-linecap="round"/>
+              <ellipse cx="96" cy="87" rx="14" ry="10" fill="#f0f8ea"/>
+              <!-- beam -->
+              <line x1="80" y1="30" x2="108" y2="22" stroke="#f0f8ea" stroke-width="5"/>
+              <!-- waveform below -->
+              <polyline points="22,38 34,28 46,48 58,18 70,38" fill="none" stroke="#f0f8ea" stroke-width="2.5" opacity="0.55"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Music Technology</span>
+            <div class="trail-count">2 Students</div>
+          </footer>
+        </article>
+
+        <!-- DIGITAL FABRICATION -->
+        <article class="trail-card trail-df" data-index="3" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#122e1a"/>
+              <circle cx="190" cy="170" r="80" fill="#4e985f" opacity="0.22"/>
+              <!-- grid / print bed lines -->
+              <line x1="0"   y1="100" x2="380" y2="100" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="0"   y1="170" x2="380" y2="170" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="0"   y1="240" x2="380" y2="240" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="76"  y1="0"   x2="76"  y2="340" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="152" y1="0"   x2="152" y2="340" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="228" y1="0"   x2="228" y2="340" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+              <line x1="304" y1="0"   x2="304" y2="340" stroke="#4e985f" stroke-width="1" opacity="0.22"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Digital Fabrication">
+              <!-- 3D cube wireframe -->
+              <!-- front face -->
+              <rect x="42" y="50" width="60" height="55" fill="none" stroke="#f0f8ea" stroke-width="4"/>
+              <!-- top face -->
+              <polygon points="42,50 72,28 132,28 102,50" fill="none" stroke="#f0f8ea" stroke-width="4"/>
+              <!-- right face -->
+              <polygon points="102,50 132,28 132,83 102,105" fill="none" stroke="#f0f8ea" stroke-width="4"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Digital Fabrication</span>
+            <div class="trail-count">7 Students</div>
+          </footer>
+        </article>
+
+        <!-- CREATIVE CODING -->
+        <article class="trail-card trail-cc" data-index="4" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#0e1e30"/>
+              <circle cx="190" cy="100" r="70" fill="#3f6f9b" opacity="0.3"/>
+              <!-- code brackets -->
+              <text x="50"  y="180" font-family="monospace" font-size="64" fill="#3f6f9b" opacity="0.28">&lt;/&gt;</text>
+              <!-- horizontal scan lines -->
+              <line x1="0" y1="60"  x2="380" y2="60"  stroke="#3f6f9b" stroke-width="1" opacity="0.15"/>
+              <line x1="0" y1="120" x2="380" y2="120" stroke="#3f6f9b" stroke-width="1" opacity="0.15"/>
+              <line x1="0" y1="180" x2="380" y2="180" stroke="#3f6f9b" stroke-width="1" opacity="0.15"/>
+              <line x1="0" y1="240" x2="380" y2="240" stroke="#3f6f9b" stroke-width="1" opacity="0.15"/>
+              <line x1="0" y1="300" x2="380" y2="300" stroke="#3f6f9b" stroke-width="1" opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Creative Coding">
+              <!-- code brackets big -->
+              <text x="14" y="92" font-family="monospace" font-weight="700" font-size="76" fill="#f0f8ea">&lt;</text>
+              <text x="88" y="92" font-family="monospace" font-weight="700" font-size="76" fill="#f0f8ea">&gt;</text>
+              <line x1="72" y1="22" x2="88" y2="98" stroke="#f0f8ea" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Creative Coding</span>
+            <div class="trail-count">4 Students</div>
+          </footer>
+        </article>
+
+        <!-- CULTURE & TECHNOLOGY -->
+        <article class="trail-card trail-ct" data-index="5" role="listitem">
+          <div class="trail-card-bg" aria-hidden="true">
+            <svg viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="380" height="340" fill="#1e0e30"/>
+              <circle cx="190" cy="140" r="90" fill="#8d5aa9" opacity="0.28"/>
+              <!-- concentric circles -->
+              <circle cx="190" cy="170" r="40"  fill="none" stroke="#8d5aa9" stroke-width="2" opacity="0.3"/>
+              <circle cx="190" cy="170" r="80"  fill="none" stroke="#8d5aa9" stroke-width="2" opacity="0.2"/>
+              <circle cx="190" cy="170" r="120" fill="none" stroke="#8d5aa9" stroke-width="2" opacity="0.15"/>
+              <circle cx="190" cy="170" r="160" fill="none" stroke="#8d5aa9" stroke-width="2" opacity="0.1"/>
+            </svg>
+          </div>
+          <div class="trail-card-tint"></div>
+          <div class="trail-logo">
+            <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" aria-label="Culture and Technology">
+              <!-- globe -->
+              <circle cx="80" cy="60" r="42" fill="none" stroke="#f0f8ea" stroke-width="4"/>
+              <ellipse cx="80" cy="60" rx="18" ry="42" fill="none" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="38" y1="60" x2="122" y2="60" stroke="#f0f8ea" stroke-width="3"/>
+              <line x1="42" y1="38" x2="118" y2="38" stroke="#f0f8ea" stroke-width="2" opacity="0.6"/>
+              <line x1="42" y1="82" x2="118" y2="82" stroke="#f0f8ea" stroke-width="2" opacity="0.6"/>
+            </svg>
+          </div>
+          <footer class="trail-meta">
+            <span class="trail-chip">Culture &amp; Technology</span>
+            <div class="trail-count">1 Student</div>
+          </footer>
+        </article>
+
+      </div><!-- end trail-scroller -->
+
+      <!-- Dot navigation -->
+      <div class="trail-dots" id="trail-dots" role="tablist" aria-label="Select project track">
+        <button class="gp active" data-index="0" aria-label="Games and Playable Media" role="tab" aria-selected="true"></button>
+        <button class="vs"        data-index="1" aria-label="Visual Storytelling and Animation" role="tab" aria-selected="false"></button>
+        <button class="mt"        data-index="2" aria-label="Music Technology" role="tab" aria-selected="false"></button>
+        <button class="df"        data-index="3" aria-label="Digital Fabrication" role="tab" aria-selected="false"></button>
+        <button class="cc"        data-index="4" aria-label="Creative Coding" role="tab" aria-selected="false"></button>
+        <button class="ct"        data-index="5" aria-label="Culture and Technology" role="tab" aria-selected="false"></button>
+      </div>
+
+    </div><!-- end cat-inner -->
+  </section>
+
+</main>
+
+<script>
+  /* ─── THEME RANDOMISER ─── */
+  document.body.dataset.theme = Math.random() < 0.5 ? "blue" : "green";
+
+  /* ─── COUNTDOWN ─── */
+  const eventDate = new Date("2026-05-08T18:00:00-04:00");
+  const countdownEl = document.getElementById("countdown");
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function tick() {
+    const diff = eventDate - Date.now();
+    if (diff <= 0) { countdownEl.textContent = "It's Show Time!"; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+    countdownEl.textContent = `${pad(d)}D ${pad(h)}H ${pad(m)}M ${pad(s)}S`;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ─── TRAIL CARD SCROLLER ─── */
+  const scroller  = document.getElementById("trail-scroller");
+  const catTint   = document.getElementById("cat-tint");
+  const cards     = [...scroller.querySelectorAll(".trail-card")];
+  const dots      = [...document.querySelectorAll("#trail-dots button")];
+
+  /* RGB stops per track — matches trail-* colours */
+  const stops = [
+    [199, 81,  69],   /* GP — rust    */
+    [205, 112, 40],   /* VS — orange  */
+    [214, 160, 52],   /* MT — amber   */
+    [ 78, 152, 95],   /* DF — green   */
+    [ 63, 111, 155],  /* CC — blue    */
+    [141,  90, 169],  /* CT — violet  */
+  ];
+
+  function lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+
+  function updateTint() {
+    const maxScroll = Math.max(1, scroller.scrollWidth - scroller.clientWidth);
+    const progress  = (scroller.scrollLeft / maxScroll) * (stops.length - 1);
+    const lo = Math.min(Math.floor(progress), stops.length - 2);
+    const hi = lo + 1;
+    const t  = progress - lo;
+    const r  = lerp(stops[lo][0], stops[hi][0], t);
+    const g  = lerp(stops[lo][1], stops[hi][1], t);
+    const b  = lerp(stops[lo][2], stops[hi][2], t);
+    catTint.style.background = `rgba(${r},${g},${b},0.72)`;
+  }
+
+  function setActive(index) {
+    dots.forEach((d, i) => {
+      d.classList.toggle("active", i === index);
+      d.setAttribute("aria-selected", i === index ? "true" : "false");
+    });
+    cards.forEach((c, i) => c.classList.toggle("is-active", i === index));
+  }
+
+  /* Scroll to card when dot clicked */
+  dots.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.dataset.index);
+      cards[i]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      setActive(i);
+      updateTint();
+    });
+  });
+
+  /* Intersection observer — updates active dot on scroll */
+  const obs = new IntersectionObserver(entries => {
+    const hit = entries.find(e => e.isIntersecting);
+    if (hit) {
+      const i = cards.indexOf(hit.target);
+      if (i !== -1) { setActive(i); updateTint(); }
+    }
+  }, { root: scroller, threshold: 0.5 });
+
+  cards.forEach(c => obs.observe(c));
+  scroller.addEventListener("scroll", updateTint, { passive: true });
+
+  setActive(0);
+  updateTint();
+
+  /* ─── CALENDAR (.ics) DOWNLOAD ─── */
+  document.getElementById("add-calendar").addEventListener("click", e => {
+    e.preventDefault();
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//TCNJ IMM//Senior Show 2026//EN",
+      "BEGIN:VEVENT",
+      "UID:imm-senior-show-2026@tcnj.edu",
+      "DTSTAMP:20260421T120000Z",
+      "DTSTART:20260508T220000Z",
+      "DTEND:20260509T010000Z",
+      "SUMMARY:IMM Senior Show 2026",
+      "DESCRIPTION:TCNJ Department of Design & Creative Technology Senior Showcase.",
+      "LOCATION:AIMM Building\\, The College of New Jersey\\, 2000 Pennington Rd\\, Ewing NJ 08628",
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement("a"), { href: url, download: "imm-senior-show-2026.ics" });
+    document.body.append(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+</script>
+</body>
+</html>

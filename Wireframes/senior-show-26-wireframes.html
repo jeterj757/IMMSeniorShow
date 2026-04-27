@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Show 26 Wireframes - TCNJ</title>
+  <style>
+    @font-face {
+      font-family: "Norwester";
+      src: local("Norwester"), local("norwester"), url("../Code Injects/fonts/norwester.otf") format("opentype");
+      font-display: swap;
+    }
+
+    :root {
+      --font-ui: "Norwester", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      --forest: #1f4f43;
+      --forest-deep: #143c33;
+      --moss: #7f9b69;
+      --blue: #3f6f9b;
+      --rust: #c14e1f;
+      --paper: #f2ead6;
+      --ink: #17211d;
+      --line: #d5cab0;
+      --white: #fffdf6;
+      --radius: 18px;
+      --shadow: 0 12px 24px rgba(18, 52, 45, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      scroll-behavior: smooth;
+      background:
+        radial-gradient(circle, rgba(20, 60, 51, 0.08) 1px, transparent 1px) 0 0/22px 22px,
+        #f6f4ef;
+      color: var(--ink);
+      font-family: var(--font-ui);
+      letter-spacing: 0.015em;
+    }
+
+    .site {
+      width: min(1240px, 94vw);
+      margin: 26px auto 60px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: linear-gradient(120deg, var(--moss), #93ad79);
+      border: 1px solid #728d5c;
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3.5vw, 2.1rem);
+      color: #f7f3e7;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .topbar .meta {
+      font-size: 0.88rem;
+      color: #fef8ea;
+      text-align: right;
+      line-height: 1.3;
+    }
+
+    .topnav {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topnav button {
+      border: 1px solid #ac9f84;
+      background: #fff8e8;
+      color: #1f322c;
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+    }
+
+    .topnav button.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #f8f2e5;
+    }
+
+    .panel {
+      margin-top: 16px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-hd {
+      background: #efe6d2;
+      border-bottom: 1px solid #d9ccb1;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .panel-hd h2 {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: clamp(1rem, 2.4vw, 1.34rem);
+    }
+
+    .panel-hd .tag {
+      border: 1px solid #c2b392;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.75rem;
+      background: #fffaf0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .panel-bd {
+      padding: 16px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 360px) 1fr;
+      gap: 14px;
+    }
+
+    .phone {
+      border-radius: 26px;
+      border: 2px solid #79976e;
+      min-height: 420px;
+      background: linear-gradient(180deg, #60885b, #4e7049);
+      color: #f6efdd;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone.blue {
+      border-color: #4d6d90;
+      background: linear-gradient(180deg, #4d78a5, #355d86);
+    }
+
+    .phone-top {
+      background: rgba(18, 52, 45, 0.22);
+      padding: 10px 12px 8px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .countdown-pill {
+      background: rgba(255, 248, 228, 0.2);
+      border: 1px solid rgba(255, 248, 228, 0.34);
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+    }
+
+    .event-strip {
+      background: var(--rust);
+      color: #fff5ea;
+      text-align: center;
+      padding: 10px 10px 12px;
+      line-height: 1.35;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.76rem;
+    }
+
+    .hero-copy {
+      text-align: center;
+      padding: 18px 18px 0;
+      text-transform: uppercase;
+    }
+
+    .hero-copy .tiny {
+      font-size: 0.64rem;
+      opacity: 0.92;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .hero-copy .title {
+      font-size: clamp(2.6rem, 7vw, 3.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-copy .title .year {
+      color: #f2994f;
+    }
+
+    .hero-copy p {
+      margin: 12px auto 0;
+      max-width: 28ch;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 1.35;
+    }
+
+    .phone-actions {
+      margin: 14px auto 0;
+      width: min(260px, 88%);
+      display: grid;
+      gap: 8px;
+    }
+
+    .phone-actions button {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 8px 10px;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .phone-actions .map-btn {
+      background: #6fc178;
+      color: #123125;
+      border-color: #5ca264;
+    }
+
+    .phone-actions .cal-btn {
+      background: #fff8e7;
+      color: #b3481f;
+      border-color: #f4e4bf;
+    }
+
+    .overview-notes {
+      background: #f9f3e4;
+      border: 1px solid #e1d4b8;
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 420px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .overview-notes h3 {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 1rem;
+      color: #1d3931;
+    }
+
+    .overview-notes p,
+    .overview-notes li {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .overview-notes ul {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pill-row span {
+      padding: 6px 10px;
+      border: 1px solid #d8c9a7;
+      border-radius: 999px;
+      background: #fff;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .filters button {
+      border: 1px solid #cdbd99;
+      border-radius: 999px;
+      background: #fff8ea;
+      color: #1b2f29;
+      padding: 7px 12px;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      font-size: 0.76rem;
+    }
+
+    .filters button.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #f8f0de;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .project-card {
+      border: 1px solid #dbceb5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      display: grid;
+    }
+
+    .project-thumb {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #e7dcc3, #d9c9a7);
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: #4d4534;
+    }
+
+    .project-body {
+      padding: 10px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .project-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      line-height: 1.18;
+    }
+
+    .project-student {
+      font-size: 0.78rem;
+      color: #4d5f57;
+      text-transform: uppercase;
+    }
+
+    .project-tag {
+      justify-self: start;
+      font-size: 0.67rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid transparent;
+    }
+
+    .tag-games {
+      background: #f4d9d3;
+      border-color: #e6bdb5;
+      color: #8c3b31;
+    }
+
+    .tag-music {
+      background: #f6e8c8;
+      border-color: #ebd8aa;
+      color: #8a6620;
+    }
+
+    .tag-fab {
+      background: #e1f1e3;
+      border-color: #c3dfc7;
+      color: #2b6641;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 12px;
+    }
+
+    .map-shell {
+      border: 1px solid #dccfb3;
+      background: #f8f3e4;
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .map-box {
+      border: 1px solid #cfbf9f;
+      border-radius: 12px;
+      min-height: 290px;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(63, 111, 155, 0.16), rgba(121, 159, 105, 0.12)),
+        repeating-linear-gradient(90deg, rgba(78, 85, 82, 0.08) 0 2px, transparent 2px 48px),
+        repeating-linear-gradient(180deg, rgba(78, 85, 82, 0.08) 0 2px, transparent 2px 52px),
+        #fdf9ef;
+      overflow: hidden;
+    }
+
+    .pin {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      position: absolute;
+      border: 2px solid #fff6e7;
+      box-shadow: 0 0 0 1px rgba(26, 42, 36, 0.2);
+    }
+
+    .pin.games { background: #c85045; top: 24%; left: 20%; }
+    .pin.music { background: #d39a3a; top: 45%; left: 54%; }
+    .pin.fabrication { background: #5a9a62; top: 63%; left: 26%; }
+    .pin.welcome { background: #3e709d; top: 28%; left: 72%; }
+
+    .map-legend {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .map-legend span {
+      border: 1px solid #d5c7ab;
+      border-radius: 999px;
+      background: #fff;
+      padding: 5px 9px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hunt-card {
+      border: 1px solid #d9cbad;
+      border-radius: 14px;
+      background: #f7f0dc;
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hunt-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #1e3b32;
+    }
+
+    .hunt-card ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .hunt-card li {
+      font-size: 0.86rem;
+      line-height: 1.28;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-row button {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .primary {
+      background: #5a9a62;
+      border-color: #4f8656;
+      color: #f6f5ef;
+    }
+
+    .secondary {
+      background: #3e709d;
+      border-color: #325f86;
+      color: #f8fbff;
+    }
+
+    .ghost {
+      background: #fff;
+      border-color: #d4c4a2;
+      color: #614d2d;
+    }
+
+    .scrollable-mock {
+      border: 1px solid #d8cbad;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f9f4e5;
+    }
+
+    .scrollable-top {
+      background: var(--moss);
+      color: #f8f2e5;
+      padding: 10px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+    }
+
+    .scrollable-top .note {
+      margin-top: 5px;
+      display: inline-block;
+      border: 1px solid rgba(255, 250, 238, 0.4);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.64rem;
+      background: rgba(20, 60, 51, 0.25);
+    }
+
+    .scrollable-list {
+      padding: 12px;
+      max-height: 320px;
+      overflow: auto;
+      display: grid;
+      gap: 10px;
+    }
+
+    .scrollable-item {
+      border: 1px solid #d9caac;
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .scrollable-item strong {
+      font-size: 0.84rem;
+      text-transform: uppercase;
+    }
+
+    .scrollable-item span {
+      font-size: 0.72rem;
+      color: #486058;
+      text-transform: uppercase;
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .insta-card {
+      border: 1px solid #d8c8a7;
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .insta-head {
+      background: #f4ece0;
+      border-bottom: 1px solid #e2d2b3;
+      padding: 8px 10px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .insta-body {
+      aspect-ratio: 1/1;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, #f8efe0, #e9ddc4);
+      color: #6f634d;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .insta-foot {
+      padding: 8px 10px;
+      font-size: 0.7rem;
+      color: #4f645b;
+      text-transform: uppercase;
+    }
+
+    .ads-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ad-card {
+      border: 1px solid #d5c7aa;
+      border-radius: 14px;
+      background: #f9f2e1;
+      padding: 12px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .ad-preview {
+      min-height: 130px;
+      border-radius: 10px;
+      border: 1px dashed #bea981;
+      background:
+        linear-gradient(150deg, rgba(193, 78, 31, 0.18), rgba(31, 79, 67, 0.18)),
+        #f8edda;
+      display: grid;
+      place-items: center;
+      text-transform: uppercase;
+      color: #3d4236;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.82rem;
+    }
+
+    .flow-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding-bottom: 2px;
+    }
+
+    .flow-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 1px solid #d8c8a7;
+      background: #fff;
+    }
+
+    .flow-dots span.active {
+      background: var(--forest);
+      border-color: var(--forest);
+    }
+
+    .todo-list {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .todo-list li {
+      font-size: 0.87rem;
+      line-height: 1.3;
+    }
+
+    .todo-list strong {
+      color: #1f3f36;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 27, 23, 0.58);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 50;
+    }
+
+    .overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(420px, 94vw);
+      border-radius: 16px;
+      border: 1px solid #d9caab;
+      background: #fff9ec;
+      box-shadow: 0 18px 40px rgba(13, 35, 29, 0.28);
+      overflow: hidden;
+    }
+
+    .modal .head {
+      background: #e9deca;
+      border-bottom: 1px solid #d3c3a2;
+      padding: 11px 14px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.07em;
+    }
+
+    .modal .body {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .modal .body p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .modal .body button {
+      justify-self: start;
+    }
+
+    .close {
+      border: 1px solid #beaf8d;
+      background: #fff;
+      color: #433f34;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-family: inherit;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 0.68rem;
+    }
+
+    .foot {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #54675f;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    @media (max-width: 980px) {
+      .overview-grid,
+      .split,
+      .ads-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid,
+      .insta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .overview-notes {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .project-grid,
+      .insta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar .meta {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="site">
+    <header class="topbar">
+      <h1>Senior Show 26 at TCNJ Wireframes</h1>
+      <div class="meta">
+        Friday, May 8, 2026<br>
+        6-9 PM | AIMM | Ewing, NJ
+      </div>
+    </header>
+
+    <nav class="topnav">
+      <button class="active" data-jump="overview">Event Overview</button>
+      <button data-jump="projects">Project Highlights</button>
+      <button data-jump="explore">Exploration + Interaction</button>
+      <button data-jump="scroll">Scrollable + Instagram</button>
+      <button data-jump="features">Additional Features</button>
+    </nav>
+
+    <section class="panel" id="overview">
+      <div class="panel-hd">
+        <h2>Event Overview Page</h2>
+        <span class="tag">Wireframe Priority: Hero + Event Date/Time</span>
+      </div>
+      <div class="panel-bd overview-grid">
+        <article class="phone blue">
+          <div class="phone-top">
+            <span>Projects | About | Previous Years</span>
+            <span class="countdown-pill">250D 18H 27M</span>
+          </div>
+          <div class="event-strip">
+            Friday, May 8, 2026 | 6-9 PM<br>
+            AIMM | The College of New Jersey | Ewing, NJ
+          </div>
+          <div class="hero-copy">
+            <div class="tiny">TCNJ | Design & Creative Technology</div>
+            <div class="title">IMM<br>Senior<br>Show <span class="year">'26</span></div>
+            <p>Come explore what a year of thesis work looks like in person.</p>
+          </div>
+          <div class="phone-actions">
+            <button class="map-btn">View the Map</button>
+            <button class="cal-btn" id="calendar-download">Add to Calendar</button>
+          </div>
+        </article>
+
+        <aside class="overview-notes">
+          <h3>Subheader and Key Details</h3>
+          <p>This page leads with the event focus: Design and Creative Technology.</p>
+          <ul>
+            <li>Header title: Senior Show '26 at TCNJ.</li>
+            <li>Date and time lockup: Friday, May 8, 2026, 6-9 PM.</li>
+            <li>Hero CTA pair: View the map + Add to calendar.</li>
+            <li>Mobile-first framing with brand colors from kit.</li>
+          </ul>
+          <div class="pill-row">
+            <span>Non-sticky sections</span>
+            <span>Smooth flow indicators</span>
+            <span>Trail / scout visual language</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel" id="projects">
+      <div class="panel-hd">
+        <h2>Project Highlights Section</h2>
+        <span class="tag">Grid + Filter Options</span>
+      </div>
+      <div class="panel-bd">
+        <div class="filters" id="filters">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="games">Games</button>
+          <button data-filter="music">Music</button>
+          <button data-filter="fabrication">Digital Fabrication</button>
+        </div>
+        <div class="project-grid" id="project-grid">
+          <article class="project-card" data-specialization="games">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">A Rat's Tail</div>
+              <div class="project-student">Madison Braithwaite</div>
+              <span class="project-tag tag-games">Games & Playable Media</span>
+            </div>
+          </article>
+          <article class="project-card" data-specialization="games">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">Lumber</div>
+              <div class="project-student">Aidan Michaels</div>
+              <span class="project-tag tag-games">Games & Playable Media</span>
+            </div>
+          </article>
+          <article class="project-card" data-specialization="games">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">Guns en Roses</div>
+              <div class="project-student">Anthony Resto</div>
+              <span class="project-tag tag-games">Games & Playable Media</span>
+            </div>
+          </article>
+          <article class="project-card" data-specialization="music">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">Color</div>
+              <div class="project-student">Kai Macedo</div>
+              <span class="project-tag tag-music">Music Technology</span>
+            </div>
+          </article>
+          <article class="project-card" data-specialization="fabrication">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">Respect The Locals</div>
+              <div class="project-student">Kelsey Daly</div>
+              <span class="project-tag tag-fab">Digital Fabrication</span>
+            </div>
+          </article>
+          <article class="project-card" data-specialization="fabrication">
+            <div class="project-thumb">Thumbnail Wireframe</div>
+            <div class="project-body">
+              <div class="project-title">Reactive Runway</div>
+              <div class="project-student">Isabel DiFabio</div>
+              <span class="project-tag tag-fab">Digital Fabrication</span>
+            </div>
+          </article>
+        </div>
+        <div class="flow-dots">
+          <span class="active"></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="explore">
+      <div class="panel-hd">
+        <h2>Exploration and Interaction</h2>
+        <span class="tag">Map + Calendar + Scavenger Hunt</span>
+      </div>
+      <div class="panel-bd split">
+        <article class="map-shell">
+          <strong>Interactive Map Wireframe</strong>
+          <div class="map-box" aria-label="Map placeholder with project markers">
+            <span class="pin games" title="Games area"></span>
+            <span class="pin music" title="Music area"></span>
+            <span class="pin fabrication" title="Digital fabrication area"></span>
+            <span class="pin welcome" title="Welcome desk"></span>
+          </div>
+          <div class="map-legend">
+            <span>Games</span>
+            <span>Music</span>
+            <span>Digital Fabrication</span>
+            <span>Welcome</span>
+          </div>
+          <div class="action-row">
+            <button class="secondary">Open Full Map</button>
+            <button class="ghost">Route Me</button>
+          </div>
+        </article>
+
+        <article class="hunt-card">
+          <h3>Scavenger Hunt Instructions</h3>
+          <ol>
+            <li>Tap Start the Scavenger Hunt to activate the hunt flow.</li>
+            <li>Visit project stations and scan each trail marker code.</li>
+            <li>Collect one marker from each specialization to unlock a bonus clue.</li>
+            <li>Return to the hunt dashboard to track completion and see remaining stops.</li>
+            <li>Finish all trail markers to reveal featured project rewards.</li>
+          </ol>
+          <div class="action-row">
+            <button class="primary">Start the Scavenger Hunt</button>
+            <button class="ghost">View Hunt Rules</button>
+          </div>
+          <p style="margin:0;font-size:0.76rem;color:#5a6d65;text-transform:uppercase;">
+            To-do item addressed: scavenger hunt instructions are now included directly in the flow.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="scroll">
+      <div class="panel-hd">
+        <h2>Scrollable Projects + Instagram</h2>
+        <span class="tag">Top search/filter are intentionally non-sticky</span>
+      </div>
+      <div class="panel-bd split">
+        <article class="scrollable-mock">
+          <div class="scrollable-top">
+            Project Feed
+            <div class="note">Top controls scroll away with content</div>
+          </div>
+          <div class="scrollable-list">
+            <div class="scrollable-item"><strong>Games & Playable Media</strong><span>12 students</span></div>
+            <div class="scrollable-item"><strong>Madison Braithwaite</strong><span>A Rat's Tail</span></div>
+            <div class="scrollable-item"><strong>Aidan Michaels</strong><span>Lumber</span></div>
+            <div class="scrollable-item"><strong>Anthony Resto</strong><span>Guns en Roses</span></div>
+            <div class="scrollable-item"><strong>Music Technology</strong><span>2 students</span></div>
+            <div class="scrollable-item"><strong>Kai Macedo</strong><span>Color</span></div>
+            <div class="scrollable-item"><strong>Digital Fabrication</strong><span>7 students</span></div>
+            <div class="scrollable-item"><strong>Kelsey Daly</strong><span>Respect The Locals</span></div>
+          </div>
+        </article>
+
+        <article>
+          <strong>Instagram Embed Area (below home categories)</strong>
+          <div class="insta-grid">
+            <div class="insta-card">
+              <div class="insta-head">Instagram Embed 01</div>
+              <div class="insta-body">Project teaser reel placeholder</div>
+              <div class="insta-foot">Paste approved post URL here</div>
+            </div>
+            <div class="insta-card">
+              <div class="insta-head">Instagram Embed 02</div>
+              <div class="insta-body">Student spotlight placeholder</div>
+              <div class="insta-foot">Paste approved post URL here</div>
+            </div>
+            <div class="insta-card">
+              <div class="insta-head">Instagram Embed 03</div>
+              <div class="insta-body">Countdown teaser placeholder</div>
+              <div class="insta-foot">Paste approved post URL here</div>
+            </div>
+          </div>
+          <p style="margin:10px 0 0;font-size:0.76rem;color:#5a6d65;text-transform:uppercase;">
+            To-do item addressed: Instagram embed section added under the project/category area.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="features">
+      <div class="panel-hd">
+        <h2>Additional Features + To-Do Progress</h2>
+        <span class="tag">Pop-up ad areas + smooth section flow</span>
+      </div>
+      <div class="panel-bd">
+        <div class="ads-grid">
+          <article class="ad-card">
+            <strong>Featured Content Pop-Up (Entry)</strong>
+            <div class="ad-preview">Pop-up area for featured project spotlight on first visit</div>
+            <div class="action-row">
+              <button class="secondary popup-trigger" data-popup="entry">Preview Entry Pop-up</button>
+            </div>
+          </article>
+          <article class="ad-card">
+            <strong>Featured Content Pop-Up (Scroll Trigger)</strong>
+            <div class="ad-preview">Pop-up area for "keep exploring" feature after scroll depth</div>
+            <div class="action-row">
+              <button class="ghost popup-trigger" data-popup="scroll">Preview Scroll Pop-up</button>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:14px;border:1px solid #dbcdae;border-radius:12px;background:#fbf5e7;padding:12px;">
+          <strong>To-Do Checklist Status</strong>
+          <ol class="todo-list">
+            <li><strong>Scavenger hunt instructions:</strong> completed in Exploration + Interaction panel.</li>
+            <li><strong>Instagram embeds:</strong> wireframe slots completed in Scrollable + Instagram panel.</li>
+            <li><strong>Featured pop-up ads:</strong> two pop-up wireframe patterns completed and previewable.</li>
+            <li><strong>Smooth navigation indicators:</strong> top nav jump links and flow dots included.</li>
+            <li><strong>Non-sticky behavior:</strong> search/filter strip is not sticky by design in this wireframe.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <p class="foot">Senior Show 26 wireframe draft | Brand-aligned palette + Norwester-forward type direction</p>
+  </main>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <div class="head">
+        <span id="popup-title">Featured Content Pop-up</span>
+        <button class="close" id="close-popup">Close</button>
+      </div>
+      <div class="body">
+        <p id="popup-copy">This area previews pop-up ad messaging for featured projects and event reminders.</p>
+        <button class="primary">View Featured Project</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const jumpButtons = document.querySelectorAll("[data-jump]");
+    const filterButtons = document.querySelectorAll("#filters button");
+    const cards = document.querySelectorAll(".project-card");
+    const popupButtons = document.querySelectorAll(".popup-trigger");
+    const overlay = document.getElementById("overlay");
+    const closePopup = document.getElementById("close-popup");
+    const popupTitle = document.getElementById("popup-title");
+    const popupCopy = document.getElementById("popup-copy");
+    const calendarButton = document.getElementById("calendar-download");
+
+    jumpButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        jumpButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        const section = document.getElementById(button.dataset.jump);
+        if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        const target = button.dataset.filter;
+        cards.forEach((card) => {
+          if (target === "all" || card.dataset.specialization === target) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+
+    popupButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.popup === "entry") {
+          popupTitle.textContent = "Featured Content Pop-up (Entry)";
+          popupCopy.textContent = "Welcome visitors with one featured project and a direct path to the event map.";
+        } else {
+          popupTitle.textContent = "Featured Content Pop-up (Scroll Trigger)";
+          popupCopy.textContent = "Trigger this after category browsing to surface featured ads without blocking the first view.";
+        }
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+    });
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    calendarButton.addEventListener("click", () => {
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//TCNJ//Senior Show 26//EN",
+        "BEGIN:VEVENT",
+        "UID:senior-show-26@tcnj.edu",
+        "DTSTAMP:20260415T120000Z",
+        "DTSTART:20260508T220000Z",
+        "DTEND:20260509T010000Z",
+        "SUMMARY:Senior Show '26 at TCNJ",
+        "DESCRIPTION:Design and Creative Technology Senior Show at TCNJ.",
+        "LOCATION:AIMM Building, The College of New Jersey, Ewing, NJ",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "senior-show-26.ics";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

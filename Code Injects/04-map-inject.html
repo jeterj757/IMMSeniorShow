@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Show 2026 — Map</title>
+  <!--
+    SQUARESPACE INJECT — MAP PAGE
+    1. Remove everything above <style> and </body></html> at the bottom
+    2. Paste into: Edit Page > Add Block > Code (full-width, no padding)
+    3. Verify Floor1.svg path resolves in your Squarespace environment
+  -->
+  <style>
+  @font-face {
+    font-family: "Norwester";
+    src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+    font-display: swap;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: #f3edda;
+  }
+
+  .imm-map *, .imm-map *::before, .imm-map *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .imm-map a { text-decoration: none; color: inherit; }
+
+  .imm-map {
+    --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
+    --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+    --forest: #123f36;
+    --paper:  #f3edda;
+    --line:   #d4c9ad;
+    --sage:   #7a9660;
+    --gp:  #c75145;
+    --vs:  #cd7028;
+    --mt:  #d6a034;
+    --df:  #4e985f;
+    --cc:  #3f6f9b;
+    --ct:  #8d5aa9;
+    font-family: var(--ui);
+    background: #f0ece0;
+    min-height: 100vh;
+    color: #1c2422;
+    padding-bottom: 64px;
+  }
+
+  /* ── Hero ── */
+  .imm-map-hero {
+    background: var(--forest);
+    padding: clamp(36px, 6vw, 72px) clamp(16px, 3vw, 48px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .imm-map-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(122,150,96,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .imm-map-hero-label {
+    font-family: var(--ui);
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(243,237,218,0.6);
+    margin-bottom: 10px;
+  }
+  .imm-map-hero-title {
+    font-family: var(--d);
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    color: var(--paper);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+  }
+  .imm-map-hero-sub {
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    color: rgba(243,237,218,0.75);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* ── Floor toggle ── */
+  .imm-floor-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px 16px 0;
+  }
+  .imm-floor-btn {
+    font-family: var(--ui);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 9px 24px 10px;
+    border-radius: 999px;
+    border: 2px solid rgba(18,63,54,0.35);
+    background: transparent;
+    color: #3a4a3a;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+  }
+  .imm-floor-btn.is-active {
+    background: var(--forest);
+    color: var(--paper);
+    border-color: var(--forest);
+  }
+  .imm-floor-btn:hover:not(.is-active) {
+    background: rgba(18,63,54,0.08);
+  }
+
+  /* ── Map section ── */
+  .imm-map-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px clamp(12px, 2vw, 32px) 0;
+  }
+  .imm-map-panel { display: none; }
+  .imm-map-panel.is-active { display: block; }
+
+  /* ── Hint ── */
+  .imm-map-hint {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #6a7a6a;
+    padding: 0 0 12px;
+    font-style: italic;
+  }
+
+  /* ── Floor 2 — interactive SVG map ── */
+  .imm-map-scroller {
+    width: 100%;
+    overflow-x: auto;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--paper);
+    box-shadow: 0 6px 28px rgba(18,63,54,0.14);
+  }
+  .imm-map-container {
+    min-width: 800px;
+    height: 610px;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
+    background: var(--paper);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .imm-map-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .imm-map-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* ── Room nodes (Floor 2) ── */
+  .map-node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid var(--zone-color, #123f36);
+    color: #1c2422;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+    font-family: var(--ui);
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.175,0.885,0.32,1.275), background 0.18s, box-shadow 0.18s, color 0.18s;
+    z-index: 10;
+    box-shadow: 0 4px 0 rgba(18,63,54,0.25), 0 2px 8px rgba(0,0,0,0.1);
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+  .map-node:hover, .map-node.is-active {
+    transform: translate(-50%, -62%) scale(1.2);
+    background: var(--zone-color, #123f36);
+    color: #fff;
+    box-shadow: 0 8px 0 rgba(18,63,54,0.25), 0 0 0 4px rgba(255,255,255,0.6);
+    z-index: 20;
+  }
+
+  /* ── Shared popover ── */
+  .map-popover {
+    position: absolute;
+    background: #fff;
+    border: 2px solid var(--forest);
+    border-radius: 12px;
+    padding: 0;
+    width: 290px;
+    box-shadow: 4px 4px 0 rgba(18,63,54,0.15), 0 8px 24px rgba(0,0,0,0.12);
+    display: none;
+    z-index: 200;
+    pointer-events: auto;
+    text-align: left;
+    overflow: hidden;
+  }
+  .map-pop-x {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(18,63,54,0.09);
+    color: var(--forest);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .map-pop-x:hover { background: rgba(18,63,54,0.16); }
+  .map-popover-header {
+    padding: 11px 44px 10px 14px;
+    border-bottom: 1.5px solid #e8e4da;
+  }
+  .map-popover-room {
+    font-family: var(--d);
+    font-size: 1.15rem;
+    color: var(--forest);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .map-popover-track {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a5a4e;
+    margin-top: 3px;
+  }
+  .map-popover-students {
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .map-ps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    background: #f8f6f1;
+    border-radius: 8px;
+    border-left: 3.5px solid var(--zone-color, #123f36);
+  }
+  .map-ps-name {
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: #1a2a22;
+    line-height: 1.2;
+  }
+  .map-ps-proj {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4a5a4a;
+    line-height: 1.3;
+  }
+  .map-ps-link {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--zone-color, #123f36);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  /* ── Legend ── */
+  .imm-map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    justify-content: center;
+    padding: 14px 16px;
+    background: #fff;
+    border: 2.5px solid var(--forest);
+    border-top: 1px solid #e0ddd6;
+    border-radius: 0 0 12px 12px;
+    margin-top: -2px;
+  }
+  .imm-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #3a4a3a;
+    font-family: var(--ui);
+  }
+  .imm-legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Floor 1 — SVG with pin overlays ── */
+  .imm-f1-wrap {
+    position: relative;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(18,63,54,0.14);
+    background: #e6dbc7; /* matches SVG fill */
+  }
+  .imm-f1-inner {
+    position: relative;
+    /* Force aspect ratio matching Floor1.svg viewBox 1440×1024 */
+    aspect-ratio: 1440 / 1024;
+    min-height: 240px;
+    max-height: 80vh;
+  }
+  .imm-f1-inner img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: fill; /* SVGs scale exactly */
+    display: block;
+  }
+  .f1-seating-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    pointer-events: none;
+    font-family: var(--ui);
+  }
+  .f1-room-card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: var(--w, 18%);
+    min-width: 122px;
+    border-radius: 10px;
+    border: 1.5px solid color-mix(in srgb, var(--zone-color, var(--forest)) 54%, #fff 46%);
+    background: rgba(255,253,245,0.92);
+    box-shadow: 0 5px 14px rgba(18,63,54,0.14);
+    overflow: hidden;
+  }
+  .f1-room-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px 5px;
+    background: color-mix(in srgb, var(--zone-color, var(--forest)) 88%, #1c1f1d 12%);
+    color: #fff8ea;
+    text-transform: uppercase;
+  }
+  .f1-room-num {
+    font-family: var(--d);
+    font-size: clamp(0.8rem, 1.5vw, 1.05rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .f1-room-count {
+    font-size: clamp(0.48rem, 0.85vw, 0.62rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    opacity: 0.88;
+  }
+  .f1-people {
+    display: grid;
+    gap: 3px;
+    padding: 6px 7px 7px;
+  }
+  .f1-person {
+    display: block;
+    border-left: 4px solid var(--person-color, var(--zone-color, var(--forest)));
+    border-radius: 6px;
+    background: rgba(18,63,54,0.055);
+    padding: 3px 5px 3px 6px;
+    color: #14372f;
+    font-size: clamp(0.56rem, 1vw, 0.72rem);
+    font-weight: 650;
+    line-height: 1.12;
+  }
+  .f1-room-card.is-hall {
+    width: var(--w, 32%);
+  }
+  .f1-room-card.is-hall .f1-people {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  /* Transparent click areas positioned at each SVG pin's cx/cy as % of 1440×1024 */
+  .f1-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 9%;   /* ~130px in a 1440 wide map — covers the full pin glyph */
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    /* Debug outline (remove for production): */
+    /* outline: 2px dashed red; */
+  }
+  .f1-pin:hover { background: rgba(255,255,255,0.12); }
+  .f1-pin.is-active { background: rgba(255,255,255,0.24); box-shadow: inset 0 0 0 4px rgba(18,63,54,0.24); }
+  .f1-pin:focus { outline: 3px solid rgba(255,255,255,0.6); outline-offset: 2px; }
+
+  .imm-f1-note {
+    background: #fff;
+    padding: 12px 20px;
+    font-size: 0.82rem;
+    color: #4a5a4a;
+    border-top: 1.5px solid #e0ddd6;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .imm-f1-note strong { color: var(--forest); }
+
+  /* Popover shared for both floors — positioned via JS */
+  #mapPopover { position: fixed !important; }
+
+  /* ── Scroll hint for Floor 2 ── */
+  .imm-scroll-hint {
+    display: none;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #4a5a4e;
+    letter-spacing: 0.06em;
+    padding: 8px 0 0;
+  }
+  @media (max-width: 900px) { .imm-scroll-hint { display: block; } }
+
+  @media (max-width: 720px) {
+    .imm-map {
+      padding-bottom: 32px;
+      background-image: radial-gradient(rgba(18,63,54,0.08) 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+    .imm-map-hero {
+      padding: 28px 18px 22px;
+    }
+    .imm-map-hero-title {
+      font-size: clamp(2.55rem, 13vw, 4rem);
+    }
+    .imm-map-hero-sub {
+      font-size: 0.9rem;
+      line-height: 1.42;
+    }
+    .imm-floor-toggle {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(240,236,224,0.96);
+      padding: 12px 12px 10px;
+      box-shadow: 0 2px 12px rgba(18,63,54,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .imm-floor-btn {
+      flex: 1;
+      padding: 10px 12px;
+      font-size: 0.76rem;
+    }
+    .imm-map-section {
+      padding: 16px 10px 0;
+    }
+    .imm-map-scroller {
+      border-radius: 10px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .imm-map-container {
+      min-width: 720px;
+      height: 520px;
+    }
+    .map-node {
+      width: 58px;
+      height: 58px;
+      font-size: 14px;
+      border-width: 4px;
+    }
+    .imm-f1-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .imm-f1-inner {
+      min-width: 720px;
+      max-height: none;
+    }
+    .f1-room-card {
+      min-width: 112px;
+    }
+    .f1-pin {
+      width: 12%;
+    }
+    .map-popover {
+      position: fixed !important;
+      left: 12px !important;
+      right: 12px !important;
+      bottom: 12px !important;
+      top: auto !important;
+      width: auto !important;
+      max-height: min(54vh, 430px);
+      border-radius: 18px;
+      box-shadow: 0 -6px 34px rgba(18,63,54,0.22);
+    }
+    .map-popover-students {
+      max-height: calc(min(54vh, 430px) - 82px);
+    }
+    .map-ps {
+      padding: 11px 12px;
+    }
+    .map-ps-name { font-size: 0.92rem; }
+    .map-ps-proj { font-size: 0.84rem; }
+    .map-ps-link { padding: 7px 12px; font-size: 0.7rem; }
+  }
+  </style>
+</head>
+<body>
+<div class="imm-map">
+
+  <!-- Hero -->
+  <div class="imm-map-hero">
+    <p class="imm-map-hero-label">TCNJ · Design &amp; Creative Technology · May 8, 2026</p>
+    <h1 class="imm-map-hero-title">FIND THE SHOW</h1>
+    <p class="imm-map-hero-sub">All 37 senior projects are spread across the Art &amp; IMM Building. Tap a room to see who's there.</p>
+  </div>
+
+  <!-- Floor toggle -->
+  <div class="imm-floor-toggle">
+    <button class="imm-floor-btn is-active" data-floor="2" onclick="switchFloor(2)">Floor 2 — Projects</button>
+    <button class="imm-floor-btn" data-floor="1" onclick="switchFloor(1)">Floor 1</button>
+  </div>
+
+  <div class="imm-map-section">
+
+    <!-- ════════════════════════════════════════
+         FLOOR 2 — Interactive map (default)
+    ════════════════════════════════════════ -->
+    <div class="imm-map-panel is-active" id="panel-floor2">
+      <p class="imm-map-hint">Hover or tap a room to see who's presenting there.</p>
+      <div class="imm-map-scroller">
+        <div class="imm-map-container" id="mapContainerF2">
+
+          <div id="floor2-layer" class="imm-map-layer">
+            <svg class="imm-map-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+              <!-- atmosphere -->
+              <path fill="none" stroke="#7a9660" stroke-width="1" opacity="0.3" d="M0 120 Q250 80 500 130 T1000 100"/>
+              <path fill="none" stroke="#7a9660" stroke-width="1" opacity="0.3" d="M0 560 Q300 530 600 570 T1000 540"/>
+              <!-- tree clusters -->
+              <g fill="#123f36" opacity="0.5">
+                <polygon points="48,320 56,300 64,320"/><polygon points="60,335 68,315 76,335"/>
+                <polygon points="940,320 948,300 956,320"/><polygon points="928,340 936,320 944,340"/>
+              </g>
+              <!-- Left wing -->
+              <rect x="80" y="50" width="200" height="440" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
+              <!-- Right wing -->
+              <rect x="720" y="50" width="200" height="440" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
+              <!-- Top strip -->
+              <rect x="280" y="50" width="440" height="110" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
+              <!-- Atrium -->
+              <path d="M385,160 L385,400 Q385,470 500,470 Q615,470 615,400 L615,160 Z" fill="#e8dcc8" opacity="0.7"/>
+              <path d="M385,160 L385,400 Q385,470 500,470 Q615,470 615,400 L615,160" fill="none" stroke="#8c6a4f" stroke-width="4" stroke-linejoin="round"/>
+              <text x="500" y="335" text-anchor="middle" font-family="'Norwester','Arial Narrow',sans-serif" font-size="16" fill="#9a7a50" opacity="0.6" letter-spacing="3">ATRIUM</text>
+              <!-- room dividers left -->
+              <line x1="80" y1="148" x2="280" y2="148" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="80" y1="235" x2="280" y2="235" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="80" y1="315" x2="280" y2="315" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="180" y1="148" x2="180" y2="315" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <!-- room dividers right -->
+              <line x1="720" y1="148" x2="920" y2="148" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="720" y1="235" x2="920" y2="235" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="720" y1="315" x2="920" y2="315" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="720" y1="400" x2="820" y2="400" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="820" y1="315" x2="820" y2="490" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <!-- top strip dividers -->
+              <line x1="360" y1="50" x2="360" y2="160" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="432" y1="50" x2="432" y2="160" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="568" y1="50" x2="568" y2="160" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <line x1="640" y1="50" x2="640" y2="160" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+              <!-- hallway -->
+              <rect x="80" y="490" width="840" height="50" fill="#ddd5c0" stroke="#1a3a30" stroke-width="1.5" opacity="0.8"/>
+              <line x1="80" y1="515" x2="920" y2="515" stroke="#8c6a4f" stroke-width="10" stroke-linecap="round" opacity="0.45"/>
+              <line x1="80" y1="515" x2="920" y2="515" stroke="#f3edda" stroke-width="2.5" stroke-dasharray="14 10" opacity="0.8"/>
+              <line x1="280" y1="50" x2="280" y2="490" stroke="#8c6a4f" stroke-width="7" opacity="0.28"/>
+              <line x1="280" y1="50" x2="280" y2="490" stroke="#f3edda" stroke-width="2" stroke-dasharray="10 8" opacity="0.65"/>
+              <line x1="720" y1="50" x2="720" y2="490" stroke="#8c6a4f" stroke-width="7" opacity="0.28"/>
+              <line x1="720" y1="50" x2="720" y2="490" stroke="#f3edda" stroke-width="2" stroke-dasharray="10 8" opacity="0.65"/>
+              <!-- below-hallway rooms -->
+              <rect x="80" y="540" width="200" height="110" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
+              <text x="180" y="603" text-anchor="middle" font-size="9" fill="#5a6a5a" opacity="0.6" font-family="system-ui,sans-serif">U-Lab · 206</text>
+              <rect x="380" y="540" width="240" height="110" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
+              <text x="500" y="603" text-anchor="middle" font-size="9" fill="#5a6a5a" opacity="0.6" font-family="system-ui,sans-serif">Lobby · 202 / 203</text>
+              <rect x="720" y="540" width="200" height="110" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
+              <text x="820" y="603" text-anchor="middle" font-size="9" fill="#5a6a5a" opacity="0.6" font-family="system-ui,sans-serif">Recording · 235</text>
+              <!-- ghost room labels -->
+              <g font-size="8.5" fill="#4a5a4a" opacity="0.42" text-anchor="middle" font-family="system-ui,sans-serif">
+                <text x="320" y="113">220</text><text x="396" y="113">221</text>
+                <text x="604" y="113">222</text><text x="680" y="113">224</text>
+                <text x="130" y="108">217</text><text x="130" y="198">215</text>
+                <text x="228" y="198">216</text><text x="180" y="278">214</text>
+                <text x="870" y="108">226</text><text x="870" y="198">227</text>
+                <text x="870" y="278">228</text><text x="870" y="368">230</text>
+                <text x="770" y="365">225</text><text x="770" y="448">224</text>
+                <text x="870" y="448">233</text><text x="600" y="572">236</text>
+              </g>
+            </svg>
+
+            <!-- Creative Coding — blue #3f6f9b -->
+            <div class="map-node" style="top:61%;left:38%;--zone-color:#3f6f9b" data-room="220">220</div>
+            <div class="map-node" style="top:63%;left:44%;--zone-color:#3f6f9b" data-room="221">221</div>
+            <div class="map-node" style="top:63%;left:56%;--zone-color:#3f6f9b" data-room="222">222</div>
+            <!-- Digital Fabrication — green #4e985f -->
+            <div class="map-node" style="top:20%;left:23%;--zone-color:#4e985f" data-room="217">217</div>
+            <div class="map-node" style="top:30%;left:23%;--zone-color:#4e985f" data-room="215">215</div>
+            <div class="map-node" style="top:28%;left:33%;--zone-color:#4e985f" data-room="216">216</div>
+            <div class="map-node" style="top:83%;left:18%;--zone-color:#4e985f" data-room="206">206</div>
+            <!-- Culture & Technology — purple #8d5aa9 -->
+            <div class="map-node" style="top:42%;left:23%;--zone-color:#8d5aa9" data-room="214">214</div>
+            <!-- Visual Storytelling — orange #cd7028 -->
+            <div class="map-node" style="top:20%;left:78%;--zone-color:#cd7028" data-room="226">226</div>
+            <div class="map-node" style="top:30%;left:78%;--zone-color:#cd7028" data-room="227">227</div>
+            <div class="map-node" style="top:40%;left:78%;--zone-color:#cd7028" data-room="228">228</div>
+            <div class="map-node" style="top:50%;left:78%;--zone-color:#cd7028" data-room="230">230</div>
+            <!-- Games & Playable Media — red #c75145 -->
+            <div class="map-node" style="top:45%;left:67%;--zone-color:#c75145" data-room="225">225</div>
+            <div class="map-node" style="top:57%;left:67%;--zone-color:#c75145" data-room="224">224</div>
+            <div class="map-node" style="top:83%;left:60%;--zone-color:#c75145" data-room="236">236</div>
+            <!-- Music Technology — gold #d6a034 -->
+            <div class="map-node" style="top:61%;left:78%;--zone-color:#d6a034" data-room="233">233</div>
+            <div class="map-node" style="top:83%;left:86%;--zone-color:#d6a034" data-room="235">235</div>
+          </div>
+        </div>
+      </div>
+      <p class="imm-scroll-hint">← Scroll map sideways on small screens →</p>
+
+      <!-- Legend -->
+      <div class="imm-map-legend">
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#3f6f9b"></div>Creative Coding</div>
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#8d5aa9"></div>Culture &amp; Technology</div>
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#4e985f"></div>Digital Fabrication</div>
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#c75145"></div>Games &amp; Playable Media</div>
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#d6a034"></div>Music Technology</div>
+        <div class="imm-legend-item"><div class="imm-legend-dot" style="background:#cd7028"></div>Visual Storytelling</div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         FLOOR 1 — Floor1.svg with pin overlays
+    ════════════════════════════════════════ -->
+    <div class="imm-map-panel" id="panel-floor1">
+      <p class="imm-map-hint">Tap a numbered pin to see which projects are nearby.</p>
+      <div class="imm-f1-wrap">
+        <div class="imm-f1-inner" id="f1Container">
+          <img src="../Floor1.svg" alt="Art &amp; IMM Building — Floor 1 layout" draggable="false">
+
+          <div class="f1-seating-overlay" aria-hidden="true">
+            <section class="f1-room-card" style="left:23.5%;top:70.1%;--w:20%;--zone-color:#4e985f">
+              <div class="f1-room-head"><span class="f1-room-num">Room 114</span><span class="f1-room-count">5</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#4e985f">Caleb Kim</span>
+                <span class="f1-person" style="--person-color:#4e985f">Daniel DeLeon</span>
+                <span class="f1-person" style="--person-color:#cd7028">Ari Lugassy</span>
+                <span class="f1-person" style="--person-color:#4e985f">Jared Morris</span>
+                <span class="f1-person" style="--person-color:#4e985f">Shane Maccarone</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:77.2%;top:70.1%;--w:18%;--zone-color:#4e985f">
+              <div class="f1-room-head"><span class="f1-room-num">Room 116</span><span class="f1-room-count">3</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#4e985f">Asa Wong</span>
+                <span class="f1-person" style="--person-color:#4e985f">Isabel DiFabio</span>
+                <span class="f1-person" style="--person-color:#4e985f">Matt Trifiro</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:49.4%;top:70.1%;--w:23%;--zone-color:#cd7028">
+              <div class="f1-room-head"><span class="f1-room-num">Room 202</span><span class="f1-room-count">6</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#cd7028">Alex Cook</span>
+                <span class="f1-person" style="--person-color:#cd7028">Kiara Manon</span>
+                <span class="f1-person" style="--person-color:#cd7028">Shane McGowan</span>
+                <span class="f1-person" style="--person-color:#cd7028">Naheda Hussain</span>
+                <span class="f1-person" style="--person-color:#cd7028">Maya Randall</span>
+                <span class="f1-person" style="--person-color:#cd7028">Maya</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:23.5%;top:43.9%;--w:22%;--zone-color:#3f6f9b">
+              <div class="f1-room-head"><span class="f1-room-num">Room 220</span><span class="f1-room-count">7</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#d6a034">Jack Dinnigan</span>
+                <span class="f1-person" style="--person-color:#d6a034">Kai Macedo</span>
+                <span class="f1-person" style="--person-color:#3f6f9b">Chase DiMarzio</span>
+                <span class="f1-person" style="--person-color:#3f6f9b">Jennéa Jeter</span>
+                <span class="f1-person" style="--person-color:#3f6f9b">Idrissa Fofana</span>
+                <span class="f1-person" style="--person-color:#3f6f9b">Jeffrey Ernest</span>
+                <span class="f1-person" style="--person-color:#3f6f9b">Kyle Duverger</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:90.3%;top:25.3%;--w:18%;--zone-color:#c75145">
+              <div class="f1-room-head"><span class="f1-room-num">Room 221</span><span class="f1-room-count">6</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#c75145">Madison Braithwaite</span>
+                <span class="f1-person" style="--person-color:#c75145">Robyn Maggio</span>
+                <span class="f1-person" style="--person-color:#c75145">Zachary Wade</span>
+                <span class="f1-person" style="--person-color:#c75145">Andrew Romano</span>
+                <span class="f1-person" style="--person-color:#8d5aa9">Rushil Desai</span>
+                <span class="f1-person" style="--person-color:#c75145">Anthony Resto</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:90.3%;top:51.0%;--w:18%;--zone-color:#c75145">
+              <div class="f1-room-head"><span class="f1-room-num">Room 222</span><span class="f1-room-count">4</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#c75145">Mohammad Abdul Wadud</span>
+                <span class="f1-person" style="--person-color:#c75145">Tyler Spressert</span>
+                <span class="f1-person" style="--person-color:#c75145">Michael Berrios</span>
+                <span class="f1-person" style="--person-color:#c75145">Collin Della Sala</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card" style="left:77.2%;top:38.8%;--w:21%;--zone-color:#cd7028">
+              <div class="f1-room-head"><span class="f1-room-num">Room 223</span><span class="f1-room-count">6</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#cd7028">Evan Costa</span>
+                <span class="f1-person" style="--person-color:#cd7028">Carolyn McDonough</span>
+                <span class="f1-person" style="--person-color:#cd7028">Aaron Pettiford</span>
+                <span class="f1-person" style="--person-color:#cd7028">Michael Rasimowicz</span>
+                <span class="f1-person" style="--person-color:#4e985f">Caelan Arroyo</span>
+                <span class="f1-person" style="--person-color:#cd7028">Mehmet Sezer</span>
+              </div>
+            </section>
+
+            <section class="f1-room-card is-hall" style="left:50%;top:86.2%;--w:35%;--zone-color:#1e8ea8">
+              <div class="f1-room-head"><span class="f1-room-num">Hallway</span><span class="f1-room-count">3</span></div>
+              <div class="f1-people">
+                <span class="f1-person" style="--person-color:#4e985f">Kelsey Daly</span>
+                <span class="f1-person" style="--person-color:#c75145">Madison Braithwaite</span>
+                <span class="f1-person" style="--person-color:#c75145">Griffin / Aidan</span>
+              </div>
+            </section>
+          </div>
+
+          <!--
+            Transparent click areas placed at each SVG pin's center position.
+            Percentages = cx/1440 × 100 and cy/1024 × 100 from the Floor1.svg viewBox.
+            data-pin attribute keys into F1_PINS data below.
+          -->
+          <!-- filter3 (338,65) → Room 217 -->
+          <button class="f1-pin" style="left:23.5%;top:6.3%" data-pin="room220" aria-label="Room 220"></button>
+          <!-- filter4 (117,357) → Building entrance / no student room -->
+          <button class="f1-pin" style="left:8.1%;top:34.9%" data-pin="entrance" aria-label="Entrance / Lobby"></button>
+          <!-- filter1 (338,450) → Rooms 215 + 216 -->
+          <button class="f1-pin" style="left:23.5%;top:43.9%" data-pin="room220" aria-label="Room 220"></button>
+          <!-- filter2 (338,718) → Room 214 -->
+          <button class="f1-pin" style="left:23.5%;top:70.1%" data-pin="room114" aria-label="Room 114"></button>
+          <!-- filter6 (337,920) → Room 206 -->
+          <button class="f1-pin" style="left:23.4%;top:89.8%" data-pin="hallway" aria-label="Hallway"></button>
+          <!-- filter0 (711,718) → Room 220 -->
+          <button class="f1-pin" style="left:49.4%;top:70.1%" data-pin="room202" aria-label="Room 202"></button>
+          <!-- filter7 (1112,67) → Room 226 -->
+          <button class="f1-pin" style="left:77.2%;top:6.5%" data-pin="room223" aria-label="Room 223"></button>
+          <!-- filter8 (1112,397) → Rooms 224 + 225 -->
+          <button class="f1-pin" style="left:77.2%;top:38.8%" data-pin="room223" aria-label="Room 223"></button>
+          <!-- filter9 (1112,718) → Rooms 227 + 228 + 230 -->
+          <button class="f1-pin" style="left:77.2%;top:70.1%" data-pin="room116" aria-label="Room 116"></button>
+          <!-- filter10 (1130,925) → Room 233 -->
+          <button class="f1-pin" style="left:78.5%;top:90.3%" data-pin="hallway" aria-label="Hallway"></button>
+          <!-- filter11 (1247,925) → Rooms 235 + 236 -->
+          <button class="f1-pin" style="left:86.6%;top:90.3%" data-pin="hallway" aria-label="Hallway"></button>
+          <!-- filter12 (1301,522) → Room 222 -->
+          <button class="f1-pin" style="left:90.3%;top:51.0%" data-pin="room222" aria-label="Room 222"></button>
+          <!-- filter13 (1301,259) → Room 221 -->
+          <button class="f1-pin" style="left:90.3%;top:25.3%" data-pin="room221" aria-label="Room 221"></button>
+          <button class="f1-pin" style="left:50%;top:86.2%" data-pin="hallway" aria-label="Hallway common area"></button>
+        </div>
+        <div class="imm-f1-note">
+          Tap a room area on the map above to open the seating chart list for that room.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /imm-map-section -->
+
+  <!-- Shared popover — used by both Floor 1 and Floor 2 -->
+  <div class="map-popover" id="mapPopover" role="dialog" aria-live="polite"></div>
+
+</div><!-- /imm-map -->
+
+<script>
+(function() {
+
+/* ── Student data ── */
+const PROJECTS = [
+  {name:"Chase Dimarzio",       project:"Designer Depths",                    cat:"Creative Coding",        room:"220", url:"https://immseniorshow.com/chase-dimarzio"},
+  {name:"Jeffrey Ernest",       project:"OpenTomorrow",                       cat:"Creative Coding",        room:"220", url:"https://immseniorshow.com/jeffrey-ernest"},
+  {name:"Idrissa Fofana",       project:"Sentinel Watch",                     cat:"Creative Coding",        room:"221", url:"https://immseniorshow.com/idrissa-fofana"},
+  {name:"Jennéa Jeter",         project:"Sonic Lineage: Sampling History",    cat:"Creative Coding",        room:"222", url:"https://immseniorshow.com/jennea-jeter"},
+  {name:"Rushil Desai",         project:"Eyes Can See",                       cat:"Culture & Technology",   room:"214", url:"https://immseniorshow.com/rushil-desai"},
+  {name:"Caelan Arroyo",        project:"Mumbo Block",                        cat:"Digital Fabrication",    room:"217", url:"https://immseniorshow.com/caelan-arroyo"},
+  {name:"Kelsey Daly",          project:"Respect The Locals",                 cat:"Digital Fabrication",    room:"217", url:"https://immseniorshow.com/kelsey-daly"},
+  {name:"Daniel DeLeon",        project:"CV Lamp",                            cat:"Digital Fabrication",    room:"215", url:"https://immseniorshow.com/daniel-deleon"},
+  {name:"Isabel DiFabio",       project:"Reactive Runway",                    cat:"Digital Fabrication",    room:"215", url:"https://immseniorshow.com/isabel-difabio"},
+  {name:"Caleb Kim",            project:"Restart Energy",                     cat:"Digital Fabrication",    room:"216", url:"https://immseniorshow.com/caleb-kim"},
+  {name:"Shane Maccarone",      project:"Layered Perspectives",               cat:"Digital Fabrication",    room:"216", url:"https://immseniorshow.com/shane-maccarone"},
+  {name:"Jared Morris",         project:"3D-Printed Magnetic Poker Chips",    cat:"Digital Fabrication",    room:"206", url:"https://immseniorshow.com/jared-morris"},
+  {name:"Asa Wong",             project:"Signage of the Times",               cat:"Digital Fabrication",    room:"206", url:"https://immseniorshow.com/asa-wong"},
+  {name:"Mohammad Abdul Wadud", project:"The Hidden Magic of Action Games",   cat:"Games & Playable Media", room:"225", url:"https://immseniorshow.com/muhammadabdulwadud"},
+  {name:"Michael Berrios",      project:"Toadstool Town",                     cat:"Games & Playable Media", room:"225", url:"https://immseniorshow.com/michael-berrios"},
+  {name:"Madison Braithwaite",  project:"A Rat's Tail",                       cat:"Games & Playable Media", room:"225", url:"https://immseniorshow.com/madison-braithwaite"},
+  {name:"Collin Della Sala",    project:"Post-Fantasy",                       cat:"Games & Playable Media", room:"225", url:"https://immseniorshow.com/collin-della-sala"},
+  {name:"Robyn Maggio",         project:"M.A.E.: Music As Energy",            cat:"Games & Playable Media", room:"224", url:"https://immseniorshow.com/robyn-maggio"},
+  {name:"Aidan Michaels",       project:"Lumber",                             cat:"Games & Playable Media", room:"224", url:"https://immseniorshow.com/aidan-michaels"},
+  {name:"Griffin Petry",        project:"Lumber",                             cat:"Games & Playable Media", room:"224", url:"https://immseniorshow.com/griffin-petry"},
+  {name:"Anthony Resto",        project:"Guns en Roses",                      cat:"Games & Playable Media", room:"224", url:"https://immseniorshow.com/anthony-resto"},
+  {name:"Andrew Romano",        project:"Ransom: Chaos with a Keyboard",      cat:"Games & Playable Media", room:"236", url:"https://immseniorshow.com/andrew-romano"},
+  {name:"Tyler Spressert",      project:"Escape Through Time",                cat:"Games & Playable Media", room:"236", url:"https://immseniorshow.com/tyler-spressert"},
+  {name:"Zachary Wade",         project:"Funny Fencing",                      cat:"Games & Playable Media", room:"236", url:"https://immseniorshow.com/zach-wade"},
+  {name:"Jack Dinnigan",        project:"The Dintracks",                      cat:"Music Technology",       room:"233", url:"https://immseniorshow.com/jack-dinnigan"},
+  {name:"Kai Macedo",           project:"Color",                              cat:"Music Technology",       room:"235", url:"https://immseniorshow.com/kai-macedo"},
+  {name:"Alex Cook",            project:"Cleanup Crew",                       cat:"Visual Storytelling",    room:"226", url:"https://immseniorshow.com/alex-cook-1"},
+  {name:"Naheda Hussain",       project:"Coffee Outage Brand Book",           cat:"Visual Storytelling",    room:"226", url:"https://immseniorshow.com/naheda-hussain"},
+  {name:"Ari Lugassy",          project:"The Flock",                          cat:"Visual Storytelling",    room:"226", url:"https://immseniorshow.com/ari-lugassy"},
+  {name:"Kiara Manon",          project:"From Fear to Future",                cat:"Visual Storytelling",    room:"227", url:"https://immseniorshow.com/kiara-manon"},
+  {name:"Carolyn McDonough",    project:"We Fated Few",                       cat:"Visual Storytelling",    room:"227", url:"https://immseniorshow.com/carolyn-mcdonough"},
+  {name:"Shane Mcgowan",        project:"Therapy: An Animated Music Video",   cat:"Visual Storytelling",    room:"227", url:"https://immseniorshow.com/shane-mcgowan"},
+  {name:"Aaron Pettiford",      project:"Project ABO-X03",                    cat:"Visual Storytelling",    room:"228", url:"https://immseniorshow.com/aaron-pettiford"},
+  {name:"Michael Rasimowicz",   project:"AIMM City",                          cat:"Visual Storytelling",    room:"228", url:"https://immseniorshow.com/michael-rasimowicz"},
+  {name:"Maya Randall",         project:"Liminal",                            cat:"Visual Storytelling",    room:"230", url:"https://immseniorshow.com/maya-randall"},
+  {name:"Mehmet Sezer",         project:"S&M Distributes Brand Book",         cat:"Visual Storytelling",    room:"230", url:"https://mehmetsdesign.com"},
+];
+
+const TRACK_COLORS = {
+  "Creative Coding":       "#3f6f9b",
+  "Culture & Technology":  "#8d5aa9",
+  "Digital Fabrication":   "#4e985f",
+  "Games & Playable Media":"#c75145",
+  "Music Technology":      "#d6a034",
+  "Visual Storytelling":   "#cd7028",
+};
+
+function f1Person(name, fallbackCat) {
+  const key = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const project = PROJECTS.find(p => p.name.toLowerCase().replace(/[^a-z0-9]/g, "") === key);
+  if (project) return project;
+  return {
+    name,
+    project: "Seating chart placement",
+    cat: fallbackCat || "Creative Coding",
+    url: "#"
+  };
+}
+
+/* Map pin key → array of room numbers to show in popup */
+const F1_PINS = {
+  "room114": {
+    label: "Room 114",
+    people: ["Caleb Kim","Daniel DeLeon","Ari Lugassy","Jared Morris","Shane Maccarone"].map(n => f1Person(n, "Digital Fabrication"))
+  },
+  "room116": {
+    label: "Room 116",
+    people: ["Asa Wong","Isabel DiFabio","Matt Trifiro"].map(n => f1Person(n, "Digital Fabrication"))
+  },
+  "room202": {
+    label: "Room 202",
+    people: ["Alex Cook","Kiara Manon","Shane McGowan","Naheda Hussain","Maya Randall","Maya"].map(n => f1Person(n, "Visual Storytelling"))
+  },
+  "room220": {
+    label: "Room 220",
+    people: ["Jack Dinnigan","Kai Macedo","Chase Dimarzio","Jennéa Jeter","Idrissa Fofana","Jeffrey Ernest","Kyle Duverger"].map(n => f1Person(n, "Creative Coding"))
+  },
+  "room221": {
+    label: "Room 221",
+    people: ["Madison Braithwaite","Robyn Maggio","Zachary Wade","Andrew Romano","Rushil Desai","Anthony Resto"].map(n => f1Person(n, "Games & Playable Media"))
+  },
+  "room222": {
+    label: "Room 222",
+    people: ["Mohammad Abdul Wadud","Tyler Spressert","Michael Berrios","Collin Della Sala"].map(n => f1Person(n, "Games & Playable Media"))
+  },
+  "room223": {
+    label: "Room 223",
+    people: ["Evan Costa","Carolyn McDonough","Aaron Pettiford","Michael Rasimowicz","Caelan Arroyo","Mehmet Sezer"].map(n => f1Person(n, "Visual Storytelling"))
+  },
+  "hallway": {
+    label: "Hallway / Common Area",
+    people: ["Kelsey Daly","Madison Braithwaite","Griffin Petry","Aidan Michaels"].map(n => f1Person(n, "Games & Playable Media"))
+  },
+  "entrance":{ label: "Building Entrance", rooms: [] },
+};
+
+/* ── Shared popover ── */
+const popover = document.getElementById("mapPopover");
+let hideTimer;
+
+function buildPopover(title, students, anchorEl) {
+  let tracksFound = [...new Set(students.map(p => p.cat))];
+  let primaryColor = students.length ? (TRACK_COLORS[students[0].cat] || "#123f36") : "#123f36";
+  let trackLabel = tracksFound.join(" · ");
+
+  let html = `<button class="map-pop-x" type="button" aria-label="Close">×</button>
+  <div class="map-popover-header">
+    <div class="map-popover-room">${title}</div>
+    ${trackLabel ? `<div class="map-popover-track">${trackLabel}</div>` : ""}
+  </div>`;
+
+  if (!students.length) {
+    html += `<div class="map-popover-students"><div class="map-ps" style="--zone-color:#123f36"><div class="map-ps-name">Building Entrance</div><div class="map-ps-proj">Lobby / Elevators → Floor 2 for student projects</div></div></div>`;
+  } else {
+    html += `<div class="map-popover-students">`;
+    students.forEach(p => {
+      const color = TRACK_COLORS[p.cat] || "#123f36";
+      html += `<div class="map-ps" style="--zone-color:${color}">
+        <div class="map-ps-name">${p.name}</div>
+        <div class="map-ps-proj">${p.project}</div>
+        ${p.url && p.url !== "#" ? `<a href="${p.url}" class="map-ps-link" target="_blank" rel="noopener">View Project ↗</a>` : ""}
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  popover.innerHTML = html;
+  popover.style.display = "block";
+  positionPopover(anchorEl);
+  const close = popover.querySelector(".map-pop-x");
+  if (close) close.addEventListener("click", e => {
+    e.stopPropagation();
+    clearActivePins();
+    closePopover();
+  });
+}
+
+function positionPopover(anchor) {
+  const rect = anchor.getBoundingClientRect();
+  const pw = 290;
+  const ph = popover.offsetHeight;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  let top  = rect.top + scrollY - ph - 14;
+  let left = rect.left + rect.width / 2 - pw / 2;
+
+  if (top < scrollY + 8) top = rect.bottom + scrollY + 10;
+  if (left < 8) left = 8;
+  if (left + pw > vw - 8) left = vw - pw - 8;
+
+  popover.style.top  = top  + "px";
+  popover.style.left = left + "px";
+  popover.style.width = pw + "px";
+}
+
+function closePopover() { popover.style.display = "none"; }
+function startHide()    { hideTimer = setTimeout(closePopover, 400); }
+
+function clearActivePins() {
+  document.querySelectorAll(".map-node.is-active, .f1-pin.is-active").forEach(el => el.classList.remove("is-active"));
+  popover.dataset.activeRoom = "";
+  popover.dataset.activePin = "";
+}
+
+function isTouchLayout() {
+  return window.matchMedia("(max-width: 720px), (pointer: coarse)").matches;
+}
+
+popover.addEventListener("mouseenter", () => clearTimeout(hideTimer));
+popover.addEventListener("mouseleave", startHide);
+
+/* ── Floor 2 room nodes ── */
+document.querySelectorAll(".map-node").forEach(node => {
+  const room = node.dataset.room;
+  function show() {
+    clearTimeout(hideTimer);
+    document.querySelectorAll(".map-node.is-active").forEach(el => el.classList.remove("is-active"));
+    node.classList.add("is-active");
+    const students = PROJECTS.filter(p => p.room === room);
+    const color    = students.length ? (TRACK_COLORS[students[0].cat] || "#123f36") : "#123f36";
+    buildPopover(`Room ${room}`, students, node);
+  }
+  node.addEventListener("mouseenter", () => { if (!isTouchLayout()) show(); });
+  node.addEventListener("mouseleave", () => { if (!isTouchLayout()) startHide(); });
+  node.addEventListener("click", e => {
+    e.stopPropagation();
+    if (popover.style.display === "block" && popover.dataset.activeRoom === room) {
+      clearActivePins(); closePopover();
+    } else {
+      popover.dataset.activeRoom = room; show();
+    }
+  });
+});
+
+/* ── Floor 1 pin buttons ── */
+document.querySelectorAll(".f1-pin").forEach(btn => {
+  const key  = btn.dataset.pin;
+  const meta = F1_PINS[key] || { label: "Room", rooms: [] };
+  function show() {
+    clearTimeout(hideTimer);
+    document.querySelectorAll(".f1-pin.is-active").forEach(el => el.classList.remove("is-active"));
+    btn.classList.add("is-active");
+    const students = meta.people || PROJECTS.filter(p => meta.rooms.includes(p.room));
+    buildPopover(meta.label, students, btn);
+  }
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (popover.style.display === "block" && popover.dataset.activePin === key) {
+      clearActivePins(); closePopover();
+    } else {
+      popover.dataset.activePin = key; show();
+    }
+  });
+  btn.addEventListener("mouseenter", () => { if (!isTouchLayout()) btn.classList.add("is-active"); });
+  btn.addEventListener("mouseleave", () => { if (!isTouchLayout() && popover.dataset.activePin !== key) btn.classList.remove("is-active"); });
+});
+
+/* ── Close on outside click ── */
+document.addEventListener("click", e => {
+  if (!popover.contains(e.target) && !e.target.classList.contains("map-node") && !e.target.classList.contains("f1-pin")) {
+    clearActivePins();
+    closePopover();
+  }
+});
+
+/* ── Close on Escape ── */
+document.addEventListener("keydown", e => { if (e.key === "Escape") { clearActivePins(); closePopover(); } });
+
+/* ── Floor toggle ── */
+window.switchFloor = function(floor) {
+  document.querySelectorAll(".imm-map-panel").forEach(p => p.classList.remove("is-active"));
+  document.getElementById("panel-floor" + floor).classList.add("is-active");
+  document.querySelectorAll(".imm-floor-btn").forEach(b => {
+    b.classList.toggle("is-active", Number(b.dataset.floor) === floor);
+  });
+  clearActivePins();
+  closePopover();
+};
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!-- https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_filters_table -->\
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\
+<script>\
+$(document).ready(function()\{\
+var oldValue = $("#myInput").val();  console.log("old value " + oldValue);\
+    $("#myInput").on("input", function() \{\
+    var value = $(this).val().toLowerCase();\
+    $("#myTable tr").filter(function() \{\
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)\
+    \});\
+  \});\
+\});\
+\
+</script>\
+<style>\
+\
+  #myInput\{\
+    width: 50%;\
+  font-size: 16px;\
+  padding: 12px 20px 12px 40px;\
+  border: 1px solid #ddd;\
+  margin-bottom: 12px;\
+  \
+  \}\
+  \
+table \{\
+  font-family: arial, sans-serif;\
+  border-collapse: collapse;\
+  width: 100%;\
+  height:33.3%; overflow:auto;\
+ \
+\}\
+\
+td, th \{\
+  border: 1px solid #dddddd;\
+  text-align: left;\
+  padding: 8px;\
+  \}\
+  td a:hover\{\
+	-webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\
+	        animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;\
+\
+\}\
+\
+tr:nth-child(even) \{\
+  background-color: #4E254D;\
+\}\
+  tr:nth-child(odd) \{\
+  background-color: #261B39;\
+\}\
+</style>\
+\
+\
+  <!-- CLICKABLE IMAGE, SVG CLICK MAP -->\
+  \
+  <!--\
+https://forum.squarespace.com/topic/146859-how-can-i-add-a-map-of-my-premises-with-different-areas-that-people-can-click-and-learn-more-about-the-different-services-i-offer-in-my-premises/\
+-->\
+\
+<style>\
+rect:hover\{\
+outline-style: dotted;\
+\}\
+\
+.mymap \{\
+width: 50%;\
+margin: auto;\
+\}\
+\
+@media (max-width: 768px) \{\
+.mymap \{\
+width: 100%;\
+\}\
+\}\
+\
+</style>\
+\
+<!--To change the icons for the "click & search" simply replace the url in the \
+xlink:href="" tag with the web-address url of your new image\
+It must be a single image with all 6 icons on it.-->\
+\
+<div class="mymap">\
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1857">\
+  <image width="1920" height="1857" xlink:href="https://images.squarespace-cdn.com/content/v1/6082e1a54ad37e639cbe7cb3/d2cea438-dad9-42ff-90e7-1aa4bae1bca2/wqejhjfdhhdioerwipdqdjlhdhrliceouwiW.png?format=2500w" alt="Icons for all 6 areas of study in the Interactive Multimedia major"></image> \
+<a href="#myInput" class="clickable-image" id="music-technology" onclick="search('Music Technology');" alt="Music Technology">\
+    <rect x="32" y="461" fill="#fff" opacity="0" width="450" height="491"></rect>\
+  </a><a href="#myInput" class="clickable-image" id="visual-storytelling-animation" onclick="search('Visual Storytelling & Animation');" alt="Visual Storytelling and Animation">\
+    <rect x="700" y="461" fill="#fff" opacity="0" width="420" height="505" ></rect>\
+  </a><a href="#myInput"  class="clickable-image" id="creative-coding" onclick="search('Creative Coding');" alt="Creative Coding">\
+    <rect x="1400" y="474" fill="#fff" opacity="0" width="460" height="467"></rect>\
+  </a><a href="#myInput" class="clickable-image" id="digital-fabrication" onclick="search('Digital Fabrication');" alt="Digital Fabrication">\
+  \
+    <rect x="19" y="1267" fill="#fff" opacity="0" width="425" height="556"></rect>\
+  </a><a href="#myInput" class="clickable-image" id="culture-technology" onclick="search('Culture & Technology');" alt="Culture and Technology">\
+    <rect x="702" y="1261" fill="#fff" opacity="0" width="440" height="534"></rect>\
+  </a><a href="#myInput" class="clickable-image" id="games-playable-media" onclick="search('Games & Playable Media');" alt="Games and Playable Media">\
+    <rect x="1330" y="1249" fill="#fff" opacity="0" width="525" height="500"></rect>\
+  </a>\
+</svg>\
+</div>\
+\
+<script>\
+function search(stringSearch)\{\
+$('#myInput').val(stringSearch).change();\
+$('#myInput').trigger('input');\
+document.getElementById('myInput').focus(); \
+//console.log(stringSearch);\
+\
+// hi dad!!\
+\}\
+\
+\
+</script>\
+\
+  \
+  \
+    <!-- TABLE OF PROJECTS -->\
+  \
+  \
+  \
+  <input id="myInput" type="text" placeholder="Search the projects...">\
+\
+<table>\
+  <thead>\
+    <tr>\
+      <th>Student's Name</th>\
+      <th>Project Name</th>\
+      <th>IMM Area of Study</th>\
+    </tr>\
+  </thead>\
+  <tbody id="myTable">\
+    <tr><td><a href='https://immseniorshow.com/chase-dimarzio'>Chase Dimarzio</a></td><td><a href='https://immseniorshow.com/chase-dimarzio'>Designer Depths</a></td><td>Creative Coding</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/jeffrey-ernest'>Jeffrey Ernest</a></td><td><a href='https://immseniorshow.com/jeffrey-ernest'>OpenTomorrow</a></td><td>Creative Coding</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/idrissa-fofana'>Idrissa Fofana</a></td><td><a href='https://immseniorshow.com/idrissa-fofana'>Sentinel Watch</a></td><td>Creative Coding</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/jennea-jeter'>Jenn\'e9a Jeter</a></td><td><a href='https://immseniorshow.com/jennea-jeter'>Sonic Lineage: Sampling History</a></td><td>Creative Coding</td></tr>\
+\
+    <tr><td><a href='https://immseniorshow.com/rushil-desai'>Rushil Desai</a></td><td><a href='https://immseniorshow.com/rushil-desai'>Eyes can see</a></td><td>Culture & Technology</td></tr>\
+\
+    <tr><td><a href='https://immseniorshow.com/kelsey-daly'>Kelsey Daly</a></td><td><a href='https://immseniorshow.com/kelsey-daly'>Respect The Locals</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/daniel-deleon'>Daniel DeLeon</a></td><td><a href='https://immseniorshow.com/daniel-deleon'>CV Lamp</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/isabel-difabio'>Isabel DiFabio</a></td><td><a href='https://immseniorshow.com/isabel-difabio'>Reactive Runway</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/caleb-kim'>Caleb Kim</a></td><td><a href='https://immseniorshow.com/caleb-kim'>Restart Energy</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/shane-maccarone'>Shane Maccarone</a></td><td><a href='https://immseniorshow.com/shane-maccarone'>Layered Perspectives</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/jared-morris'>Jared Morris</a></td><td><a href='https://immseniorshow.com/jared-morris'>3D-Printed Magnetic Poker Chips</a></td><td>Digital Fabrication</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/asa-wong'>Asa Wong</a></td><td><a href='https://immseniorshow.com/asa-wong'>Signage of the Times</a></td><td>Digital Fabrication</td></tr>\
+\
+    <tr><td><a href='https://immseniorshow.com/muhammadabdulwadud'>Mohammad Abdul Wadud</a></td><td><a href='https://immseniorshow.com/muhammadabdulwadud'>The Hidden Magic of Action Games</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/michael-berrios'>Michael Berrios</a></td><td><a href='https://immseniorshow.com/michael-berrios'>Toadstool Town: A Tiny Slice of the Fungal Village</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/madison-braithwaite'>Madison Braithwaite</a></td><td><a href='https://immseniorshow.com/madison-braithwaite'>A Rat's Tail</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/collin-della-sala'>Collin Della Sala</a></td><td><a href='https://immseniorshow.com/collin-della-sala'>Post-Fantasy</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/robyn-maggio'>Robyn Maggio</a></td><td><a href='https://immseniorshow.com/robyn-maggio'>M.A.E.: Music As Energy</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/aidan-michaels'>Aidan Michaels</a></td><td><a href='https://immseniorshow.com/aidan-michaels'>Lumber</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/griffin-petry'>Griffin Petry</a></td><td><a href='https://immseniorshow.com/griffin-petry'>Lumber</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/anthony-resto'>Anthony Resto</a></td><td><a href='https://immseniorshow.com/anthony-resto'>Guns en Roses</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/andrew-romano'>Andrew Romano</a></td><td><a href='https://immseniorshow.com/andrew-romano'>Ransom: Chaos with a Keyboard</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/tyler-spressert'>Tyler Spressert</a></td><td><a href='https://immseniorshow.com/tyler-spressert'>Escape Through Time</a></td><td>Games & Playable Media</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/zach-wade'>Zachary Wade</a></td><td><a href='https://immseniorshow.com/zach-wade'>Funny Fencing</a></td><td>Games & Playable Media</td></tr>\
+\
+    <tr><td><a href='https://immseniorshow.com/jack-dinnigan'>Jack Dinnigan</a></td><td><a href='https://immseniorshow.com/jack-dinnigan'>The Dintracks</a></td><td>Music Technology</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/kai-macedo'>Kai Macedo</a></td><td><a href='https://immseniorshow.com/kai-macedo'>Color</a></td><td>Music Technology</td></tr>\
+\
+    <tr><td><a href='https://immseniorshow.com/alex-cook-1'>Alex Cook</a></td><td><a href='https://immseniorshow.com/alex-cook-1'>Helldivers 2 Animation</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/naheda-hussain'>Naheda Hussain</a></td><td><a href='https://immseniorshow.com/naheda-hussain'>Coffee Outage Brand Book</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/ari-lugassy'>Ari Lugassy</a></td><td><a href='https://immseniorshow.com/ari-lugassy'>The Flock</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/kiara-manon'>Kiara Manon</a></td><td><a href='https://immseniorshow.com/kiara-manon'>From Fear to Future: Art's Journey with Innovation</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/carolyn-mcdonough'>Carolyn McDonough</a></td><td><a href='https://immseniorshow.com/carolyn-mcdonough'>We Fated Few</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/shane-mcgowan'>Shane Mcgowan</a></td><td><a href='https://immseniorshow.com/shane-mcgowan'>Therapy: An Animated Music Video</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/aaron-pettiford'>Aaron Pettiford</a></td><td><a href='https://immseniorshow.com/aaron-pettiford'>Project ABO-X03</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/michael-rasimowicz'>Michael Rasimowicz</a></td><td><a href='https://immseniorshow.com/michael-rasimowicz'>AIMM City</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/maya-randall'>Maya Randall</a></td><td><a href='https://immseniorshow.com/maya-randall'>Liminal</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://mehmetsdesign.com'>Mehmet Sezer</a></td><td><a href='https://mehmetsdesign.com'>S&M Distributes Brand Book</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/caelan-arroyo'>Caelan Arroyo</a></td><td><a href='https://immseniorshow.com/caelan-arroyo'>Mumbo Block</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/adalmaris-castillo'>Adalmaris Castillo</a></td><td><a href='https://immseniorshow.com/adalmaris-castillo'>All's Well That Ends Well</a></td><td>Visual Storytelling & Animation</td></tr>\
+    <tr><td><a href='https://immseniorshow.com/adalmaris-castillo'>Lauren Ciotola</a></td><td><a href='https://immseniorshow.com/lauren-ciotola'>Picture This</a></td><td>Visual Storytelling & Animation</td></tr>\
+\
+  </tbody>\
+</table>}

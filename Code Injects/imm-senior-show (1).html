@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMM Senior Project Previews</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --light-gray: #f2f2f0;
+    --text-dark: #111111;
+    --text-muted: #666;
+    --border: rgba(0,0,0,0.1);
+    --purple: #2d1b5e;
+    --purple-light: #3d2878;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--white);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 36px; width: auto; display: block; }
+
+  .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+
+  .dropdown { position: relative; }
+
+  .dropdown > button {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    padding: 0;
+    transition: opacity 0.2s;
+  }
+
+  .dropdown > button:hover { opacity: 0.45; }
+
+  .arrow { font-size: 9px; transition: transform 0.2s; }
+  .dropdown.open .arrow { transform: rotate(180deg); }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    min-width: 120px;
+    list-style: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .dropdown.open .dropdown-menu { display: block; }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: background 0.15s;
+  }
+
+  .dropdown-menu li a:hover { background: var(--light-gray); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text-dark);
+    transition: all 0.28s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 66px; left: 0; right: 0; bottom: 0;
+    background: var(--white);
+    z-index: 199;
+    padding: 2.5rem 2rem;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .mobile-links { display: flex; flex-direction: column; }
+
+  .mobile-links a {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* PAGES */
+  .page { display: none; flex: 1; flex-direction: column; }
+  .page.active { display: flex; }
+
+  /* HOME */
+  .home-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 5rem;
+    min-height: calc(100vh - 66px - 160px);
+  }
+
+  .home-hero h1 {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 2.5rem;
+    color: var(--text-dark);
+  }
+
+  .home-hero p {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.65;
+    margin-bottom: 0.6rem;
+  }
+
+  .event-line {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    margin-top: 2.8rem;
+    padding: 15px 40px;
+    border: 1.5px solid var(--text-dark);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--text-dark); color: var(--white); }
+
+  /* PROJECTS PAGE */
+  .projects-hero {
+    background: var(--purple);
+    color: var(--white);
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projects-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 65% 35%, rgba(120,80,220,0.4) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .projects-hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+
+  .projects-hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    background: var(--off-white);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    position: sticky;
+    top: 66px;
+    z-index: 100;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 0.5px solid rgba(0,0,0,0.2);
+    background: var(--white);
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.18s;
+  }
+
+  .filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .filter-btn.active { background: var(--purple); color: var(--white); border-color: var(--purple); }
+
+  /* Grid */
+  .projects-body {
+    flex: 1;
+    padding: 2.5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .view-toggle {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .toggle-btn {
+    padding: 7px 14px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 0.5px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-muted);
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+
+  .toggle-btn.active { background: var(--text-dark); color: var(--white); border-color: var(--text-dark); }
+
+  .category-section { margin-bottom: 3rem; }
+
+  .category-heading {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--purple);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .cat-count {
+    background: var(--purple);
+    color: white;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--white);
+    padding: 1.3rem 1.4rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 0.15s;
+    position: relative;
+  }
+
+  .project-card:hover { background: var(--light-gray); }
+  .project-card:hover .card-arrow { opacity: 1; transform: translate(0,0); }
+
+  .card-name {
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .card-title {
+    font-size: 0.97rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-dark);
+    padding-right: 1.5rem;
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
+    font-size: 13px;
+    opacity: 0;
+    transform: translate(-3px, 3px);
+    transition: all 0.18s;
+    color: var(--purple);
+  }
+
+  /* Table view */
+  .table-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    width: 100%;
+  }
+
+  .projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .projects-table th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 10px 14px;
+    border-bottom: 0.5px solid var(--border);
+    background: var(--off-white);
+  }
+
+  .projects-table td {
+    padding: 12px 14px;
+    border-bottom: 0.5px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .projects-table tr:hover td { background: var(--light-gray); }
+
+  .projects-table a {
+    color: var(--text-dark);
+    text-decoration: none;
+  }
+
+  .projects-table a:hover { color: var(--purple); text-decoration: underline; }
+
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .cat-cc { background: #ede9ff; color: #3d1fa8; }
+  .cat-ct { background: #e6f3ff; color: #0a4d8c; }
+  .cat-df { background: #e8f8f1; color: #0d5c36; }
+  .cat-gp { background: #fff3e0; color: #7a3e00; }
+  .cat-mt { background: #fce4ec; color: #8b0034; }
+  .cat-vs { background: #f3e5f5; color: #5b0080; }
+
+  .divider { height: 0.5px; background: var(--border); margin: 0 2rem 3rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  footer img { height: 48px; width: auto; }
+
+  .footer-info {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.85;
+    text-align: right;
+  }
+
+  .footer-info a { color: var(--text-muted); text-decoration: underline; }
+
+  @media (max-width: 680px) {
+    .nav-right { display: none; }
+    .hamburger { display: flex; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .footer-info { text-align: left; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-table th:last-child,
+    .projects-table td:last-child { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" id="navLogoBtn" href="#">
+    <img src="https://images.squarespace-cdn.com/content/v1/6082e1a54ad37e639cbe7cb3/493c7bbf-ca8d-4561-bc3a-e37aeffd338d/immlogosmall.png?format=750w" alt="IMM Senior Project Previews">
+  </a>
+  <div class="nav-right">
+    <div class="dropdown" id="dd">
+      <button onclick="toggleDD()">Previous Projects <span class="arrow">▾</span></button>
+      <ul class="dropdown-menu">
+        <li><a href="https://www.immseniorshow.com/projects-25" target="_blank">2025</a></li>
+        <li><a href="https://www.immseniorshow.com/projects-24" target="_blank">2024</a></li>
+        <li><a href="https://www.immseniorshow.com/projects-23" target="_blank">2023</a></li>
+        <li><a href="https://www.immseniorshow.com/projects-22" target="_blank">2022</a></li>
+        <li><a href="https://www.immseniorshow.com/projects-21" target="_blank">2021</a></li>
+        <li><a href="https://show.immtcnj.com/spring2020/" target="_blank">2020</a></li>
+      </ul>
+    </div>
+  </div>
+  <button class="hamburger" id="burger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <p class="mobile-section-label">Previous Projects</p>
+  <div class="mobile-links">
+    <a href="https://www.immseniorshow.com/projects-25" target="_blank">2025</a>
+    <a href="https://www.immseniorshow.com/projects-24" target="_blank">2024</a>
+    <a href="https://www.immseniorshow.com/projects-23" target="_blank">2023</a>
+    <a href="https://www.immseniorshow.com/projects-22" target="_blank">2022</a>
+    <a href="https://www.immseniorshow.com/projects-21" target="_blank">2021</a>
+    <a href="https://show.immtcnj.com/spring2020/" target="_blank">2020</a>
+  </div>
+</div>
+
+<!-- ═══════ HOME ═══════ -->
+<div class="page active" id="page-home">
+  <main class="home-hero">
+    <h1>2026 Senior Show!</h1>
+    <p>Join us for a celebration of our Senior Thesis projects; plus an epic end of year celebration!</p>
+    <p class="event-line" style="margin-top:1.4rem;"><strong>When?</strong>&nbsp;&nbsp;Friday evening, May 8, 2026</p>
+    <p class="event-line"><strong>Where?</strong>&nbsp;&nbsp;TCNJ Campus in the AIMM Building</p>
+    <button class="btn-primary" onclick="showPage('projects')">View the Class of 2026 Projects</button>
+  </main>
+  <footer>
+    <img src="https://images.squarespace-cdn.com/content/v1/6082e1a54ad37e639cbe7cb3/7727b48e-5b36-47d9-b2aa-0a28b151c196/immlogo.png?format=750w" alt="IMM Logo">
+    <div class="footer-info">
+      <a href="https://dct.tcnj.edu/" target="_blank">Department of Design &amp; Creative Technology</a><br>
+      <a href="https://artscomm.tcnj.edu/" target="_blank">School of the Arts and Communication</a><br>
+      The College of New Jersey &nbsp;&middot;&nbsp; 2000 Pennington Rd, Ewing Township, NJ 08618<br>
+      <a href="mailto:dct@tcnj.edu">dct@tcnj.edu</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════ PROJECTS ═══════ -->
+<div class="page" id="page-projects">
+  <div class="projects-hero">
+    <h1>Explore the Projects</h1>
+    <p>Select a category to filter, or browse all 36 student projects below.</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterCat('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCat('Creative Coding',this)">Creative Coding</button>
+    <button class="filter-btn" onclick="filterCat('Culture & Technology',this)">Culture &amp; Technology</button>
+    <button class="filter-btn" onclick="filterCat('Digital Fabrication',this)">Digital Fabrication</button>
+    <button class="filter-btn" onclick="filterCat('Games & Playable Media',this)">Games &amp; Playable Media</button>
+    <button class="filter-btn" onclick="filterCat('Music Technology',this)">Music Technology</button>
+    <button class="filter-btn" onclick="filterCat('Visual Storytelling & Animation',this)">Visual Storytelling</button>
+  </div>
+
+  <div class="projects-body" id="gridView">
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btnGrid" onclick="switchView('grid')">&#9638; Grid</button>
+      <button class="toggle-btn" id="btnTable" onclick="switchView('table')">&#9776; Table</button>
+    </div>
+    <div id="categoryBlocks"></div>
+  </div>
+
+  <div class="table-section" id="tableView" style="display:none;">
+    <div class="view-toggle">
+      <button class="toggle-btn" id="btnGrid2" onclick="switchView('grid')">&#9638; Grid</button>
+      <button class="toggle-btn active" id="btnTable2" onclick="switchView('table')">&#9776; Table</button>
+    </div>
+    <table class="projects-table">
+      <thead>
+        <tr><th>Student</th><th>Project</th><th>Area of Study</th></tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+  <footer>
+    <img src="https://images.squarespace-cdn.com/content/v1/6082e1a54ad37e639cbe7cb3/7727b48e-5b36-47d9-b2aa-0a28b151c196/immlogo.png?format=750w" alt="IMM Logo">
+    <div class="footer-info">
+      <a href="https://dct.tcnj.edu/" target="_blank">Department of Design &amp; Creative Technology</a><br>
+      <a href="https://artscomm.tcnj.edu/" target="_blank">School of the Arts and Communication</a><br>
+      The College of New Jersey &nbsp;&middot;&nbsp; 2000 Pennington Rd, Ewing Township, NJ 08618<br>
+      <a href="mailto:dct@tcnj.edu">dct@tcnj.edu</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+const PROJECTS = [
+  {name:"Chase Dimarzio",       project:"Designer Depths",                                     cat:"Creative Coding",                   url:"https://immseniorshow.com/chase-dimarzio"},
+  {name:"Jeffrey Ernest",       project:"OpenTomorrow",                                        cat:"Creative Coding",                   url:"https://immseniorshow.com/jeffrey-ernest"},
+  {name:"Idrissa Fofana",       project:"Sentinel Watch",                                      cat:"Creative Coding",                   url:"https://immseniorshow.com/idrissa-fofana"},
+  {name:"Jenn\u00e9a Jeter",   project:"Sonic Lineage: Sampling History",                     cat:"Creative Coding",                   url:"https://immseniorshow.com/jennea-jeter"},
+  {name:"Rushil Desai",         project:"Eyes Can See",                                        cat:"Culture & Technology",              url:"https://immseniorshow.com/rushil-desai"},
+  {name:"Caelan Arroyo",        project:"Mumbo Block",                                         cat:"Digital Fabrication",               url:"https://immseniorshow.com/caelan-arroyo"},
+  {name:"Kelsey Daly",          project:"zSecret",                                             cat:"Digital Fabrication",               url:"https://immseniorshow.com/kelsey-daly"},
+  {name:"Daniel DeLeon",        project:"CV Lamp",                                             cat:"Digital Fabrication",               url:"https://immseniorshow.com/daniel-deleon"},
+  {name:"Isabel DiFabio",       project:"Reactive Runway",                                     cat:"Digital Fabrication",               url:"https://immseniorshow.com/isabel-difabio"},
+  {name:"Caleb Kim",            project:"Restart Energy",                                      cat:"Digital Fabrication",               url:"https://immseniorshow.com/caleb-kim"},
+  {name:"Shane Maccarone",      project:"Layered Perspectives",                                cat:"Digital Fabrication",               url:"https://immseniorshow.com/shane-maccarone"},
+  {name:"Jared Morris",         project:"3D-Printed Magnetic Poker Chips",                     cat:"Digital Fabrication",               url:"https://immseniorshow.com/jared-morris"},
+  {name:"Asa Wong",             project:"Signage of the Times",                                cat:"Digital Fabrication",               url:"https://immseniorshow.com/asa-wong"},
+  {name:"Mohammad Abdul Wadud", project:"The Hidden Magic of Action Games",                    cat:"Games & Playable Media",            url:"https://immseniorshow.com/muhammadabdulwadud"},
+  {name:"Michael Berrios",      project:"Toadstool Town: A Tiny Slice of the Fungal Village",  cat:"Games & Playable Media",            url:"https://immseniorshow.com/michael-berrios"},
+  {name:"Madison Braithwaite",  project:"A Rat\u2019s Tail",                                  cat:"Games & Playable Media",            url:"https://immseniorshow.com/madison-braithwaite"},
+  {name:"Collin Della Sala",    project:"Post-Fantasy",                                        cat:"Games & Playable Media",            url:"https://immseniorshow.com/collin-della-sala"},
+  {name:"Robyn Maggio",         project:"M.A.E.: Music As Energy",                             cat:"Games & Playable Media",            url:"https://immseniorshow.com/robyn-maggio"},
+  {name:"Aidan Michaels",       project:"Lumber",                                              cat:"Games & Playable Media",            url:"https://immseniorshow.com/aidan-michaels"},
+  {name:"Griffin Petry",        project:"Lumber",                                              cat:"Games & Playable Media",            url:"https://immseniorshow.com/griffin-petry"},
+  {name:"Anthony Resto",        project:"Guns en Roses",                                       cat:"Games & Playable Media",            url:"https://immseniorshow.com/anthony-resto"},
+  {name:"Andrew Romano",        project:"Ransom: Chaos with a Keyboard",                       cat:"Games & Playable Media",            url:"https://immseniorshow.com/andrew-romano"},
+  {name:"Tyler Spressert",      project:"Escape Through Time",                                 cat:"Games & Playable Media",            url:"https://immseniorshow.com/tyler-spressert"},
+  {name:"Zachary Wade",         project:"Funny Fencing",                                       cat:"Games & Playable Media",            url:"https://immseniorshow.com/zach-wade"},
+  {name:"Jack Dinnigan",        project:"The Dintracks",                                       cat:"Music Technology",                  url:"https://immseniorshow.com/jack-dinnigan"},
+  {name:"Kai Macedo",           project:"Color",                                               cat:"Music Technology",                  url:"https://immseniorshow.com/kai-macedo"},
+  {name:"Alex Cook",            project:"Helldivers 2 Animation",                              cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/alex-cook-1"},
+  {name:"Naheda Hussain",       project:"Coffee Outage Brand Book",                            cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/naheda-hussain"},
+  {name:"Ari Lugassy",          project:"The Flock",                                           cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/ari-lugassy"},
+  {name:"Kiara Manon",          project:"From Fear to Future: Art\u2019s Journey with Innovation", cat:"Visual Storytelling & Animation", url:"https://immseniorshow.com/kiara-manon"},
+  {name:"Carolyn McDonough",    project:"We Fated Few",                                        cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/carolyn-mcdonough"},
+  {name:"Shane Mcgowan",        project:"Therapy: An Animated Music Video",                    cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/shane-mcgowan"},
+  {name:"Aaron Pettiford",      project:"Project ABO-X03",                                     cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/aaron-pettiford"},
+  {name:"Michael Rasimowicz",   project:"AIMM City",                                           cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/michael-rasimowicz"},
+  {name:"Maya Randall",         project:"Liminal",                                             cat:"Visual Storytelling & Animation",   url:"https://immseniorshow.com/maya-randall"},
+  {name:"Mehmet Sezer",         project:"S&M Distributes Brand Book",                          cat:"Visual Storytelling & Animation",   url:"https://mehmetsdesign.com"},
+];
+
+const CAT_CLASS = {
+  "Creative Coding":"cc",
+  "Culture & Technology":"ct",
+  "Digital Fabrication":"df",
+  "Games & Playable Media":"gp",
+  "Music Technology":"mt",
+  "Visual Storytelling & Animation":"vs"
+};
+
+const CATS = ["Creative Coding","Culture & Technology","Digital Fabrication","Games & Playable Media","Music Technology","Visual Storytelling & Animation"];
+
+let currentCat = 'all';
+let currentView = 'grid';
+
+function buildGrid(cat) {
+  const el = document.getElementById('categoryBlocks');
+  el.innerHTML = '';
+  const cats = cat === 'all' ? CATS : [cat];
+  cats.forEach(c => {
+    const items = PROJECTS.filter(p => p.cat === c);
+    if (!items.length) return;
+    const sec = document.createElement('div');
+    sec.className = 'category-section';
+    sec.innerHTML = '<div class="category-heading">' + c + '<span class="cat-count">' + items.length + '</span></div>';
+    const grid = document.createElement('div');
+    grid.className = 'projects-grid';
+    items.forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'project-card';
+      a.href = p.url;
+      a.target = '_blank';
+      a.innerHTML = '<span class="card-name">' + p.name + '</span><span class="card-title">' + p.project + '</span><span class="card-arrow">&#8599;</span>';
+      grid.appendChild(a);
+    });
+    sec.appendChild(grid);
+    el.appendChild(sec);
+  });
+}
+
+function buildTable() {
+  const tb = document.getElementById('tableBody');
+  const filtered = currentCat === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === currentCat);
+  tb.innerHTML = filtered.map(p => {
+    const cls = CAT_CLASS[p.cat] || 'cc';
+    return '<tr><td><a href="' + p.url + '" target="_blank">' + p.name + '</a></td><td><a href="' + p.url + '" target="_blank">' + p.project + '</a></td><td><span class="cat-badge cat-' + cls + '">' + p.cat + '</span></td></tr>';
+  }).join('');
+}
+
+function filterCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (currentView === 'grid') buildGrid(cat);
+  else buildTable();
+}
+
+const TRACK_QUERY_MAP = {
+  'creative-coding': 'Creative Coding',
+  'culture-technology': 'Culture & Technology',
+  'digital-fabrication': 'Digital Fabrication',
+  'games-playable-media': 'Games & Playable Media',
+  'music-technology': 'Music Technology',
+  'visual-storytelling-animation': 'Visual Storytelling & Animation'
+};
+
+function applyTrackQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const track = TRACK_QUERY_MAP[params.get('track') || ''];
+  if (!track) return false;
+  const button = [...document.querySelectorAll('.filter-btn')].find(btn => {
+    const handler = btn.getAttribute('onclick') || '';
+    return btn.textContent.trim() === track || handler.includes(track);
+  });
+  currentCat = track;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === button));
+  showPage('projects');
+  return true;
+}
+
+function switchView(v) {
+  currentView = v;
+  document.getElementById('gridView').style.display = v === 'grid' ? 'block' : 'none';
+  document.getElementById('tableView').style.display = v === 'table' ? 'block' : 'none';
+  ['btnGrid','btnGrid2'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', v==='grid'); });
+  ['btnTable','btnTable2'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', v==='table'); });
+  if (v === 'table') buildTable();
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  closeMobile();
+  if (id === 'projects') { buildGrid(currentCat); }
+}
+
+function toggleDD() { document.getElementById('dd').classList.toggle('open'); }
+document.addEventListener('click', e => {
+  if (!document.getElementById('dd').contains(e.target)) document.getElementById('dd').classList.remove('open');
+});
+
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('burger').classList.toggle('open');
+}
+
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('burger').classList.remove('open');
+}
+
+document.getElementById('navLogoBtn').addEventListener('click', e => {
+  e.preventDefault();
+  showPage('home');
+});
+
+applyTrackQuery();
+</script>
+</body>
+</html>

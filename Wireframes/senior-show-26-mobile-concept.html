@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Showcase 2026 - Homepage Beta</title>
+  <style>
+    @font-face {
+      font-family: "Norwester";
+      src: local("Norwester"), local("norwester"), url("../Code Injects/fonts/norwester.otf") format("opentype");
+      font-display: swap;
+    }
+
+    :root {
+      --font-display: "Norwester", "Arial Narrow", "Franklin Gothic Condensed", "Impact", sans-serif;
+      --font-ui: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+      --rainbow-red: #c75145;
+      --rainbow-orange: #cd7028;
+      --rainbow-amber: #d6a034;
+      --rainbow-green: #4e985f;
+      --rainbow-blue: #3f6f9b;
+      --rainbow-indigo: #4e64b6;
+      --rainbow-violet: #8d5aa9;
+
+      --trail-gp: var(--rainbow-red);
+      --trail-vs: var(--rainbow-orange);
+      --trail-mt: var(--rainbow-amber);
+      --trail-df: var(--rainbow-green);
+      --trail-cc: var(--rainbow-blue);
+      --trail-ci: var(--rainbow-indigo);
+      --trail-ct: var(--rainbow-violet);
+
+      --event-red: #c75145;
+      --btn-map: #5f9f6a;
+      --btn-map-shadow: #2f6540;
+      --btn-cal-bg: #e8eef6;
+      --btn-cal-text: #355f89;
+
+      --hero-blue-top: #50789f;
+      --hero-blue-bottom: #2e4f72;
+      --hero-green-top: #7a936a;
+      --hero-green-bottom: #4a6849;
+
+      --pill: 999px;
+      --radius-lg: 24px;
+      --shadow-soft: 0 10px 24px rgba(16, 44, 38, 0.22);
+      --shadow-btn: 0 8px 0 rgba(31, 67, 53, 0.65);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: var(--font-ui);
+      background:
+        radial-gradient(circle, rgba(18, 63, 54, 0.08) 1px, transparent 1px) 0 0 / 18px 18px,
+        #f0eee8;
+      color: #1c2422;
+    }
+
+    body[data-theme="blue"] {
+      --hero-top: var(--hero-blue-top);
+      --hero-bottom: var(--hero-blue-bottom);
+      --hero-tint: rgba(38, 66, 92, 0.62);
+      --hero-art: url("../AlyosiusPatrimonoAssets/1.png");
+      --cat-art: url("../AlyosiusPatrimonoAssets/18.png");
+      --toggle-active: #355f89;
+    }
+
+    body[data-theme="green"] {
+      --hero-top: var(--hero-green-top);
+      --hero-bottom: var(--hero-green-bottom);
+      --hero-tint: rgba(43, 68, 47, 0.6);
+      --hero-art: url("../AlyosiusPatrimonoAssets/18.png");
+      --cat-art: url("../AlyosiusPatrimonoAssets/14.png");
+      --toggle-active: #4d7a55;
+    }
+
+    .site {
+      width: min(980px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero-fold {
+      min-height: 100svh;
+      position: relative;
+      overflow: hidden;
+      color: #eef2e5;
+      border-bottom: 5px solid rgba(241, 236, 224, 0.92);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(180deg, var(--hero-tint), var(--hero-tint)),
+        linear-gradient(180deg, var(--hero-top) 0%, var(--hero-bottom) 100%),
+        var(--hero-art);
+      background-size: cover, cover, cover;
+      background-position: center top, center, center;
+      filter: brightness(0.86) saturate(0.82);
+      z-index: 0;
+    }
+
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(166deg, transparent 0 58%, rgba(164, 193, 220, 0.34) 58% 74%, transparent 74%),
+        linear-gradient(346deg, transparent 0 73%, rgba(98, 139, 173, 0.33) 73% 100%);
+      mix-blend-mode: screen;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      min-height: inherit;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 18px 16px;
+    }
+
+    .hero-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4.2vw, 2.7rem);
+      line-height: 1;
+      color: #ebf2e2;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 1.2vw, 16px);
+    }
+
+    .hero-menu a {
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: clamp(0.68rem, 1.2vw, 0.88rem);
+      color: #dde8f2;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .theme-toggle {
+      border: 1px solid rgba(232, 241, 233, 0.44);
+      background: rgba(240, 244, 237, 0.9);
+      border-radius: var(--pill);
+      display: inline-flex;
+      padding: 4px;
+      gap: 4px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .theme-toggle button {
+      border: 0;
+      border-radius: var(--pill);
+      background: transparent;
+      color: #244238;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.78rem;
+      line-height: 1;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .theme-toggle button.active {
+      background: var(--toggle-active);
+      color: #edf4fb;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: 38px 1fr 38px;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: -10px;
+      z-index: 4;
+    }
+
+    .status-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(231, 241, 230, 0.36);
+      background: rgba(53, 94, 105, 0.56);
+      color: #edf6e9;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      line-height: 0.9;
+      padding: 0;
+    }
+
+    .countdown {
+      justify-self: center;
+      border-radius: var(--pill);
+      border: 1px solid rgba(231, 246, 227, 0.35);
+      background: linear-gradient(180deg, #6db578, #579d63);
+      color: #f4ffe9;
+      text-shadow: 0 2px 0 rgba(35, 70, 50, 0.35);
+      box-shadow: var(--shadow-btn);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: clamp(0.92rem, 2.2vw, 1.24rem);
+      padding: 9px 14px;
+      white-space: nowrap;
+    }
+
+    .event-strip {
+      background: var(--event-red);
+      color: #fff4eb;
+      border-top: 1px solid rgba(255, 222, 212, 0.35);
+      border-bottom: 1px solid rgba(255, 222, 212, 0.35);
+      box-shadow: inset 0 8px 14px rgba(113, 36, 30, 0.35);
+      text-align: center;
+      text-transform: uppercase;
+      padding: 15px 12px 12px;
+    }
+
+    .event-strip .date {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.06rem, 2.4vw, 1.4rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    .event-strip .place {
+      margin: 4px 0 0;
+      font-family: var(--font-display);
+      font-size: clamp(0.74rem, 1.6vw, 0.94rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .hero-main {
+      text-align: center;
+      text-transform: uppercase;
+      margin-top: 12px;
+      padding: 0 8px;
+    }
+
+    .dept-pill {
+      display: inline-block;
+      border-radius: var(--pill);
+      border: 1px solid rgba(221, 234, 246, 0.42);
+      background: rgba(136, 168, 195, 0.48);
+      color: #e8f0f8;
+      font-family: var(--font-display);
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-size: clamp(0.64rem, 1.2vw, 0.8rem);
+      padding: 6px 12px;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-family: var(--font-display);
+      text-shadow: 0 5px 10px rgba(28, 48, 64, 0.38);
+      color: #ecefdd;
+      letter-spacing: 0.02em;
+      line-height: 0.88;
+    }
+
+    .hero-title .imm {
+      display: block;
+      font-size: clamp(4.1rem, 12.5vw, 7.1rem);
+      line-height: 0.79;
+    }
+
+    .hero-title .line {
+      display: block;
+      font-size: clamp(2.6rem, 8vw, 4.7rem);
+    }
+
+    .hero-title .year { color: #e48f40; }
+
+    .hero-copy {
+      margin: 12px auto 0;
+      max-width: 20ch;
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 3vw, 1.44rem);
+      letter-spacing: 0.02em;
+      line-height: 1.04;
+      text-shadow: 0 4px 8px rgba(28, 48, 64, 0.32);
+    }
+
+    .hero-actions {
+      margin-top: auto;
+      display: grid;
+      gap: 10px;
+      padding: 0 8px;
+      z-index: 4;
+    }
+
+    .hero-btn {
+      border: 0;
+      border-radius: var(--pill);
+      box-shadow: var(--shadow-btn);
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      letter-spacing: 0.07em;
+      font-size: clamp(1rem, 2.8vw, 1.34rem);
+      line-height: 1;
+      padding: 13px 14px;
+    }
+
+    .hero-btn.map { background: var(--btn-map); color: #f1fce8; }
+    .hero-btn.calendar { background: var(--btn-cal-bg); color: var(--btn-cal-text); }
+
+    .scroll-link {
+      margin: 10px auto 8px;
+      width: 24px;
+      display: grid;
+      justify-items: center;
+      text-decoration: none;
+      position: relative;
+      z-index: 4;
+    }
+
+    .scroll-link .dots {
+      display: grid;
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .scroll-link .dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(236, 246, 232, 0.9);
+    }
+
+    .scroll-link .arrow {
+      width: 0;
+      height: 0;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      border-top: 15px solid rgba(236, 246, 232, 0.95);
+    }
+
+    .categories {
+      position: relative;
+      overflow: hidden;
+      padding: 16px 14px 22px;
+      background-image:
+        linear-gradient(180deg, rgba(92, 131, 85, 0.89), rgba(70, 109, 76, 0.9)),
+        var(--cat-art);
+      background-size: cover;
+      background-position: center;
+      color: #edf4e8;
+    }
+
+    .categories::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(226, 236, 214, 0.15) 0 35%, transparent 35%);
+      pointer-events: none;
+    }
+
+    .categories-inner { position: relative; z-index: 2; }
+
+    .cat-title {
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.1rem);
+      line-height: 0.9;
+      text-shadow: 0 4px 9px rgba(31, 58, 44, 0.42);
+    }
+
+    .cat-sub {
+      margin: 5px auto 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: clamp(0.8rem, 1.8vw, 0.98rem);
+      color: #e4e8be;
+    }
+
+    .controls {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 220px;
+    }
+
+    .search,
+    .specialization {
+      width: 100%;
+      border-radius: var(--pill);
+      border: 1px solid rgba(219, 236, 220, 0.44);
+      box-shadow: var(--shadow-soft);
+      font-family: var(--font-display);
+      font-size: clamp(0.76rem, 1.7vw, 0.9rem);
+      padding: 9px 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .search {
+      background: rgba(83, 139, 95, 0.84);
+      color: #e7f5e6;
+    }
+
+    .search::placeholder { color: #d8eed9; opacity: 1; }
+
+    .specialization {
+      background: #f6f6f2;
+      color: #244f3d;
+      text-transform: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .specialization .chev {
+      width: 10px;
+      height: 10px;
+      border-right: 3px solid #5b9a68;
+      border-bottom: 3px solid #5b9a68;
+      transform: rotate(45deg);
+      margin-right: 2px;
+    }
+
+    .cat-stage {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .side-trail {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      padding-top: 8px;
+    }
+
+    .side-trail::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      bottom: 12px;
+      border-left: 3px dotted rgba(20, 46, 36, 0.8);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .side-trail span {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 2px solid rgba(238, 246, 232, 0.9);
+      box-shadow: 0 0 0 1px rgba(27, 53, 41, 0.5);
+      z-index: 2;
+    }
+
+    .gp { background: var(--trail-gp); }
+    .vs { background: var(--trail-vs); }
+    .mt { background: var(--trail-mt); }
+    .df { background: var(--trail-df); }
+    .cc { background: var(--trail-cc); }
+    .ci { background: var(--trail-ci); }
+    .ct { background: var(--trail-ct); }
+
+    .trail-scroller {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .trail-scroller::-webkit-scrollbar { display: none; }
+
+    .trail-card {
+      flex: 0 0 min(70vw, 280px);
+      scroll-snap-align: start;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(224, 232, 216, 0.42);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      background: rgba(60, 101, 69, 0.82);
+      color: #eef4e8;
+      min-height: 300px;
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      justify-items: center;
+      padding: 10px 8px 6px;
+      transform: scale(0.97);
+      transition: transform 220ms ease, opacity 220ms ease;
+      opacity: 0.86;
+    }
+
+    .trail-card.is-active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .trail-card::before {
+      content: "";
+      position: absolute;
+      inset: 8% 6% 12%;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.16), transparent 56%),
+        linear-gradient(180deg, rgba(26, 48, 38, 0.12), rgba(26, 48, 38, 0.08)),
+        var(--cat-art);
+      background-size: cover;
+      background-position: center;
+      border-radius: 22px;
+      filter: brightness(0.9) saturate(0.9);
+      z-index: 0;
+    }
+
+    .trail-card > * { position: relative; z-index: 2; }
+
+    .trail-logo {
+      display: grid;
+      place-items: center;
+      align-self: center;
+      padding: 20px 10px 10px;
+    }
+
+    .trail-logo img {
+      width: min(160px, 68%);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(20, 39, 30, 0.46));
+      opacity: 0.96;
+    }
+
+    .trail-meta {
+      padding: 0 10px 14px;
+      text-align: center;
+    }
+
+    .trail-chip {
+      display: inline-block;
+      border-radius: var(--pill);
+      padding: 7px 10px;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      border: 1px solid rgba(241, 247, 235, 0.36);
+      box-shadow: 0 6px 0 rgba(24, 47, 37, 0.55);
+      color: #f2f8eb;
+    }
+
+    .trail-count {
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      color: #e5e8c2;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .trail-gp .trail-chip { background: var(--trail-gp); }
+    .trail-vs .trail-chip { background: var(--trail-vs); }
+    .trail-mt .trail-chip { background: var(--trail-mt); color: #3f3719; }
+    .trail-df .trail-chip { background: var(--trail-df); }
+    .trail-cc .trail-chip { background: var(--trail-cc); }
+    .trail-ct .trail-chip { background: var(--trail-ct); }
+
+    .trail-dots {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .trail-dots::before {
+      content: "";
+      position: absolute;
+      left: 22%;
+      right: 22%;
+      top: 50%;
+      border-top: 3px dotted rgba(20, 46, 36, 0.82);
+      transform: translateY(-50%);
+    }
+
+    .trail-dots button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(237, 246, 232, 0.92);
+      box-shadow: 0 0 0 1px rgba(27, 53, 41, 0.5);
+      background: #bbb;
+      cursor: pointer;
+      z-index: 2;
+      padding: 0;
+    }
+
+    .trail-dots button.active { transform: scale(1.22); }
+
+    .trail-dots .gp { background: var(--trail-gp); }
+    .trail-dots .vs { background: var(--trail-vs); }
+    .trail-dots .mt { background: var(--trail-mt); }
+    .trail-dots .df { background: var(--trail-df); }
+    .trail-dots .cc { background: var(--trail-cc); }
+    .trail-dots .ct { background: var(--trail-ct); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    @media (max-width: 840px) {
+      .hero-menu a { display: none; }
+      .controls { grid-template-columns: 1fr; }
+      .cat-stage { grid-template-columns: 1fr; }
+      .side-trail { display: none; }
+      .trail-card { flex-basis: min(82vw, 300px); }
+    }
+  </style>
+</head>
+<body data-theme="blue">
+  <main class="site">
+    <section class="hero-fold" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <header class="hero-nav">
+          <div class="logo">IMM</div>
+
+          <div class="hero-menu">
+            <a href="#categories">Projects</a>
+            <a href="#categories">About</a>
+            <a href="#categories">Previous Years</a>
+
+            <div class="theme-toggle" aria-label="Color theme">
+              <button class="active" data-theme="blue">Blue</button>
+              <button data-theme="green">Green</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="status-row">
+          <button class="status-icon" aria-label="Close">x</button>
+          <div class="countdown" id="countdown">--D --H --M --S</div>
+          <button class="status-icon" aria-label="Notifications">!</button>
+        </div>
+
+        <div class="event-strip">
+          <p class="date">Friday, May 8, 2026 - 6-9 PM</p>
+          <p class="place">AIMM - The College of New Jersey - Ewing, NJ</p>
+        </div>
+
+        <div class="hero-main">
+          <div class="dept-pill">TCNJ | Design &amp; Creative Technology</div>
+
+          <h1 class="hero-title">
+            <span class="imm">IMM</span>
+            <span class="line">Senior</span>
+            <span class="line">Show <span class="year">'26</span></span>
+          </h1>
+
+          <p class="hero-copy">Come explore what a year of thesis work looks like in person.</p>
+        </div>
+
+        <div class="hero-actions">
+          <a class="hero-btn map" href="../Code%20Injects/floor2_preview.html">View the Map</a>
+          <a class="hero-btn calendar" href="#" id="add-calendar">Add to Calendar</a>
+        </div>
+
+        <a class="scroll-link" href="#categories" aria-label="Scroll down to categories">
+          <span class="sr-only">Scroll to categories</span>
+          <div class="dots"><span></span><span></span><span></span><span></span></div>
+          <div class="arrow"></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="categories" id="categories">
+      <div class="categories-inner">
+        <h2 class="cat-title">Explore the Projects</h2>
+        <p class="cat-sub">36 Students, 6 Trails to cover.</p>
+
+        <div class="controls">
+          <input class="search" placeholder="Search student or project..." aria-label="Search student or project">
+          <button class="specialization" aria-label="Specialization filter">
+            <span>Specialization</span>
+            <span class="chev" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="cat-stage">
+          <div class="side-trail" aria-hidden="true">
+            <span class="gp"></span>
+            <span class="vs"></span>
+            <span class="mt"></span>
+            <span class="df"></span>
+            <span class="cc"></span>
+            <span class="ci"></span>
+            <span class="ct"></span>
+          </div>
+
+          <div class="trail-scroller" id="trail-scroller" aria-label="Category trail cards">
+            <article class="trail-card trail-gp is-active" data-index="0">
+              <div class="trail-logo"><img src="../Section Logos So far/GamesLogo.png" alt="Games and Playable Media logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Games &amp; Playable Media</span>
+                <div class="trail-count">12 Students</div>
+              </footer>
+            </article>
+
+            <article class="trail-card trail-vs" data-index="1">
+              <div class="trail-logo"><img src="../Section Logos So far/VisStoryAnimationLogo.png" alt="Visual Storytelling and Animation logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Visual Storytelling &amp; Animation</span>
+                <div class="trail-count">11 Students</div>
+              </footer>
+            </article>
+
+            <article class="trail-card trail-mt" data-index="2">
+              <div class="trail-logo"><img src="../Section Logos So far/MusicTechLogo2.png" alt="Music Technology logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Music Technology</span>
+                <div class="trail-count">2 Students</div>
+              </footer>
+            </article>
+
+            <article class="trail-card trail-df" data-index="3">
+              <div class="trail-logo"><img src="../Section Logos So far/DigitalFabLogo.png" alt="Digital Fabrication logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Digital Fabrication</span>
+                <div class="trail-count">7 Students</div>
+              </footer>
+            </article>
+
+            <article class="trail-card trail-cc" data-index="4">
+              <div class="trail-logo"><img src="../Section Logos So far/CreativeCodingLogo.png" alt="Creative Coding logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Creative Coding</span>
+                <div class="trail-count">4 Students</div>
+              </footer>
+            </article>
+
+            <article class="trail-card trail-ct" data-index="5">
+              <div class="trail-logo"><img src="../Section Logos So far/CultureTechLogo.png" alt="Culture and Technology logo"></div>
+              <footer class="trail-meta">
+                <span class="trail-chip">Culture &amp; Technology</span>
+                <div class="trail-count">1 Student</div>
+              </footer>
+            </article>
+          </div>
+        </div>
+
+        <div class="trail-dots" id="trail-dots" aria-label="Category position dots">
+          <button class="gp active" data-index="0" aria-label="Go to Games"></button>
+          <button class="vs" data-index="1" aria-label="Go to Visual Storytelling"></button>
+          <button class="mt" data-index="2" aria-label="Go to Music"></button>
+          <button class="df" data-index="3" aria-label="Go to Digital Fabrication"></button>
+          <button class="cc" data-index="4" aria-label="Go to Creative Coding"></button>
+          <button class="ct" data-index="5" aria-label="Go to Culture and Technology"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const themeButtons = document.querySelectorAll('.theme-toggle button');
+    themeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        document.body.dataset.theme = button.dataset.theme;
+        themeButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+    });
+
+    const eventDate = new Date('2026-05-08T18:00:00-04:00');
+    const countdownNode = document.getElementById('countdown');
+
+    function formatCountdown(ms) {
+      if (ms <= 0) return '00D 00H 00M 00S';
+      const total = Math.floor(ms / 1000);
+      const days = Math.floor(total / 86400);
+      const hours = Math.floor((total % 86400) / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      const seconds = total % 60;
+      return `${String(days).padStart(2, '0')}D ${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M ${String(seconds).padStart(2, '0')}S`;
+    }
+
+    function tickCountdown() {
+      countdownNode.textContent = formatCountdown(eventDate.getTime() - Date.now());
+    }
+
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+
+    const addCalendar = document.getElementById('add-calendar');
+    addCalendar.addEventListener('click', (event) => {
+      event.preventDefault();
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//TCNJ//IMM Senior Showcase 2026//EN',
+        'BEGIN:VEVENT',
+        'UID:imm-senior-showcase-2026@tcnj.edu',
+        'DTSTAMP:20260421T120000Z',
+        'DTSTART:20260508T220000Z',
+        'DTEND:20260509T010000Z',
+        "SUMMARY:IMM Senior Showcase 2026",
+        'DESCRIPTION:Design and Creative Technology Senior Showcase at TCNJ.',
+        'LOCATION:AIMM Building, The College of New Jersey, Ewing, NJ',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'imm-senior-showcase-2026.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+
+    const scroller = document.getElementById('trail-scroller');
+    const cards = [...scroller.querySelectorAll('.trail-card')];
+    const dots = [...document.querySelectorAll('#trail-dots button')];
+
+    function setActive(index) {
+      cards.forEach((card, i) => card.classList.toggle('is-active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index);
+        const target = cards[index];
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        setActive(index);
+      });
+    });
+
+    scroller.addEventListener('scroll', () => {
+      let activeIndex = 0;
+      let minDistance = Number.POSITIVE_INFINITY;
+      const center = scroller.scrollLeft + scroller.clientWidth / 2;
+
+      cards.forEach((card, index) => {
+        const cardCenter = card.offsetLeft + card.clientWidth / 2;
+        const distance = Math.abs(cardCenter - center);
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      setActive(activeIndex);
+    }, { passive: true });
+  </script>
+</body>
+</html>
