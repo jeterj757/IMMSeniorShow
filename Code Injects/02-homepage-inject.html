@@ -57,6 +57,25 @@
 .imm-wrap a { text-decoration: none; color: inherit; }
 .imm-wrap img { display: block; max-width: 100%; }
 
+/* Squarespace Code Block cleanup */
+.page-section:has(.imm-wrap),
+.page-section:has(.imm-wrap) .section-border,
+.page-section:has(.imm-wrap) .section-background,
+.page-section:has(.imm-wrap) .content,
+.page-section:has(.imm-wrap) .content-wrapper,
+.sqs-block-code:has(.imm-wrap),
+.sqs-block-code:has(.imm-wrap) .sqs-block-content,
+.sqs-layout:has(.imm-wrap),
+.sqs-layout:has(.imm-wrap) .sqs-row,
+.sqs-layout:has(.imm-wrap) .sqs-col-12 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+}
+
 /* ── Design tokens (duplicated here so page works standalone;
    the global header inject also sets these on :root) ── */
 .imm-wrap {
@@ -88,8 +107,8 @@
    In Squarespace, the global inject supplies these; they're harmless if doubled.
    Adjust scroll-padding-top if Squarespace's own header overlaps fixed elements. */
 html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
   scroll-padding-top: 76px;
 }
 .imm-section {
@@ -99,8 +118,8 @@ html {
   overflow: visible;
   position: relative;
   box-sizing: border-box;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
 }
 .imm-section:not(.imm-hero) {
   padding-top: var(--event-bar-h);
@@ -365,38 +384,6 @@ html {
   border: 1px solid rgba(189, 244, 194, 0.28);
 }
 
-/* View Map — filled blue */
-.imm-btn-map {
-  position: relative;
-  background: linear-gradient(180deg, #7f8a8e 0%, #4d585b 100%);
-  color: rgba(255,255,255,0.82);
-  border: 1px solid rgba(230, 236, 238, 0.22);
-  cursor: not-allowed;
-  filter: saturate(0.55);
-}
-.imm-btn-map:hover,
-.imm-btn-map:focus-visible {
-  transform: none;
-  filter: saturate(0.55);
-  box-shadow: var(--btn-shadow);
-  background: linear-gradient(180deg, #7f8a8e 0%, #4d585b 100%);
-  border-color: rgba(230, 236, 238, 0.22);
-}
-.imm-btn-soon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4px;
-  border-radius: 999px;
-  padding: 4px 8px 3px;
-  background: rgba(255,255,255,0.20);
-  color: #fff;
-  font-size: 0.58em;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 /* About — filled gold */
 .imm-btn-about {
   background: linear-gradient(180deg, #d4a73c 0%, #9b7622 100%);
@@ -583,7 +570,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 18px;
 }
 .imm-hunt-modal-link,
@@ -607,8 +594,11 @@ html {
   color: #fff8ea;
 }
 .imm-hunt-modal-close {
-  background: transparent;
-  color: var(--forest);
+  background: #c75145;
+  color: #fff8ea;
+  border-color: rgba(120,35,25,0.22);
+  min-width: min(100%, 260px);
+  box-shadow: 0 4px 0 rgba(120,35,25,0.26);
 }
 
 /* ── Scroll hint ── */
@@ -791,7 +781,7 @@ html {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: none;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 12px 6px 14px;
@@ -802,7 +792,7 @@ html {
 
 .imm-card {
   flex: 0 0 min(78vw, 400px);
-  scroll-snap-align: center;
+  scroll-snap-align: none;
   border-radius: 24px;
   overflow: hidden;
   height: min(330px, 48svh);
@@ -982,27 +972,47 @@ html {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 900px;
+  max-width: 1320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
 }
 .imm-ig-embeds {
-  width: min(100%, 980px);
-  margin: 8px auto 0;
+  width: min(100%, 1320px);
+  margin: clamp(10px, 2vh, 24px) auto 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 28px);
   align-items: start;
 }
-.imm-ig-embeds .instagram-media {
+.imm-ig-embeds .instagram-media,
+.imm-ig-embeds iframe {
   width: 100% !important;
   min-width: 0 !important;
   max-width: none !important;
   margin: 0 !important;
   border-radius: 12px !important;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.22) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.24) !important;
+  overflow: hidden !important;
+}
+@media (max-width: 1099px) {
+  .imm-ig-embeds {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 900px);
+  }
+}
+@media (min-width: 1100px) {
+  .imm-follow {
+    padding-left: clamp(28px, 4vw, 72px);
+    padding-right: clamp(28px, 4vw, 72px);
+  }
+}
+@media (max-width: 699px) {
+  .imm-ig-embeds {
+    grid-template-columns: 1fr;
+    width: min(100%, 540px);
+  }
 }
 
 /* ════════════════════════════════════════
@@ -1014,10 +1024,11 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
+  justify-content: flex-start;
+  padding: clamp(34px, 5vh, 56px) 20px 64px;
   color: #1c2422;
   isolation: isolate;
+  scroll-margin-top: var(--event-bar-h);
 }
 .imm-shop::before {
   z-index: 0;
@@ -1035,6 +1046,30 @@ html {
   background-size: 24px 24px, 26px 26px, 32px 32px;
   background-position: center;
   opacity: 0.36;
+}
+.imm-shop-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto 12px;
+  border-radius: 999px;
+  padding: 10px 22px 9px;
+  background: rgba(199,81,69,0.94);
+  border: 1px solid rgba(255,250,240,0.42);
+  color: #fff8e8;
+  font-family: var(--ui);
+  font-size: clamp(0.86rem, 1.35vw, 1.05rem);
+  font-weight: 840;
+  letter-spacing: 0.075em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 5px 0 rgba(120,35,25,0.28);
+}
+.imm-shop-heading {
+  margin: 0;
+  color: #123f36;
+  text-align: center;
 }
 .imm-shop-inner {
   position: relative;
@@ -1135,33 +1170,38 @@ html {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 58px !important;
-  height: 58px !important;
-  border-radius: 50% !important;
-  padding: 0 !important;
-  background: #123f36 !important;
-  color: #f3edda !important;
+  gap: 9px !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 0 5px !important;
+  background: transparent !important;
+  color: #123f36 !important;
   font-family: "Avenir Next", "Avenir", sans-serif !important;
-  font-size: 1.25rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
+  font-size: clamp(0.78rem, 1.4vw, 0.94rem) !important;
+  font-weight: 860 !important;
+  letter-spacing: 0.055em !important;
+  text-transform: uppercase !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 0 rgba(4,18,12,0.32) !important;
-  transition: transform 0.14s, box-shadow 0.14s, filter 0.14s !important;
-  align-self: flex-end !important;
+  border-bottom: 2px solid #c75145 !important;
+  box-shadow: none !important;
+  transition: transform 0.14s, color 0.14s, border-color 0.14s !important;
+  align-self: center !important;
 }
 .imm-shop-store-btn:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 0 rgba(4,18,12,0.32) !important;
-  filter: brightness(1.08) !important;
-  color: #f3edda !important;
+  box-shadow: none !important;
+  filter: none !important;
+  color: #c75145 !important;
+  border-color: #123f36 !important;
   text-decoration: none !important;
 }
-.imm-shop-store-btn svg {
-  width: 25px;
-  height: 25px;
-  display: block;
+.imm-shop-store-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+.imm-shop-store-icon path {
+  stroke: currentColor;
 }
 .imm-shop-product {
   display: flex;
@@ -1203,7 +1243,7 @@ html {
   font-size: 0.84rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #99342b;
+  color: #c75145;
   white-space: nowrap;
 }
 .imm-shop-media {
@@ -1286,25 +1326,19 @@ html {
   justify-content: center;
   margin-top: auto;
   min-height: 34px;
-  min-width: 34px;
-  border-radius: 50%;
-  padding: 0;
-  background: linear-gradient(180deg, var(--forest) 0%, #0e332c 100%);
-  border: 1px solid rgba(120, 35, 25, 0.14);
-  box-shadow: 0 2px 0 rgba(18,63,54,0.20);
-  color: #fff3ea !important;
+  border-radius: var(--pill);
+  padding: 8px 14px 7px;
+  background: linear-gradient(180deg, #c75145 0%, #963329 100%);
+  border: 1px solid rgba(255, 243, 223, 0.28);
+  box-shadow: 0 2px 0 rgba(120,35,25,0.28);
+  color: #fff8e8 !important;
   font-family: var(--ui);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: none;
-  align-self: flex-end;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  align-self: flex-start;
   text-decoration: none !important;
-}
-.imm-shop-more svg {
-  width: 16px;
-  height: 16px;
-  display: block;
 }
 .imm-shop-note-inline {
   font-family: var(--ui);
@@ -1317,22 +1351,36 @@ html {
   display: block;
 }
 .imm-shop-note {
+  width: min(100%, 720px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255,250,240,0.9);
+  border: 1px solid rgba(18,63,54,0.15);
+  box-shadow: 0 8px 20px rgba(18,63,54,0.08);
   font-family: var(--ui);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: rgba(18,63,54,0.38);
+  font-size: clamp(0.82rem, 1.4vw, 0.94rem);
+  font-weight: 760;
+  letter-spacing: -0.018em;
+  color: #123f36;
   text-align: center;
-  margin-top: 6px;
+  line-height: 1.45;
+  margin: -4px auto 0;
 }
 @media (max-width: 599px) {
-  .imm-ig-embeds {
-    grid-template-columns: 1fr;
-  }
   .imm-shop-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     gap: 10px;
+  }
+  .imm-shop-title {
+    font-size: 0.82rem;
+  }
+  .imm-shop-price {
+    font-size: 0.76rem;
+  }
+  .imm-shop-more {
+    width: 100%;
+    align-self: stretch;
   }
 }
 @media (min-width: 600px) and (max-width: 899px) {
@@ -1343,61 +1391,6 @@ html {
 @media (min-width: 900px) and (max-width: 1199px) {
   .imm-shop-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* ════════════════════════════════════════
-   SECTION DOT NAV (fixed right side)
-════════════════════════════════════════ */
-.imm-snav {
-  position: fixed;
-  right: max(12px, env(safe-area-inset-right));
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 900;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 10px 8px;
-  border-radius: 999px;
-  background: rgba(18,63,54,0.22);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.imm-snav-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.85);
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
-  box-shadow: 0 0 0 1.5px rgba(0,0,0,0.24);
-}
-.imm-snav-dot.is-on {
-  background: #fff;
-  transform: scale(1.44);
-  box-shadow: 0 0 0 1.5px rgba(0,0,0,0.18), 0 0 0 6px rgba(255,255,255,0.13);
-}
-/* Darker dots on the light shop section */
-.imm-snav[data-on-light] .imm-snav-dot {
-  border-color: rgba(18,63,54,0.7);
-  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.4);
-}
-.imm-snav[data-on-light] .imm-snav-dot.is-on {
-  background: #123f36;
-}
-@media (max-width: 699px) {
-  .imm-snav {
-    right: max(7px, env(safe-area-inset-right));
-    gap: 10px;
-    padding: 8px 6px;
-  }
-  .imm-snav-dot {
-    width: 10px;
-    height: 10px;
   }
 }
 
@@ -1501,7 +1494,7 @@ html {
   }
   .imm-card {
     flex: 0 0 calc(100vw - 40px);
-    scroll-snap-align: start;
+    scroll-snap-align: none;
     height: min(380px, 54svh);
   }
   [data-explore-mode="d"] .imm-cards {
@@ -2268,11 +2261,11 @@ html {
 
         <!-- Left col: logo + countdown -->
         <div class="imm-hero-mid">
-          <!-- IMM Senior Show stacked logo (Ss2)
-               LOCAL:       ../IMMLogos2/Ss2 White.svg
+          <!-- IMM Senior Show wordmark logo (Exponential)
+               LOCAL:       ../IMMLogos2/WhiteExponentialLogo.svg
                SQUARESPACE: update src to CDN URL after upload -->
           <img class="imm-hero-logo"
-               src="../IMMLogos2/Ss2 White.svg"
+               src="../IMMLogos2/WhiteExponentialLogo.svg"
                alt="IMM Senior Show 2026"
                loading="eager">
           <!-- Countdown — updates every second via JS -->
@@ -2304,9 +2297,6 @@ html {
           <button class="imm-btn imm-btn-cal" id="imm-cal-btn" type="button" aria-label="Download calendar event" data-random-cta>
             <span class="imm-btn-cal-icon" aria-hidden="true"><i></i></span>
             Add to Calendar
-          </button>
-          <button class="imm-btn imm-btn-map" type="button" aria-disabled="true">
-            View the Map <span class="imm-btn-soon">Coming Soon</span>
           </button>
           <button class="imm-btn imm-btn-hunt" id="imm-hunt-btn" type="button" data-random-cta>
             Start the Scavenger Hunt!
@@ -2542,6 +2532,10 @@ html {
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXdG0uHkYw2/" data-instgrm-version="14"></blockquote>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXfoCM6kciU/" data-instgrm-version="14"></blockquote>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXieg0Wjfkx/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXudSwmEb4z/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXqOtcXjeJE/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXrjtsCEUvG/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXufYf3kcnL/" data-instgrm-version="14"></blockquote>
       </div>
       <script async src="https://www.instagram.com/embed.js"></script>
     </div>
@@ -2550,16 +2544,17 @@ html {
   <!-- ══════════ SECTION 4: PRINTIFY MERCH ══════════ -->
   <section class="imm-section imm-shop" id="imm-shop">
     <div class="imm-shop-inner">
-      <h2 class="imm-section-title">Grab Your Merch</h2>
-      <p class="imm-section-sub">Official IMM Senior Show 2026 Cart</p>
+      <p class="imm-shop-kicker">Official IMM Senior Show</p>
+      <h2 class="imm-section-title imm-shop-heading">Grab Your Merch!</h2>
       <a class="imm-shop-store-btn"
          href="https://imm-senior-class-store.printify.me/"
          target="_blank" rel="noopener"
          aria-label="Open full merch store">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="9" cy="20" r="1"></circle>
-          <circle cx="18" cy="20" r="1"></circle>
-          <path d="M2 3h3l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H7"></path>
+        Open Full Store
+        <svg class="imm-shop-store-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+          <path d="M14 4h6v6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M20 4 10 14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M11 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </a>
       <div class="imm-shop-divider" aria-hidden="true">
@@ -2569,18 +2564,8 @@ html {
       </div>
 
       <div class="imm-shop-grid" id="imm-shop-grid" aria-label="Merch products"></div>
-
-      <p class="imm-shop-note">Tap a cart to open each item, or use the top cart icon for the full store.</p>
     </div>
   </section>
-
-  <!-- ══════════ FIXED SECTION DOT NAV (right side) ══════════ -->
-  <nav class="imm-snav" id="imm-snav" aria-label="Page sections">
-    <button class="imm-snav-dot is-on" data-target="imm-home"    aria-label="Home section"></button>
-    <button class="imm-snav-dot"       data-target="imm-explore" aria-label="Explore section"></button>
-    <button class="imm-snav-dot"       data-target="imm-follow"  aria-label="Instagram section"></button>
-    <button class="imm-snav-dot"       data-target="imm-shop"    aria-label="Shop section"></button>
-  </nav>
 
   <div class="imm-hunt-modal-bg" id="imm-hunt-modal" role="dialog" aria-modal="true" aria-labelledby="imm-hunt-modal-title">
     <div class="imm-hunt-modal">
@@ -2597,8 +2582,7 @@ html {
           <div class="imm-hunt-step"><div><strong>Collect all six.</strong><span>Finish the trail after you have visited every track.</span></div></div>
         </div>
         <div class="imm-hunt-modal-actions">
-          <button class="imm-hunt-modal-close" id="imm-hunt-cancel" type="button">Not Yet</button>
-          <a class="imm-hunt-modal-link" href="05-student-inject.html">Start Hunt</a>
+          <button class="imm-hunt-modal-close" id="imm-hunt-cancel" type="button">Come Back May 8th</button>
         </div>
       </div>
     </div>
@@ -2788,7 +2772,7 @@ html {
             '</div>' +
             swatchHtml +
             (item.note ? '<span class="imm-shop-note-inline">' + escHtml(item.note) + '</span>' : '') +
-            '<span class="imm-shop-more" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M2 3h3l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H7"></path></svg></span>' +
+            '<span class="imm-shop-more" aria-hidden="true">Shop Now →</span>' +
           '</div>' +
         '</a>';
     }).join('');
@@ -2991,126 +2975,6 @@ html {
 
   setActive(0);
   updateTint();
-
-  /* ── Section dot nav ──
-     IntersectionObserver watches all 4 .imm-section elements.
-     When one hits 50% visibility the matching dot goes active.
-     Dot click scrolls smoothly to the target section. */
-  var snavDots = [...document.querySelectorAll("#imm-snav .imm-snav-dot")];
-  var sections = snavDots.map(function(btn) {
-    return document.getElementById(btn.dataset.target);
-  }).filter(Boolean);
-  var snav = document.getElementById("imm-snav");
-
-  function setSnavDot(activeSection) {
-    var idx = sections.indexOf(activeSection);
-    snavDots.forEach(function(d, i) { d.classList.toggle("is-on", i === idx); });
-    if (idx >= 0) snavDots[idx].setAttribute("aria-current", "true");
-    snavDots.forEach(function(d, i) {
-      if (i !== idx) d.removeAttribute("aria-current");
-    });
-    /* Swap dot colour on the light-bg shop section */
-    if (activeSection && activeSection.id === "imm-shop") {
-      snav.setAttribute("data-on-light", "");
-    } else {
-      snav.removeAttribute("data-on-light");
-    }
-  }
-
-  /* Scroll-based: pick whichever section's center is closest to viewport midpoint */
-  function updateSnavDot() {
-    var mid = window.scrollY + window.innerHeight * 0.5;
-    var best = sections[0];
-    var bestDist = Infinity;
-    sections.forEach(function(s) {
-      var top    = s.getBoundingClientRect().top + window.scrollY;
-      var center = top + s.offsetHeight / 2;
-      var dist   = Math.abs(center - mid);
-      if (dist < bestDist) { bestDist = dist; best = s; }
-    });
-    setSnavDot(best);
-  }
-  window.addEventListener("scroll", updateSnavDot, { passive: true });
-  updateSnavDot();
-
-  function scrollToSection(target) {
-    if (!target) return;
-    var top = target.getBoundingClientRect().top + window.scrollY - sectionOffsetFor(target);
-    setSnavDot(target);
-    window.scrollTo({ top: top, behavior: "smooth" });
-  }
-
-  var snapTimer = null;
-  var lastSnapTarget = null;
-  var isProgrammaticSnap = false;
-  var wheelSnapDelta = 0;
-  function sectionOffsetFor(target) {
-    var eventBar = document.querySelector(".imm-event-bar");
-    var offset = eventBar ? eventBar.getBoundingClientRect().height : 0;
-    var breathingRoom = target && target.id === "imm-home" ? 0 : 18;
-    return offset + breathingRoom;
-  }
-  function nearestSection() {
-    var anchor = window.scrollY + (window.innerHeight * 0.48);
-    var best = sections[0];
-    var bestDist = Infinity;
-    sections.forEach(function(section) {
-      var top = section.getBoundingClientRect().top + window.scrollY;
-      var center = top + Math.min(section.offsetHeight, window.innerHeight) * 0.5;
-      var dist = Math.abs(center - anchor);
-      if (dist < bestDist) { bestDist = dist; best = section; }
-    });
-    return best;
-  }
-  function scheduleSectionSnap(delay, direction) {
-    if (isProgrammaticSnap || !sections.length) return;
-    window.clearTimeout(snapTimer);
-    snapTimer = window.setTimeout(function() {
-      var target = nearestSection();
-      if (direction) {
-        var idx = activeSectionIndex();
-        target = sections[Math.max(0, Math.min(sections.length - 1, idx + direction))] || target;
-      }
-      if (!target) return;
-      var targetDistance = Math.abs(target.getBoundingClientRect().top - sectionOffsetFor(target));
-      if (target === lastSnapTarget && targetDistance < 8) return;
-      lastSnapTarget = target;
-      wheelSnapDelta = 0;
-      isProgrammaticSnap = true;
-      scrollToSection(target);
-      window.setTimeout(function() { isProgrammaticSnap = false; }, 650);
-    }, delay || 180);
-  }
-
-  snavDots.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      var target = document.getElementById(btn.dataset.target);
-      scrollToSection(target);
-    });
-  });
-  window.addEventListener("wheel", function(event) {
-    if (Math.abs(event.deltaY) < 8) return;
-    wheelSnapDelta += event.deltaY;
-    if (Math.abs(wheelSnapDelta) < 36) {
-      scheduleSectionSnap(180, 0);
-      return;
-    }
-    scheduleSectionSnap(140, wheelSnapDelta > 0 ? 1 : -1);
-  }, { passive: true });
-  window.addEventListener("touchend", function() { scheduleSectionSnap(260); }, { passive: true });
-
-  function activeSectionIndex() {
-    var mid = window.scrollY + window.innerHeight * 0.5;
-    var idx = 0;
-    var closest = Infinity;
-    sections.forEach(function(section, i) {
-      var top = section.getBoundingClientRect().top + window.scrollY;
-      var center = top + section.offsetHeight * 0.5;
-      var dist = Math.abs(center - mid);
-      if (dist < closest) { closest = dist; idx = i; }
-    });
-    return idx;
-  }
 
   /* ── Responsive Explore layout:
      Desktop uses the 2x3 grid; tablet/mobile use the horizontal scroller. */

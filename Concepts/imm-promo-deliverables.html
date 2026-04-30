@@ -1,0 +1,1767 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMM Senior Show 2026 — Promo Deliverables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap">
+  <style>
+    :root {
+      --bg:     #07110d;
+      --panel:  rgba(13, 28, 22, 0.82);
+      --line:   rgba(215, 198, 160, 0.18);
+      --paper:  #f3edda;
+      --ink:    #edf2eb;
+      --muted:  rgba(237, 242, 235, 0.72);
+      --rust:   #c75145;
+      --green:  #4e985f;
+      --gold:   #d6a034;
+      --teal:   #3f6f9b;
+      --forest: #123f36;
+      --shadow: 0 24px 70px rgba(0,0,0,0.36);
+      --r:      28px;
+      --r-sm:   18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; }
+
+    body {
+      font-family: "Avenir Next", "Avenir", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 14% 0%,  rgba(78,152,95,0.22),  transparent 55%),
+        radial-gradient(900px  500px at 90% 10%, rgba(199,81,69,0.20),  transparent 48%),
+        radial-gradient(900px  500px at 50% 100%,rgba(214,160,52,0.14), transparent 45%),
+        linear-gradient(180deg, #06100d 0%, #0d1714 42%, #0a1411 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+      opacity: 0.4;
+    }
+
+    .wrap {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── shared panel base ── */
+    .panel {
+      background: linear-gradient(180deg, rgba(18,37,31,0.94), rgba(7,15,12,0.94));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--r);
+      backdrop-filter: blur(18px);
+    }
+
+    /* ── page hero ── */
+    .page-hero {
+      padding: 36px 36px 32px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 360px at 0% 0%,   rgba(78,152,95,0.22),  transparent 52%),
+        radial-gradient(700px 300px at 100% 0%, rgba(199,81,69,0.18),  transparent 46%),
+        linear-gradient(135deg, rgba(255,255,255,0.05), transparent 40%);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.74);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 14ch;
+      margin-bottom: 14px;
+    }
+
+    .page-hero .lede {
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    /* ── grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .col-7  { grid-column: span 7; }
+    .col-5  { grid-column: span 5; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+    .col-12 { grid-column: span 12; }
+
+    .panel.pad { padding: 22px; }
+
+    .panel h2 {
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .panel > p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    /* ══════════════════════════════════════════
+       1. MAIN GRAPHIC
+    ══════════════════════════════════════════ */
+    .poster-mock {
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      background: #0a1810;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .poster-mock .bg-scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+
+    .poster-mock .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(4,10,8,0.18) 0%,
+        rgba(4,10,8,0.06) 40%,
+        rgba(4,10,8,0.52) 80%,
+        rgba(4,10,8,0.82) 100%
+      );
+    }
+
+    .poster-mock .logo-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .poster-mock .logo-center img {
+      width: min(82%, 340px);
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.55));
+    }
+
+    .poster-mock .date-chip {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(7,17,13,0.80);
+      border: 1px solid rgba(243,237,218,0.18);
+      backdrop-filter: blur(10px);
+      text-align: right;
+    }
+
+    .poster-mock .date-chip strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .poster-mock .date-chip span {
+      display: block;
+      font-size: 0.86rem;
+      color: rgba(237,242,235,0.92);
+      line-height: 1.4;
+    }
+
+    .poster-mock .postcard-border {
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(243,237,218,0.16);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    .use-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .use-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* side-notes column */
+    .side-notes {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .note-block {
+      padding: 16px;
+      border-radius: var(--r-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      flex: 1;
+    }
+
+    .note-block strong {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+
+    .note-block span {
+      color: rgba(237,242,235,0.88);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       2. MOTION GRAPHIC
+    ══════════════════════════════════════════ */
+    .motion-frame {
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #060e0b;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .motion-frame .bg-layer {
+      position: absolute;
+      inset: -8%;
+      width: 116%;
+      height: 116%;
+      object-fit: cover;
+      object-position: center;
+      animation: bgDrift 24s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes bgDrift {
+      from { transform: translateX(0) scale(1.08); }
+      to   { transform: translateX(-4%) scale(1.12); }
+    }
+
+    .motion-frame .bg-tint {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(4,10,8,0.22) 0%,
+        rgba(4,10,8,0.08) 38%,
+        rgba(4,10,8,0.58) 80%,
+        rgba(4,10,8,0.85) 100%
+      );
+    }
+
+    .motion-frame .logo-reveal {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 16px;
+    }
+
+    .motion-frame .logo-reveal img {
+      width: min(72%, 380px);
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+      animation: logoSettle 1s cubic-bezier(0.22,1,0.36,1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes logoSettle {
+      from { opacity: 0; transform: scale(0.92) translateY(8px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    .motion-frame .date-reveal {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(7,17,13,0.78);
+      border: 1px solid rgba(243,237,218,0.22);
+      font-size: 0.84rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.92);
+      animation: dateSlide 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+      opacity: 0;
+      transform: translateY(14px);
+      backdrop-filter: blur(8px);
+    }
+
+    @keyframes dateSlide {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .motion-steps {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .motion-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.88rem;
+      color: rgba(237,242,235,0.88);
+      line-height: 1.45;
+    }
+
+    .motion-step .num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════
+       3. MAP
+    ══════════════════════════════════════════ */
+    .map-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .floor-wrap {
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #0b1a14;
+      min-height: 320px;
+    }
+
+    .floor-wrap img.floor-svg {
+      width: 100%;
+      display: block;
+      filter: invert(1) hue-rotate(160deg) saturate(0.4) brightness(0.55);
+      opacity: 0.88;
+    }
+
+    .floor-wrap .pin-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .map-pin {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: all;
+    }
+
+    .map-pin .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      border: 2px solid rgba(255,255,255,0.28);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+
+    .map-pin .label {
+      margin-top: 5px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: rgba(7,17,13,0.82);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(237,242,235,0.92);
+      backdrop-filter: blur(6px);
+    }
+
+    .map-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .legend-body strong {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.92);
+      margin-bottom: 2px;
+    }
+
+    .legend-body span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .map-note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       4. FLYERS
+    ══════════════════════════════════════════ */
+
+    /* ── content checklist ── */
+    .flyer-checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .check-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .check-item .ci-body strong {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: rgba(237,242,235,0.92);
+      margin-bottom: 2px;
+      letter-spacing: 0.02em;
+    }
+
+    .check-item .ci-body span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── direction row ── */
+    .direction-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .dir-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dir-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dir-label span {
+      color: var(--gold);
+      margin-right: 6px;
+    }
+
+    /* ── flyer mock (portrait card) ── */
+    .flyer-mock {
+      position: relative;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      aspect-ratio: 9 / 13;
+      background: #0a1810;
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+
+    .flyer-mock .fm-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .flyer-mock .fm-tint { position: absolute; inset: 0; }
+
+    .flyer-mock .fm-border {
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(243,237,218,0.16);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .flyer-mock .fm-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      padding: 4px 9px;
+      border-radius: 7px;
+      background: rgba(7,17,13,0.80);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.72);
+      backdrop-filter: blur(6px);
+    }
+
+    /* --- Dir A: Landscape Poster --- */
+    .fm-a .fm-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -58%);
+      width: 76%;
+      z-index: 2;
+      filter: drop-shadow(0 6px 20px rgba(0,0,0,0.65));
+    }
+
+    .fm-a .fm-info {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      z-index: 3;
+      padding: 12px 13px;
+      border-radius: 12px;
+      background: rgba(7,17,13,0.86);
+      border: 1px solid rgba(243,237,218,0.14);
+      backdrop-filter: blur(10px);
+    }
+
+    .fm-a .fm-info .fi-date {
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: rgba(237,242,235,0.96);
+      margin-bottom: 3px;
+    }
+
+    .fm-a .fm-info .fi-loc {
+      font-size: 0.72rem;
+      color: rgba(237,242,235,0.72);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .fm-a .fm-info .fi-free {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      background: rgba(78,152,95,0.28);
+      border: 1px solid rgba(78,152,95,0.44);
+      color: #8cd89f;
+    }
+
+    /* --- Dir B: Bold Date / Type-forward --- */
+    .fm-b {
+      background: #08130f;
+    }
+
+    .fm-b .fm-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      z-index: 3;
+    }
+
+    .fm-b .fm-scene-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 38%;
+      z-index: 0;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.38;
+      mask-image: linear-gradient(0deg, rgba(0,0,0,0.9), transparent);
+    }
+
+    .fm-b .fm-body {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 16px;
+    }
+
+    .fm-b .fm-small-logo {
+      width: 54%;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      margin-bottom: auto;
+    }
+
+    .fm-b .fm-big-date {
+      font-size: clamp(2.6rem, 10vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      margin-bottom: 10px;
+    }
+
+    .fm-b .fm-detail-line {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.72);
+      margin-bottom: 4px;
+    }
+
+    .fm-b .fm-location {
+      font-size: 0.72rem;
+      color: rgba(237,242,235,0.58);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+
+    .fm-b .fm-pill {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.88);
+    }
+
+    /* --- Dir C: Project Grid / Mosaic --- */
+    .fm-c {
+      background: #07120e;
+    }
+
+    .fm-c .fm-body {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .fm-c .fm-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .fm-c .fm-header img {
+      height: 28px;
+      width: auto;
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+    }
+
+    .fm-c .fm-hook {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .fm-c .fm-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      flex: 1;
+      margin-bottom: 10px;
+    }
+
+    .fm-c .lg-cell {
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .fm-c .lg-cell img {
+      width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.82;
+    }
+
+    .fm-c .lg-cell.more {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.54);
+    }
+
+    .fm-c .fm-foot {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(7,17,13,0.88);
+      border: 1px solid rgba(243,237,218,0.12);
+    }
+
+    .fm-c .fm-foot .date-line {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: rgba(237,242,235,0.92);
+      margin-bottom: 2px;
+    }
+
+    .fm-c .fm-foot .loc-line {
+      font-size: 0.66rem;
+      color: rgba(237,242,235,0.58);
+      line-height: 1.4;
+    }
+
+    /* --- Dir D: Postcard / Invitation --- */
+    .fm-d .fm-bg { object-position: center 70%; }
+
+    .fm-d .fm-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-3deg);
+      width: 82%;
+      z-index: 3;
+      padding: 18px 16px;
+      border-radius: 16px;
+      background: rgba(243,237,218,0.96);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      color: #0f1e17;
+      text-align: center;
+    }
+
+    .fm-d .fm-card .card-eyebrow {
+      font-size: 0.56rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(15,30,23,0.52);
+      margin-bottom: 10px;
+    }
+
+    .fm-d .fm-card img {
+      width: 80%;
+      filter: brightness(0);
+      margin-bottom: 12px;
+    }
+
+    .fm-d .fm-card .card-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      border-radius: 999px;
+      margin: 0 auto 10px;
+    }
+
+    .fm-d .fm-card .card-date {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #0f1e17;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .fm-d .fm-card .card-loc {
+      font-size: 0.64rem;
+      color: rgba(15,30,23,0.64);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+
+    .fm-d .fm-card .card-free {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(78,152,95,0.16);
+      color: #2a6e3a;
+      border: 1px solid rgba(78,152,95,0.3);
+    }
+
+    /* dir note */
+    .dir-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       5. MERCH
+    ══════════════════════════════════════════ */
+    .merch-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .merch-badge-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: radial-gradient(circle at 50% 30%, rgba(214,160,52,0.22), transparent 60%),
+                  linear-gradient(180deg, rgba(18,47,37,0.6), rgba(4,10,8,0.6));
+      border-radius: var(--r-sm);
+      border: 1px solid rgba(255,255,255,0.08);
+      aspect-ratio: 1;
+    }
+
+    .merch-stamp {
+      width: min(200px, 88%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 30%, rgba(199,81,69,0.95), rgba(160,40,30,0.95));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.18);
+      border: 2px dashed rgba(255,255,255,0.28);
+    }
+
+    .merch-stamp img {
+      width: 68%;
+      filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+
+    .merch-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .merch-headline {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .merch-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      max-width: 36ch;
+    }
+
+    .merch-products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .product-chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(237,242,235,0.9);
+    }
+
+    .merch-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: var(--rust);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(199,81,69,0.36);
+      transition: background 0.18s, box-shadow 0.18s;
+      align-self: flex-start;
+    }
+
+    .merch-cta-btn:hover {
+      background: #b84139;
+      box-shadow: 0 10px 28px rgba(199,81,69,0.46);
+    }
+
+    /* ══════════════════════════════════════════
+       BOTTOM NOTES
+    ══════════════════════════════════════════ */
+    .bottom-notes {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .bnote {
+      padding: 14px 16px;
+      border-radius: var(--r-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .bnote strong {
+      display: block;
+      font-size: 0.70rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .bnote span {
+      font-size: 0.88rem;
+      color: rgba(237,242,235,0.78);
+      line-height: 1.45;
+    }
+
+    .page-footer {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 0.80rem;
+      color: rgba(237,242,235,0.44);
+      letter-spacing: 0.04em;
+    }
+
+    /* ══════════════════════════════════════════
+       SIGNATURE POSTER
+    ══════════════════════════════════════════ */
+    .sig-section-wrap {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .sig-poster {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #060f0c;
+    }
+
+    .sig-poster .sp-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .sig-poster .sp-tint {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 46% at 50% 54%, rgba(4,10,8,0.78), transparent 72%),
+        linear-gradient(180deg,
+          rgba(4,10,8,0.10) 0%,
+          rgba(4,10,8,0.18) 28%,
+          rgba(4,10,8,0.78) 76%,
+          rgba(4,10,8,0.95) 100%
+        );
+      z-index: 1;
+    }
+
+    .sig-poster .sp-border {
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(243,237,218,0.18);
+      border-radius: 16px;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* ── signature layer ── */
+    .sig-poster .sp-sigs {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      font-family: 'Caveat', cursive;
+      pointer-events: none;
+    }
+
+    .sp-name {
+      position: absolute;
+      color: rgba(255,255,255,0.82);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* ── central content ── */
+    .sig-poster .sp-content {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .sig-poster .sp-logo {
+      width: min(78%, 300px);
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.75));
+    }
+
+    .sig-poster .sp-date {
+      font-size: clamp(1.5rem, 6vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: rgba(243,237,218,0.97);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.65);
+    }
+
+    .sig-poster .sp-date sup {
+      font-size: 0.48em;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .sig-poster .sp-info {
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: rgba(7,17,13,0.80);
+      border: 1px solid rgba(243,237,218,0.16);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .sig-poster .sp-info .sp-loc {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(237,242,235,0.90);
+    }
+
+    .sig-poster .sp-info .sp-time {
+      font-size: 0.72rem;
+      color: rgba(237,242,235,0.64);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sig-poster .sp-info .sp-free {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8cd89f;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(78,152,95,0.22);
+      border: 1px solid rgba(78,152,95,0.38);
+      margin-top: 2px;
+    }
+
+    /* ── improvement notes ── */
+    .sig-notes-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sig-notes-col .intro-note {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(214,160,52,0.10);
+      border: 1px solid rgba(214,160,52,0.24);
+      font-size: 0.88rem;
+      color: rgba(237,242,235,0.88);
+      line-height: 1.55;
+    }
+
+    .sig-fix {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sig-fix .sf-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+
+    .sig-fix .sf-tag {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sf-tag.keep { background: rgba(78,152,95,0.22); border: 1px solid rgba(78,152,95,0.38); color: #8cd89f; }
+    .sf-tag.fix  { background: rgba(199,81,69,0.18); border: 1px solid rgba(199,81,69,0.34); color: #e88a82; }
+    .sf-tag.add  { background: rgba(63,111,155,0.22); border: 1px solid rgba(63,111,155,0.38); color: #8ab4d4; }
+
+    .sig-fix .sf-text {
+      font-size: 0.84rem;
+      color: rgba(237,242,235,0.78);
+      line-height: 1.5;
+    }
+
+    /* ── spacing util ── */
+    .mt { margin-top: 16px; }
+    .section-gap { margin-top: 16px; }
+
+    /* ── responsive ── */
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: 1fr; }
+      .col-7, .col-5, .col-6, .col-4, .col-3, .col-12 { grid-column: auto; }
+      .direction-row { grid-template-columns: repeat(2, 1fr); }
+      .flyer-checklist { grid-template-columns: 1fr; }
+      .bottom-notes { grid-template-columns: 1fr 1fr; }
+      .merch-inner { grid-template-columns: 1fr; }
+      .merch-badge-wrap { aspect-ratio: auto; padding: 24px; }
+      .merch-stamp { width: 180px; }
+      .sig-section-wrap { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: calc(100% - 20px); padding-top: 20px; }
+      .page-hero { padding: 22px 20px; }
+      .panel.pad { padding: 16px; }
+      .map-split { grid-template-columns: 1fr; }
+      .direction-row { grid-template-columns: repeat(2, 1fr); overflow-x: auto; }
+      .bottom-notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- PAGE HERO -->
+  <div class="panel page-hero" style="margin-bottom:20px;">
+    <div class="eyebrow">IMM Senior Show 2026 — Promo Deliverables</div>
+    <h1>Five things to build before May 8.</h1>
+    <p class="lede">
+      A working concept for each major deliverable — main graphic, motion, map, flyers, and merch.
+      Every section uses real assets. Adapt the layouts directly or use them as a brief for the team.
+    </p>
+  </div>
+
+  <!-- ROW 1: MAIN GRAPHIC + MOTION GRAPHIC -->
+  <div class="grid section-gap">
+
+    <!-- MAIN GRAPHIC -->
+    <div class="panel pad col-5">
+      <h2>Main Graphic</h2>
+      <p>Illustrated landscape as the full-bleed backdrop. The wordmark sits centered, oversized, with a subtle postcard border and a date chip. Works as a poster, hero image, and stage screen.</p>
+
+      <div class="poster-mock">
+        <img class="bg-scene" src="../AlyosiusPatrimonoAssets/landscapes/1.png" alt="" />
+        <div class="overlay"></div>
+        <div class="postcard-border"></div>
+        <div class="logo-center">
+          <img src="../IMMLogos2/PNG/Wm White.png" alt="IMM Wordmark" />
+        </div>
+        <div class="date-chip">
+          <strong>May 8, 2026</strong>
+          <span>6–9 PM · AIMM at TCNJ</span>
+        </div>
+      </div>
+
+      <div class="use-chips">
+        <span class="use-chip">Website hero</span>
+        <span class="use-chip">Social header</span>
+        <span class="use-chip">11×17 poster</span>
+        <span class="use-chip">Stage screen</span>
+      </div>
+    </div>
+
+    <!-- MOTION GRAPHIC -->
+    <div class="panel pad col-7">
+      <h2>Motion Graphic</h2>
+      <p>Three-layer animation: background scene drifts (slow loop), wordmark settles in (0.8 s ease-out), date reveals from below (0.6 s delay). Fully loopable for screens and socials.</p>
+
+      <div class="motion-frame">
+        <img class="bg-layer" src="../AlyosiusPatrimonoAssets/landscapes/10.png" alt="" />
+        <div class="bg-tint"></div>
+        <div class="logo-reveal">
+          <img src="../IMMLogos2/PNG/Wm White.png" alt="IMM Wordmark" />
+          <div class="date-reveal">May 8, 2026 &nbsp;·&nbsp; 6–9 PM</div>
+        </div>
+      </div>
+
+      <div class="motion-steps mt">
+        <div class="motion-step">
+          <span class="num">01</span>
+          <span>Background landscape begins a slow parallax drift — give it a 20–24 s loop, subtle enough to feel ambient rather than busy.</span>
+        </div>
+        <div class="motion-step">
+          <span class="num">02</span>
+          <span>Wordmark fades and scales in from 92 → 100%, settling with an ease-out bounce. Hold for 1.5 s.</span>
+        </div>
+        <div class="motion-step">
+          <span class="num">03</span>
+          <span>Date + time chip slides up from below at 0.7 s delay. Frosted pill treatment matches the poster family.</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /row 1 -->
+
+  <!-- ROW 2: MAP + FLYERS -->
+  <div class="grid section-gap">
+
+    <!-- MAP -->
+    <div class="panel pad col-6">
+      <h2>Map</h2>
+      <p>Real floor plan embedded as the base. Colored pins mark each track zone. Legend ties pin color to track name and room number. Print as a half-letter insert or use on the website map page.</p>
+
+      <div class="map-split mt" style="margin-top:0;">
+        <div class="floor-wrap">
+          <img class="floor-svg" src="../Floor1.svg" alt="AIMM floor plan" />
+          <!-- pins positioned relative to the floor plan image -->
+          <div class="pin-layer">
+            <div class="map-pin" style="left:22%;top:28%;">
+              <div class="dot" style="background:var(--rust);"></div>
+              <div class="label">Design / Rm 101</div>
+            </div>
+            <div class="map-pin" style="left:58%;top:18%;">
+              <div class="dot" style="background:var(--green);"></div>
+              <div class="label">Dev / Gallery</div>
+            </div>
+            <div class="map-pin" style="left:74%;top:56%;">
+              <div class="dot" style="background:var(--gold);"></div>
+              <div class="label">Media / Studio</div>
+            </div>
+            <div class="map-pin" style="left:34%;top:68%;">
+              <div class="dot" style="background:var(--teal);"></div>
+              <div class="label">Game / Lobby</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-legend">
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--rust);"></div>
+            <div class="legend-body">
+              <strong>Design Track</strong>
+              <span>Room 101 — Branding, UI, Print</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--green);"></div>
+            <div class="legend-body">
+              <strong>Dev Track</strong>
+              <span>Gallery — Web, App, Interactive</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--gold);"></div>
+            <div class="legend-body">
+              <strong>Media Track</strong>
+              <span>Studio — Film, Motion, Audio</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--teal);"></div>
+            <div class="legend-body">
+              <strong>Game Track</strong>
+              <span>Lobby — Games, XR, Installations</span>
+            </div>
+          </div>
+          <div class="map-note">
+            Adjust pin positions once the actual room assignments are confirmed. The SVG base can also be printed and used as a handout with the same pin/legend system.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /row 2 -->
+
+  <!-- ROW 3: FLYERS (full width) -->
+  <div class="grid section-gap">
+    <div class="panel pad col-12">
+      <h2>Flyer Directions</h2>
+      <p>Every flyer needs the same core content. Four layout directions below — pick one to develop or combine elements across them.</p>
+
+      <!-- CONTENT CHECKLIST -->
+      <div class="flyer-checklist">
+        <div class="check-item">
+          <div class="check-dot" style="background:var(--gold);"></div>
+          <div class="ci-body">
+            <strong>IMM Senior Showcase 2026</strong>
+            <span>Full event name. "Interactive Multimedia" can appear as a subline or be spelled out at small scale.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-dot" style="background:var(--rust);"></div>
+          <div class="ci-body">
+            <strong>May 8, 2026 · 6–9 PM</strong>
+            <span>Date and time must be easy to read at a glance — this is the most-asked question.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-dot" style="background:var(--green);"></div>
+          <div class="ci-body">
+            <strong>AIMM — The College of New Jersey, Ewing NJ</strong>
+            <span>Full building name + campus + town. Add a room/floor once confirmed.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-dot" style="background:var(--teal);"></div>
+          <div class="ci-body">
+            <strong>Free &amp; Open to the Public</strong>
+            <span>This removes the biggest hesitation — people assume they need a ticket or TCNJ ID.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-dot" style="background:rgba(237,242,235,0.4);"></div>
+          <div class="ci-body">
+            <strong>IMM Logo (required)</strong>
+            <span>Use the Exponential wordmark or Wm White. Don't use the '26 mark alone — it needs context.</span>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-dot" style="background:rgba(237,242,235,0.4);"></div>
+          <div class="ci-body">
+            <strong>Hook line (optional but strong)</strong>
+            <span>"37 student projects" or "5 tracks of interactive work" gives people a reason to come beyond knowing a student.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOUR DIRECTIONS -->
+      <div class="direction-row">
+
+        <!-- DIR A: Landscape Poster -->
+        <div class="dir-card">
+          <div class="dir-label"><span>A</span> Landscape Poster</div>
+          <div class="flyer-mock fm-a">
+            <img class="fm-bg" src="../AlyosiusPatrimonoAssets/landscapes/5.png" alt="" />
+            <div class="fm-tint" style="background:linear-gradient(180deg,rgba(4,10,8,0.08) 0%,rgba(4,10,8,0.12) 38%,rgba(4,10,8,0.68) 72%,rgba(4,10,8,0.90) 100%);"></div>
+            <div class="fm-border"></div>
+            <div class="fm-tag">11 × 17 · Print</div>
+            <img class="fm-logo" src="../IMMLogos2/PNG/Wm White.png" alt="IMM" />
+            <div class="fm-info">
+              <div class="fi-date">May 8, 2026 · 6–9 PM</div>
+              <div class="fi-loc">AIMM · The College of New Jersey<br>Ewing, NJ</div>
+              <span class="fi-free">Free &amp; Open to the Public</span>
+            </div>
+          </div>
+          <p class="dir-note">Strongest for print. Illustrated scene carries the visual — logo sits in clear sky/midground. Needs a landscape with open upper area.</p>
+        </div>
+
+        <!-- DIR B: Bold Date / Type -->
+        <div class="dir-card">
+          <div class="dir-label"><span>B</span> Bold Date</div>
+          <div class="flyer-mock fm-b">
+            <img class="fm-bg fm-scene-strip" src="../AlyosiusPatrimonoAssets/landscapes/9.png" alt="" />
+            <div class="fm-accent-bar" style="background:linear-gradient(90deg, var(--rust), var(--gold));"></div>
+            <div class="fm-border"></div>
+            <div class="fm-tag">Instagram · 1080×1350</div>
+            <div class="fm-body">
+              <img class="fm-small-logo" src="../IMMLogos2/PNG/Wm White.png" alt="IMM" />
+              <div class="fm-big-date" style="color:var(--paper);">MAY<br>8</div>
+              <div class="fm-detail-line">6–9 PM · 2026</div>
+              <div class="fm-location">AIMM, The College of<br>New Jersey · Ewing, NJ</div>
+              <div class="fm-pill" style="background:rgba(199,81,69,0.22);border:1px solid rgba(199,81,69,0.44);color:var(--paper);">Free &amp; Open to the Public</div>
+            </div>
+          </div>
+          <p class="dir-note">Best for social and digital screens. The oversized date reads instantly on a phone feed. Landscape strips to a texture rather than a scene.</p>
+        </div>
+
+        <!-- DIR C: Project Grid -->
+        <div class="dir-card">
+          <div class="dir-label"><span>C</span> Project Grid</div>
+          <div class="flyer-mock fm-c">
+            <div class="fm-border"></div>
+            <div class="fm-tag">Print · Digital</div>
+            <div class="fm-body">
+              <div class="fm-header">
+                <img src="../IMMLogos2/PNG/Wm White.png" alt="IMM" />
+              </div>
+              <div class="fm-hook">37 Student Projects · May 8</div>
+              <div class="fm-logo-grid" style="margin-top:8px;">
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/LumberLogo.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/Kyle_Duverger_Civic_Vault.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/Caelan_Arroyo_Mumbo_Block_Logo.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/Collin Della Sala Post-Fantasy/Post-Fantasy Logo(No Background).png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/CarolynMcDonough_ProjectLogo.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/Kai Macedo - Color/kai_macedo_color_project_logo.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/RestoAnthonyLogo.png" alt="" /></div>
+                <div class="lg-cell"><img src="../2026 IMM Project Logos/Robyn Maggio - M.A.E./MAE_Logo_Vector_Ver5.png" alt="" /></div>
+                <div class="lg-cell more">+29<br>more</div>
+              </div>
+              <div class="fm-foot">
+                <div class="date-line">May 8, 2026 · 6–9 PM</div>
+                <div class="loc-line">AIMM · TCNJ · Ewing, NJ<br>Free &amp; open to the public</div>
+              </div>
+            </div>
+          </div>
+          <p class="dir-note">Speaks directly to the students' network — every project logo is a reason someone shows up. Works as a programme insert too.</p>
+        </div>
+
+        <!-- DIR D: Postcard / Invitation -->
+        <div class="dir-card">
+          <div class="dir-label"><span>D</span> Postcard</div>
+          <div class="flyer-mock fm-d">
+            <img class="fm-bg" src="../AlyosiusPatrimonoAssets/landscapes/3.png" alt="" />
+            <div class="fm-tint" style="background:rgba(4,10,8,0.28);"></div>
+            <div class="fm-border"></div>
+            <div class="fm-tag">Mailer · Digital</div>
+            <div class="fm-card">
+              <div class="card-eyebrow">You are invited to</div>
+              <img src="../IMMLogos2/PNG/Wm Black.png" alt="IMM" />
+              <div class="card-divider"></div>
+              <div class="card-date">May 8, 2026 · 6–9 PM</div>
+              <div class="card-loc">AIMM, The College of New Jersey<br>Ewing, NJ · Free &amp; Open to the Public</div>
+              <span class="card-free">37 student projects</span>
+            </div>
+          </div>
+          <p class="dir-note">Formal, sharable. The paper-toned card floats on top of the scene — feels like an actual invitation. Best for email or a printed mailer insert.</p>
+        </div>
+
+      </div><!-- /direction-row -->
+    </div>
+  </div><!-- /flyers row -->
+
+  <!-- ROW: SIGNATURE POSTER -->
+  <div class="grid section-gap">
+    <div class="panel pad col-12">
+      <h2>Signature Poster — Your Design, Refined</h2>
+      <p>Same concept: mountain backdrop, every student's name, big bold date. Six specific things tightened up — notes on the right.</p>
+
+      <div class="sig-section-wrap mt">
+
+        <!-- POSTER MOCK -->
+        <div class="sig-poster">
+          <img class="sp-bg" src="../AlyosiusPatrimonoAssets/landscapes/6.png" alt="" />
+          <div class="sp-tint"></div>
+
+          <!-- SIGNATURE LAYER — all 37 students, scattered with Caveat font -->
+          <div class="sp-sigs">
+            <!-- TOP ZONE: dense, full opacity -->
+            <div class="sp-name" style="left:2%;top:2%;font-size:1.15em;transform:rotate(-10deg);opacity:0.78;">Chase Dimarzio</div>
+            <div class="sp-name" style="left:34%;top:1%;font-size:1.3em;transform:rotate(-5deg);opacity:0.82;">Maya Randall</div>
+            <div class="sp-name" style="left:60%;top:2%;font-size:1.1em;transform:rotate(7deg);opacity:0.75;">Michael Rasimowicz</div>
+            <div class="sp-name" style="left:3%;top:9%;font-size:1.2em;transform:rotate(6deg);opacity:0.80;">Ari Lugassy</div>
+            <div class="sp-name" style="left:32%;top:8%;font-size:1.0em;transform:rotate(-8deg);opacity:0.72;">Mehmet Sezer</div>
+            <div class="sp-name" style="left:62%;top:9%;font-size:1.1em;transform:rotate(-4deg);opacity:0.78;">Aaron Pettiford</div>
+            <div class="sp-name" style="left:2%;top:17%;font-size:1.0em;transform:rotate(-7deg);opacity:0.75;">Naheda Hussain</div>
+            <div class="sp-name" style="left:30%;top:16%;font-size:1.25em;transform:rotate(-4deg);opacity:0.80;">Aidan Michaels</div>
+            <div class="sp-name" style="left:62%;top:16%;font-size:1.0em;transform:rotate(6deg);opacity:0.74;">Griffin Petry</div>
+            <div class="sp-name" style="left:2%;top:24%;font-size:1.1em;transform:rotate(8deg);opacity:0.76;">Collin Della Sala</div>
+            <div class="sp-name" style="left:42%;top:23%;font-size:1.0em;transform:rotate(-6deg);opacity:0.72;">Kiara Manon</div>
+            <div class="sp-name" style="left:66%;top:23%;font-size:1.05em;transform:rotate(-8deg);opacity:0.76;">Carolyn McDonough</div>
+            <div class="sp-name" style="left:3%;top:31%;font-size:1.1em;transform:rotate(-9deg);opacity:0.74;">Jeffrey Ernest</div>
+            <div class="sp-name" style="left:62%;top:30%;font-size:1.0em;transform:rotate(5deg);opacity:0.72;">Robyn Maggio</div>
+
+            <!-- SIDE ZONES: left and right edges, medium opacity -->
+            <div class="sp-name" style="left:1%;top:40%;font-size:1.0em;transform:rotate(-6deg);opacity:0.62;">Idrissa Fofana</div>
+            <div class="sp-name" style="left:72%;top:38%;font-size:1.05em;transform:rotate(-7deg);opacity:0.62;">Shane McGowan</div>
+            <div class="sp-name" style="left:2%;top:49%;font-size:0.95em;transform:rotate(5deg);opacity:0.55;">Jennéa Jeter</div>
+            <div class="sp-name" style="left:74%;top:48%;font-size:0.95em;transform:rotate(6deg);opacity:0.55;">Rushil Desai</div>
+            <div class="sp-name" style="left:1%;top:58%;font-size:0.92em;transform:rotate(-4deg);opacity:0.50;">Isabel DiFabio</div>
+            <div class="sp-name" style="left:74%;top:58%;font-size:0.92em;transform:rotate(-5deg);opacity:0.50;">Caleb Kim</div>
+            <div class="sp-name" style="left:2%;top:66%;font-size:0.95em;transform:rotate(7deg);opacity:0.55;">Mohammad Abdul Wadud</div>
+            <div class="sp-name" style="left:66%;top:65%;font-size:0.95em;transform:rotate(4deg);opacity:0.55;">Madison Braithwaite</div>
+
+            <!-- BOTTOM ZONE: dense again -->
+            <div class="sp-name" style="left:2%;top:74%;font-size:1.2em;transform:rotate(-8deg);opacity:0.78;">Kelsey Daly</div>
+            <div class="sp-name" style="left:34%;top:73%;font-size:1.05em;transform:rotate(-5deg);opacity:0.74;">Shane Maccarone</div>
+            <div class="sp-name" style="left:62%;top:74%;font-size:1.1em;transform:rotate(6deg);opacity:0.78;">Caelan Arroyo</div>
+            <div class="sp-name" style="left:3%;top:81%;font-size:1.15em;transform:rotate(5deg);opacity:0.80;">Zachary Wade</div>
+            <div class="sp-name" style="left:32%;top:80%;font-size:1.0em;transform:rotate(-7deg);opacity:0.76;">Daniel DeLeon</div>
+            <div class="sp-name" style="left:58%;top:81%;font-size:1.1em;transform:rotate(-4deg);opacity:0.78;">Andrew Romano</div>
+            <div class="sp-name" style="left:2%;top:88%;font-size:1.0em;transform:rotate(-6deg);opacity:0.75;">Tyler Spressert</div>
+            <div class="sp-name" style="left:28%;top:87%;font-size:1.15em;transform:rotate(8deg);opacity:0.78;">Jack Dinnigan</div>
+            <div class="sp-name" style="left:58%;top:88%;font-size:1.2em;transform:rotate(-3deg);opacity:0.80;">Kai Macedo</div>
+            <div class="sp-name" style="left:3%;top:93%;font-size:1.0em;transform:rotate(6deg);opacity:0.75;">Anthony Resto</div>
+            <div class="sp-name" style="left:28%;top:94%;font-size:1.05em;transform:rotate(-5deg);opacity:0.74;">Alex Cook</div>
+            <div class="sp-name" style="left:56%;top:93%;font-size:1.0em;transform:rotate(4deg);opacity:0.74;">Jared Morris</div>
+            <div class="sp-name" style="left:3%;top:97%;font-size:1.05em;transform:rotate(-4deg);opacity:0.72;">Asa Wong</div>
+            <div class="sp-name" style="left:56%;top:97%;font-size:1.0em;transform:rotate(-6deg);opacity:0.72;">Class of '26</div>
+          </div>
+
+          <div class="sp-border"></div>
+
+          <!-- MAIN CONTENT -->
+          <div class="sp-content">
+            <img class="sp-logo" src="../IMMLogos2/WhiteExponentialLogo.svg" alt="IMM Senior Show 2026" />
+            <div class="sp-date">May 8<sup>th</sup>, 2026</div>
+            <div class="sp-info">
+              <div class="sp-loc">AIMM · The College of New Jersey · Ewing, NJ</div>
+              <div class="sp-time">6–9 PM</div>
+              <span class="sp-free">Free &amp; Open to the Public</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMPROVEMENT NOTES -->
+        <div class="sig-notes-col">
+          <div class="intro-note">
+            Solid concept — the signature field is genuinely personal and different from every other senior show poster. These six changes make it production-ready without losing what makes it yours.
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag fix">Fix</span> Logo</div>
+            <div class="sf-text">The original typed "IMM" + "Senior Showcase" in two different styles fights itself. Replaced with <strong>WhiteExponentialLogo.svg</strong> — one unified mark that already has both lines locked together with the right weight relationship.</div>
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag fix">Fix</span> Signatures</div>
+            <div class="sf-text">Names were same-weight as the event info — made it hard to read. Moved signatures to a lighter layer (0.50–0.82 opacity, fading toward the center text zone). They read as atmosphere, not noise.</div>
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag fix">Fix</span> Date presentation</div>
+            <div class="sf-text">The emoji pin + clock icons read as casual. Replaced with a frosted glass info chip — same date and location, but typographically consistent with the rest of the brand.</div>
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag fix">Fix</span> Location</div>
+            <div class="sf-text">"AIMM" alone means nothing to anyone who hasn't been to campus. Full name: <strong>AIMM · The College of New Jersey · Ewing, NJ</strong>.</div>
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag add">Add</span> Free &amp; Open to the Public</div>
+            <div class="sf-text">Was missing entirely. This removes the single biggest reason people don't show up — they assume they need a student ID or a ticket.</div>
+          </div>
+
+          <div class="sig-fix">
+            <div class="sf-label"><span class="sf-tag keep">Keep</span> Mountain backdrop + all 37 signatures</div>
+            <div class="sf-text">The illustrated landscape and the signed names are what make this design actually yours. Every student's name is on the poster — that alone gets people sharing it. Keep both.</div>
+          </div>
+        </div>
+
+      </div><!-- /sig-section-wrap -->
+    </div>
+  </div><!-- /sig poster row -->
+
+  <!-- ROW 4: MERCH (full width) -->
+  <div class="grid section-gap">
+    <div class="panel pad col-12">
+      <h2>Buy the Merch</h2>
+      <p>Badge-drop energy — the "'26" mark inside a circular stamp, with a direct CTA. Feels like a limited-edition release rather than a generic store link.</p>
+
+      <div class="merch-inner mt">
+
+        <div class="merch-badge-wrap">
+          <div class="merch-stamp">
+            <img src="../IMMLogos2/PNG/26 White.png" alt="'26 mark" />
+          </div>
+        </div>
+
+        <div class="merch-copy">
+          <div class="merch-headline">Grab yours<br>before the show.</div>
+          <div class="merch-sub">
+            Hoodies, tees, and totes with the official '26 mark. Ships before May 8 if you order early.
+            Limited run — no restock after the show.
+          </div>
+          <div class="merch-products">
+            <span class="product-chip">Hoodie</span>
+            <span class="product-chip">Tee</span>
+            <span class="product-chip">Tote</span>
+            <span class="product-chip">Sticker Sheet</span>
+          </div>
+          <a class="merch-cta-btn"
+             href="https://imm-senior-class-store.printify.me/"
+             target="_blank"
+             rel="noopener">
+            Shop the Drop →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /row 3 -->
+
+  <!-- BOTTOM NOTES -->
+  <div class="bottom-notes">
+    <div class="bnote">
+      <strong>Main graphic</strong>
+      <span>Landscape scene + big wordmark + one date chip. Use everywhere as the primary visual.</span>
+    </div>
+    <div class="bnote">
+      <strong>Motion graphic</strong>
+      <span>Three-layer CSS animation: background drift, logo settle, date reveal. Export as video or keep as live CSS for web.</span>
+    </div>
+    <div class="bnote">
+      <strong>Map</strong>
+      <span>Real floor plan base with track-colored pins. Update room assignments before printing.</span>
+    </div>
+    <div class="bnote">
+      <strong>Flyers</strong>
+      <span>Same postcard system, three colorways: green for print, rust for social, gold for email.</span>
+    </div>
+    <div class="bnote">
+      <strong>Merch</strong>
+      <span>Badge-drop style with the '26 mark. Limited run framing drives urgency before the show.</span>
+    </div>
+  </div>
+
+  <div class="page-footer">Standalone concept board — no inject files were modified.</div>
+
+</main>
+</body>
+</html>

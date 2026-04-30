@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMM Senior Show 2026 - Promo Direction Board</title>
+  <style>
+    :root {
+      --bg: #07110d;
+      --bg2: #0d1d17;
+      --panel: rgba(13, 28, 22, 0.78);
+      --panel-strong: rgba(18, 47, 37, 0.94);
+      --line: rgba(215, 198, 160, 0.18);
+      --paper: #f3edda;
+      --ink: #edf2eb;
+      --muted: rgba(237, 242, 235, 0.72);
+      --rust: #c75145;
+      --green: #4e985f;
+      --gold: #d6a034;
+      --teal: #3f6f9b;
+      --violet: #8d5aa9;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --radius: 28px;
+      --radius-sm: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Avenir Next", "Avenir", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 12% 0%, rgba(78, 152, 95, 0.22), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(199, 81, 69, 0.20), transparent 48%),
+        radial-gradient(900px 500px at 50% 100%, rgba(214, 160, 52, 0.14), transparent 45%),
+        linear-gradient(180deg, #06100d 0%, #0d1714 42%, #0a1411 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+      opacity: 0.42;
+    }
+
+    .wrap {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 30px 0 44px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .hero-main, .hero-side, .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(18, 37, 31, 0.92), rgba(8, 16, 13, 0.92));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-main {
+      position: relative;
+      min-height: 460px;
+      overflow: hidden;
+      padding: 32px;
+      isolation: isolate;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 360px at 0% 0%, rgba(78,152,95,0.24), transparent 52%),
+        radial-gradient(700px 300px at 100% 0%, rgba(199,81,69,0.18), transparent 46%),
+        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 40%);
+      z-index: -2;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(214,160,52,0.22), transparent 62%);
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: rgba(237, 242, 235, 0.75);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      border-radius: 999px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    .lede {
+      margin: 18px 0 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .logo-stack {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .asset-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .asset-card {
+      border-radius: calc(var(--radius) - 8px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      position: relative;
+      min-height: 0;
+    }
+
+    .asset-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .asset-card .label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      right: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(7, 17, 13, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.84rem;
+      color: rgba(237, 242, 235, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .main-graphic { grid-column: span 7; }
+    .motion-graphic { grid-column: span 5; }
+    .map-panel { grid-column: span 6; }
+    .flyers-panel { grid-column: span 3; }
+    .merch-panel { grid-column: span 3; }
+
+    .mock {
+      margin-top: 16px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    }
+
+    .poster {
+      position: relative;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(214,160,52,0.25), transparent 22%),
+        radial-gradient(circle at 82% 20%, rgba(78,152,95,0.28), transparent 20%),
+        linear-gradient(135deg, rgba(199,81,69,0.15), rgba(20, 39, 31, 0.88) 42%, rgba(63,111,155,0.15));
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      isolation: isolate;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      z-index: -1;
+    }
+
+    .poster img.hero-logo {
+      width: min(90%, 560px);
+      filter: drop-shadow(0 20px 36px rgba(0,0,0,0.42));
+      image-rendering: auto;
+    }
+
+    .poster-copy {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+
+    .poster-copy .block {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(7,17,13,0.76);
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 28ch;
+    }
+
+    .poster-copy .block strong {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .poster-copy .block span {
+      display: block;
+      color: rgba(237,242,235,0.92);
+      line-height: 1.4;
+      font-size: 0.92rem;
+    }
+
+    .motion-frame {
+      margin-top: 16px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      min-height: 420px;
+      background:
+        linear-gradient(135deg, rgba(214,160,52,0.08), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+        #0b1612;
+    }
+
+    .motion-line {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 74px, rgba(255,255,255,0.03) 74px 75px),
+        radial-gradient(circle at 20% 30%, rgba(78,152,95,0.30), transparent 20%),
+        radial-gradient(circle at 72% 20%, rgba(199,81,69,0.24), transparent 16%),
+        radial-gradient(circle at 54% 70%, rgba(214,160,52,0.18), transparent 20%);
+      opacity: 0.95;
+    }
+
+    .ticker {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: 52%;
+      transform: translateY(-50%) rotate(-8deg);
+      display: flex;
+      gap: 16px;
+      white-space: nowrap;
+      animation: drift 16s linear infinite;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(243,237,218,0.88);
+    }
+
+    .ticker span {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(7,17,13,0.72);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+    }
+
+    .motion-meta {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      max-width: 26ch;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(7,17,13,0.76);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .motion-meta strong,
+    .promo-stack strong,
+    .merch-copy strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .motion-meta span,
+    .promo-stack span,
+    .merch-copy span {
+      color: rgba(237,242,235,0.92);
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
+    .map-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .map-art, .flyer-art, .merch-art {
+      min-height: 318px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .map-art {
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(214,160,52,0.10), transparent 24%),
+        linear-gradient(135deg, rgba(63,111,155,0.12), rgba(11,29,23,0.96));
+      padding: 18px;
+    }
+
+    .map-art .floor {
+      height: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.05), transparent),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 82px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 66px),
+        #0f1e19;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floor::before {
+      content: "Floor map concept";
+      position: absolute;
+      left: 18px;
+      top: 16px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      color: rgba(237,242,235,0.72);
+    }
+
+    .pin {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 14px 24px rgba(0,0,0,0.2);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .pin::after {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(7,17,13,0.9);
+      box-shadow: inset 0 0 0 4px rgba(255,255,255,0.28);
+    }
+
+    .pin span {
+      position: absolute;
+      transform: rotate(45deg) translateY(42px);
+      width: 140px;
+      text-align: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pin.one { left: 18%; top: 34%; background: var(--rust); }
+    .pin.two { left: 56%; top: 22%; background: var(--green); }
+    .pin.three { left: 72%; top: 58%; background: var(--gold); }
+    .pin.four { left: 32%; top: 66%; background: var(--teal); }
+
+    .promo-stack {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+    }
+
+    .flyer-art {
+      background:
+        linear-gradient(180deg, rgba(199,81,69,0.16), transparent 32%),
+        linear-gradient(135deg, rgba(20,39,31,0.94), rgba(11,26,21,0.94));
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .flyer {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+    }
+
+    .flyer h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .flyer .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      margin-bottom: 12px;
+    }
+
+    .flyer .body {
+      color: rgba(237,242,235,0.76);
+      line-height: 1.5;
+      font-size: 0.88rem;
+    }
+
+    .flyer .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-top: 16px;
+      color: rgba(237,242,235,0.72);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .merch-art {
+      position: relative;
+      padding: 18px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(214,160,52,0.28), transparent 28%),
+        radial-gradient(circle at 52% 60%, rgba(78,152,95,0.18), transparent 28%),
+        linear-gradient(180deg, rgba(12,30,23,0.96), rgba(4,10,8,0.98));
+    }
+
+    .merch-cta {
+      width: min(290px, 100%);
+      aspect-ratio: 1;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .merch-cta .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(199,81,69,0.92);
+      color: white;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 20px 36px rgba(0,0,0,0.22);
+      margin-bottom: 16px;
+    }
+
+    .merch-cta .buy {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .merch-cta .small {
+      color: rgba(237,242,235,0.78);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      max-width: 20ch;
+    }
+
+    .notes {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .note {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 112px;
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.74rem;
+      color: var(--gold);
+    }
+
+    .note span {
+      color: rgba(237,242,235,0.78);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: rgba(237,242,235,0.5);
+      font-size: 0.82rem;
+      text-align: right;
+      letter-spacing: 0.04em;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(-50%) translateX(0) rotate(-8deg); }
+      to { transform: translateY(-50%) translateX(-18%) rotate(-8deg); }
+    }
+
+    @media (max-width: 1100px) {
+      .hero, .grid, .notes { grid-template-columns: 1fr; }
+      .main-graphic, .motion-graphic, .map-panel, .flyers-panel, .merch-panel { grid-column: auto; }
+      .hero-main { min-height: 0; }
+      .map-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 20px, 1440px); padding-top: 18px; }
+      .hero-main, .panel { padding: 16px; }
+      h1 { font-size: clamp(2.2rem, 14vw, 4rem); }
+      .poster { min-height: 320px; }
+      .motion-frame { min-height: 320px; }
+      .flyer-art { grid-template-columns: 1fr; }
+      .merch-cta .buy { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">Separate concept board</div>
+        <h1>Promo language built from the assets you already have.</h1>
+        <p class="lede">
+          This is a clean direction board for the main graphic, motion graphic, map, flyers, and merch CTA.
+          It leans into the pixel logo, the bright yellow mark, and the portrait/photo style instead of forcing a new look.
+        </p>
+        <div class="logo-stack">
+          <span class="asset-chip">Hero wordmark / pixel logo</span>
+          <span class="asset-chip">High-contrast accent logo</span>
+          <span class="asset-chip">Portrait-led cutout</span>
+          <span class="asset-chip">Campus map language</span>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="asset-card">
+          <img src="../2026 IMM Project Logos/LumberLogo.png" alt="Lumber logo asset" />
+          <div class="label">Main graphic anchor: pixel logo, cropped large, with animated color noise or vine-like edge flicker.</div>
+        </div>
+        <div class="asset-card">
+          <img src="../2026 IMM Project Logos/RasimowiczMaimmCityLogo.png" alt="Bright yellow logo asset" />
+          <div class="label">Secondary accent: use as a loud stamp, sticker, or animated flash frame.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel main-graphic">
+        <h2>Main Graphic</h2>
+        <p>
+          Make the hero a bold poster tile: the pixel logo fills most of the frame, the portrait becomes a supporting cutout,
+          and the background uses forest-black with rust, moss, and a warm gold pop. Keep it punchy and graphic, not busy.
+        </p>
+        <div class="mock poster">
+          <img class="hero-logo" src="../2026 IMM Project Logos/LumberLogo.png" alt="Main poster graphic" />
+          <div class="poster-copy">
+            <div class="block">
+              <strong>Look</strong>
+              <span>Big logo, cropped tight, with rough edge energy and a subtle nature-tech texture.</span>
+            </div>
+            <div class="block">
+              <strong>Use</strong>
+              <span>Website hero, social header, poster, and stage screen opener.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel motion-graphic">
+        <h2>Motion Graphic</h2>
+        <p>
+          Think looping reveal: the logo types in, then a band of color and texture sweeps through it. Use the yellow mark as a fast punch-in,
+          then settle into a slow ambient drift for holding screens.
+        </p>
+        <div class="mock motion-frame">
+          <div class="motion-line"></div>
+          <div class="motion-meta">
+            <strong>Motion idea</strong>
+            <span>Letterforms build from left to right, then a bright yellow stamp crosses the screen and resolves into the final lockup.</span>
+          </div>
+          <div class="ticker" aria-hidden="true">
+            <span>IMM Senior Show 2026</span>
+            <span>IMM Senior Show 2026</span>
+            <span>IMM Senior Show 2026</span>
+            <span>IMM Senior Show 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel map-panel">
+        <h2>Map</h2>
+        <p>
+          Build the map like a collectible campus card: dark floor plan, bright pins, and short labels. The goal is clarity first,
+          with the graphic system making it feel like part of the show branding.
+        </p>
+        <div class="map-grid">
+          <div class="map-art">
+            <div class="floor">
+              <div class="pin one"><span>Room 101</span></div>
+              <div class="pin two"><span>Gallery</span></div>
+              <div class="pin three"><span>Lobby</span></div>
+              <div class="pin four"><span>Studio</span></div>
+            </div>
+          </div>
+          <div class="promo-stack">
+            <div class="asset-card" style="min-height: 0; height: 100%;">
+              <img src="../Photos/Sorraya-Brashear-Evans.png" alt="Portrait asset for supporting cutout" />
+              <div class="label">Use portraits as cutouts on wayfinding panels, not as crowded thumbnails.</div>
+            </div>
+            <div class="panel" style="padding: 16px; background: rgba(255,255,255,0.04);">
+              <strong>Map tone</strong>
+              <span>Clean labels, bold room chips, and one accent color per section so visitors can scan it fast.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel flyers-panel">
+        <h2>Flyers</h2>
+        <p>
+          Make the flyer family consistent: one vertical main invite, one smaller recap version, and one clean social tile.
+          Keep the same type, same colors, same logo treatment.
+        </p>
+        <div class="flyer-art">
+          <div class="flyer">
+            <div>
+              <h3>Main Invite</h3>
+              <div class="bar"></div>
+              <div class="body">Use the pixel logo as the top anchor. Put date, time, and location in a stacked block below it.</div>
+            </div>
+            <div class="footer"><span>Print</span><span>11x17</span></div>
+          </div>
+          <div class="flyer">
+            <div>
+              <h3>Social Cut</h3>
+              <div class="bar" style="background: linear-gradient(90deg, var(--green), var(--teal));"></div>
+              <div class="body">Use a tighter crop and a big event bar so it reads on phones without extra detail.</div>
+            </div>
+            <div class="footer"><span>IG / Story</span><span>1080x1350</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel merch-panel">
+        <h2>Buy The Merch</h2>
+        <p>
+          Make the merch moment feel like a badge drop, not an ad. One bold circle or sticker shape, one strong CTA,
+          and the bright yellow logo as the attention grabber.
+        </p>
+        <div class="merch-art">
+          <div class="merch-cta">
+            <div class="badge">Shop</div>
+            <div class="buy">Buy the merch</div>
+            <div class="small">Treat it like a collectible release: hoodie, tote, or tee with the logo front and center.</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="notes">
+      <div class="note">
+        <strong>Best visual path</strong>
+        <span>Dark forest base, rust accent, warm gold highlight, and the logo used as the main object.</span>
+      </div>
+      <div class="note">
+        <strong>Main graphic</strong>
+        <span>Use the pixel logo as the hero, with rough texture and a big cropped silhouette.</span>
+      </div>
+      <div class="note">
+        <strong>Motion</strong>
+        <span>Logo build-in, color sweep, then a looping hold for screens and socials.</span>
+      </div>
+      <div class="note">
+        <strong>Map</strong>
+        <span>Simple floor plan, bold room markers, and minimal labels for fast reading.</span>
+      </div>
+      <div class="note">
+        <strong>Merch CTA</strong>
+        <span>Sticker-like badge with the yellow logo and a short buy-now line.</span>
+      </div>
+    </section>
+
+    <div class="footer">Standalone concept board created outside the inject files.</div>
+  </main>
+</body>
+</html>

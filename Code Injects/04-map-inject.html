@@ -28,6 +28,29 @@
   .imm-map *, .imm-map *::before, .imm-map *::after { box-sizing: border-box; margin: 0; padding: 0; }
   .imm-map a { text-decoration: none; color: inherit; }
 
+  /* Squarespace Code Block cleanup */
+  .page-section:has(.imm-map),
+  .page-section:has(.imm-map) .section-border,
+  .page-section:has(.imm-map) .section-background,
+  .page-section:has(.imm-map) .content,
+  .page-section:has(.imm-map) .content-wrapper,
+  .sqs-block-code:has(.imm-map),
+  .sqs-block-code:has(.imm-map) .sqs-block-content,
+  .sqs-layout:has(.imm-map),
+  .sqs-layout:has(.imm-map) .sqs-row,
+  .sqs-layout:has(.imm-map) .sqs-col-12 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
   .imm-map {
     --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
     --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
@@ -474,7 +497,7 @@
     }
     .imm-map-scroller {
       border-radius: 10px;
-      scroll-snap-type: x proximity;
+      scroll-snap-type: none;
       -webkit-overflow-scrolling: touch;
     }
     .imm-map-container {

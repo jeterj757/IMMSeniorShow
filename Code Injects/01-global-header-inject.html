@@ -48,21 +48,19 @@
   --imm-card-shadow: 0 14px 32px rgba(10, 38, 28, 0.32);
 }
 
-/* ── Full-page section scroll snap ──
-   Each .imm-section snaps to the viewport on the home page.
-   NOTE: if this conflicts with Squarespace's own scroll on other pages,
-   scope it to the home page body class or remove from this global inject. */
+/* ── Global scroll behavior ── */
 html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 
 /* Base styles shared by all four homepage sections */
 .imm-section {
-  height: 100svh;
   min-height: 100svh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  height: auto;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+  overflow: visible;
   position: relative;
   box-sizing: border-box;
 }
@@ -77,5 +75,17 @@ textarea,
 label,
 small {
   letter-spacing: var(--imm-ui-tracking);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+body {
+  font-weight: 500;
+}
+
+b,
+strong {
+  font-weight: 650;
 }
 </style>
