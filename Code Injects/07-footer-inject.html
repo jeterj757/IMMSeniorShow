@@ -1,0 +1,230 @@
+<!--
+  IMM SENIOR SHOW 2026 — GLOBAL FOOTER INJECT
+  Paste into: Settings > Advanced > Code Injection > Footer
+-->
+
+<style>
+  :root {
+    --imm-footer-display: "Norwester", "Arial Narrow", Impact, sans-serif;
+    --imm-footer-ui: "Avenir Next", "Avenir", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --imm-footer-forest: #123f36;
+    --imm-footer-deep: #0b261f;
+    --imm-footer-paper: #f3edda;
+    --imm-footer-rust: #c75145;
+    --imm-footer-line: rgba(243, 237, 218, 0.18);
+  }
+
+  .imm-site-footer,
+  .imm-site-footer * {
+    box-sizing: border-box;
+  }
+
+  .imm-site-footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(11, 38, 31, 0.96), rgba(18, 63, 54, 0.94)),
+      radial-gradient(rgba(243, 237, 218, 0.08) 1.2px, transparent 1.2px);
+    background-size: auto, 24px 24px;
+    color: var(--imm-footer-paper);
+    font-family: var(--imm-footer-ui);
+  }
+
+  .imm-site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20White.svg") center / 1180px auto repeat;
+    opacity: 0.075;
+    mix-blend-mode: screen;
+  }
+
+  .imm-site-footer-inner {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: clamp(34px, 5vw, 58px) 0;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(260px, 1.2fr) minmax(220px, 0.9fr);
+    gap: clamp(24px, 4vw, 54px);
+    align-items: center;
+  }
+
+  .imm-site-footer-logo {
+    display: inline-flex;
+    width: min(170px, 48vw);
+  }
+
+  .imm-site-footer-logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .imm-site-footer-heading {
+    margin: 0 0 12px;
+    font-family: var(--imm-footer-display);
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .imm-site-footer-copy,
+  .imm-site-footer-address {
+    margin: 0;
+    color: rgba(243, 237, 218, 0.84);
+    font-size: clamp(0.95rem, 1.1vw, 1.06rem);
+    line-height: 1.55;
+  }
+
+  .imm-site-footer-address {
+    font-style: normal;
+  }
+
+  .imm-site-footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .imm-site-footer a {
+    color: var(--imm-footer-paper);
+    text-decoration: none;
+  }
+
+  .imm-site-footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 9px 14px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--imm-footer-line);
+    background: rgba(243, 237, 218, 0.08);
+    font-size: 0.82rem;
+    font-weight: 760;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+  }
+
+  .imm-site-footer-link:hover,
+  .imm-site-footer-link:focus-visible {
+    background: rgba(243, 237, 218, 0.16);
+    border-color: rgba(243, 237, 218, 0.38);
+    outline: none;
+    transform: translateY(-2px);
+  }
+
+  .imm-site-footer-bottom {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(243, 237, 218, 0.14);
+  }
+
+  .imm-site-footer-bottom-inner {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 14px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    color: rgba(243, 237, 218, 0.68);
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 820px) {
+    .imm-site-footer-inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+      text-align: left;
+    }
+
+    .imm-site-footer-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .imm-site-footer-bottom-inner {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .imm-site-footer-inner,
+    .imm-site-footer-bottom-inner {
+      width: min(100% - 28px, 1180px);
+    }
+
+    .imm-site-footer-logo {
+      width: 132px;
+    }
+
+    .imm-site-footer-heading {
+      font-size: 1.72rem;
+    }
+
+    .imm-site-footer-links {
+      flex-direction: column;
+    }
+
+    .imm-site-footer-link {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var FOOTER_ID = "imm-site-footer";
+  var LOGO_SRC = "https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMLogos2/immpluglogo_white.webp";
+
+  function injectFooter() {
+    if (document.getElementById(FOOTER_ID)) return;
+
+    var footer = document.createElement("footer");
+    footer.id = FOOTER_ID;
+    footer.className = "imm-site-footer";
+    footer.setAttribute("aria-label", "Department and contact information");
+    footer.innerHTML =
+      '<div class="imm-site-footer-inner">' +
+        '<a class="imm-site-footer-logo" href="/home" aria-label="IMM Senior Show home">' +
+          '<img src="' + LOGO_SRC + '" alt="IMM Senior Show">' +
+        '</a>' +
+        '<div>' +
+          '<h2 class="imm-site-footer-heading">Department of Design &amp; Creative Technology</h2>' +
+          '<p class="imm-site-footer-copy">School of the Arts and Communication<br>The College of New Jersey</p>' +
+        '</div>' +
+        '<div class="imm-site-footer-links" aria-label="Footer links">' +
+          '<a class="imm-site-footer-link" href="https://dct.tcnj.edu/" target="_blank" rel="noopener">DCT Website</a>' +
+          '<a class="imm-site-footer-link" href="mailto:dct@tcnj.edu">dct@tcnj.edu</a>' +
+          '<a class="imm-site-footer-link" href="https://www.instagram.com/tcnj_imm/" target="_blank" rel="noopener">Instagram</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="imm-site-footer-bottom">' +
+        '<div class="imm-site-footer-bottom-inner">' +
+          '<address class="imm-site-footer-address">2000 Pennington Rd, Ewing Township, NJ 08618</address>' +
+          '<span>IMM Senior Show 2026</span>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(footer);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectFooter);
+  } else {
+    injectFooter();
+  }
+})();
+</script>

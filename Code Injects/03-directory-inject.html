@@ -13,7 +13,9 @@
   <style>
   @font-face {
     font-family: "Norwester";
-    src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+    src: local("Norwester"),
+         local("norwester"),
+         url("./fonts/norwester.otf") format("opentype");
     font-display: swap;
   }
 
@@ -28,6 +30,17 @@
   .imm-dir *, .imm-dir *::before, .imm-dir *::after { box-sizing: border-box; margin: 0; padding: 0; }
   .imm-dir a { text-decoration: none; color: inherit; }
   .imm-dir img { display: block; max-width: 100%; }
+
+  .imm-modal-bg,
+  .map-popover {
+    --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
+    --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+    --pill:   999px;
+    --forest: #123f36;
+    --paper:  #f3edda;
+    --line:   #d4c9ad;
+    font-family: var(--ui);
+  }
 
   /* Squarespace Code Block cleanup */
   .page-section:has(.imm-dir),
@@ -563,12 +576,42 @@
   }
   .imm-modal-close-btn:hover { background: rgba(0,0,0,0.05); }
 
+  .imm-modal-bg {
+    --modal-color: #123f36;
+    --modal-pale: #f3edda;
+    background: color-mix(in srgb, var(--modal-color) 42%, rgba(10,22,16,0.72)) !important;
+  }
+
+  .imm-modal {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--modal-pale) 82%, #fff 18%), #fffaf0) !important;
+    border: 2px solid color-mix(in srgb, var(--modal-color) 42%, #fff 58%) !important;
+  }
+
+  .imm-modal-logo-box {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--modal-pale) 76%, #fff 24%), #fffaf0) !important;
+    border-color: color-mix(in srgb, var(--modal-color) 26%, #fff 74%) !important;
+  }
+
+  .imm-modal-student,
+  .imm-modal-blurb {
+    color: color-mix(in srgb, var(--modal-color) 48%, #1c2422 52%) !important;
+  }
+
+  .imm-modal-room-badge,
+  .imm-modal-close-btn {
+    background: color-mix(in srgb, var(--modal-pale) 76%, #fff 24%) !important;
+    border-color: color-mix(in srgb, var(--modal-color) 24%, #fff 76%) !important;
+    color: var(--modal-color) !important;
+  }
+
   @media (max-width: 640px) {
     .imm-dir {
       background: #90a675;
       background-image:
         linear-gradient(180deg, rgba(243,237,218,0.78) 0 220px, rgba(144,166,117,0.94) 220px),
-        url("../AlyosiusPatrimonoAssets/landscapes/14.png");
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png");
       background-size: cover;
       background-position: center top;
       padding-bottom: 42px;
@@ -756,7 +799,7 @@
     --dir-active: #90a675;
     --dir-active-soft: rgba(144,166,117,0.64);
     --dir-active-faint: rgba(144,166,117,0.24);
-    --dir-scene: url("../AlyosiusPatrimonoAssets/landscapes/14.png");
+    --dir-scene: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png");
     position: relative;
     isolation: isolate;
     background:
@@ -1027,7 +1070,7 @@
     border-radius: 10px;
     background:
       linear-gradient(180deg, rgba(11,28,24,0.94), rgba(14,44,36,0.92)),
-      url("../AlyosiusPatrimonoAssets/landscapes/14.png") center / cover;
+      url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center / cover;
     border: 2px solid rgba(234,245,220,0.28);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 12px 0 rgba(6,20,14,0.22);
     backdrop-filter: none;
@@ -1164,7 +1207,7 @@
       margin-left: 320px;
       background:
         linear-gradient(90deg, rgba(243,237,218,0.98) 0%, rgba(243,237,218,0.62) 47%, rgba(243,237,218,0.90) 100%),
-        url("../AlyosiusPatrimonoAssets/landscapes/18.png") center 39% / cover no-repeat;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center 39% / cover no-repeat;
     }
     .imm-dir-hero-inner {
       max-width: none;
@@ -1226,7 +1269,7 @@
       overflow: hidden auto;
       background:
         linear-gradient(180deg, rgba(255,250,238,0.97) 0%, rgba(241,231,205,0.94) 72%, rgba(203,218,201,0.90) 100%),
-        url("../AlyosiusPatrimonoAssets/landscapes/14.png") center bottom / 185% auto no-repeat;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center bottom / 185% auto no-repeat;
       border: 2px solid rgba(255,255,255,0.74);
       box-shadow: 0 12px 30px rgba(18,63,54,0.18);
     }
@@ -1391,7 +1434,7 @@
       border-radius: 10px;
       background:
         linear-gradient(180deg, rgba(255,251,239,0.98) 0%, rgba(246,238,216,0.96) 68%, rgba(228,232,216,0.95) 100%),
-        url("../AlyosiusPatrimonoAssets/landscapes/14.png") center bottom / 210% auto no-repeat;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center bottom / 210% auto no-repeat;
       border: 1px solid rgba(255,255,255,0.82);
       box-shadow: 0 18px 44px rgba(5,26,20,0.22);
     }
@@ -1500,7 +1543,7 @@
       border-bottom: 4px solid rgba(199,81,69,0.76);
       background:
         linear-gradient(90deg, rgba(232,244,248,0.97) 0%, rgba(243,237,218,0.70) 54%, rgba(246,238,216,0.98) 100%),
-        url("../AlyosiusPatrimonoAssets/landscapes/18.png") center 45% / cover no-repeat;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center 45% / cover no-repeat;
     }
     .imm-dir-hero-inner {
       display: flex;
@@ -1663,7 +1706,7 @@
     .imm-dir-hero {
       background:
         linear-gradient(90deg, rgba(232,244,248,0.97) 0%, rgba(243,237,218,0.70) 54%, rgba(246,238,216,0.98) 100%),
-        url("../AlyosiusPatrimonoAssets/landscapes/18.png") center 45% / cover no-repeat;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center 45% / cover no-repeat;
       text-align: center;
       padding: 28px 16px 20px;
       border-bottom: 2px solid rgba(199,81,69,0.55);
@@ -1971,7 +2014,7 @@
       padding: clamp(28px, 4vh, 46px) 32px 34px !important;
       background:
         linear-gradient(180deg, rgba(255,250,235,0.92), rgba(245,239,213,0.82)),
-        url("../AlyosiusPatrimonoAssets/landscapes/18.png") center bottom / cover no-repeat !important;
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center bottom / cover no-repeat !important;
       box-shadow: none !important;
       overflow-y: auto !important;
       z-index: 40 !important;
@@ -2207,7 +2250,7 @@
     .imm-dir-side {
       background:
         linear-gradient(180deg, rgba(255,250,235,0.91), color-mix(in srgb, var(--dir-active-faint, rgba(199,81,69,0.20)) 42%, rgba(245,239,213,0.80))),
-        var(--dir-scene, url("../AlyosiusPatrimonoAssets/landscapes/18.png")) center bottom / cover no-repeat !important;
+        var(--dir-scene, url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png")) center bottom / cover no-repeat !important;
     }
 
     .imm-dir-content {
@@ -2364,8 +2407,8 @@
     }
   }
 
-  /* ── Final bleed/scaling layer: tablet uses the clean no-sidebar sheet ── */
-  @media (max-width: 1180px) {
+  /* ── Final bleed/scaling layer: small screens use the clean no-sidebar sheet ── */
+  @media (max-width: 900px) {
     .imm-dir-side {
       display: none !important;
     }
@@ -2611,7 +2654,7 @@
     border-bottom: 1px solid rgba(18,63,54,0.10) !important;
   }
 
-  @media (min-width: 1181px) {
+  @media (min-width: 901px) {
     .imm-dir {
       background:
         linear-gradient(90deg, color-mix(in srgb, var(--dir-active, #c75145) 42%, #0e4237 58%) 0 330px, transparent 330px),
@@ -2625,7 +2668,7 @@
           color-mix(in srgb, var(--dir-active-wash, rgba(199,81,69,0.12)) 70%, rgba(255,250,235,0.88)),
           color-mix(in srgb, var(--dir-active-faint, rgba(199,81,69,0.20)) 52%, rgba(245,239,213,0.74))
         ),
-        var(--dir-scene, url("../AlyosiusPatrimonoAssets/landscapes/18.png")) center bottom / cover no-repeat !important;
+        var(--dir-scene, url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png")) center bottom / cover no-repeat !important;
     }
 
     .imm-dir-content {
@@ -2697,7 +2740,7 @@
     }
   }
 
-  @media (max-width: 1180px) {
+  @media (max-width: 900px) {
     .imm-dir-content {
       background:
         linear-gradient(180deg, var(--dir-active-wash, rgba(199,81,69,0.12)) 0 84px, #eef0ed 84px 100%) !important;
@@ -2731,7 +2774,7 @@
     border-color: rgba(255,248,237,0.88) !important;
   }
 
-  @media (min-width: 1181px) {
+  @media (min-width: 901px) {
     .imm-dir-table thead th,
     .imm-dir-table td {
       padding: 12px 24px !important;
@@ -2780,17 +2823,14 @@
     }
   }
 
-  /* ── Mobile/tablet category block: controls live inside the project color field ── */
-  @media (max-width: 1180px) {
+  /* ── Mobile category block: keep controls clean above the project list ── */
+  @media (max-width: 900px) {
     .imm-dir-bar {
       padding: 16px 12px 14px !important;
-      background:
-        linear-gradient(180deg,
-          color-mix(in srgb, var(--dir-active, #c75145) 72%, #123f36 28%) 0%,
-          color-mix(in srgb, var(--dir-active, #c75145) 82%, #efe5d3 18%) 100%
-        ) !important;
+      background: transparent !important;
       border-top: 0 !important;
       border-bottom: 0 !important;
+      box-shadow: none !important;
     }
 
     .imm-dir-bar-inner {
@@ -2823,11 +2863,7 @@
     .imm-dir-content {
       padding-top: 0 !important;
       min-height: calc(100svh + 260px) !important;
-      background:
-        linear-gradient(180deg,
-          color-mix(in srgb, var(--dir-active, #c75145) 82%, #efe5d3 18%) 0 96px,
-          #eef0ed 96px 100%
-        ) !important;
+      background: #eef0ed !important;
     }
 
     .imm-dir-track-hdr {
@@ -2846,6 +2882,393 @@
       margin-top: 0 !important;
     }
   }
+
+  /* ── Launch type correction: keep display labels in Norwester ── */
+  .imm-dir .imm-dir-project,
+  .imm-dir .imm-pj-project,
+  .imm-dir .imm-dir-cat-badge,
+  .imm-dir .imm-dir-side-btn span,
+  .imm-modal-track-lbl {
+    font-family: var(--d) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.035em !important;
+  }
+
+  .imm-dir .imm-dir-cat-badge,
+  .imm-dir .imm-dir-side-btn span,
+  .imm-modal-track-lbl {
+    text-transform: uppercase !important;
+  }
+
+  /* ── Final responsive cleanup: hero controls, dividers, icons ── */
+  .imm-dir-hero {
+    border-bottom: 0 !important;
+  }
+
+  .imm-dir-sub::before,
+  .imm-dir-sub::after,
+  .imm-dir-h1::before,
+  .imm-dir-h1::after {
+    display: none !important;
+  }
+
+  .imm-dir-side-title {
+    border-bottom: 0 !important;
+  }
+
+  .imm-dir-side-title::after {
+    display: none !important;
+  }
+
+  .imm-dir-side-brand {
+    display: none !important;
+  }
+
+  .imm-dir-home-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 42px !important;
+    margin-top: clamp(4px, 0.8vh, 10px) !important;
+    border-radius: 999px !important;
+    border: 1.5px solid rgba(18,63,54,0.18) !important;
+    background: rgba(255,250,238,0.82) !important;
+    color: var(--forest) !important;
+    font-family: var(--d) !important;
+    font-size: clamp(0.76rem, 1.5vh, 0.92rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.045em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    box-shadow: 0 5px 12px rgba(18,63,54,0.08) !important;
+  }
+
+  .imm-dir-home-link:hover,
+  .imm-dir-home-link:focus-visible {
+    background: var(--forest) !important;
+    color: #fff8ea !important;
+    outline: none !important;
+  }
+
+  .imm-dir-side-brand img {
+    filter:
+      brightness(0)
+      saturate(100%)
+      invert(18%)
+      sepia(43%)
+      saturate(696%)
+      hue-rotate(120deg)
+      brightness(92%)
+      contrast(92%) !important;
+  }
+
+  .imm-track-logo,
+  .imm-dir-side-btn img {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+    flex: 0 0 58px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    padding: 8px !important;
+    overflow: visible !important;
+  }
+
+  .imm-track-logo,
+  .imm-dir-side-btn img {
+    background: #fff8ed !important;
+    border-color: #4e985f !important;
+    filter:
+      saturate(1.35)
+      contrast(1.18)
+      drop-shadow(0 2px 5px rgba(18,63,54,0.16)) !important;
+  }
+
+  @media (min-width: 901px) {
+    .imm-dir-side {
+      overflow: hidden !important;
+      padding: clamp(12px, 1.45vh, 18px) 20px 16px !important;
+      gap: clamp(7px, 1vh, 10px) !important;
+    }
+
+    .imm-dir-side-brand {
+      width: clamp(118px, 13vh, 150px) !important;
+      margin-bottom: clamp(4px, 0.8vh, 10px) !important;
+    }
+
+    .imm-dir-side-title {
+      font-size: clamp(1.62rem, 4.5vh, 2.45rem) !important;
+      line-height: 0.92 !important;
+      padding-bottom: clamp(4px, 0.8vh, 10px) !important;
+      margin-bottom: 0 !important;
+    }
+
+    .imm-dir-side .imm-dir-bar-inner {
+      gap: clamp(6px, 0.8vh, 9px) !important;
+    }
+
+    .imm-dir-side .imm-dir-search,
+    .imm-dir-side .imm-track-select-wrap {
+      min-height: clamp(42px, 5.2vh, 50px) !important;
+      height: clamp(42px, 5.2vh, 50px) !important;
+    }
+
+    .imm-dir-side-nav {
+      gap: clamp(6px, 0.9vh, 10px) !important;
+      padding-bottom: 0 !important;
+    }
+
+    .imm-dir-side-btn {
+      grid-template-columns: 46px minmax(0, 1fr) !important;
+      min-height: clamp(50px, 7.4vh, 62px) !important;
+      padding: clamp(5px, 0.8vh, 8px) 10px !important;
+      gap: 10px !important;
+    }
+
+    .imm-dir-side-btn span {
+      font-size: clamp(0.72rem, 1.62vh, 0.95rem) !important;
+      line-height: 0.98 !important;
+    }
+
+    .imm-dir-side-btn img {
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      min-height: 46px !important;
+      max-width: 46px !important;
+      max-height: 46px !important;
+      flex-basis: 46px !important;
+      padding: 7px !important;
+    }
+
+    .imm-dir-track-hdr {
+      grid-template-columns: 70px minmax(0, 1fr) !important;
+      min-height: 104px !important;
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
+    }
+
+    .imm-dir-track-hdr span {
+      font-size: clamp(1.65rem, 2.4vw, 2.35rem) !important;
+      line-height: 0.96 !important;
+      white-space: normal !important;
+    }
+
+    .imm-dir-content {
+      background:
+        linear-gradient(180deg, var(--dir-active-muted, rgba(199,81,69,0.34)) 0 118px, rgba(238,240,237,0.94) 118px 100%),
+        url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center / cover fixed !important;
+      background-blend-mode: normal, soft-light !important;
+    }
+
+    .imm-dir-table-wrap {
+      margin-bottom: clamp(30px, 4.5vh, 48px) !important;
+    }
+
+    .imm-dir-table-wrap-ct {
+      min-height: 0 !important;
+      margin-bottom: 0 !important;
+      background: #ffffff !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .imm-dir-hero {
+      padding-bottom: 132px !important;
+      border-bottom: 0 !important;
+    }
+
+    .imm-dir-bar {
+      position: relative !important;
+      z-index: 4 !important;
+      margin-top: -116px !important;
+      padding: 0 12px 18px !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .imm-dir-bar::before,
+    .imm-dir-bar::after {
+      display: none !important;
+    }
+
+    .imm-dir-content {
+      background: #eef0ed !important;
+    }
+
+    .imm-dir-track-hdr {
+      grid-template-columns: 62px minmax(0, 1fr) !important;
+      min-height: 92px !important;
+      padding-top: 14px !important;
+      padding-bottom: 14px !important;
+      gap: 14px !important;
+    }
+
+    .imm-dir-track-hdr span {
+      font-size: clamp(1.34rem, 4.2vw, 1.85rem) !important;
+      line-height: 0.98 !important;
+      white-space: normal !important;
+      max-width: 100% !important;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .imm-dir-track-hdr {
+      grid-template-columns: 54px minmax(0, 1fr) !important;
+    }
+
+    .imm-dir-track-hdr span {
+      font-size: clamp(1.18rem, 6vw, 1.55rem) !important;
+    }
+
+    .imm-track-logo,
+    .imm-dir-side-btn img {
+      width: 54px !important;
+      height: 54px !important;
+      min-width: 54px !important;
+      min-height: 54px !important;
+      max-width: 54px !important;
+      max-height: 54px !important;
+      flex-basis: 54px !important;
+    }
+  }
+
+  .imm-modal-bg .imm-modal {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--modal-pale) 82%, #fff 18%), #fffaf0) !important;
+    border-color: color-mix(in srgb, var(--modal-color) 42%, #fff 58%) !important;
+  }
+
+  .imm-modal-bg .imm-modal-logo-box {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--modal-pale) 76%, #fff 24%), #fffaf0) !important;
+    border-color: color-mix(in srgb, var(--modal-color) 30%, #fff 70%) !important;
+  }
+
+  .imm-modal-bg .imm-modal-room-badge,
+  .imm-modal-bg .imm-modal-close-btn {
+    background: color-mix(in srgb, var(--modal-pale) 76%, #fff 24%) !important;
+    border-color: color-mix(in srgb, var(--modal-color) 24%, #fff 76%) !important;
+    color: var(--modal-color) !important;
+  }
+
+  /* ── Final spreadsheet cleanup: Inter table, tighter columns, softer icons ── */
+  .imm-dir {
+    --sheet-ui: "Inter", "Avenir Next", "Avenir", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  .imm-track-logo,
+  .imm-dir-side-btn img {
+    border: 0 !important;
+    outline: 0 !important;
+    background: rgba(255,250,238,0.92) !important;
+    box-shadow: none !important;
+    filter: saturate(1.08) contrast(1.08) !important;
+  }
+
+  .imm-dir-side-btn.is-on img,
+  .imm-dir-side-btn:hover img {
+    border: 0 !important;
+    outline: 0 !important;
+    background: rgba(255,250,238,0.96) !important;
+    box-shadow: none !important;
+    filter: saturate(1.1) contrast(1.1) !important;
+  }
+
+  .imm-dir .imm-dir-table,
+  .imm-dir .imm-dir-table thead th,
+  .imm-dir .imm-dir-table td,
+  .imm-dir .imm-dir-student,
+  .imm-dir .imm-dir-project,
+  .imm-dir .imm-dir-room-cell,
+  .imm-dir .imm-dir-cat-badge {
+    font-family: var(--sheet-ui) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .imm-dir-table {
+    table-layout: fixed !important;
+  }
+
+  .imm-dir-table thead th {
+    font-size: clamp(0.86rem, 0.82vw, 0.98rem) !important;
+    font-weight: 850 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.04em !important;
+    padding-top: 17px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .imm-dir-table td {
+    font-size: clamp(0.98rem, 0.94vw, 1.1rem) !important;
+    line-height: 1.22 !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .imm-dir-student,
+  .imm-dir-room-cell {
+    font-weight: 740 !important;
+  }
+
+  .imm-dir .imm-dir-project {
+    font-size: clamp(0.98rem, 0.96vw, 1.12rem) !important;
+    font-weight: 760 !important;
+    line-height: 1.18 !important;
+    text-transform: none !important;
+  }
+
+  .imm-dir .imm-dir-cat-badge {
+    min-width: 128px !important;
+    padding: 7px 14px 6px !important;
+    font-size: clamp(0.72rem, 0.66vw, 0.82rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  @media (min-width: 901px) {
+    .imm-dir-table thead th,
+    .imm-dir-table td {
+      padding-left: 22px !important;
+      padding-right: 22px !important;
+    }
+
+    .imm-dir-table thead th:first-child,
+    .imm-dir-table td:first-child {
+      padding-left: clamp(22px, 1.6vw, 32px) !important;
+    }
+
+    .imm-dir-table thead th:last-child,
+    .imm-dir-table td:last-child {
+      padding-right: clamp(26px, 3vw, 52px) !important;
+    }
+
+    .imm-dir-table thead th:nth-child(1),
+    .imm-dir-table td:nth-child(1) {
+      width: 20% !important;
+    }
+
+    .imm-dir-table thead th:nth-child(2),
+    .imm-dir-table td:nth-child(2) {
+      width: 38% !important;
+    }
+
+    .imm-dir-table thead th:nth-child(3),
+    .imm-dir-table td:nth-child(3) {
+      width: 28% !important;
+    }
+
+    .imm-dir-table thead th:nth-child(4),
+    .imm-dir-table td:nth-child(4) {
+      width: 14% !important;
+    }
+  }
   </style>
 </head>
 <body>
@@ -2857,7 +3280,7 @@
     <div class="imm-dir-hero-inner">
       <div class="imm-dir-eyebrow">IMM Senior Show 2026 &middot; TCNJ &middot; May 8, 2026</div>
       <h1 class="imm-dir-h1">THE PROJECTS</h1>
-      <p class="imm-dir-sub">36 students &middot; 6 tracks &middot; One night to see it all</p>
+      <p class="imm-dir-sub">36 students &middot; Six tracks &middot; One night to see it all</p>
     </div>
   </div>
 
@@ -3000,7 +3423,7 @@
       <p class="imm-map-hint">Tap a numbered pin to see who's presenting nearby.</p>
       <div class="imm-f1-wrap">
         <div class="imm-f1-stage" id="f1Stage">
-          <img src="../Floor1.svg" alt="Art &amp; IMM Building — Floor 1 layout" draggable="false">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Floor1.svg" alt="Art &amp; IMM Building — Floor 1 layout" draggable="false">
           <!-- Transparent buttons over SVG pin positions (cx/1440 × 100, cy/1024 × 100) -->
           <button class="f1-pin" style="left:23.5%;top:6.3%"  data-pin="217"     aria-label="Room 217"></button>
           <button class="f1-pin" style="left:8.1%; top:34.9%" data-pin="entrance" aria-label="Entrance"></button>
@@ -3029,7 +3452,7 @@
           <circle cx="6.5" cy="6.5" r="5.5" stroke="#9aac9e" stroke-width="1.5"/>
           <path d="M11 11l3.5 3.5" stroke="#9aac9e" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <input type="text" id="imm-search" placeholder="Search 36 projects…" autocomplete="off" aria-label="Search">
+        <input type="text" id="imm-search" placeholder="Search projects…" autocomplete="off" aria-label="Search">
       </div>
       <div class="imm-dir-filters" id="imm-filters" role="group" aria-label="Filter by track"></div>
       <label class="imm-track-select-wrap" for="imm-track-select">
@@ -3044,9 +3467,6 @@
   <!-- Directory content -->
   <div class="imm-dir-content">
     <aside class="imm-dir-side" id="imm-dir-side" aria-label="Project categories">
-      <div class="imm-dir-side-brand">
-        <img src="../IMMLogos2/26 White.svg" alt="IMM Senior Showcase 26">
-      </div>
       <div class="imm-dir-side-title">Directory</div>
     </aside>
     <div class="imm-dir-grid-wrap">
@@ -3128,8 +3548,7 @@
     {id:'madison-braithwaite',name:'Madison Braithwaite',   project:"A Rat's Tail",                     cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/madison-braithwaite', blurb:'A narrative-driven puzzle platformer.'},
     {id:'collin-della-sala',  name:'Collin Della Sala',     project:'Post-Fantasy',                     cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/collin-della-sala',  blurb:'An RPG where magic has industrialized.'},
     {id:'robyn-maggio',       name:'Robyn Maggio',          project:'M.A.E.: Music As Energy',          cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/robyn-maggio',       blurb:'A reverse rhythm game where music drives movement.'},
-    {id:'aidan-michaels',     name:'Aidan Michaels',        project:'Lumber',                           cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/aidan-michaels',     blurb:'Co-developer of a chaotic logging simulation.'},
-    {id:'griffin-petry',      name:'Griffin Petry',         project:'Lumber',                           cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/griffin-petry',      blurb:'Co-developer of a chaotic logging simulation.'},
+    {id:'lumber-team',        name:'Aidan Michaels & Griffin Petry', project:'Lumber',                   cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/aidan-michaels',     blurb:'A chaotic logging simulation co-developed by Aidan Michaels and Griffin Petry.'},
     {id:'anthony-resto',      name:'Anthony Resto',         project:'Guns en Roses',                    cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/anthony-resto',      blurb:'A fast-paced twin-stick shooter with a floral twist.'},
     {id:'andrew-romano',      name:'Andrew Romano',         project:'Ransom: Chaos with a Keyboard',    cat:'Games & Playable Media', room:'236', url:'https://immseniorshow.com/andrew-romano',      blurb:'A typing-based hacker simulation game.'},
     {id:'tyler-spressert',    name:'Tyler Spressert',       project:'Escape Through Time',              cat:'Games & Playable Media', room:'236', url:'https://immseniorshow.com/tyler-spressert',    blurb:'A puzzle experience with time-travel mechanics.'},
@@ -3149,41 +3568,44 @@
   ];
 
   var LOGOS = {
-    'caelan-arroyo':     '../Project Logos/Caelan_Arroyo_Mumbo_Block_Logo.png',
-    'kelsey-daly':       '../Project Logos/Kelsey Daly RTL/Respect The Locals Logo.png',
-    'michael-berrios':   '../Project Logos/Michael Berrios - Toadstool Town/Michael_Berrios_Toadstool_Town_wordmark.png',
-    'collin-della-sala': '../Project Logos/Collin Della Sala Post-Fantasy/Post-Fantasy Logo(No Background).png',
-    'robyn-maggio':      '../Project Logos/Robyn Maggio - M.A.E./MAE_Logo_Vector_Ver5.png',
-    'anthony-resto':     '../Project Logos/RestoAnthonyLogo.png',
-    'kai-macedo':        '../Project Logos/Kai Macedo - Color/kai_macedo_color_project_logo.png',
-    'alex-cook-1':       '../Project Logos/Alex Cook - Cleanup Crew Logo.png',
-    'maya-randall':      '../Project Logos/Maya Randall Liminal/2.png',
-    'ari-lugassy':       '../Project Logos/Ari L. the flock /IMG_0116.PNG'
+    'caelan-arroyo':     'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Caelan_Arroyo_Mumbo_Block_Logo.png',
+    'kelsey-daly':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Kelsey Daly RTL/Respect The Locals Logo.png',
+    'michael-berrios':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Michael Berrios - Toadstool Town/Michael_Berrios_Toadstool_Town_wordmark.png',
+    'collin-della-sala': 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Collin Della Sala Post-Fantasy/Post-Fantasy Logo(No Background).png',
+    'robyn-maggio':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Robyn Maggio - M.A.E./MAE_Logo_Vector_Ver5.png',
+    'anthony-resto':     'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/RestoAnthonyLogo.png',
+    'kai-macedo':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Kai Macedo - Color/kai_macedo_color_project_logo.png',
+    'alex-cook-1':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Alex Cook - Cleanup Crew Logo.png',
+    'maya-randall':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Maya Randall Liminal/2.png',
+    'ari-lugassy':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Ari L. the flock /IMG_0116.PNG'
   };
   var EMBLEMS = {
-    'Creative Coding':       '../Section Logos So far/CreativeCodingLogo.png',
-    'Culture & Technology':  '../Section Logos So far/CultureTechLogo.png',
-    'Digital Fabrication':   '../Section Logos So far/DigitalFabLogo.png',
-    'Games & Playable Media':'../Section Logos So far/GamesLogo.png',
-    'Music Technology':      '../Section Logos So far/MusicTechLogo2.png',
-    'Visual Storytelling':   '../Section Logos So far/VisStoryAnimationLogo.png'
+    'Creative Coding':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CreativeCodingLogo.png',
+    'Culture & Technology':  'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CultureTechLogo.png',
+    'Digital Fabrication':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/DigitalFabLogo.png',
+    'Games & Playable Media':'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/GamesLogo.png',
+    'Music Technology':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/MusicTechLogo2.png',
+    'Visual Storytelling':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/VisStoryAnimationLogo.png'
   };
   var TRACK_LOGOS = {
-    'Creative Coding':       '../Section Logos So far/CreativeCodingLogo.png',
-    'Culture & Technology':  '../Section Logos So far/CultureTechLogo.png',
-    'Digital Fabrication':   '../Section Logos So far/DigitalFabLogo.png',
-    'Games & Playable Media':'../Section Logos So far/GamesLogo.png',
-    'Music Technology':      '../Section Logos So far/MusicTechLogo2.png',
-    'Visual Storytelling':   '../Section Logos So far/VisStoryAnimationLogo.png'
+    'Creative Coding':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CreativeCodingLogo.png',
+    'Culture & Technology':  'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CultureTechLogo.png',
+    'Digital Fabrication':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/DigitalFabLogo.png',
+    'Games & Playable Media':'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/GamesLogo.png',
+    'Music Technology':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/MusicTechLogo2.png',
+    'Visual Storytelling':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/VisStoryAnimationLogo.png'
   };
   var TRACK_SCENES = {
-    gp: '../AlyosiusPatrimonoAssets/landscapes/4.png',
-    vs: '../AlyosiusPatrimonoAssets/landscapes/8.png',
-    mt: '../AlyosiusPatrimonoAssets/landscapes/11.png',
-    df: '../AlyosiusPatrimonoAssets/landscapes/14.png',
-    cc: '../AlyosiusPatrimonoAssets/landscapes/16.png',
-    ct: '../AlyosiusPatrimonoAssets/landscapes/19.png'
+    gp: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/4.png',
+    vs: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/8.png',
+    mt: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/11.png',
+    df: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png',
+    cc: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/16.png',
+    ct: 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/19.png'
   };
+  function assetUrl(url) {
+    return String(url || '').replace(/ /g, '%20');
+  }
   var F1_PINS = {
     '217':     {label:'Room 217',               rooms:['217']},
     '215-216': {label:'Rooms 215 · 216',         rooms:['215','216']},
@@ -3305,7 +3727,8 @@
   var sideEl = document.getElementById('imm-dir-side');
   var sideTitle = sideEl ? sideEl.querySelector('.imm-dir-side-title') : null;
   var sideNav = null;
-  var desktopControlsQuery = window.matchMedia('(min-width: 1181px)');
+  var sideHome = null;
+  var desktopControlsQuery = window.matchMedia('(min-width: 901px)');
 
   function buildSideNav() {
     if (!sideEl || sideNav) return;
@@ -3317,7 +3740,7 @@
       btn.className = 'imm-dir-side-btn';
       btn.dataset.key = t.key;
       btn.style.setProperty('--side-color', t.color);
-      btn.innerHTML = '<img src="'+TRACK_LOGOS[t.label]+'" alt="" loading="lazy"><span>'+t.label+'</span>';
+      btn.innerHTML = '<img src="'+assetUrl(TRACK_LOGOS[t.label])+'" alt="" loading="lazy"><span>'+t.label+'</span>';
       btn.addEventListener('click', function() {
         activeCat = t.key;
         if (trackSelect) trackSelect.value = t.key;
@@ -3330,6 +3753,12 @@
       sideNav.appendChild(btn);
     });
     sideEl.appendChild(sideNav);
+    sideHome = document.createElement('a');
+    sideHome.className = 'imm-dir-home-link';
+    sideHome.href = '/home';
+    sideHome.setAttribute('aria-label', 'Return to home page');
+    sideHome.textContent = 'Return Home';
+    sideEl.appendChild(sideHome);
   }
 
   function placeDirectoryControls() {
@@ -3348,6 +3777,10 @@
   }
 
   function alignDirectoryStart(behavior) {
+    if (desktopControlsQuery && desktopControlsQuery.matches) {
+      window.scrollTo({ top: 0, behavior: behavior || 'auto' });
+      return;
+    }
     var target = document.querySelector('.imm-dir-bar') || document.querySelector('.imm-dir-track-hdr') || document.querySelector('.imm-dir-content');
     if (!target) return;
     var top = target.getBoundingClientRect().top + window.scrollY;
@@ -3428,14 +3861,14 @@
       var grp = grouped[t.key]; if(!grp||!grp.length) return;
       if (showHdrs) {
         var hdr = document.createElement('div');
-        hdr.className = 'imm-dir-track-hdr';
+        hdr.className = 'imm-dir-track-hdr imm-dir-track-hdr-' + t.key;
         hdr.style.color = t.color;
         hdr.style.setProperty('--track-color', t.color);
         hdr.dataset.trackKey = t.key;
         hdr.dataset.trackColor = t.color;
         var logo = document.createElement('img');
         logo.className = 'imm-track-logo';
-        logo.src = TRACK_LOGOS[t.label];
+        logo.src = assetUrl(TRACK_LOGOS[t.label]);
         logo.alt = '';
         logo.loading = 'lazy';
         var sp = document.createElement('span');
@@ -3452,7 +3885,7 @@
         grid.appendChild(hdr);
       }
       var tableWrap = document.createElement('div');
-      tableWrap.className = 'imm-dir-table-wrap';
+      tableWrap.className = 'imm-dir-table-wrap imm-dir-table-wrap-' + t.key;
       var table = document.createElement('table');
       table.className = 'imm-dir-table';
       table.innerHTML = '<thead><tr><th>Student</th><th>Project</th><th>Area</th><th>Room</th></tr></thead><tbody></tbody>';
@@ -3629,12 +4062,14 @@
 
   function openModal(p) {
     var tk = trackFor(p.cat);
+    modalBg.style.setProperty('--modal-color', tk.color);
+    modalBg.style.setProperty('--modal-pale', tk.pale);
     modalHd.style.background = tk.color;
     modalTrk.textContent = p.cat;
     modalTit.textContent = p.project;
     var logo = LOGOS[p.id] || TRACK_LOGOS[p.cat] || EMBLEMS[p.cat] || '';
     if (logo) {
-      modalLgo.src = logo;
+      modalLgo.src = assetUrl(logo);
       modalLgo.alt = p.project + ' logo';
       modalLgB.style.display = 'flex';
     } else {

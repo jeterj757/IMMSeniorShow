@@ -17,7 +17,8 @@
       "Bash(node pw-check.js)",
       "Bash(cat)",
       "Bash(node pw-v3.js)",
-      "WebFetch(domain:imm-senior-class-store.printify.me)"
+      "WebFetch(domain:imm-senior-class-store.printify.me)",
+      "Bash(open \"/Users/jj/IMMSeniorShow/Concepts/imm-promo-deliverables.html\")"
     ],
     "additionalDirectories": [
       "/tmp",

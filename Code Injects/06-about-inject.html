@@ -7,7 +7,9 @@
   <style>
   @font-face {
     font-family: "Norwester";
-    src: local("Norwester"), url("./fonts/norwester.otf") format("opentype");
+    src: local("Norwester"),
+         local("norwester"),
+         url("./fonts/norwester.otf") format("opentype");
     font-display: swap;
   }
 
@@ -16,6 +18,24 @@
   .imm-about *, .imm-about *::before, .imm-about *::after { box-sizing: border-box; margin: 0; padding: 0; }
   .imm-about a { text-decoration: none; color: inherit; }
   .imm-about img { display: block; max-width: 100%; }
+
+  .page-section:has(.imm-about),
+  .page-section:has(.imm-about) .section-border,
+  .page-section:has(.imm-about) .section-background,
+  .page-section:has(.imm-about) .content,
+  .page-section:has(.imm-about) .content-wrapper,
+  .sqs-block-code:has(.imm-about),
+  .sqs-block-code:has(.imm-about) .sqs-block-content,
+  .sqs-layout:has(.imm-about),
+  .sqs-layout:has(.imm-about) .sqs-row,
+  .sqs-layout:has(.imm-about) .sqs-col-12 {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
 
   .imm-about {
     --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
@@ -28,8 +48,9 @@
     --amber:  #d6a034;
     --blue:   #3f6f9b;
     --line:   rgba(18,63,54,0.16);
+    --sqs-header-offset: 0px;
     font-family: var(--ui);
-    letter-spacing: -0.012em;
+    letter-spacing: 0;
     color: #1c2422;
     background: #f0ece0;
     background-image:
@@ -49,25 +70,26 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: url("../SIGNATURES/Rect - Black.svg") center top / 100% auto repeat-y;
+    background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20Black.svg") center top / 100% auto repeat-y;
     opacity: 0.11;
   }
   .imm-about > * {
     position: relative;
     z-index: 1;
   }
+  body:has(#header) .imm-about,
+  html.squarespace-damask .imm-about {
+    --sqs-header-offset: var(--imm-sqs-header-offset, 76px);
+  }
+  @media (max-width: 699px) {
+    body:has(#header) .imm-about,
+    html.squarespace-damask .imm-about {
+      --sqs-header-offset: var(--imm-sqs-header-offset-mobile, 64px);
+    }
+  }
 
   /* ── Event bar ── */
-  .imm-event-bar {
-    position: sticky; top: 0; z-index: 40;
-    background: var(--rust);
-    color: #fff4ea;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 10px 12px 8px;
-    border-bottom: 2px solid rgba(126,40,28,0.52);
-    box-shadow: 0 4px 14px rgba(8,24,16,0.35);
-  }
+  .imm-event-bar { display: none; }
   .imm-event-date {
     display: block;
     font-family: var(--d);
@@ -93,13 +115,13 @@
     position: absolute; inset: 0;
     background:
       linear-gradient(180deg, rgba(8,28,22,0.12) 0%, rgba(8,28,22,0.74) 62%, rgba(8,28,22,0.88) 100%),
-      url("../AlyosiusPatrimonoAssets/landscapes/6.png") center / cover no-repeat;
+      url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/6.png") center / cover no-repeat;
   }
   .imm-hero-bg::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("../SIGNATURES/Rect - White.svg") center top / 100% auto repeat-y;
+    background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20White.svg") center top / 100% auto repeat-y;
     opacity: 0.14;
     mix-blend-mode: screen;
   }
@@ -186,7 +208,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: url("../SIGNATURES/Rect - White.svg") center top / 100% auto repeat-y;
+    background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20White.svg") center top / 100% auto repeat-y;
     opacity: 0.10;
     mix-blend-mode: screen;
   }
@@ -269,12 +291,12 @@
     flex-shrink: 0;
     background:
       linear-gradient(160deg, rgba(8,28,22,0.66), rgba(18,63,54,0.30)),
-      var(--faculty-scene, url("../AlyosiusPatrimonoAssets/landscapes/14.png")) center / cover no-repeat;
+      var(--faculty-scene, url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png")) center / cover no-repeat;
     display: flex; align-items: center; justify-content: center;
     padding: 16px;
   }
   .imm-faculty-card:nth-child(2) .imm-faculty-photo-wrap {
-    --faculty-scene: url("../AlyosiusPatrimonoAssets/landscapes/16.png");
+    --faculty-scene: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/16.png");
   }
   .imm-faculty-photo {
     width: 160px; height: 160px;
@@ -366,7 +388,7 @@
     background:
       linear-gradient(180deg, rgba(6,18,14,0.78), rgba(6,18,14,0.88)),
       radial-gradient(rgba(243,237,218,0.06) 1.2px, transparent 1.2px),
-      url("../AlyosiusPatrimonoAssets/landscapes/18.png") center / cover no-repeat;
+      url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center / cover no-repeat;
     background-size: auto, 22px 22px, cover;
     padding: clamp(42px, 7vw, 78px) clamp(24px, 6vw, 80px);
     display: flex; flex-direction: column; align-items: center;
@@ -429,13 +451,145 @@
     .imm-cta-row { flex-direction: column; align-items: stretch; }
     .imm-about .imm-cta { justify-content: center; }
   }
+
+  /* ── Final readability pass for Squarespace/mobile ── */
+  .imm-about .imm-hero-h1,
+  .imm-about .imm-card-title,
+  .imm-about .imm-step-num,
+  .imm-about .imm-step strong,
+  .imm-about .imm-faculty-name,
+  .imm-about .imm-cta-footer-h {
+    font-family: var(--d) !important;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  .imm-about .imm-page {
+    max-width: min(1320px, 100%);
+    padding: clamp(46px, 5.6vw, 86px) clamp(22px, 5vw, 72px) 0;
+    gap: clamp(42px, 5vw, 70px);
+  }
+  .imm-about .imm-hero {
+    min-height: clamp(470px, 46vw, 690px);
+  }
+  .imm-about .imm-hero-inner {
+    padding: clamp(46px, 6vw, 82px) clamp(24px, 7vw, 96px) clamp(48px, 7vw, 90px);
+  }
+  .imm-about .imm-hero-h1 {
+    font-size: clamp(5rem, 10.2vw, 10.6rem);
+    line-height: 0.94;
+  }
+  .imm-about .imm-hero-sub {
+    max-width: 64ch;
+    font-size: clamp(1.18rem, 1.55vw, 1.45rem);
+    line-height: 1.58;
+  }
+  .imm-about .imm-card-title {
+    font-size: clamp(2.15rem, 3.4vw, 3.45rem);
+    margin-bottom: clamp(20px, 2.4vw, 30px);
+  }
+  .imm-about .imm-card p,
+  .imm-about .imm-text-col p {
+    font-size: clamp(1.12rem, 1.22vw, 1.28rem);
+    line-height: 1.68;
+  }
+  .imm-about .imm-steps {
+    gap: clamp(14px, 1.4vw, 22px);
+  }
+  .imm-about .imm-step-body {
+    padding: clamp(18px, 1.7vw, 24px);
+  }
+  .imm-about .imm-step strong {
+    font-size: clamp(1.22rem, 1.32vw, 1.46rem);
+  }
+  .imm-about .imm-step p {
+    font-size: clamp(0.96rem, 1vw, 1.06rem);
+    line-height: 1.5;
+  }
+  .imm-about .imm-faculty {
+    gap: clamp(18px, 1.8vw, 26px);
+  }
+  .imm-about .imm-faculty-body {
+    padding: clamp(22px, 2.2vw, 32px);
+  }
+  .imm-about .imm-faculty-name {
+    font-size: clamp(1.36rem, 1.85vw, 1.82rem);
+  }
+  .imm-about .imm-faculty-role {
+    font-size: clamp(0.78rem, 0.82vw, 0.9rem);
+    line-height: 1.35;
+  }
+  .imm-about .imm-faculty-bio {
+    font-size: clamp(1rem, 1.08vw, 1.14rem);
+    line-height: 1.62;
+  }
+  @media (max-width: 760px) {
+    .imm-about::before {
+      opacity: 0.075;
+      background-size: 170% auto;
+    }
+    .imm-about .imm-hero {
+      min-height: clamp(330px, 70vw, 440px);
+    }
+    .imm-about .imm-hero-inner {
+      padding: 32px 22px 38px;
+    }
+    .imm-about .imm-hero-h1 {
+      font-size: clamp(3.05rem, 16vw, 5.45rem);
+      line-height: 0.98;
+    }
+    .imm-about .imm-hero-sub {
+      margin-top: 18px;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      line-height: 1.52;
+    }
+    .imm-about .imm-page {
+      padding: 34px 20px 0;
+      gap: 40px;
+    }
+    .imm-about .imm-card + .imm-card {
+      padding-top: 34px;
+    }
+    .imm-about .imm-card-title {
+      font-size: clamp(1.86rem, 8vw, 2.65rem);
+      line-height: 1.04;
+      margin-bottom: 18px;
+    }
+    .imm-about .imm-text-cols {
+      gap: 14px;
+    }
+    .imm-about .imm-card p,
+    .imm-about .imm-text-col p {
+      font-size: clamp(1.04rem, 4.4vw, 1.2rem);
+      line-height: 1.64;
+    }
+    .imm-about .imm-step {
+      border-radius: 12px;
+    }
+    .imm-about .imm-step-body {
+      padding: 18px 20px 20px;
+    }
+    .imm-about .imm-step p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .imm-about .imm-faculty-body {
+      padding: 22px 20px 24px;
+    }
+    .imm-about .imm-faculty-name {
+      font-size: 1.42rem;
+    }
+    .imm-about .imm-faculty-bio {
+      font-size: 1.04rem;
+      line-height: 1.58;
+    }
+  }
   </style>
 </head>
 <body>
 <div class="imm-about">
 
   <div class="imm-event-bar" role="banner">
-    <span class="imm-event-date">Friday, May 8, 2026 · 6–9 PM</span>
+    <span class="imm-event-date">Friday, May 8, 2026 · 5–9 PM</span>
     <span class="imm-event-place">AIMM · The College of New Jersey · Ewing, NJ</span>
   </div>
 
@@ -516,7 +670,7 @@
         <article class="imm-faculty-card">
           <div class="imm-faculty-photo-wrap">
             <div class="imm-faculty-photo">
-              <img src="../Photos/Sorraya-Brashear-Evans.png" alt="Sorraya Brashear-Evans">
+              <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Photos/Sorraya-Brashear-Evans.png" alt="Sorraya Brashear-Evans">
             </div>
           </div>
           <div class="imm-faculty-body">
@@ -530,7 +684,7 @@
         <article class="imm-faculty-card">
           <div class="imm-faculty-photo-wrap">
             <div class="imm-faculty-photo">
-              <img src="../Photos/Warren.jpeg" alt="Warren Buckleitner">
+              <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Photos/Warren.jpeg" alt="Warren Buckleitner">
             </div>
           </div>
           <div class="imm-faculty-body">
@@ -551,7 +705,7 @@
     <h2 class="imm-cta-footer-h">Ready to Explore?</h2>
     <p class="imm-cta-footer-sub">Browse all 36 projects or learn more about the Interactive Multimedia program at TCNJ.</p>
     <div class="imm-cta-row">
-      <a class="imm-cta primary" href="03-directory-inject.html">Browse Projects</a>
+      <a class="imm-cta primary" href="/projects-26">Browse Projects</a>
       <a class="imm-cta" href="https://dct.tcnj.edu/" target="_blank" rel="noopener">DCT at TCNJ ↗</a>
     </div>
   </footer>

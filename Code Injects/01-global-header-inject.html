@@ -54,6 +54,66 @@ html {
   scroll-behavior: auto;
 }
 
+/* Hide Squarespace editor block status overlays while previewing injected pages */
+html.squarespace-damask .sqs-blockStatus {
+  display: none !important;
+}
+
+/* Global event badge injected into the Squarespace nav/header */
+#header .imm-nav-event,
+header .imm-nav-event {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-left: clamp(10px, 1.4vw, 20px);
+  padding: 8px 14px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 244, 234, 0.28);
+  background: #c75145;
+  color: #fff4ea;
+  box-shadow: 0 3px 0 rgba(83, 23, 16, 0.28);
+  font-family: var(--imm-ui);
+  font-size: clamp(0.66rem, 0.76vw, 0.8rem);
+  font-weight: 760;
+  letter-spacing: 0.018em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#header .imm-nav-event-place,
+header .imm-nav-event-place {
+  opacity: 0.84;
+  display: block;
+  font-size: 0.86em;
+}
+
+#header .imm-nav-event-short,
+header .imm-nav-event-short {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  #header .imm-nav-event,
+  header .imm-nav-event {
+    margin-left: 8px;
+    padding: 6px 10px 5px;
+    font-size: 0.56rem;
+    max-width: calc(100vw - 154px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Page injects used to include their own red event bars. The nav badge replaces them. */
+.imm-event-bar {
+  display: none !important;
+}
+
 /* Base styles shared by all four homepage sections */
 .imm-section {
   min-height: 100svh;
@@ -89,3 +149,48 @@ strong {
   font-weight: 650;
 }
 </style>
+
+<script>
+(function() {
+  var EVENT_BADGE_ID = "imm-nav-event";
+  var EVENT_TEXT_FULL = "Friday, May 8, 2026 · 5–9 PM";
+  var EVENT_TEXT_SHORT = "May 8 · 5–9 PM";
+  var EVENT_PLACE = "AIMM · TCNJ";
+
+  function headerTarget() {
+    var header = document.querySelector("#header") || document.querySelector("header");
+    if (!header) return null;
+    return header.querySelector(".header-actions") ||
+      header.querySelector(".header-nav") ||
+      header.querySelector(".header-display-desktop") ||
+      header.querySelector(".header-display-mobile") ||
+      header;
+  }
+
+  function injectEventBadge() {
+    if (document.getElementById(EVENT_BADGE_ID)) return;
+
+    var target = headerTarget();
+    if (!target) return;
+
+    var badge = document.createElement("span");
+    badge.id = EVENT_BADGE_ID;
+    badge.className = "imm-nav-event";
+    badge.setAttribute("aria-label", EVENT_TEXT_FULL + ", " + EVENT_PLACE);
+    badge.innerHTML =
+      '<span class="imm-nav-event-full">' + EVENT_TEXT_FULL + '</span>' +
+      '<span class="imm-nav-event-short">' + EVENT_TEXT_SHORT + '</span>' +
+      '<span class="imm-nav-event-place">' + EVENT_PLACE + '</span>';
+
+    target.appendChild(badge);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectEventBadge);
+  } else {
+    injectEventBadge();
+  }
+
+  window.addEventListener("load", injectEventBadge);
+})();
+</script>

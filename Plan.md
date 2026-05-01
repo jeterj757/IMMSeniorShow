@@ -216,7 +216,7 @@ Recommended next planning move:
 ## Implemented Change Log (2026-04-24)
 
 1. Updated the homepage explore section heading text in `Code Injects/02-homepage-inject.html` to:
-- Title: `Friday, May 8, 2026 · 6-9 PM`
+- Title: `Friday, May 8, 2026 · 5-9 PM`
 - Subtitle: `When the Show Happens`
 2. Fixed the horizontal project card scroller behavior in `Code Injects/02-homepage-inject.html`:
 - Replaced non-looping edge behavior with an infinite-loop carousel pattern using first/last card clones.

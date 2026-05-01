@@ -7,7 +7,7 @@
   <!--
     LOCAL PREVIEW: open this file directly in a browser.
     Fonts load from ./fonts/norwester.otf
-    Images load from ../Section Logos So far/*.png
+    Images load from https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/*.png
 
     ╔══════════════════════════════════════════════════════════╗
     ║  SQUARESPACE INJECT — HOME PAGE                         ║
@@ -20,12 +20,12 @@
     ╚══════════════════════════════════════════════════════════╝
 
     IMAGE PATH GUIDE (update for Squarespace):
-    ../Section Logos So far/GamesLogo.png          → /squarespace-cdn-url/GamesLogo.png
-    ../Section Logos So far/VisStoryAnimationLogo.png
-    ../Section Logos So far/MusicTechLogo.png
-    ../Section Logos So far/DigitalFabLogo.png
-    ../Section Logos So far/CreativeCodingLogo.png
-    ../Section Logos So far/CultureTechLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/GamesLogo.png          → /squarespace-cdn-url/GamesLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/VisStoryAnimationLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/MusicTechLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/DigitalFabLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CreativeCodingLogo.png
+    https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CultureTechLogo.png
 
     LINK TARGETS (update to match your Squarespace page slugs):
     05-student-inject.html  → student/scavenger page
@@ -72,8 +72,12 @@
   margin-bottom: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   min-height: 0 !important;
   max-width: none !important;
+  width: 100% !important;
+  overflow: visible !important;
 }
 
 /* ── Design tokens (duplicated here so page works standalone;
@@ -100,7 +104,14 @@
 
   --btn-shadow:  0 5px 0 rgba(10, 32, 22, 0.58);
   --card-shadow: 0 14px 34px rgba(8, 36, 22, 0.34);
-  --event-bar-h: 76px;
+  --event-bar-h: 0px;
+  --sqs-header-offset: 0px;
+  --event-stack-h: calc(var(--event-bar-h) + var(--sqs-header-offset));
+}
+
+body:has(#header) .imm-wrap,
+html.squarespace-damask .imm-wrap {
+  --sqs-header-offset: var(--imm-sqs-header-offset, 76px);
 }
 
 /* ── Section base (duplicated from global inject so local preview works) ──
@@ -122,7 +133,7 @@ html {
   scroll-snap-stop: normal;
 }
 .imm-section:not(.imm-hero) {
-  padding-top: var(--event-bar-h);
+  padding-top: var(--event-stack-h);
 }
 
 /* ── Full-bleed: breaks out of Squarespace content max-width ── */
@@ -146,7 +157,7 @@ html {
 }
 
 /* Alyosius Patrimono WPA-style crossfade slideshow background
-   LOCAL:  ../AlyosiusPatrimonoAssets/landscapes/N.png
+   LOCAL:  https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/N.png
    SQUARESPACE: set SLIDE_BASE in the JS below to your CDN path + "/landscapes/" */
 .imm-bg-slide {
   position: absolute;
@@ -191,7 +202,7 @@ html {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: clamp(88px, 12svh, 128px) 20px clamp(34px, 7svh, 72px);
+  padding: calc(clamp(88px, 12svh, 128px) + var(--sqs-header-offset)) 20px clamp(34px, 7svh, 72px);
 }
 
 /* ── Countdown pill ── */
@@ -234,20 +245,7 @@ html {
 /* ── Event info bar — fixed at top of viewport, persists across sections ──
    SQUARESPACE NOTE: if Squarespace's own nav overlaps this, increase `top`
    to match the Squarespace header height (usually 60–90px). */
-.imm-event-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 800;
-  background: var(--rust);
-  border-bottom: 2px solid rgba(110, 18, 10, 0.45);
-  box-shadow: 0 3px 12px rgba(96, 20, 14, 0.40);
-  text-align: center;
-  text-transform: uppercase;
-  padding: 10px 12px 8px;
-  color: #fff3ea;
-}
+.imm-event-bar { display: none; }
 .imm-event-date {
   display: block;
   font-family: var(--d);
@@ -490,7 +488,7 @@ html {
   padding: 20px 54px 18px 22px;
   background:
     linear-gradient(135deg, rgba(18,63,54,0.94), rgba(62,112,70,0.92)),
-    url("../AlyosiusPatrimonoAssets/landscapes/14.png") center / cover no-repeat;
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center / cover no-repeat;
   color: #fff7e8;
 }
 .imm-hunt-modal-kicker {
@@ -666,7 +664,7 @@ html {
   z-index: 0;
   background:
     linear-gradient(180deg, rgba(18,63,54,0.18), rgba(7,24,15,0.36)),
-    url("../AlyosiusPatrimonoAssets/landscapes/16.png") center / cover no-repeat;
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/16.png") center / cover no-repeat;
 }
 .imm-explore-bg svg {
   width: 100%;
@@ -684,7 +682,7 @@ html {
   max-width: 1040px;
   width: 100%;
   margin: 0 auto;
-  padding: 36px 16px 20px;
+  padding: calc(var(--sqs-header-offset) + 36px) 16px 20px;
 }
 
 .imm-explore-title {
@@ -931,15 +929,23 @@ html {
    FOLLOW (Instagram — Section 3)
 ════════════════════════════════════════ */
 .imm-follow {
+  --follow-pad-top: clamp(44px, 6vh, 76px);
   position: relative;
   background: #123f36;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
+  justify-content: flex-start;
+  padding: var(--follow-pad-top) 20px clamp(48px, 7vh, 84px);
   color: #d4f0d8;
   isolation: isolate;
+}
+body:has(#header) .imm-follow,
+html.squarespace-damask .imm-follow {
+  --follow-pad-top: calc(var(--sqs-header-offset) + 56px);
+}
+.imm-section.imm-follow {
+  padding-top: var(--follow-pad-top);
 }
 .imm-follow::before,
 .imm-follow::after,
@@ -954,7 +960,7 @@ html {
   z-index: 0;
   background:
     linear-gradient(180deg, rgba(18,63,54,0.86), rgba(9,32,25,0.88)),
-    url("../AlyosiusPatrimonoAssets/landscapes/14.png") center / cover no-repeat;
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center / cover no-repeat;
 }
 .imm-follow::after {
   z-index: 1;
@@ -976,14 +982,14 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: clamp(12px, 1.7vh, 22px);
 }
 .imm-ig-embeds {
   width: min(100%, 1320px);
-  margin: clamp(10px, 2vh, 24px) auto 0;
+  margin: clamp(8px, 1.4vh, 18px) auto 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 1.8vw, 28px);
+  gap: clamp(18px, 2vw, 30px);
   align-items: start;
 }
 .imm-ig-embeds .instagram-media,
@@ -1019,22 +1025,30 @@ html {
    SHOP (Shopify — Section 4)
 ════════════════════════════════════════ */
 .imm-shop {
+  --shop-pad-top: clamp(46px, 6.5vh, 76px);
   position: relative;
   background: #f3edda;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: clamp(34px, 5vh, 56px) 20px 64px;
+  padding: var(--shop-pad-top) 20px 72px;
   color: #1c2422;
   isolation: isolate;
-  scroll-margin-top: var(--event-bar-h);
+  scroll-margin-top: var(--event-stack-h);
+}
+body:has(#header) .imm-shop,
+html.squarespace-damask .imm-shop {
+  --shop-pad-top: calc(var(--sqs-header-offset) + 58px);
+}
+.imm-section.imm-shop {
+  padding-top: var(--shop-pad-top);
 }
 .imm-shop::before {
   z-index: 0;
   background:
     linear-gradient(180deg, rgba(243,237,218,0.87), rgba(232,222,194,0.91)),
-    url("../AlyosiusPatrimonoAssets/landscapes/10.png") center / cover no-repeat;
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/10.png") center / cover no-repeat;
 }
 .imm-shop::after {
   z-index: 1;
@@ -1052,7 +1066,7 @@ html {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  margin: 0 auto 12px;
+  margin: 0 auto 8px;
   border-radius: 999px;
   padding: 10px 22px 9px;
   background: rgba(199,81,69,0.94);
@@ -1079,30 +1093,8 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: clamp(14px, 2.2vh, 24px);
 }
-.imm-shop-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: min(100%, 420px);
-  margin: -6px 0 0;
-}
-.imm-shop-divider::before,
-.imm-shop-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: rgba(18,63,54,0.2);
-}
-.imm-shop-divider-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #c75145;
-  flex-shrink: 0;
-}
-
 /* Shared section heading styles */
 .imm-section-title {
   font-family: var(--d);
@@ -1161,7 +1153,7 @@ html {
 
 .imm-shop-grid {
   width: min(100%, 1100px);
-  margin: 0 auto;
+  margin: clamp(6px, 1.2vh, 14px) auto 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
@@ -1222,7 +1214,7 @@ html {
   text-decoration: none !important;
 }
 .imm-shop-header {
-  padding: 10px 11px 8px;
+  padding: 13px 13px 10px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -1231,7 +1223,7 @@ html {
 }
 .imm-shop-title {
   font-family: var(--d);
-  font-size: clamp(0.88rem, 1.5vw, 1.05rem);
+  font-size: clamp(1rem, 1.75vw, 1.2rem);
   line-height: 1;
   letter-spacing: 0.02em;
   color: #123f36;
@@ -1250,7 +1242,7 @@ html {
   aspect-ratio: 4 / 5;
   background:
     linear-gradient(180deg, rgba(255,250,240,0.76), rgba(245,240,228,0.94)),
-    url("../SIGNATURES/Rect - Black.svg") center / 135% auto no-repeat,
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20Black.svg") center / 135% auto no-repeat,
     #f5f0e4;
   overflow: hidden;
   position: relative;
@@ -1440,7 +1432,11 @@ html {
 
 /* Mobile (≤699px): one card fills the viewport, background visible on sides */
 @media (max-width: 699px) {
-  .imm-wrap { --event-bar-h: 58px; }
+  .imm-wrap { --event-bar-h: 0px; }
+  body:has(#header) .imm-wrap,
+  html.squarespace-damask .imm-wrap {
+    --sqs-header-offset: var(--imm-sqs-header-offset-mobile, 64px);
+  }
   /* Hero: stronger tint so logo/countdown pop on mobile */
   [data-theme="blue"]  .imm-hero-tint {
     background: linear-gradient(180deg,
@@ -1456,7 +1452,7 @@ html {
       rgba(4,22,10,0.62) 70%,
       rgba(2,10,6,0.85) 100%);
   }
-  .imm-inner { padding: 78px 22px 46px; }
+  .imm-inner { padding: calc(78px + var(--sqs-header-offset)) 22px 46px; }
   .imm-hero-content { gap: 42px; }
   .imm-hero-logo { width: min(318px, 84vw); margin-bottom: 8px; }
   .imm-countdown-hero {
@@ -1477,7 +1473,7 @@ html {
     overflow: visible;
     justify-content: flex-start;
   }
-  .imm-explore-inner { padding: 8px 16px 18px; }
+  .imm-explore-inner { padding: calc(var(--sqs-header-offset) + 8px) 16px 18px; }
   .imm-explore-title,
   .imm-explore-sub,
   .imm-directory-cta,
@@ -1552,7 +1548,7 @@ html {
 @media (min-width: 1100px) {
   /* Hero: equal 1fr/1fr columns — each side gets exactly half the container.
      Logo is sized to fill ~70% of its column so neither side dominates. */
-  .imm-inner { padding: clamp(96px, 12svh, 132px) 56px clamp(42px, 7svh, 78px); }
+  .imm-inner { padding: calc(clamp(96px, 12svh, 132px) + var(--sqs-header-offset)) 56px clamp(42px, 7svh, 78px); }
   .imm-hero-content {
     display: grid;
     grid-template-columns: minmax(460px, 1.08fr) minmax(420px, 0.92fr);
@@ -1596,8 +1592,8 @@ html {
 }
 
 @media (max-height: 760px) {
-  .imm-inner { padding-top: 76px; padding-bottom: 26px; }
-  .imm-explore-inner { padding-top: 24px; padding-bottom: 16px; }
+  .imm-inner { padding-top: calc(76px + var(--sqs-header-offset)); padding-bottom: 26px; }
+  .imm-explore-inner { padding-top: calc(var(--sqs-header-offset) + 24px); padding-bottom: 16px; }
   .imm-explore-title {
     font-size: clamp(2.8rem, 6.4vw, 4.6rem);
     margin-bottom: 12px;
@@ -2170,6 +2166,103 @@ html {
   text-shadow: 0 1px 3px rgba(4,16,10,0.24) !important;
 }
 
+/* ── Final desktop polish: larger category cards, cleaner labels, wider merch ── */
+@media (min-width: 1101px) {
+  [data-explore-mode="b"] .imm-explore-inner {
+    padding-left: clamp(24px, 2.6vw, 56px);
+    padding-right: clamp(24px, 2.6vw, 56px);
+  }
+
+  [data-explore-mode="b"] .imm-cards {
+    width: min(100%, 1760px);
+    height: clamp(560px, calc(100dvh - 190px), 820px);
+    gap: clamp(14px, 1.4vw, 24px);
+  }
+
+  [data-explore-mode="b"] .imm-card {
+    border-radius: 18px;
+  }
+
+  [data-explore-mode="b"] .imm-card-foot {
+    padding-top: clamp(20px, 2.6vh, 34px);
+    text-shadow: none !important;
+  }
+
+  [data-explore-mode="b"] .imm-chip {
+    max-width: none;
+    white-space: nowrap;
+    text-wrap: nowrap;
+    font-size: clamp(1.02rem, 1.18vw, 1.34rem);
+    text-shadow: 0 1px 2px rgba(4,16,10,0.22) !important;
+  }
+
+  [data-explore-mode="b"] .imm-chip-count {
+    font-size: clamp(0.92rem, 0.92vw, 1.08rem);
+    text-shadow: 0 1px 2px rgba(4,16,10,0.18) !important;
+  }
+
+  [data-explore-mode="b"] .imm-card-logo img {
+    width: min(280px, 62%);
+  }
+
+  .imm-section.imm-shop {
+    min-height: 100svh;
+    justify-content: center;
+    padding-left: clamp(30px, 3vw, 62px);
+    padding-right: clamp(30px, 3vw, 62px);
+  }
+
+  .imm-shop-inner {
+    max-width: 1680px;
+    gap: clamp(16px, 2.2vh, 26px);
+  }
+
+  .imm-shop-grid {
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(16px, 1.35vw, 26px);
+  }
+
+  .imm-shop-kicker {
+    background: linear-gradient(135deg, #d85b4d 0%, #b73f36 44%, #843127 100%);
+    border-color: rgba(255,250,240,0.56);
+    box-shadow: 0 5px 0 rgba(120,35,25,0.22), inset 0 1px 0 rgba(255,255,255,0.24);
+  }
+
+  .imm-shop-product {
+    border-radius: 12px;
+  }
+
+  .imm-shop-media {
+    aspect-ratio: 1 / 1.18;
+  }
+
+  .imm-shop-meta {
+    padding: 12px 14px 16px;
+  }
+
+  .imm-shop-title {
+    font-size: clamp(1.08rem, 1.35vw, 1.52rem);
+  }
+
+  .imm-shop-price {
+    font-family: "Inter", "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+    font-size: clamp(0.92rem, 0.95vw, 1.05rem);
+    font-weight: 650;
+    letter-spacing: 0;
+    color: #a93c34;
+  }
+
+  .imm-shop-more {
+    background: #b33f36;
+    box-shadow: 0 2px 0 rgba(120,35,25,0.18);
+    border-color: rgba(255,243,223,0.20);
+    font-family: "Inter", "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+    font-weight: 760;
+  }
+}
+
 /* Trail map container */
 .imm-trail-map {
   display: none;
@@ -2235,7 +2328,7 @@ html {
 
   <!-- Event bar — fixed at top of viewport, persists across all 4 sections -->
   <div class="imm-event-bar" role="banner">
-    <span class="imm-event-date">Friday, May 8, 2026 · 6–9 PM</span>
+    <span class="imm-event-date">Friday, May 8, 2026 · 5–9 PM</span>
     <span class="imm-event-place">AIMM · The College of New Jersey · Ewing, NJ</span>
   </div>
 
@@ -2243,13 +2336,13 @@ html {
   <section class="imm-section imm-hero" id="imm-home">
 
     <!-- Alyosius Patrimono WPA-style slideshow background (crossfades every 6s)
-         LOCAL PREVIEW: images load from ../AlyosiusPatrimonoAssets/landscapes/
+         LOCAL PREVIEW: images load from https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/
          SQUARESPACE: update SLIDE_BASE in the <script> at the bottom to your CDN path -->
     <div class="imm-bg-slide" id="imm-bg-a" aria-hidden="true">
-      <img src="../AlyosiusPatrimonoAssets/landscapes/2.png" alt="">
+      <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/2.png" alt="">
     </div>
     <div class="imm-bg-slide" id="imm-bg-b" aria-hidden="true" style="opacity:0">
-      <img src="../AlyosiusPatrimonoAssets/landscapes/3.png" alt="">
+      <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/3.png" alt="">
     </div>
 
     <div class="imm-hero-tint" aria-hidden="true"></div>
@@ -2262,10 +2355,10 @@ html {
         <!-- Left col: logo + countdown -->
         <div class="imm-hero-mid">
           <!-- IMM Senior Show wordmark logo (Exponential)
-               LOCAL:       ../IMMLogos2/WhiteExponentialLogo.svg
+               LOCAL:       https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMLogos2/WhiteExponentialLogo.svg
                SQUARESPACE: update src to CDN URL after upload -->
           <img class="imm-hero-logo"
-               src="../IMMLogos2/WhiteExponentialLogo.svg"
+               src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMLogos2/WhiteExponentialLogo.svg"
                alt="IMM Senior Show 2026"
                loading="eager">
           <!-- Countdown — updates every second via JS -->
@@ -2301,7 +2394,7 @@ html {
           <button class="imm-btn imm-btn-hunt" id="imm-hunt-btn" type="button" data-random-cta>
             Start the Scavenger Hunt!
           </button>
-          <a class="imm-btn imm-btn-about" href="06-about-inject.html" data-random-cta>
+          <a class="imm-btn imm-btn-about" href="/about-26" data-random-cta>
             About IMM at TCNJ
           </a>
         </div>
@@ -2337,17 +2430,17 @@ html {
 
     <div class="imm-explore-inner">
       <h2 class="imm-explore-title">Explore the Projects</h2>
-      <a class="imm-directory-cta" href="03-directory-inject.html">Browse Directory</a>
+      <a class="imm-directory-cta" href="/projects-26">Browse Directory</a>
 
       <!-- Horizontal card scroller -->
       <div class="imm-cards" id="imm-cards" role="list" aria-label="Project track cards">
 
         <!-- ── GAMES & PLAYABLE MEDIA ── -->
-        <article class="imm-card c-gp is-on" data-idx="0" data-station="01" data-url="03-directory-inject.html?track=gp" role="listitem">
+        <article class="imm-card c-gp is-on" data-idx="0" data-station="01" data-url="/projects-26?track=gp" role="listitem">
           <div class="imm-card-logo">
-            <!-- LOCAL: ../Section Logos So far/GamesLogo.png -->
+            <!-- LOCAL: https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/GamesLogo.png -->
             <!-- SQUARESPACE: replace src with your CDN URL   -->
-            <img src="../Section Logos So far/GamesLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/GamesLogo.png"
                  alt="Games and Playable Media logo"
                  loading="lazy">
           </div>
@@ -2358,9 +2451,9 @@ html {
         </article>
 
         <!-- ── VISUAL STORYTELLING & ANIMATION ── -->
-        <article class="imm-card c-vs" data-idx="1" data-station="02" data-url="03-directory-inject.html?track=vs" role="listitem">
+        <article class="imm-card c-vs" data-idx="1" data-station="02" data-url="/projects-26?track=vs" role="listitem">
           <div class="imm-card-logo">
-            <img src="../Section Logos So far/VisStoryAnimationLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/VisStoryAnimationLogo.png"
                  alt="Visual Storytelling logo"
                  loading="lazy">
           </div>
@@ -2371,9 +2464,9 @@ html {
         </article>
 
         <!-- ── MUSIC TECHNOLOGY ── -->
-        <article class="imm-card c-mt" data-idx="2" data-station="03" data-url="03-directory-inject.html?track=mt" role="listitem">
+        <article class="imm-card c-mt" data-idx="2" data-station="03" data-url="/projects-26?track=mt" role="listitem">
           <div class="imm-card-logo">
-            <img src="../Section Logos So far/MusicTechLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/MusicTechLogo.png"
                  alt="Music Technology logo"
                  loading="lazy">
           </div>
@@ -2384,9 +2477,9 @@ html {
         </article>
 
         <!-- ── DIGITAL FABRICATION ── -->
-        <article class="imm-card c-df" data-idx="3" data-station="04" data-url="03-directory-inject.html?track=df" role="listitem">
+        <article class="imm-card c-df" data-idx="3" data-station="04" data-url="/projects-26?track=df" role="listitem">
           <div class="imm-card-logo">
-            <img src="../Section Logos So far/DigitalFabLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/DigitalFabLogo.png"
                  alt="Digital Fabrication logo"
                  loading="lazy">
           </div>
@@ -2397,9 +2490,9 @@ html {
         </article>
 
         <!-- ── CREATIVE CODING ── -->
-        <article class="imm-card c-cc" data-idx="4" data-station="05" data-url="03-directory-inject.html?track=cc" role="listitem">
+        <article class="imm-card c-cc" data-idx="4" data-station="05" data-url="/projects-26?track=cc" role="listitem">
           <div class="imm-card-logo">
-            <img src="../Section Logos So far/CreativeCodingLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CreativeCodingLogo.png"
                  alt="Creative Coding logo"
                  loading="lazy">
           </div>
@@ -2410,9 +2503,9 @@ html {
         </article>
 
         <!-- ── CULTURE & TECHNOLOGY ── -->
-        <article class="imm-card c-ct" data-idx="5" data-station="06" data-url="03-directory-inject.html?track=ct" role="listitem">
+        <article class="imm-card c-ct" data-idx="5" data-station="06" data-url="/projects-26?track=ct" role="listitem">
           <div class="imm-card-logo">
-            <img src="../Section Logos So far/CultureTechLogo.png"
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CultureTechLogo.png"
                  alt="Culture and Technology logo"
                  loading="lazy">
           </div>
@@ -2536,6 +2629,7 @@ html {
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXqOtcXjeJE/" data-instgrm-version="14"></blockquote>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXrjtsCEUvG/" data-instgrm-version="14"></blockquote>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXufYf3kcnL/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXxL0zsERH8/" data-instgrm-version="14"></blockquote>
       </div>
       <script async src="https://www.instagram.com/embed.js"></script>
     </div>
@@ -2557,12 +2651,6 @@ html {
           <path d="M11 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </a>
-      <div class="imm-shop-divider" aria-hidden="true">
-        <span class="imm-shop-divider-dot"></span>
-        <span class="imm-shop-divider-dot"></span>
-        <span class="imm-shop-divider-dot"></span>
-      </div>
-
       <div class="imm-shop-grid" id="imm-shop-grid" aria-label="Merch products"></div>
     </div>
   </section>
@@ -2787,7 +2875,7 @@ html {
      SQUARESPACE: change SLIDE_BASE to your uploaded CDN path, e.g.:
      const SLIDE_BASE = "https://static1.squarespace.com/static/.../AlyosiusPatrimonoAssets/";
   */
-  const SLIDE_BASE = "../AlyosiusPatrimonoAssets/landscapes/";
+  const SLIDE_BASE = "https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/";
   /* Landscape-only filenames */
   const SLIDES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19].map(function(n) {
     return SLIDE_BASE + n + ".png";
@@ -2823,8 +2911,8 @@ html {
   }
   setInterval(nextSlide, 6000);
 
-  /* ── Countdown to May 8, 2026 6:00 PM ET ── */
-  const EVENT = new Date("2026-05-08T18:00:00-04:00");
+  /* ── Countdown to May 8, 2026 5:00 PM ET ── */
+  const EVENT = new Date("2026-05-08T17:00:00-04:00");
   function pad(n) { return String(n).padStart(2, "0"); }
   function tick() {
     const diff = EVENT - Date.now();
@@ -3025,7 +3113,7 @@ html {
         "BEGIN:VEVENT",
         "UID:imm-senior-show-2026@tcnj.edu",
         "DTSTAMP:20260421T120000Z",
-        "DTSTART:20260508T220000Z",
+        "DTSTART:20260508T210000Z",
         "DTEND:20260509T010000Z",
         "SUMMARY:IMM Senior Show 2026",
         "DESCRIPTION:TCNJ Department of Design & Creative Technology Senior Showcase.",
