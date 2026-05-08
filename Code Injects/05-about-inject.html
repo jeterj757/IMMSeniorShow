@@ -71,7 +71,7 @@
     z-index: 0;
     pointer-events: none;
     background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20Black.svg") center top / 100% auto repeat-y;
-    opacity: 0.11;
+    opacity: 0.045;
   }
   .imm-about > * {
     position: relative;
@@ -79,12 +79,12 @@
   }
   body:has(#header) .imm-about,
   html.squarespace-damask .imm-about {
-    --sqs-header-offset: var(--imm-sqs-header-offset, 76px);
+    --sqs-header-offset: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset, 76px));
   }
   @media (max-width: 699px) {
     body:has(#header) .imm-about,
     html.squarespace-damask .imm-about {
-      --sqs-header-offset: var(--imm-sqs-header-offset-mobile, 64px);
+      --sqs-header-offset: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset-mobile, 64px));
     }
   }
 
@@ -122,7 +122,7 @@
     position: absolute;
     inset: 0;
     background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20White.svg") center top / 100% auto repeat-y;
-    opacity: 0.14;
+    opacity: 0.07;
     mix-blend-mode: screen;
   }
   .imm-hero-bg::after {
@@ -153,7 +153,7 @@
     margin-top: 24px;
     color: rgba(255,250,231,0.94);
     font-size: clamp(1.04rem, 1.9vw, 1.24rem);
-    font-weight: 560;
+    font-weight: 500;
     line-height: 1.68; max-width: 58ch;
     text-shadow: 0 2px 14px rgba(4,18,12,0.64);
   }
@@ -209,7 +209,7 @@
     z-index: 0;
     pointer-events: none;
     background: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20White.svg") center top / 100% auto repeat-y;
-    opacity: 0.10;
+    opacity: 0.045;
     mix-blend-mode: screen;
   }
   .imm-card:nth-of-type(2) > * {
@@ -217,7 +217,7 @@
     z-index: 1;
   }
   .imm-card p {
-    color: #20352f; font-size: 1.02rem; line-height: 1.72;
+    color: #20352f; font-size: 1.02rem; font-weight: 500; line-height: 1.72;
   }
   .imm-card p + p { margin-top: 10px; }
 
@@ -524,7 +524,7 @@
   }
   @media (max-width: 760px) {
     .imm-about::before {
-      opacity: 0.075;
+      opacity: 0.035;
       background-size: 170% auto;
     }
     .imm-about .imm-hero {
@@ -583,6 +583,35 @@
       line-height: 1.58;
     }
   }
+
+  /* ── Softer launch type ── */
+  .imm-about .imm-hero-h1,
+  .imm-about .imm-section-title,
+  .imm-about .imm-card-title,
+  .imm-about .imm-step strong,
+  .imm-about .imm-cta-footer-h {
+    font-family: var(--ui) !important;
+    font-weight: 740 !important;
+    letter-spacing: 0.005em !important;
+    text-transform: none !important;
+  }
+
+  .imm-about .imm-hero-h1 {
+    font-size: clamp(2.6rem, 8vw, 6.2rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .imm-about .imm-card-title,
+  .imm-about .imm-section-title {
+    font-size: clamp(1.7rem, 3.7vw, 3rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  @media (max-width: 760px) {
+    .imm-about .imm-hero-h1 {
+      font-size: clamp(2.2rem, 11vw, 3.5rem) !important;
+    }
+  }
   </style>
 </head>
 <body>
@@ -599,7 +628,7 @@
     <div class="imm-hero-inner">
       <span class="imm-hero-eyebrow">Interactive Multimedia · TCNJ</span>
       <h1 class="imm-hero-h1">About<br>the Show</h1>
-      <p class="imm-hero-sub">The IMM Senior Showcase brings together games, animation, music technology, fabrication, culture, and creative code — one night, one building, 36 projects built to be experienced.</p>
+      <p class="imm-hero-sub">The IMM Senior Showcase brings together games, animation, music technology, fabrication, culture, and creative code — one night, one building, 39 projects built to be experienced.</p>
     </div>
   </header>
 
@@ -633,7 +662,7 @@
           <div class="imm-step-body">
             <div class="imm-step-num">03</div>
             <strong>Scan Hunt Stops</strong>
-            <p>Each track poster stamps your scavenger hunt passport — collect all six to complete the trail.</p>
+            <p>Each room or hallway QR collects one hunt stop on your phone — collect every stop to complete the trail.</p>
           </div>
         </article>
 
@@ -641,8 +670,8 @@
           <div class="imm-step-accent"></div>
           <div class="imm-step-body">
             <div class="imm-step-num">04</div>
-            <strong>Grab Some Merch</strong>
-            <p>Pick up official IMM Senior Show 2026 gear from the online store — tees, hoodies, accessories and more.</p>
+            <strong>Buy a Poster</strong>
+            <p>Pick up an 11 x 17 poster at J&amp;J Innovations. Posters are $1.50 each and proceeds support the IMM major.</p>
           </div>
         </article>
 
@@ -703,7 +732,7 @@
   <!-- Full-bleed CTA footer -->
   <footer class="imm-cta-footer">
     <h2 class="imm-cta-footer-h">Ready to Explore?</h2>
-    <p class="imm-cta-footer-sub">Browse all 36 projects or learn more about the Interactive Multimedia program at TCNJ.</p>
+    <p class="imm-cta-footer-sub">Browse all 39 projects or learn more about the Interactive Multimedia program at TCNJ.</p>
     <div class="imm-cta-row">
       <a class="imm-cta primary" href="/projects-26">Browse Projects</a>
       <a class="imm-cta" href="https://dct.tcnj.edu/" target="_blank" rel="noopener">DCT at TCNJ ↗</a>

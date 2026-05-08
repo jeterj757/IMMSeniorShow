@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Show 2026 — Room Maps (Print)</title>
+  <style>
+@font-face {
+  font-family: "Norwester";
+  src: local("Norwester"),
+       url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+  font-display: swap;
+}
+
+@page { size: letter portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #c8bfa2; }
+
+body {
+  --forest: #123f36;
+  --paper: #f3edda;
+  --rust:  #c75145;
+  --orange:#cd7028;
+  --green: #4e985f;
+  --blue:  #3f6f9b;
+  --violet:#8d5aa9;
+  --teal:  #1e8ea8;
+  --ui: "Avenir Next", Avenir, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --display: "Norwester", "Arial Narrow", Impact, sans-serif;
+  font-family: var(--ui);
+}
+
+/* ─── Page Shell ─── */
+.page {
+  width: 8.5in;
+  height: 11in;
+  background: var(--paper);
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+  break-after: page;
+}
+
+/* ─── Header ─── */
+.page-head {
+  flex-shrink: 0;
+  background: var(--forest);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.15in 0.28in 0.15in 0.28in;
+  gap: 0.2in;
+  border-bottom: 3.5px solid var(--rust);
+}
+.page-eyebrow {
+  font-size: 6.5pt;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(243,237,218,0.6);
+  margin: 0 0 2px;
+}
+.page-title {
+  font-family: var(--display);
+  font-size: 28pt;
+  line-height: 0.88;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--paper);
+}
+.page-meta {
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 7.5pt;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(243,237,218,0.8);
+}
+.page-meta strong {
+  display: block;
+  font-size: 9pt;
+  color: #ffd16d;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Body (map + sidebar) ─── */
+.page-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* Map panel – the JPG */
+.map-panel {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  border-right: 3px solid var(--forest);
+  background: #1a2a26;
+}
+.map-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  display: block;
+}
+/* Subtle overlay so map reads darker / branded */
+.map-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(18,63,54,0.08);
+  pointer-events: none;
+}
+
+/* ─── QR Sidebar ─── */
+.qr-panel {
+  flex-shrink: 0;
+  width: 2.78in;
+  background: #fffaf0;
+  padding: 0.16in 0.15in 0.14in;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+.qr-panel-title {
+  font-family: var(--display);
+  font-size: 10.5pt;
+  color: var(--forest);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.1in;
+  padding-bottom: 0.07in;
+  border-bottom: 2.5px solid var(--forest);
+  flex-shrink: 0;
+}
+.qr-items {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.qr-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.1in;
+  border-left: 5px solid var(--accent, #ccc);
+  padding: 0.065in 0 0.065in 0.1in;
+  min-height: 0;
+}
+/* Hairline separator between items */
+.qr-item + .qr-item {
+  border-top: 1px solid rgba(18,63,54,0.1);
+}
+.qr-item img.qr-code {
+  flex-shrink: 0;
+  width: 0.68in;
+  height: 0.68in;
+  display: block;
+  border: 1.5px solid rgba(18,63,54,0.15);
+  border-radius: 3px;
+}
+.qr-info {
+  flex: 1;
+  min-width: 0;
+}
+.qr-room {
+  font-family: var(--display);
+  font-size: 13pt;
+  color: var(--forest);
+  line-height: 0.9;
+  margin: 0 0 2px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.qr-theme {
+  font-size: 5.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent, #666);
+  margin: 0 0 2px;
+}
+.qr-names {
+  font-size: 6pt;
+  color: #3d4f49;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Hunt promo box (Floor 1 sidebar) */
+.qr-promo {
+  margin-top: auto;
+  flex-shrink: 0;
+  background: var(--forest);
+  color: #fff8ea;
+  border-radius: 5px;
+  padding: 0.1in 0.12in;
+  font-size: 6.5pt;
+  line-height: 1.45;
+}
+.qr-promo strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 9.5pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffd16d;
+  margin-bottom: 3px;
+}
+
+/* ─── Footer ─── */
+.page-foot {
+  flex-shrink: 0;
+  background: var(--forest);
+  color: rgba(243,237,218,0.72);
+  font-size: 6.5pt;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.085in 0.3in;
+  border-top: 2px solid rgba(243,237,218,0.15);
+}
+.page-foot a {
+  color: #ffd16d;
+  text-decoration: none;
+}
+
+/* ─── Screen preview ─── */
+@media screen {
+  body {
+    padding: 0.5in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5in;
+  }
+  .page {
+    box-shadow: 0 22px 64px rgba(18,63,54,0.28), 0 4px 14px rgba(0,0,0,0.15);
+    border-radius: 2px;
+  }
+}
+@media print {
+  body { background: #fff; padding: 0; display: block; }
+  .page { box-shadow: none; margin: 0; border-radius: 0; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 — FRONT  /  1st FLOOR
+     Rooms: 114, 116, F1 Hall (hallway tables)
+════════════════════════════════════════════ -->
+<div class="page" aria-label="Floor 1 map">
+
+  <header class="page-head">
+    <div>
+      <p class="page-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</p>
+      <h1 class="page-title">1st Floor Map</h1>
+    </div>
+    <div class="page-meta">
+      <strong>Room Hunt</strong>
+      Friday, May 8<br>5 – 9 PM
+    </div>
+  </header>
+
+  <div class="page-body">
+
+    <!-- Floor 1 blueprint photo -->
+    <div class="map-panel">
+      <img src="../AIMMBuildingMapWeb-1-7.jpg" alt="AIMM Building 1st Floor Map">
+    </div>
+
+    <!-- QR code sidebar -->
+    <aside class="qr-panel" aria-label="Floor 1 check-in QR codes">
+      <div class="qr-panel-title">Scan to check&nbsp;in</div>
+
+      <div class="qr-items">
+
+        <!-- 114 -->
+        <div class="qr-item" style="--accent:#4e985f">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACKElEQVR4nO1a0WoDMQyLTP//lzVs2bkrY2sftsSFuNDmiB+EUXSKXXC8EfZO0jhZFSer4jEGtCKcahgjGQfOnbbobXnWI+oxvFBErAhG0XjttEVve7IAMYlwUkW5IHLlTmv0y/mV4SVyWolmcTq7o7e9WXRq+SlEL1zd+MV80BF0HQMRNGNv9LalXsh1KD2k9yFhc6creluehUumEJaibESs9uGypllQXRCckn0IIzYVLPa7orc9WZDdorsHfWTAyHxbtka/PAsj6kQwXpAMvvlm1A3N0b+Ov9YvSKgwvZeKl+tzHu9Rhl4RVmLegvTcGb0tz0Lxacwa3d6PRbKu6G1PFuj2tC5CUjCvlRfz6Nd3vWfpehVs/uayM/rX8Q9Z8E/IvXuIeF+GxUiP3xz9Yr0fKVcSe9n8ahzqpyt6W571uBqrqDNZNVTb8PDrHpZnEe7mi2bh99WdYHf0m7Io9YoSpYWN2ol03dGv7edQd2zX9uyv6inJdvTrFpayTrgJm64+Ivh2+vdPcbs7jnlh9K95gfTvruhtz/yR1+AxTqafxrhV1mCtK3rb318dKlyyS83DtuhtedaIu+KoBmF6CHf585lkV/S2d77N7E6Xx1e5GqO3PfM06Aiql5MuLHVfB7Irets53+Zsd0VLJz3Y8RM/Z9HPodo5ak7Xy/Mj0K/jF7V2JxFXoBzWnvnjr/Nt5F9zNFC7BiFn3nGLp7/hfBx6O1kZXbO+ANOu9ki+KLw4AAAAAElFTkSuQmCC"
+            alt="QR – Room 114">
+          <div class="qr-info">
+            <div class="qr-room">114</div>
+            <div class="qr-theme" style="color:#4e985f">Visual · Digital Fab</div>
+            <p class="qr-names">
+              Shane Maccarone<br>
+              Caleb Kim<br>
+              Daniel DeLeon<br>
+              Ari Lugassy
+            </p>
+          </div>
+        </div>
+
+        <!-- 116 -->
+        <div class="qr-item" style="--accent:#4e985f">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACGUlEQVR4nO1a0Y7DMAgDtP//ZU42kPaum7SnhJPIpq1L/WAhQw2Zunyx7BuQDKrWoGq9RDSuHN+ufGPTrztt2dt21IvxEMamUtPXdd3pyt6OxEsqPopPdUrL+SvvdGVvJ1GeEVO8XLULr64oRSIyYFTYSs/TvPrlo/PSESfIihU/8tF7s7ftKPFV5eX5KkhX9rYdpXe/qtAYnUQainO8rLG+PCODK6qq9uLX6Ou24BuidEW9L/uVRoIeti97244SCMnzktrCFnR21bbR17Ve1QiJ5KMRT0bcwRdd6/j7Zz5K1fr09rk/fuKdvhg2KslFswtaCpt+6Ncy5KEiNIhNyGoZiTT6rdkfQWkU+RAakzLkRqFN/Xr4VV3Fi0mJ7ZWTndnbCZRm74jPSEo+KbPl5k5j9vtRnlOcCFD13qrulZGd2R+ZT2hOnzHQYQAjUCsru7K3Eyitqk53HzaVEWQto+Iasz+hL6yYTGTNXyZ/9PUGtcSEsUTmY9hVym3q/QPlUbCyg0xRlX1tz343SlmwwtnTid0c/tSvt/2jRLHP4yHM8WO0EwcgbdnbyfNtuRZK2X1Y3ZW9HT3fVlR7JCSusRemTOf/AB/OtyVGOjmXrgHY1K8PKM+uO3wEDzuyo/wP7Df7VYnJaswnQmfXGUhX9nbyfFtWuKJzXNOvvuxtO0rTkQothP7570nNWruyt7Pn2/+OvQ0qV1fUD0E7BThdcUbGAAAAAElFTkSuQmCC"
+            alt="QR – Room 116">
+          <div class="qr-info">
+            <div class="qr-room">116</div>
+            <div class="qr-theme" style="color:#4e985f">Digital Fabrication</div>
+            <p class="qr-names">
+              Asa Wong<br>
+              Isabel DiFabio<br>
+              Matt Tonna Trifiro
+            </p>
+          </div>
+        </div>
+
+        <!-- F1 Hall -->
+        <div class="qr-item" style="--accent:#1e8ea8">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACE0lEQVR4nO1Z2W7DMAwzhf7/L3OQKDntsqNPtoZZaJsm0QNB0DrB8YbZO07jeJUdr7LHGNA/gvqfigPnm7bobbnXowjCcH7oH8Kf8XrTFr3t8QJQivKP0wWJK9+0Rr9cX2lOkcvKf1Nf3dHbVi/Oq1OHNrja6YvzNs+jx7CI/+yN3rbwhXnnYUvxXobm6G251+NZXUNJMU6jy4vd0duW+ov+lZTA5AkVwCJndkVvy72gIpVRneo3SVIAi2TZFr0t9xp0OTGPHucTPdJLsit6W+4FSWnk3VXSR6lfLl3R23IvVAExRFXczMxYnHVFb9vqLzpDGbQUwjINhPa6ordN9RcV+DNVirw8nMFbV/S2xYtiKTjK61NNdvT1uV51IakJqrGOn80aUhx93byYTXbMKOAxrMqLDGat0a/2Qs1yJLSqXXP4dfLjPX5BjZA4ilMYXZDyZnn9bv/Ei0qDQRRn+FdqhEqzxuh3nEeoBXJLiUXkz+uJ97d5DiJoxeQrdFUFvj/rjN6We+F5e0bdVX1fndHpHy8rnlDNdc12UlknP77aHE2M5EjLx+q7c3bRFb3t3G+PayoRY69IlyKsK3rbu98eWkDmljvrr6Ov2zwHlSSr2Z6x7Ojr+/02o73OY8mXqN8VvW31YlT1UpjmFGff8dN+G5pN5/A+qWqN3nbutyF91fxrknX2HV/XX38QvR2vtK5eH2Rv/Em0+IgKAAAAAElFTkSuQmCC"
+            alt="QR – Floor 1 Hall">
+          <div class="qr-info">
+            <div class="qr-room">F1 Hall</div>
+            <div class="qr-theme" style="color:#1e8ea8">Tables · Refreshments</div>
+            <p class="qr-names">
+              Kai Macedo · Jared Morris<br>
+              Jennéa Jeter · Collin Della Sala<br>
+              Chase Dimarzio · Aidan Michaels<br>
+              + Food &amp; Drinks
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /qr-items -->
+
+      <!-- Hunt promo -->
+      <div class="qr-promo">
+        <strong>🏆 Room Hunt</strong>
+        Scan all 10 QR codes across both floors. First 10 finishers win a FREE gear spinner — show your screen at J&amp;J Innovations or the front desk!
+      </div>
+      <div class="qr-promo" style="background:#cd7028;margin-top:0.08in;">
+        <strong>🖨 Posters Available</strong>
+        Prices listed at desk
+      </div>
+    </aside>
+
+  </div><!-- /page-body -->
+
+  <footer class="page-foot">
+    Scan QR codes to track your visit at&nbsp;<a href="https://www.immseniorshow.com/hunt">immseniorshow.com/hunt</a>
+    &nbsp;·&nbsp; Collect all 10 stops across both floors
+  </footer>
+
+</div><!-- /page 1 -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — BACK  /  2nd FLOOR
+     Rooms: 202, 206, 220, 221, 222, 223, F2 Hall
+════════════════════════════════════════════ -->
+<div class="page" aria-label="Floor 2 map">
+
+  <header class="page-head">
+    <div>
+      <p class="page-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</p>
+      <h1 class="page-title">2nd Floor Map</h1>
+    </div>
+    <div class="page-meta">
+      <strong>Room Hunt</strong>
+      Friday, May 8<br>5 – 9 PM
+    </div>
+  </header>
+
+  <div class="page-body">
+
+    <!-- Floor 2 blueprint photo -->
+    <div class="map-panel">
+      <img src="../AIMMBuildingMapWeb2-6.jpg" alt="AIMM Building 2nd Floor Map">
+    </div>
+
+    <!-- QR code sidebar -->
+    <aside class="qr-panel" aria-label="Floor 2 check-in QR codes">
+      <div class="qr-panel-title">Scan to check&nbsp;in</div>
+
+      <div class="qr-items">
+
+        <!-- 202 -->
+        <div class="qr-item" style="--accent:#cd7028">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACEklEQVR4nO1awW5DMQiLUf//l5nAkGRqp/ZQBSaFVkvax8FCxnHJoOODkE+Sxs3KuFkZjzHAnQ5MrmEMha4nXdHL8ayH12Owal4wRKl0e9IVvdRkAawWy2XcshXzSW/0x/k1w/iluUYztkYvtfVSKpaalC0xa4xeauql8cFr5EVTa8dgW2P0UlIvbJ+tUBqv9aQrejmehdV2CFORRkL7o5cS/6WpWjwUXbrIM/++MXopyYLVh17CRItOQtOAmaPojP59fDNreKE8WCHf6SyXl1K7opfjWTAGaW538cq9LV3RSw2/NFoveJWUW193RS9F/AL5FOaeq3MrpKwrejmeNZJTYxFrSv3Vrz/OR+QoYhVqetXrJ/YQ4w/oGjbhD2aZCbvznD22EoFDCf4SijAtu+fjCz+B6DyOvyj5MQrTvuilJgtT5I1flH9r0KlirdEfz9IcRSSrvFZh97U7+vfx5X5EjFSpWzwr9zuQq1+v5qvw89BPRj8VyTYj29Wvpyx4T9pZmEcA/UXMLJqjL9B7IC/QWLRw+rlrjf50P2rMcVLC4m6N4k8v1hW9VN5vK5fNfNHMXv16fb+Nec/hbZj+6/bj0/mIqNkcVFD75+CwLXopzQLfViF1b+FLPa6W/mu4dAW1/C93zriu6KXyfltTwqbLn53aFb0U3g9pDgo5Up2z1Ttf3ePXv5X8O/RysyK6Zv0AdjkJJvNf/oAAAAAASUVORK5CYII="
+            alt="QR – Room 202">
+          <div class="qr-info">
+            <div class="qr-room">202</div>
+            <div class="qr-theme" style="color:#cd7028">Visual Storytelling</div>
+            <p class="qr-names">Alex Cook · Kiara Manon · Shane McGowan<br>Naheda Hussain · Maya Randall</p>
+          </div>
+        </div>
+
+        <!-- 206 -->
+        <div class="qr-item" style="--accent:#8d5aa9">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACJElEQVR4nO1a0Y7DMAjD6P7/lzmBIe12J3UPW2BS0W2XtH6wUOKYMJi8EPoKSG5UxY2q+BEBRyYQi5kJOFlvprLX7ShEciQGlasciq03U9lrDwqIlQTj0vJsGXUt34xmv3s/rjBwS3ogEzabvbaiYL7Aan/O4TVufVkMKVwhW4ZMm81mry35wvmBZ82FLL4xnL1uR+EkU4gUZZbq3GzipXNR8D+41ueopD4e9PGairIYuGqJiUWyQvdro2I0+80o8fxYZCqnPveJ545Ds6nstQNl7roo8rWmPEc8InloDmbfpF/CMzH35Toxbz/xH8r4QRVDnJQJu/XrCVXaHuWjm1XWRZEuRIU0mf11vFnvLY/EB4k//7v1/hG17r1Cv/5Wj7PZX8fb9R5hI1yvSvlZdmdBOZp9Rz0EOSqg0+dQ/6nstQOF2I88H/1RXBGyjMxDYDL7lnobsRe5I/l1vjmcy15bUGBZZG5Vq+tRZwAX3WT21/GB+tGyyD65iqwoI5FT2et2FGjlJW0FXUW208pqzGWvLf1HC2UPQ5FVERtrnbx0KArHJSqo9cu75tLzJE5lr539bctVFfer9F61Waey15Z+h/mAt9H0FbXswpZhMHvt6aeBqVkedf2EohI3lb12okDRp/3ylXbcUn8B+/0oEwN/QpGGrNq3X8F+J8qqgxZyn321vP2Kz2j2++shjxKubHuc25Kz2V/Hh/zXF7LXG5UxFfULdHkHJ+QTizwAAAAASUVORK5CYII="
+            alt="QR – Room 206">
+          <div class="qr-info">
+            <div class="qr-room">206</div>
+            <div class="qr-theme" style="color:#8d5aa9">Culture · Visual</div>
+            <p class="qr-names">Robert Boguslavskiy<br>Caelan Arroyo</p>
+          </div>
+        </div>
+
+        <!-- 220 -->
+        <div class="qr-item" style="--accent:#3f6f9b">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACHElEQVR4nO1a0W4DIQzDUf//lz0lTqDbetKeIJNIpZY78mBFxphQcPwh7C9J42ZV3KyK1xjQiBiMh2QcOGfaorftWa+ox/BCEfARwSga10xb9HYmC0gmecVULohcOdMa/XZ+ZTjDnFaxLn059kdvh7MYbJrC1QZXM34xH0BXfBd+EEEz9kZvR+qFHLtoeaWSZVgzXdHb9qzXYtdYhfLCvfGuLXrbngXfEEeWSvbBVX8pWMx3RW8nshjFcbFy96CPDBiZu2Vj9Ef8BMLXJ6+8RnIT/h1vu6K37VlYNgvTe8mK5fiux9/+foSRl9y7ow9fEbTTebI1+gP8Qh23k2Sl80Cyruhte9agi/p4dw+u83ngZqp+V/R2JAtVMcV0ForLrw/nbcSeONXetSsUPwZ90dv2LKQ35ZQrtSmqcXj1/kfEWuQcTv3K2atfj/6evjmSsQpL81PIGqPfnwX/lT/VKTLOk1qi6coaoz/S/wLVzIlXEjAdjPJtV/R2Iouh7mFZ1ZWQz5eD1bgx+jPnR6gwsTOWv69G/r1Pe4/YC5lD+fn3d3d/fO5PsNxYdfGredgWvZ3IgsKfVuc+jo+y+b3RH9gf6YOkUzZapWR17G6L3s74CaS8q1BZI+m+FmRX9HbyfpvaJbNy5cGun3jOIsLRZ+nEr7seH++34ddBWbBs5DRHb9uzsP7lBf3U3eO97/gU3/6G8+/Q283K6Jr1BXHB/S5N+PoWAAAAAElFTkSuQmCC"
+            alt="QR – Room 220">
+          <div class="qr-info">
+            <div class="qr-room">220</div>
+            <div class="qr-theme" style="color:#3f6f9b">Creative Coding</div>
+            <p class="qr-names">Jack Dinnigan · Jeffrey Ernest<br>Kyle Duverger · Idrissa Fofana</p>
+          </div>
+        </div>
+
+        <!-- 221 -->
+        <div class="qr-item" style="--accent:#c75145">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACGElEQVR4nO1a267DMAgDtP//ZY4wTtqedeoeqoZJsFub8GAhcB2Yunxh9o2TtNew9hr2EtG82ieairj6tlMVvT3u9RqR0njHlTJUvtupit7WeKlGJumIjjiCp3OnNvrH82tYpJUjxTxjVh69LY2XM0oecctsW4bLKsfLeYOUAs17lGPEbxUuK+olKMAwP3mluVdFb4976VZ2msk1hYTXR2+PeykiJDM8UYWxEGvbelX0tiS/NOJzoK9MNEix1qtH8+QpTwLbreVqrDd/Hb0guhwKwsH/IVLjNi6RYpXRX9vdXj5rz5O3MmTJ+6jIyuiv7X7+EtB83JPtsTXIrPnrlL9k8BdXBqU1f53zl1O8js+uz1MZ/bXdfB7y7OXgNwtxHiSTxLoeP+l7D3VP/QqDcu14/atHiW4Xz9dUqFmfTK/S6K/tZi9liHBw1CCzeEGDDRIrjH6Fl1NqjfxCrCj3vTz6BXrCKRx2UmJuxrsqelvXL9Rsr6IU8ylADdv89RYvzYzisxKSf3fVz8c3/hLOgVKDbezFw2Rt9M/rVZkTyJykQfKjQKnFqqK3lfNtT0nP8/Y2kWz+Op9vayp7jIYyetn/KozeVvG9MJPYNMQ0LSmtz48fvXT2DoPuQ1rwePQT6B/MLxqSKwe18Z1XeFBWRW8r59tOCoPCZ4nypyp6WzzfFoqLaE6M3mr3V/d2+FvJz6G39qJV9foD0k4gAIzSXJwAAAAASUVORK5CYII="
+            alt="QR – Room 221">
+          <div class="qr-info">
+            <div class="qr-room">221</div>
+            <div class="qr-theme" style="color:#c75145">Games · Music · Culture</div>
+            <p class="qr-names">Aidan Michaels · Griffin Petry · Madison Braithwaite<br>Robyn Maggio · Rushil Desai · Anthony Resto<br>Zachary Wade · Andrew Romano</p>
+          </div>
+        </div>
+
+        <!-- 222 -->
+        <div class="qr-item" style="--accent:#c75145">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACGElEQVR4nO1a0Y7DMAgDtP//ZZ8wkGa7SbeHU2FS2NRmKQ+WBS6QKeQDs0+c5HiVHa+yh4jGag80FYHiejIVvd3u9SimVERzEVRhezIVvfV4qXokKXh1mpw8ruLJbPS3x1cZQ8xDygON5E1Hb618ocILHmv4AvTWwxfyB0OKMg9PR4+yLlw21EuYgG548wkDpqK32730Sjv1C5iJGWiNuGyol1KrZNHjWegbvnftT0VvLfGlzg9/lHzxxiIstqait9u9BCgFw0pAlHrxiqNfL15wghhkfvcqNfohXzLERqNv8NLIRdd6pyooC91nRs5Gf7t+SeoWQ2xXsxCzo1+bUaskGCohWztHv955sWkMtb+IqmHOqSeezJwpVderNe9iu83IKhEbjL6nvtcIqKhSt9EEK9ejX5fVaFCjF6p54bbnq6morcdLKWEkS2OFqMFKxUajv90L2WKvdohc5XwC09H/bf9fT2B9a+966N+p6K1pXqhsr7nM9KxRRbwKpqK3rnkO1jpfAWE10ZmK3rq8tI6IssEu+c/cHI7+3nxEjQpTtYK4LCkiwqait87zbcgaUWQhEQwe/dpsKb3WBLo0q1g7+fjr/ajb4QZ7R56mxdE2+ZyK3pq91HtvZwgxX/XbBFzD4istz7Sj7opPDvKnorfO823wLyZBGoXsytSp6G3A+bbESHXNVs98dbenv5V8HXo7XmlTvX4AQLEWAMDSGukAAAAASUVORK5CYII="
+            alt="QR – Room 222">
+          <div class="qr-info">
+            <div class="qr-room">222</div>
+            <div class="qr-theme" style="color:#c75145">Games</div>
+            <p class="qr-names">Mohammad Abdul Wadud<br>Tyler Spressert · Michael Berrios</p>
+          </div>
+        </div>
+
+        <!-- 223 -->
+        <div class="qr-item" style="--accent:#cd7028">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACHklEQVR4nO1a0W7DMAgE1P//5Zs4wI66bu3DZhPJpIoS5x5OCPCBq5APzD4ByUGVHdQwVIBBIPVD3RLSlb0tRz3oKRFREU0HQXNtfOnK3rb4S8o/dJgy0BR8yy9d2dtOFMJNon5BtQuvrigVKOgwRlim5H5e/fIRfKSvmIHK4u+v6M3eNu+PeLoK0pW9LUfpVa+qR5YHV2TnTl7WOL5QOoKaC3Mt3k58XSw2RPCRwivlVwoJX0Bf9rYpHxWptK756AvhwLbsbcv+qO6X8E3EVXrJZRhrWlv2thyl6REJB5X+yog7euLZbPTYUhkpoiHuKfi1OfsN8SX0ViTlzMzaDE7/+BKFcJQiShg8yCJRT/36vj9KSgkvZhFZ2W6jNXvb0z9KzW98CBYlLOsZJxVHT0x7MJbg95xJTM06w6wre9uC0lJdPvXyx5hNXLKyM/v39i8oHUOJLPpZy9hCtme/tH6B2ZjyPgfRKfJPfL1CaWQgT4Wi1IefGF7+3Jr9ehRSazEnfXzPxalme7NfX+9F4KWKrRBbyBrlZFVrzf69/XX/iGwhQ7QyvqKa1YlRZ/Yb9JfI9dDD7yHG5rC6K3vber6NGOfw6DE1fh57d2VvW8+3NUpXNZM1pjj16wcUKv9CpvKmLGd3YL8chdASCteu4/8TjLUbsF+Zj8gXboyjcxzTr77sbTlKU5FKju5zeQiwM//65Xz7duztoNK6or4AOxgDJsUcFjwAAAAASUVORK5CYII="
+            alt="QR – Room 223">
+          <div class="qr-info">
+            <div class="qr-room">223</div>
+            <div class="qr-theme" style="color:#cd7028">Visual Storytelling</div>
+            <p class="qr-names">Evan Costa · Carolyn McDonough<br>Aaron Pettiford · Michael Rasimowicz<br>Mehmet Sezer · Adalmaris Castillo</p>
+          </div>
+        </div>
+
+        <!-- F2 Hall -->
+        <div class="qr-item" style="--accent:#4e985f">
+          <img class="qr-code"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQAAAADDfFG0AAACG0lEQVR4nO1a7Y7DMAjDaO//yj6BSdrTdrf9mBp2F6ZW/UCahYwDpKC9YP6Kk22vYdtr2M0MuiKMeV2Mg+7yQVf0frnXbQQIRsRhBBHPeLxpi97XeAHJJIpUGS6IXPWmNfrL+VWGZFNkIQe/uqP3tV7kDFnxqweubvxi3aRuoTSMwTf2Ru9L4oV5F7IlvZehOXq/3AuHTEEVRZURSa91uLypl5EpW8y0jOs88fv7ruj9ci+MqpSqJYpcSssoMDKSXdH7Ei/GD7EixjkYVTHMah/N0T+3t+sXklmDWkeglJXY/dBhlYFMcumcYaokrZh1Re9rvKhDjRCJ6IJS9YeetUa/oH+0SSgVrUpKZMW69ete782CVhGrmZ/T9vp4Nq/KlNIvFVyWi2WRbfPr4XyCKVk1zJllWBYYfdH7Ki9oZUyrdbKGX3t9fKz3rD47dKz6SM3BptdT+w9eKC7Z4JfEP8vXjGBGrit6X+dF6VWwa3SOI2wfgP5KvafIlWzSLFr1WK0A7/5H/zv9I0+90JxNxLkrer/cC9U5YjTXs5yo5XKvj7/MVynVP7gmCWuL3i/3sjlK5fEoWm0NWuumK3pfur9tpVizOZr7kF3R+5p+CCMFR7M9tawSsit6X7m/zVPtmuX+ofpd0ftSL+bAa45bayy28/Gn/W1EwPQhgIZh7I7eV+5vQ7WDvp44FRq7fzzZeRf789D79irr6vUF5ET+L5UZjAgAAAAASUVORK5CYII="
+            alt="QR – Floor 2 Hall">
+          <div class="qr-info">
+            <div class="qr-room">F2 Hall</div>
+            <div class="qr-theme" style="color:#4e985f">Respect the Locals</div>
+            <p class="qr-names">Kelsey Daly</p>
+          </div>
+        </div>
+
+      </div><!-- /qr-items -->
+    </aside>
+
+  </div><!-- /page-body -->
+
+  <footer class="page-foot">
+    Scan QR codes to track your visit at&nbsp;<a href="https://www.immseniorshow.com/hunt">immseniorshow.com/hunt</a>
+    &nbsp;·&nbsp; Collect all 10 stops across both floors
+  </footer>
+
+</div><!-- /page 2 -->
+
+</body>
+</html>

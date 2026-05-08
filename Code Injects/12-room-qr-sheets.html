@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IMM Senior Show 2026 — Room QR Codes</title>
+  <style>
+@font-face {
+  font-family: "Norwester";
+  src: local("Norwester"),
+       url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+  font-display: swap;
+}
+
+@page { size: letter portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #c8bfa2; }
+
+body {
+  --forest: #123f36;
+  --paper:  #f3edda;
+  --display:"Norwester","Arial Narrow",Impact,sans-serif;
+  --ui:"Avenir Next",Avenir,system-ui,-apple-system,Arial,sans-serif;
+  font-family: var(--ui);
+}
+
+.rq-page {
+  width: 8.5in;
+  height: 11in;
+  background: var(--paper);
+  margin: 0 auto;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+  display: flex;
+  align-items: stretch;
+}
+
+.rq-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0.55in 0.65in 0.45in;
+  border-top: 0.14in solid var(--accent, #123f36);
+  position: relative;
+}
+
+.rq-header {
+  text-align: center;
+  margin-bottom: 0.28in;
+}
+
+.rq-eyebrow {
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(18,63,54,0.55);
+  margin-bottom: 0.08in;
+}
+
+.rq-title {
+  font-family: var(--display);
+  font-size: 72pt;
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 0.06in;
+}
+
+.rq-theme {
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent, #123f36);
+}
+
+.rq-qr-wrap {
+  background: #fff;
+  padding: 0.22in;
+  border-radius: 0.12in;
+  box-shadow: 0 6px 28px rgba(18,63,54,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  border: 4px solid var(--accent, #123f36);
+  margin-bottom: 0.22in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rq-qr {
+  width: 3.2in;
+  height: 3.2in;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.rq-instruction {
+  font-family: var(--display);
+  font-size: 22pt;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 0.14in;
+}
+
+.rq-names {
+  font-size: 10pt;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #4a5e56;
+  text-align: center;
+  margin-bottom: 0.14in;
+}
+
+.rq-url {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(18,63,54,0.45);
+  text-align: center;
+  font-family: "Courier New", monospace;
+}
+
+.rq-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--forest);
+  color: rgba(243,237,218,0.75);
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.1in 0.3in;
+}
+
+@media screen {
+  body { padding: 0.4in; display: flex; flex-direction: column; gap: 0.4in; }
+  .rq-page { box-shadow: 0 22px 64px rgba(18,63,54,0.28); border-radius: 3px; }
+}
+@media print {
+  body { background: #fff; padding: 0; display: block; }
+  .rq-page { box-shadow: none; margin: 0; border-radius: 0; }
+}
+  </style>
+</head>
+<body>
+
+<div class="rq-page" aria-label="Room 114 QR code">
+  <div class="rq-inner" style="--accent:#4e985f">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 114</div>
+      <div class="rq-theme">Digital Fabrication</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADDUlEQVR4nO1cbW7kIAw11v4nN+j9j9UbhBN4BQZDMimDoo12oO9p1DLUTx1LT44/GJzQLQS+xyMCsQMQOwCxAxA/jugMG7ktbYf4rloFdzKbzsdb4Hs0AvE5ohcFEcm3SpHIS5SuKtPLyWw+H++Ab7EIxGeIf/RXjJt+17UEF4UaXFyktxI2OZtN5CODuJJWDS69JL10ETc1rs7qI4O4KlEkPv0jvGim+rEfdQw8aPcCED8xrkqzldUZtpwMpHxAH/0ypY8M4jrEkOv7uPailZT7EvdVtKk5QGs2nY93wLdYBOJzcVXajVRS6Y4EF3MAe/tv/iOD+DNA7CH2oFIzKgfPtBOxU3ylxYX9PpGPDOISRMoq1d7pXluppPBFtKbbbDmRjwziOrVVSM96v8cmlT7xtbOqLayiW6flVU4JJvKRQVyCSPlxX5AjbZMJWLVVbZADvAGIT+YALVSZ+2moWvazhifykUFcgkht/DwpU0pVVWJpI2BotQcQH9QqqTLLz/ynveQDptJaZE3kI4O4UG21WUO1LDYbYLXriKzkiXxkEBerregiKaWcBmh5VfJYxNV3APGx2krRZKRWW5GOCezwapIutPoOID42Yw31eKq2WKlJCcpRltxx1ZRgKh8ZxKXiqm+f7zW6kgZbq7CsGYu42gOID2vVl8aUdQbkYvyKWcAAeMToCiD20PZOD/FT6vrqYMBEPjKISxDpMEttwqyUeZYVX+0QFlrtAsQntSomwjrAEptbHSZWGmMn8pFBXKYP4Ow7gPUrAJs2B+yolWtbAf/nozKIv5tIFldPOarUVmoNqk2pNZGPDOJqswA6z6fIlFlUirnVGHjQ7gUg9mDtqXNDwB/Pr5a4ijOBA+ARoyuAOHZ+tT1TXY4B1KBq9oir7wHiU7VVi1hM6ZdZqF4KVIet6U+z+cggrkqU73SFhSvXBaQbLfIFLLr+mI86Bh60ewGInxhXxTa0VZXuWzucXz1faTWRjwzimn0Aao6w7s3+sSeAfLULEJ8gOtzB/jNA7ADEDkDs4DcQ/wKvDMMbAub84gAAAABJRU5ErkJggg==" alt="QR code for Room 114">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Shane Maccarone · Caleb Kim<br>Daniel DeLeon · Ari Lugassy</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=114</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 116 QR code">
+  <div class="rq-inner" style="--accent:#4e985f">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 116</div>
+      <div class="rq-theme">Digital Fabrication</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADEElEQVR4nO2ca46dMAyFY6v/YQfd/7K6A7ICV4nzMMwQHjMZNek5QlcB8glFsnyN7UDiXsnzO845gA0BbAhgQwD/KdCJGM+6pLFsaSwiOj5Mk22gNTLAecAlmGKyRmuWixAR/Y7mepg23BrfiF9RDmBXkIhoTZfSwJNs0a/+oXLRTBtvjc/FL5gogD3AX4dzdZq0CIXfLR5h/H1PZIDnAvjAVmnZxFNwqn4Nv9l6ZeA1MsCZbFXyuah9+jX40mWjeEuiDe8tdqA1MsA58wDL+VGEPMCFAPbyq2LOwzgEABQigexUbTDw5ScywHMBvPKrwU/m8+hC9aLb3y0X4VevBLBnDLBkE9VCgN5SE82GWqKFWCAYaI0McCZblb1fLaUrlZ2pc2CrTQHsBYopSzkNU7NHDcl/ohQGeKphwGhrfCV+hzmAnWMAyQ62/ulv9bdMToJfbQlgL1tV1Vcq9aJLfeEqb1g1MICttgTwJ/zqLmQVE6ma/ABs9UoA+9YCJMtmq1x2s+mojnegNTLAKUCXDFQbVmv61KVgtb5MReXMAGy1KYB9awGS36EO+VVXwgNTb4WtNgWwY42VovOMTVahP1X8qgPtZrG11y8/kQGeC+CNPisfkqjBXHU7QB44v5b+1X0j60BrZIBTgK7+75f/d82pbu6Qv7JBLGKApgB29Kuq1F4V21ZdcKqhvUoHOgF+9Z745rwPAtjSxySVLQ2Icap7NzvQGhngVH51iVsAov9MewF82MZS0lXhRnSzNN4aGeAUoDsWp0p+VUyhynRh5SaBgdbIAOfbFyDRwaYw1ee9gSlqDfYaN7eiz+pSAHuBVJQ/EVDlUy6rfjfgO574SvwOcwAnAV19jbIvWXprO61eIQZoCmBHkKxTzV9codXsF/C16TpeHG+Nz8UvmCiAfXNWztQCdn0ssmu1gl+9Ib4z6TMBfPiNoNAMQOmVKmeuUsNAzmsNtUYGOOV3V5zW/eNRT6uJIr96R3xr1icC+Oy7KzVGjaplLLOzFTFAUwB7gIRvsJ8LYEMAGwLY0P8A/gWPJorKHaaNPQAAAABJRU5ErkJggg==" alt="QR code for Room 116">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Asa Wong · Isabel DiFabio<br>Matt Tonna Trifiro</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=116</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 202 QR code">
+  <div class="rq-inner" style="--accent:#cd7028">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 202</div>
+      <div class="rq-theme">Visual Storytelling</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADJklEQVR4nO2ca25cIQyFjdX/zA6y/2XNDmAFrsC87twGJqikgZ6jKrnj4VNqyfLYBsYITcnzHEcEsCOAHQHsCOCPA03Rg8iby/s+mNV4Wbabj1PiOYwArgOtqNQUQ5FClD7IfIi4sOC2bDcfZ8RTFAFcA/7SXyFvWhceNCzVQiTeSDA6o+/mZVv5yABPitVWGpaSnsNveSkMNvORAZ4aq5KTKlkXk6qUZPs3/iID/FwAx7Eqt7xK1mlLFZKqN/rRL1v6yADPAX3q76s5JlLzIWRFf96W7ebjjHiKIoDr8qq0hphFi0U0qUaL7OojAzwGNI88O31QmEm5NGWVp6k5tlnzD/+rU+I5jAD+LJB0XqpD1HbKKvkh2F2zLFk28pEBHgFSjUl96XJAlndtrlfzQ8y9G/nIAI8AST/0U0qNkanhKi95tVhixCJWuwK4sgaQHIdtLrWxdlXl51QtIFZ7Argyr7qaP1Ph6m5FbAldxOpAAFfNrEzcmTLlDEB+MMWYzgAki2zmIwM8B/RGx1MpbXpTP+4p/mzPA6T91t18nBFPUQRwYQ0gdRRQigHSmUBuuGropv5rIx8Z4BEgXSYATYdFZVTVLtazrIjVgQAunlm5+Do3VreBarZgvjoWwIWxSs0QtXb9qlIP5PlVNG7kIwM8B7SivZXu9YdTAbmf0lNVpWSt/dd2Ps6IpygCuHAvwKb8eY9JaXdgy8EA1KsDAVwOmphXm4CkML+KUrtedI1hvKuPXxF/aXUjgCvzqqsNVJ0J2EtLVccCyKsDAVy1b0VxcypfXA25Ve+uSj5inXYC9FBrermRjwzwGFCac1bhxoreBaCm1Xqakmlxh+UN8TuL/iSAo/MA5VW8uKoSb0KO1UsB7Z1BnAcYC+DiOYDUo4CXTSubB7Dt3BX1ak8AF8YqlV2qsgUgt96qWY9Y7Qrgt4A+V6o+zKb0+6zkGZ5TvYq7gWMBXDgHqIpfXaXNvsldf/mnYwHUqyMBXAhKGa4+8xcCuMvd1TQlwJ3rt8TvLbsLYE8vu6jt2F9KS3U9cIXeaiSAK0CD72D/XAA7AtgRwI7+B/A3LLhUwBZ/lIoAAAAASUVORK5CYII=" alt="QR code for Room 202">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Alex Cook · Kiara Manon · Shane McGowan<br>Naheda Hussain · Maya Randall</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=202</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 206 QR code">
+  <div class="rq-inner" style="--accent:#8d5aa9">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 206</div>
+      <div class="rq-theme">Culture & Technology</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADIklEQVR4nO2cYW7kIAyFDep/coO9/7H2BuEEXoExONPdkCLRDux7qkYJw6cOkuXYxsExDSn6MY4I4I0A3gjgjQC+HeiqDqKYP2Uw38r167TV1jgkP4YRwCkgMTMFFslFGg3MJ6U/Thcycpl2LrRGD3An0BVvmRypWKn7lY02OrHb12kLrvHr8gNMFsAZ4MfrQGBH5IhazhUPDrzyGj3APcHo5ClPpK6VSH3pnP/4VP7xzBcB3Mqvst67wC6URz5Hx9nNJgO+TltqjR7gPmAs+b39wh3JryaPmrOqUiJo01Zb44j8EEUA5/lVNvfJl1YvGl3Krf7iVNdaowe4Vc3qTLm/hKlpUOtUciGFrFLCEqFmdSeA0/0qZxea4lXJraQsoOFrDRHyyEJr9AC3AKn4TMn9a21KNwWavxUfK3OwF9ARwFm2yqfZqDLGSfKtTigjZTNroTV6gNvEAE6rUk5S/lynYkmp4nHNvI4F1+gBblVfjckIxThr4u9M4JpqAmLMiFf7AvgddQDWWzIBau0HqGUBxAC3AjgtXmWtTemnTazYpFSIV5/JP5z3SQB7MUDuTpGWFQqnPOhZZ1x2s5Zcowe4BUitYTV711YTYG1Ybc999bTwqx0BnBgDkLltUSubT920SpNQX+0I4Fy/SrXyX7cGyPjYFqnCr3YFcG5uxddkn2pvgG5stZmw1Y4ATty3YuMz7VtXJLLxAGKAvgBOjAHYlK1aJHBeuwXqfNhqRwAn+lWq76jaCDaYfQHzLWKAngBO3Lci20Z1dbNUrVfnw1Z7Ajgzt1KloVoB4KuD1WoAYoCeAM7at3L1Lpy1icXlHpXczWJaWdrr2Aut0QPcBwzNqZZzgXJXlai+ed0aWn7wp47ID1EE8D1BpweqSO5fT7KiPFJfYjU2vN4avy4/wGQB/A7QHemvVa5iMlH+nU4Kurzk8gY/9bH886lXAXy7eNWK45HaqsUs7elAGrXq24ILrdED3POcwLPt/ie99FxVoQ5wJ4DTwNgOVClHVwVOKZVxqiU8aCHramsckR+iCOAc0OEM9n8L4I0A3gjgjf4H8A+qKZu3s3H26wAAAABJRU5ErkJggg==" alt="QR code for Room 206">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Robert Boguslavskiy · Caelan Arroyo</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=206</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 220 QR code">
+  <div class="rq-inner" style="--accent:#3f6f9b">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 220</div>
+      <div class="rq-theme">Creative Coding</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADFUlEQVR4nO2c7W7rIAyGjXX+kzvY/d9duAJPxkBI2lGaCZ3C3ldVl1IebZYsxx8sTuiWAt/jiAA2BLAhgA0B/DjQFW16rctBPx27grtsm87GW+J7GAEcB3oxEZHsFF2RyIu5rn70ctk2n413xLcoAjgG/Gc/NG76Pa0Fp44anMRwKnqxyXXbRDYywJV8tcipc6pnil3bosXVWW1kgMuCXu/+Ki+WqX7un9ol7tv2KICfGFelWnJ+149h0xzAi4v5gN36ZUobGeA6YEj1vV7H271WVV/ivrJvWg5Qb5vOxjviWxQBHBdXpV7IJRXFqkpzgOBsg8xqIwNcAiTtQcVmVAqecUW1a//KLp7s3yeykQEuAVJqmXrzwKOVSqa4ePJb67LCV1sCOLJnFeLt3rqpeVAlsW1VGlbOyquUEkxkIwNcsg/g8rvYuk1XvaSVGH6j005kIwNcLAcQy0ujN9qwlU5D1ZQY5Gx2IhsZ4BIglUrq5J92kauq4szIV/vEnfseBLDrPICELb7nQVXQvNRS1jIXQL7aJ+7c9yCAr2cB5ZBVLRcnrZfF3CKYzcY74lsUARzbB6BY8tdlFGk41ZctxvUUY3/1GxngzwLY0tHtt4w0DwXEeq02JiiHVy2tRb76QgCHza0ovavqkmqv1stKGgpMZCMDXAKkUvXXznm0qnwOtvlb+GqHuGfTMwFsqfhkeZUTAlJmr7U/4zzAawEcObcKsUNVnaqi1MjSjy6fu5ZYbaG2eiWAg2cBvjq1Up28OiUAJUNAXG0J4Ehflaq/Wt/3o84nrCyJnchGBrhavmrKDim55D99e1RYE9nIABeLq6ZS+MvRSj2OAVQhdyIbGeASIJ06qHUfYK+SgeyliKt94s59DwLY0qVDlQJpUfbYSy8LvtoUwIG+StXJ1SfnVz3y1bfE720/BPCN566kx62ELf3zdXwoUNVl3d18NjLAJePq44iK6vMtR6NgIhsZ4JrPXQmb5BGVs6/yscD//acywL8N0rUPUK1LFUtPUwPMAl4I4AjQ4RnsPwtgQwAbAtjQXwC/AaQZoQXoJ2/wAAAAAElFTkSuQmCC" alt="QR code for Room 220">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Jack Dinnigan · Jeffrey Ernest<br>Kyle Duverger · Idrissa Fofana</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=220</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 221 QR code">
+  <div class="rq-inner" style="--accent:#c75145">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 221</div>
+      <div class="rq-theme">Games & Culture</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADJ0lEQVR4nO2cUY7jIAyGbWvf6Q3m/sfqDZITeAUYhzQtTdGyM2T+/6EiLp9mLFmuMRBW6tIqfRwRwIYANgSwIYA/DmTX7fD9Gs208mHaZD52SfowAjgODJoVx2uJ2DUO+Et1iRMep03nY4+kiyKAQ0EuSZW/rIDl9Kj3lFFv9ljl3vl8/FzSwSQBHAH+eTSsrEQclhyynDKqphrgH/1FAfhaAD+J1bBswRlixHLQHLHT+igArxSrWpksh4YlL6li3K5sMfyd/6oAfK1fA662vjdb0LyY4q84yJ+HabP52CPpogjguLyqtSFlUbdoTqrJorP6KAAvA/Kt9E5vZF2p/OufmgCWY6s53/ivdkn6MAL4s0CKoblQbqLmsdspK6QJ6dG+jZaJfBSAl6kBOGiuQTn90OsaUycnS+wD+ISw5IFO5qMAvARIljA1LqDsM6VZfcirbkkrL+TVpgAOi9VQfuXLII8pPZrK2KoFxGpLAEfWq1qy6z6XUn0GwEMXsfpGAAfmVSrr/W0BRVuj1aK0PKbwnshHAXgdcGXPq+Unnjxo8+d2XNBCejYfeyRdFAEcWAPo1uZ/iFL12tWNVtZO5KMAvARIulc05d/6UAqAenKpBBCrTQEcvLYKVUuqFANVgZpmo149JTk37SiALXl76thHNXk9UG1pIVabAjhq34rSGZW8RWWZc725xU6teJcg7WpN5aMAvFheVW+o5uy6lG9duy2DiXwUgJcAyXdXPThri3orwHdjswWx2hLAgSAz23mA6moVp3uCfr7argfaPcH5fPxc0sEkARwI6lLfUU2PNzu/urUI8qFW3Ll+L4D/qb+qpXCl7aSKtQWqLdeJfBSAlwDpyeqpOlmtJYDr3QHUq+8EcPDaSvfbVWF35sryqvddEastARzZs6Itc1oHQKvzq9VmK3pWJyRnJj0TwE9Ae4uFxsNXi73PSu9xnKMUdwNPSM5MeiaAn713hdNrK7hsWuWBP5bL1xP5KACvBKrvBdzLCwGW3d3VXNDizvU5ycl5BwH8oA9QL6y0blVVB66wtnongCNAxjvYXwtgQwAbAtjQbwD/Aghee5C7+PoyAAAAAElFTkSuQmCC" alt="QR code for Room 221">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Aidan Michaels · Griffin Petry<br>Madison Braithwaite · Robyn Maggio<br>Rushil Desai · Anthony Resto<br>Zachary Wade · Andrew Romano</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=221</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 222 QR code">
+  <div class="rq-inner" style="--accent:#c75145">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 222</div>
+      <div class="rq-theme">Games</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADEklEQVR4nO2cYW7kIAyFbbT/kxvM/Y/VG4QTuAIbQpgt6aAyW9j3FEWE4VNryXKMgbBQl7zr44gANgSwIYANAfx1IGftT7/70E2en4ZNZmOXXB9GAMeBm6hCO7qlNngnfogcYUA9bDobe+S6KAI4FOQUVPkh1tjDXT5iRN3tsYi989n4ulwHEwVwBPin7tDX/XZo9OQYUSUH2x/4iw7g1wL4iq9uR7irc0aP5U3UY6e10QFcyVel6LIYuh3qsSGoelYfliltdADXAb3N761vE51M8SM09P40bDYbe+S6KAI4Lq5K2aFRNMmCqmephs1kowO4DMh7qp3uZGWpOP3Xu8XYYsw//Fe75PowAvi7QAqeeZAWUYvyKeVG6D/sMQyznolsdACXAKn0z4uL5seUvuZGdO+JbHQAlwDJgqlG1+iZGmaliqu5J3osfLUpgCN99bA0oLpEX/rJYy0NgK/eCODAfFV1JqUpll6S2Oy68NUbARxVs+JNwoR/O7heaRXWpQFdzEo9MpmNDuA6oGeLqLkIkF/3ei/3A9h662w29sh1UQTwHXWArUhKyeZTVgrInTb/mshGB3CxOgDF1DR0XStUpfL8C77aFMBRvkrlDEtdUR8vBdX0K+qr9wI40FcpVajyG59SBeDMB4pyAXy1KYDDfHW7rqIW4ZSKrPWSxMJXWwI40FepCKpVCKWsy5iJbHQAl9pr7cOuP0511LRhdSe/22GWWFYNpSvrmchGB3AJkM6SVLUrQK5rrGdlFetWtwI4FuS859+zHGHDqu1izbMtPdKCM9f3AjgqB5Biz395DJCt5winA2J6wOc67EQ2OoDr7AegpHTUOiSlnsXvdigg9uVsFvnqnQCOrFlFnStWdXZq5VZ7RM3qRgDHzq2o3P9f1F1zTzkevtoUwHeBPmy7Yo4zrPg9K/kIbfVSnA38htx3Bv1NAF/77krOSznVVPOlszDkq3cCOHItgK4fBAgNWwUIM6w0oNh3PZGNDuASIFWrqOdF5xmWasMV5lZ3AjgCZHyD/WsBbAhgQwAb+h/AT30fQsCHr8q4AAAAAElFTkSuQmCC" alt="QR code for Room 222">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Mohammad Abdul Wadud<br>Tyler Spressert · Michael Berrios</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=222</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="Room 223 QR code">
+  <div class="rq-inner" style="--accent:#cd7028">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">Room 223</div>
+      <div class="rq-theme">Visual Storytelling</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADMElEQVR4nO1cW47kIAzE1v6nbzD3P9bcAE7gFTavZDrk0UJqoipFERBKPZYsT2EMJO4WAt/jOQdiByB2AGIHIH4V0Yk0kXWR+DgnXtv61dqbaeInspFBfATxX3wt3joU/7lTdcrFxxF12u20mWxkEJ9EJCJ6paHUCCRe4+ovlcFm2nw2Xgff4ChAHBZXG4iGTVpE316f2J7ZRgbxkb5Ki5dA+rxMD5gCkIltZBCf5KuS+9FLtUFZr5q7kopVmdJGBvGxeYBl5ylAHuAAII6Kq9L0U1tlgHXjSCMGPv5FBnEfIB7F1Rgnc19DqA269dcyiLh6BBBH+arkbL/pgeK3Yi6aHbWoBaVMZCOD+AiiSz6qqdTYz1tUsnbglbJFXD0AiMOIQbP9RNUtc0SNyX+iJAOCTkiLrNlsvAO+xXIgjltbUc72W4bK3m4RF166sIrvuDWgc/IiayIbGcTHEKVUqnjdS9U2bTZVc2jFHusJ8JlJ7wBiDys5ag5ZJKs0iyn7mt/Qq12AONxXJa+wUmNJT5GvZRC+2gWIY/MArtb+qdP6Gk7r7JwZgK92AeJgYkjLfPmNopReqk5Jd69yOst0rErWOW28Br44vwDEcXkAT+aHi69VVSEtospma9l4/ewXGcR9gNhDK1CrRs2f2sMsZYMVevUIIA73VVflqEteWjIDpmCzS8NXuwBxlAZwWptqVdbWtaMBzmpZtWGzaUobGcRHEF1NQ71rSA6qEaswO5GNDOKjzgUEXUBZYYCusESPsSTlapuwGmZpPhsZxEcQ3Tb5X/Kr0mxUNdWtSbIirvYA4qi4Kjl3mhJWJlNDPhuYVKtqWtOxH/0ig7gPEA+IVvjXXhEQ/+m/tBFiQaCN1a+ZeAsM4j5A7KFNVW0PsHidkBdWdfcKa6sDgDgyD+BWl1m151mkiFXUA5wFn565AYhXiIvQTy1WoZ9aahWfUirwDX/qWfDpmRuA+I05q4KarQp2KCBlrlLBQM5rTWUjg/jIe1dcunFF8no/nXApVSvIr54An5n0DiBeu3dlNeJWp62hV8+BT877AxAv37vy92J2mdhGBnEfIHYAYgcgun38B45OXm9LY2lCAAAAAElFTkSuQmCC" alt="QR code for Room 223">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Evan Costa · Carolyn McDonough<br>Aaron Pettiford · Michael Rasimowicz<br>Mehmet Sezer · Adalmaris Castillo</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=223</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="F1 Hall QR code">
+  <div class="rq-inner" style="--accent:#1e8ea8">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">F1 Hall</div>
+      <div class="rq-theme">Tables & Refreshments</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADB0lEQVR4nO2cXcrjMAxFZTHvzg6+/S9rdpCsQIMl/6bTOA01jD33Eorr+lAEQpFlJU7okQ5+xhEBvBDACwG8EMB/DnRZG7ktzNo3yjrcadl0Nj4SP8MI4DjQi4mIZA8+KXuYDK5rnunltGw+G5+IH1EEcCjoYrQMITS464+Ewe8QTsOnxtVm2YQ2fi5+wKgAjgB/nb47vUQvG4SganH1O//IAN8L4Cdg7ZY+RNd4dcG7YoDvBbAfV09x0/mdjk0OF7LWeO3tsolsZIDr+OrRhk2/h0zAq4vW882yiWxkgMv4qrzM2oykBEAOZxnsN/6RAb4XwF591WqqWqGyWbfp9p8olKj2+FMuuqK+2hPAESCZN1plNZdYUxGVQk111xmdtLqrDiaykQEukwM43Trl7DQPJJWwTHF7pfnAVDYywMXqq5IzUt1DiU3a6ap6b661qtNOZCMDXAKkcLvXmqplAukWT9XtPi21ZSbkAFcCONBXo9Q/8yXJS3Oyinz1nvjmuhcBvFFf1VzU2aGVZaRHrFPFJDbHVeSrfQEcBnoNoda1knoCJY1LDtAcws5m4xPxI4oADq9ZSSlYNTd9U+pgST9NZCMDXAKk7JMnpw2qs9ZqnwVf7QngsL0VxU1TKQvkI4D8qy0uXj2RjQxwsZoVVTWB8MWnZwGyGzfpwUQ2MsAlQGqqVTlyptpUjLFpUPwZvnolgCPjqo8eW279vomltRsjrvYEcGBcpbyTyl4q1aBdCV/tCeDIHEBiIlpiqbTnVvWRK3KAjgCOrQNI9saXLkGqHsJKCyaykQGuFldVYapqZZG2DaDKbCeykQEuAVKp/J/i514y2KYOgL1VXwAH1gFMTUb60nnVdmRNZCMDXO0swJeNf3OuKs27LBBXb4jvLPqbAH7w3hU5NjpCf5WUVsDd+gBt7OazkQGuCXpxP7FFkPKrV+wzdrqiJ7ArgAPjquSJY5P0gJWznzTMxuetvvCPDPC9AH5SB6i3UXs1X1W3cBbQE8ARoMM72N8L4IUAXgjghf4H8A9i56PYZvxeJwAAAABJRU5ErkJggg==" alt="QR code for F1 Hall">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Kai Macedo · Jared Morris<br>Jennéa Jeter · Collin Della Sala<br>Chase Dimarzio · Aidan Michaels<br>+ Food & Drinks</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=f1-hall</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+
+<div class="rq-page" aria-label="F2 Hall QR code">
+  <div class="rq-inner" style="--accent:#4e985f">
+    <div class="rq-header">
+      <div class="rq-eyebrow">IMM Senior Show 2026 · TCNJ · Art &amp; IMM Building</div>
+      <div class="rq-title">F2 Hall</div>
+      <div class="rq-theme">Respect the Locals</div>
+    </div>
+    <div class="rq-qr-wrap">
+      <img class="rq-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQAAAACNyy1yAAADGklEQVR4nO1cUa7jMAjEaP+d+99ubxCfgBUGEyfVS9NI2a29M6r6XMLoFWlEMCZNQrdQ+B6PCMQTgHgCEE8A4tcRU2DRdVgoUNLBbbgYb4Hv0QjE54hZDEQkq2pSVjWadFWZWQ5u48V4B3yLRSA+Q/xlfzRv5lVXWRJRypJKkppORReLHNxGipFBnEmrgeRSJKnKVIlm8bw6aowM4qxEEdEagKpKS/LXk//xGvii3wtAnCqvSmfyG31ZtAbIkvy17t0GipFBnEerZZ828+ola9badcPObaAYGcRptCoHW0lmkVYA6Pbq6DZQjAziNMSk/VJ9955q7VbJ7xS1qzevWtMV/dV3APEJIrV+aVtnFedmzPWjvWzPZV3WdaAYGcR5iLl2pbJo2rT9VM2fpljLurGwfDtejHfAt1gE4nN5Vbp06t2qZt+aV2Fx54FiZBCnIFLc7uOMNRbkt/vm2isWWj0DiA9qVVpStbRpL4kcG1dRr14CX3N7BYjX5gHau3exiveptkuWV72jNVCMDOI8xFzVV5KIdqu8p7q2zVTUAAafDRgtxjvgWywC8cG91drK1JcOlfTFquVVvzRQjAzifHNWUhtWPgNA9VBAx1e8aaUlQVnSeDEyiJNpNdUxgFaOKmxdjYsNA5hcR4uRQZxvbyU+suIjVakKWHNpTbOq0m2QdaAYGcSpelYV/U5KzGLNq2hkbeewA8XIIM6nVek2VrTbSVXP3bZroBgZxCmIFCqNI4CwUyTSEG0IG1o9A4h/aR5AXk5XZTdhZcNXA8XIIE5BpC1thhr7m77409a9P/LqO4D4ZA3Q0Pf8qTsp6HdY1ThQjAzifLPWdHi2Ojdl7jUMrb4DiI9pNW+CtES6KwbyrnPV7APFyCBOQaTY7299gJgGzF1SDX/k1fcA8dkz1uO5Km2/FRBGexx7tBgZxDmJWR+20rxa/JlWewLLP9r6S77qVfBlzwNA/Ma8KmHQn1vxAYBkl+qwSmTaf/dVGcT/m0jHPkC/jVo7O54N/AD8iXMPEE+wTQB+hjJQjAzizwDxBCCeAET6GX8AtYqJizfMFcMAAAAASUVORK5CYII=" alt="QR code for F2 Hall">
+    </div>
+    <div class="rq-instruction">Scan to check in</div>
+    <div class="rq-names">Kelsey Daly</div>
+    <div class="rq-url">https://www.immseniorshow.com/hunt?room=f2-hall</div>
+    <div class="rq-footer">
+      IMM Senior Show 2026 &nbsp;·&nbsp; Friday, May 8 &nbsp;·&nbsp; 5 – 9 PM &nbsp;·&nbsp; TCNJ AIMM Building
+    </div>
+  </div>
+</div>
+</body>
+</html>

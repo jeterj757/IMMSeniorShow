@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Senior Show 2026 - Room Hunt</title>
+</head>
+<body style="margin:0;background:#f3edda;">
+<style>
+@font-face {
+  font-family: "Norwester";
+  src: local("Norwester"),
+       local("norwester"),
+       url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+  font-display: swap;
+}
+
+.imm-room-hunt,
+.imm-room-hunt * { box-sizing: border-box; }
+.imm-room-hunt a { color: inherit; text-decoration: none; }
+
+.imm-room-hunt {
+  --display: "Norwester", "Arial Narrow", Impact, sans-serif;
+  --ui: "Avenir Next", "Avenir", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --forest: #123f36;
+  --paper: #f3edda;
+  --rust: #c75145;
+  --green: #4e985f;
+  --blue: #3f6f9b;
+  --violet: #8d5aa9;
+  --ink: #1c2422;
+  --header-offset: var(--imm-sqs-header-visible-offset, 0px);
+  min-height: 100svh;
+  padding: calc(var(--header-offset) + 18px) clamp(14px, 4vw, 30px) 36px;
+  color: var(--ink);
+  font-family: var(--ui);
+  letter-spacing: 0;
+  background:
+    linear-gradient(180deg, rgba(243,237,218,.92), rgba(233,224,198,.95)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png") center / cover fixed;
+}
+.imm-rh-shell { width: min(100%, 1040px); margin: 0 auto; }
+.imm-rh-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.imm-rh-nav a,
+.imm-rh-btn,
+.imm-rh-file-btn,
+.imm-rh-submit {
+  min-height: 42px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border: 1.5px solid rgba(18,63,54,.18);
+  font-family: var(--ui);
+  font-size: .78rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.imm-rh-nav a {
+  background: rgba(255,255,255,.76);
+  color: var(--forest);
+}
+.imm-rh-btn,
+.imm-rh-submit {
+  background: var(--rust);
+  color: #fff8e8;
+}
+.imm-rh-btn.secondary,
+.imm-rh-file-btn {
+  background: #fffaf0;
+  color: var(--forest);
+}
+.imm-rh-submit:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+}
+
+.imm-rh-hero,
+.imm-rh-desktop {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: clamp(24px, 6vw, 50px);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(18,63,54,.95), rgba(22,75,58,.92)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center / cover no-repeat;
+  color: #fff8e8;
+  box-shadow: 0 14px 34px rgba(18,63,54,.24);
+  text-align: center;
+}
+.imm-rh-kicker {
+  color: #ffd16d;
+  font-size: .82rem;
+  font-weight: 650;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.imm-rh-title {
+  margin: 0;
+  color: #fff8e8;
+  font-family: var(--display);
+  font-size: clamp(2.55rem, 9vw, 5.3rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.imm-rh-sub {
+  max-width: 58ch;
+  margin: 0;
+  color: rgba(255,248,232,.92);
+  font-size: clamp(.98rem, 2.1vw, 1.14rem);
+  font-weight: 500;
+  line-height: 1.55;
+}
+.imm-rh-mobile,
+.imm-rh-desktop { display: none; }
+.imm-room-hunt.is-mobile .imm-rh-mobile { display: block; }
+.imm-room-hunt.is-desktop .imm-rh-desktop { display: grid; margin-top: 16px; }
+.imm-room-hunt.is-desktop .imm-rh-mobile { display: none; }
+.imm-room-hunt:not(.is-mobile):not(.is-desktop) .imm-rh-desktop {
+  display: grid;
+  margin-top: 16px;
+}
+
+.imm-rh-qr {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  padding: 8px;
+  border-radius: 12px;
+  background: #fffaf0;
+  border: 1px solid rgba(255,248,232,.38);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.imm-rh-qr img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.imm-rh-qr span {
+  position: absolute;
+  inset: 16px;
+  display: grid;
+  place-items: center;
+  color: var(--forest);
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.imm-rh-note {
+  display: none;
+  margin: 14px 0 0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #fffaf0;
+  border-left: 8px solid var(--note-color, var(--green));
+  box-shadow: 0 10px 24px rgba(18,63,54,.14);
+}
+.imm-rh-note.is-on { display: grid; gap: 4px; }
+.imm-rh-note strong {
+  color: var(--forest);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+.imm-rh-note span {
+  color: #33463e;
+  font-size: .94rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.imm-rh-instructions,
+.imm-rh-progress {
+  margin: 16px 0 0;
+  padding: clamp(14px, 3vw, 20px);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(18,63,54,.12);
+  box-shadow: 0 9px 22px rgba(18,63,54,.12);
+}
+.imm-rh-instructions {
+  display: grid;
+  gap: 8px;
+}
+.imm-rh-instructions strong {
+  color: var(--forest);
+  font-size: 1rem;
+}
+.imm-rh-instructions p {
+  margin: 0;
+  color: #40524d;
+  font-size: .94rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.imm-rh-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.imm-rh-progress-head h2 {
+  margin: 0;
+  color: var(--forest);
+  font-family: var(--ui);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+.imm-rh-pill {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 8px 12px 7px;
+  background: var(--forest);
+  color: #fff8e8;
+  font-size: .78rem;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+.imm-rh-track {
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(18,63,54,.16);
+}
+.imm-rh-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--violet));
+  transition: width .2s ease;
+}
+.imm-rh-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.imm-rh-room {
+  --room-color: var(--green);
+  position: relative;
+  display: grid;
+  gap: 12px;
+  min-height: 176px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(18,63,54,.09);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 0 rgba(18,63,54,.13);
+}
+.imm-rh-room.is-target {
+  border-color: var(--room-color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--room-color) 18%, transparent), 0 6px 0 rgba(18,63,54,.13);
+}
+.imm-rh-room.is-collected {
+  border-color: var(--room-color);
+  background: color-mix(in srgb, var(--room-color) 14%, white);
+}
+.imm-rh-room-head {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+.imm-rh-check {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 2px solid color-mix(in srgb, var(--room-color) 64%, #fff);
+  color: transparent;
+  background: rgba(255,255,255,.72);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.imm-rh-room.is-collected .imm-rh-check {
+  background: var(--room-color);
+  color: #fff8e8;
+}
+.imm-rh-room-name {
+  display: block;
+  color: var(--forest);
+  font-family: var(--ui);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.08;
+}
+.imm-rh-room-meta {
+  display: block;
+  margin-top: 4px;
+  color: #465e56;
+  font-size: .82rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.imm-rh-room-status {
+  border-radius: 999px;
+  padding: 7px 10px 6px;
+  background: rgba(18,63,54,.08);
+  color: var(--forest);
+  font-size: .7rem;
+  font-weight: 650;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.imm-rh-room.is-collected .imm-rh-room-status {
+  background: var(--room-color);
+  color: #fff8e8;
+}
+.imm-rh-capture {
+  display: grid;
+  gap: 10px;
+}
+.imm-rh-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.imm-rh-file-btn {
+  width: 100%;
+  border-color: color-mix(in srgb, var(--room-color) 38%, rgba(18,63,54,.14));
+}
+.imm-rh-preview {
+  display: none;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(18,63,54,.06);
+}
+.imm-rh-preview.is-on { display: grid; }
+.imm-rh-preview img {
+  width: 76px;
+  height: 76px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #e8e1c8;
+}
+.imm-rh-preview-text {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.imm-rh-scan-result {
+  color: #3d504b;
+  font-size: .82rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.imm-rh-submit {
+  width: fit-content;
+  min-width: 142px;
+}
+.imm-rh-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+.imm-rh-complete {
+  display: none;
+  margin-top: 16px;
+  border-radius: 12px;
+  padding: 18px;
+  background: var(--forest);
+  color: #fff8e8;
+  line-height: 1.45;
+}
+.imm-rh-complete.is-on { display: block; }
+.imm-rh-complete strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #ffd16d;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .imm-room-hunt { padding: calc(var(--header-offset) + 10px) 12px 26px; }
+  .imm-rh-grid { grid-template-columns: 1fr; }
+  .imm-rh-hero,
+  .imm-rh-desktop { padding: 22px 18px; }
+  .imm-rh-progress-head { flex-direction: column; align-items: center; }
+  .imm-rh-pill { align-self: center; }
+  .imm-rh-room-head { grid-template-columns: 32px minmax(0, 1fr); }
+  .imm-rh-room-status { grid-column: 2; justify-self: start; }
+  .imm-rh-actions .imm-rh-btn { width: 100%; }
+}
+
+/* ── Prize badge in hero ── */
+.imm-rh-prize-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(199,81,69,0.18);
+  border: 1.5px solid rgba(255,209,109,0.35);
+  border-radius: 12px;
+  padding: 11px 16px;
+  max-width: 52ch;
+  font-size: .87rem;
+  font-weight: 500;
+  color: #fff8e8;
+  line-height: 1.45;
+  text-align: left;
+}
+.imm-rh-prize-icon { font-size: 1.45rem; flex-shrink: 0; }
+.imm-rh-prize-badge strong { color: #ffd16d; }
+
+/* ── Completion badge overlay ── */
+.imm-rh-badge-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(8, 26, 20, 0.86);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  overflow-y: auto;
+}
+.imm-rh-badge-overlay.is-open { display: flex; }
+
+.imm-rh-badge-card {
+  position: relative;
+  width: min(100%, 380px);
+  background: var(--forest);
+  border-radius: 22px;
+  padding: 32px 26px 24px;
+  text-align: center;
+  color: #fff8e8;
+  box-shadow: 0 28px 64px rgba(0,0,0,0.55);
+  border: 2px solid rgba(255,248,232,0.14);
+}
+.imm-rh-badge-glyph { font-size: 3.2rem; line-height: 1; margin-bottom: 10px; display: block; }
+.imm-rh-badge-eyebrow {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,248,232,.5); margin-bottom: 6px;
+}
+.imm-rh-badge-headline {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 800; color: #fff8e8; margin: 0 0 4px; line-height: 1.1;
+}
+.imm-rh-badge-sub {
+  font-size: .78rem; color: rgba(255,248,232,.6); margin: 0 0 18px;
+}
+.imm-rh-badge-rooms {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center; margin-bottom: 20px;
+}
+.imm-rh-badge-room-dot {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 800; color: #fff;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.imm-rh-badge-prize {
+  background: rgba(255,248,232,.1);
+  border: 1.5px solid rgba(255,248,232,.18);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: .76rem; color: rgba(255,248,232,.88);
+  line-height: 1.5; margin-bottom: 16px; text-align: left;
+}
+.imm-rh-badge-prize strong {
+  display: block; color: #ffd16d; font-size: .88rem; margin-bottom: 3px;
+}
+.imm-rh-badge-hint {
+  font-size: .62rem; letter-spacing: .05em; text-transform: uppercase;
+  color: rgba(255,248,232,.34); margin-bottom: 16px;
+}
+.imm-rh-badge-actions { display: flex; gap: 10px; justify-content: center; }
+</style>
+
+<div class="imm-room-hunt" id="imm-room-hunt">
+  <main class="imm-rh-shell">
+    <section class="imm-rh-hero">
+      <div class="imm-rh-kicker">IMM Senior Show 2026 · TCNJ</div>
+      <h1 class="imm-rh-title">Room Hunt</h1>
+      <p class="imm-rh-sub">Scan the QR code posted outside each room, snap a photo to confirm your visit, and collect all 10 stops to win.</p>
+      <div class="imm-rh-prize-badge">
+        <span class="imm-rh-prize-icon">🏆</span>
+        <span>First <strong>10 finishers</strong> win a FREE gear spinner — show your completed screen at J&amp;J Innovations &amp; the front desk!</span>
+      </div>
+    </section>
+
+    <section class="imm-rh-desktop" id="room-desktop" aria-label="Switch to mobile">
+      <div class="imm-rh-kicker">Phone required</div>
+      <h2 class="imm-rh-title">Switch to Mobile</h2>
+      <p class="imm-rh-sub">The scavenger hunt uses your phone camera, so it only runs on mobile. Open this page on your phone before scanning room QR codes.</p>
+      <div class="imm-rh-qr">
+        <img id="room-desktop-qr" alt="QR code to open the room hunt on a phone">
+        <span>Open immseniorshow.com/hunt</span>
+      </div>
+      <a class="imm-rh-btn" href="https://www.immseniorshow.com/hunt">Open Mobile Hunt</a>
+    </section>
+
+    <div class="imm-rh-note" id="room-unlock-note" role="status" aria-live="polite"></div>
+
+    <div class="imm-rh-mobile" id="room-mobile">
+      <section class="imm-rh-instructions" aria-label="How to collect rooms">
+        <strong>Take a photo of each room QR code.</strong>
+        <p>Tap a room, use the camera prompt, then press "Yes, submit" after the QR photo is ready. Your photos and progress stay saved on this device.</p>
+      </section>
+
+      <section class="imm-rh-progress" aria-label="Room hunt progress">
+        <div class="imm-rh-progress-head">
+          <h2>Your Progress</h2>
+          <span class="imm-rh-pill" id="room-progress-pill">0 / 10 submitted</span>
+        </div>
+        <div class="imm-rh-track" aria-hidden="true"><div class="imm-rh-fill" id="room-progress-fill"></div></div>
+        <div class="imm-rh-grid" id="room-list"></div>
+        <div class="imm-rh-actions">
+          <button class="imm-rh-btn secondary" id="room-reset" type="button">Reset Progress</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- Completion badge overlay -->
+<div class="imm-rh-badge-overlay" id="rh-badge-overlay" aria-modal="true" role="dialog" aria-label="Room Hunt Complete">
+  <div class="imm-rh-badge-card" id="rh-badge-card">
+    <div class="imm-rh-badge-glyph">🏆</div>
+    <div class="imm-rh-badge-eyebrow">IMM Senior Show 2026 · TCNJ</div>
+    <h2 class="imm-rh-badge-headline">I visited every room!</h2>
+    <p class="imm-rh-badge-sub">May 8, 2026 · Art &amp; IMM Building</p>
+    <div class="imm-rh-badge-rooms" id="rh-badge-rooms"></div>
+    <div class="imm-rh-badge-prize">
+      <strong>🎉 Claim your gear spinner</strong>
+      You're one of the first finishers! Show this screen at J&amp;J Innovations or the front desk to pick your free gear spinner.
+    </div>
+    <p class="imm-rh-badge-hint">📸 Screenshot this page to save your completion badge</p>
+    <div class="imm-rh-badge-actions">
+      <button class="imm-rh-btn" id="rh-badge-close" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DB_NAME = 'IMM_ROOM_HUNT_DB_V1';
+  var STORE_NAME = 'submissions';
+  var HUNT_URL = 'https://www.immseniorshow.com/hunt';
+  var ROOMS = [
+    { key:'114', label:'Room 114', color:'#4e985f', meta:'Shane, Caleb, Daniel, Ari' },
+    { key:'116', label:'Room 116', color:'#4e985f', meta:'Asa, Isabel, Matt' },
+    { key:'202', label:'Room 202', color:'#cd7028', meta:'Alex, Kiara, Shane, Naheda, Maya' },
+    { key:'206', label:'Room 206', color:'#8d5aa9', meta:'Robert, Caelan' },
+    { key:'220', label:'Room 220', color:'#3f6f9b', meta:'Jack, Jeffrey, Kyle, Idrissa' },
+    { key:'221', label:'Room 221', color:'#c75145', meta:'Lumber team, Madison, Robyn, Rushil, Anthony, Zachary, Andrew' },
+    { key:'222', label:'Room 222', color:'#c75145', meta:'Mohammad, Tyler, Michael' },
+    { key:'223', label:'Room 223', color:'#cd7028', meta:'Evan, Carolyn, Aaron, Michael, Mehmet, Adalmaris' },
+    { key:'f1-hall', label:'F1 Hall', color:'#1e8ea8', meta:'Kai, Jared, Jennéa, Collin, Chase, Aidan, food' },
+    { key:'f2-hall', label:'F2 Hall', color:'#4e985f', meta:'Kelsey' }
+  ];
+  var roomMap = ROOMS.reduce(function(map, room) { map[room.key] = room; return map; }, {});
+  var root = document.getElementById('imm-room-hunt');
+  var list = document.getElementById('room-list');
+  var fill = document.getElementById('room-progress-fill');
+  var pill = document.getElementById('room-progress-pill');
+  var note = document.getElementById('room-unlock-note');
+  var complete = document.getElementById('room-complete');
+  var reset = document.getElementById('room-reset');
+  var desktopQr = document.getElementById('room-desktop-qr');
+  var submissions = {};
+  var pendingFiles = {};
+  var targetRoomKey = '';
+  var badgeShown = false;
+
+  function isMobileDevice() {
+    var ua = navigator.userAgent || '';
+    var uaMobile = /Android|iPhone|iPod|IEMobile|Opera Mini|Mobile/i.test(ua);
+    var smallViewport = Math.min(window.innerWidth || 9999, window.innerHeight || 9999) <= 820;
+    var coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    return uaMobile || (smallViewport && coarsePointer) || window.innerWidth <= 520;
+  }
+  function setDeviceMode() {
+    var mobile = isMobileDevice();
+    root.classList.toggle('is-mobile', mobile);
+    root.classList.toggle('is-desktop', !mobile);
+  }
+  function qrSrc(url) {
+    return 'https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=12&data=' + encodeURIComponent(url);
+  }
+  function openDb() {
+    return new Promise(function(resolve, reject) {
+      if (!('indexedDB' in window)) {
+        reject(new Error('IndexedDB is not available.'));
+        return;
+      }
+      var request = indexedDB.open(DB_NAME, 1);
+      request.onupgradeneeded = function(event) {
+        var db = event.target.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) {
+          db.createObjectStore(STORE_NAME, { keyPath: 'room' });
+        }
+      };
+      request.onsuccess = function() { resolve(request.result); };
+      request.onerror = function() { reject(request.error || new Error('Could not open progress storage.')); };
+    });
+  }
+  function txStore(db, mode) {
+    return db.transaction(STORE_NAME, mode).objectStore(STORE_NAME);
+  }
+  function getAllSubmissions() {
+    return openDb().then(function(db) {
+      return new Promise(function(resolve, reject) {
+        var request = txStore(db, 'readonly').getAll();
+        request.onsuccess = function() {
+          db.close();
+          resolve(request.result || []);
+        };
+        request.onerror = function() {
+          db.close();
+          reject(request.error);
+        };
+      });
+    });
+  }
+  function putSubmission(record) {
+    return openDb().then(function(db) {
+      return new Promise(function(resolve, reject) {
+        var request = txStore(db, 'readwrite').put(record);
+        request.onsuccess = function() {
+          db.close();
+          resolve();
+        };
+        request.onerror = function() {
+          db.close();
+          reject(request.error);
+        };
+      });
+    });
+  }
+  function clearSubmissions() {
+    return openDb().then(function(db) {
+      return new Promise(function(resolve, reject) {
+        var request = txStore(db, 'readwrite').clear();
+        request.onsuccess = function() {
+          db.close();
+          resolve();
+        };
+        request.onerror = function() {
+          db.close();
+          reject(request.error);
+        };
+      });
+    });
+  }
+  function showNote(title, message, color) {
+    if (!note) return;
+    note.style.setProperty('--note-color', color || '#4e985f');
+    note.innerHTML = '<strong>'+title+'</strong><span>'+message+'</span>';
+    note.classList.add('is-on');
+    note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function roomFromUrl(value) {
+    try {
+      var url = new URL(value, HUNT_URL);
+      var key = (url.searchParams.get('room') || '').toLowerCase().trim();
+      return roomMap[key] ? key : '';
+    } catch (e) {
+      var match = String(value || '').match(/[?&]room=([^&#]+)/i);
+      var key = match ? decodeURIComponent(match[1]).toLowerCase().trim() : '';
+      return roomMap[key] ? key : '';
+    }
+  }
+  var badgeOverlay  = document.getElementById('rh-badge-overlay');
+  var badgeRoomsEl  = document.getElementById('rh-badge-rooms');
+  var badgeCloseBtn = document.getElementById('rh-badge-close');
+  if (badgeCloseBtn) {
+    badgeCloseBtn.addEventListener('click', function() {
+      badgeOverlay.classList.remove('is-open');
+    });
+  }
+
+  function showBadge() {
+    if (!badgeOverlay || !badgeRoomsEl) return;
+    badgeRoomsEl.innerHTML = ROOMS.map(function(r) {
+      return '<div class="imm-rh-badge-room-dot" style="background:' + r.color + '">' + r.key.replace('f1-hall','Hall').replace('f2-hall','F2') + '</div>';
+    }).join('');
+    badgeOverlay.classList.add('is-open');
+    badgeShown = true;
+  }
+
+  function updateUI() {
+    var done = Object.keys(submissions).filter(function(key) { return !!submissions[key]; }).length;
+    var total = ROOMS.length;
+    fill.style.width = Math.round((done / total) * 100) + '%';
+    pill.textContent = done + ' / ' + total + ' submitted';
+    complete.classList.toggle('is-on', done === total);
+    if (done === total && !badgeShown) showBadge();
+    ROOMS.forEach(function(room) {
+      var card = list.querySelector('[data-room-card="'+room.key+'"]');
+      if (!card) return;
+      var record = submissions[room.key];
+      var collected = !!record;
+      card.classList.toggle('is-collected', collected);
+      card.classList.toggle('is-target', room.key === targetRoomKey);
+      card.querySelector('.imm-rh-room-status').textContent = collected ? 'Submitted' : 'Photo needed';
+      var preview = card.querySelector('.imm-rh-preview');
+      var img = card.querySelector('.imm-rh-preview img');
+      var result = card.querySelector('.imm-rh-scan-result');
+      var submit = card.querySelector('.imm-rh-submit');
+      preview.classList.toggle('is-on', collected || !!pendingFiles[room.key]);
+      if (record && record.blob) {
+        img.src = URL.createObjectURL(record.blob);
+        result.textContent = 'Saved on this phone ' + new Date(record.updatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '.';
+        submit.disabled = true;
+        submit.textContent = 'Submitted';
+      } else if (!pendingFiles[room.key]) {
+        img.removeAttribute('src');
+        result.textContent = 'No photo submitted yet.';
+        submit.disabled = true;
+        submit.textContent = 'Yes, Submit';
+      }
+    });
+  }
+  function renderRooms() {
+    list.innerHTML = '';
+    ROOMS.forEach(function(room) {
+      var card = document.createElement('article');
+      card.className = 'imm-rh-room';
+      card.dataset.roomCard = room.key;
+      card.style.setProperty('--room-color', room.color);
+      card.innerHTML =
+        '<div class="imm-rh-room-head">' +
+          '<span class="imm-rh-check" aria-hidden="true">&#10003;</span>' +
+          '<span><span class="imm-rh-room-name">'+room.label+'</span><span class="imm-rh-room-meta">'+room.meta+'</span></span>' +
+          '<span class="imm-rh-room-status">Photo needed</span>' +
+        '</div>' +
+        '<div class="imm-rh-capture">' +
+          '<input class="imm-rh-file" id="room-file-'+room.key+'" type="file" accept="image/*" capture="environment" data-room="'+room.key+'">' +
+          '<label class="imm-rh-file-btn" for="room-file-'+room.key+'">Take Photo of QR Code</label>' +
+          '<div class="imm-rh-preview">' +
+            '<img alt="QR photo preview for '+room.label+'">' +
+            '<div class="imm-rh-preview-text">' +
+              '<span class="imm-rh-scan-result">No photo submitted yet.</span>' +
+              '<button class="imm-rh-submit" type="button" data-submit-room="'+room.key+'" disabled>Yes, Submit</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      card.querySelector('input').addEventListener('change', function(event) {
+        handlePhoto(room, event.target.files && event.target.files[0]);
+      });
+      card.querySelector('.imm-rh-submit').addEventListener('click', function() {
+        submitRoom(room);
+      });
+      list.appendChild(card);
+    });
+  }
+  function detectQr(file) {
+    if (!('BarcodeDetector' in window)) {
+      return Promise.resolve({ supported: false, roomKey: '' });
+    }
+    var detector;
+    try {
+      detector = new BarcodeDetector({ formats: ['qr_code'] });
+    } catch (e) {
+      return Promise.resolve({ supported: false, roomKey: '' });
+    }
+    return createImageBitmap(file).then(function(bitmap) {
+      return detector.detect(bitmap).then(function(codes) {
+        var raw = codes && codes[0] ? (codes[0].rawValue || '') : '';
+        return { supported: true, roomKey: roomFromUrl(raw), rawValue: raw };
+      });
+    }).catch(function() {
+      return { supported: true, roomKey: '', rawValue: '' };
+    });
+  }
+  function handlePhoto(room, file) {
+    if (!file) return;
+    var card = list.querySelector('[data-room-card="'+room.key+'"]');
+    var preview = card.querySelector('.imm-rh-preview');
+    var img = card.querySelector('.imm-rh-preview img');
+    var result = card.querySelector('.imm-rh-scan-result');
+    var submit = card.querySelector('.imm-rh-submit');
+    preview.classList.add('is-on');
+    img.src = URL.createObjectURL(file);
+    result.textContent = 'Checking QR photo...';
+    submit.disabled = true;
+    detectQr(file).then(function(scan) {
+      var matchesTarget = scan.roomKey && scan.roomKey === room.key;
+      var fallbackOk = !scan.supported && targetRoomKey === room.key;
+      if (matchesTarget || fallbackOk) {
+        pendingFiles[room.key] = { file: file, scan: scan };
+        result.textContent = scan.supported ? 'QR matched '+room.label+'. Confirm to submit.' : 'Photo ready for '+room.label+'. Confirm to submit.';
+        submit.disabled = false;
+      } else if (scan.roomKey && scan.roomKey !== room.key) {
+        result.textContent = 'That QR belongs to '+roomMap[scan.roomKey].label+'. Retake this room photo.';
+      } else {
+        result.textContent = scan.supported ? 'No valid room QR found. Retake the photo with the QR code clearly visible.' : 'Open this stop from its room QR link first, then take the photo and confirm.';
+      }
+    });
+  }
+  function submitRoom(room) {
+    var pending = pendingFiles[room.key];
+    if (!pending || !pending.file) {
+      showNote('Photo required', 'Take a photo of the '+room.label+' QR code before submitting.', '#c75145');
+      return;
+    }
+    var record = {
+      room: room.key,
+      blob: pending.file,
+      type: pending.file.type || 'image/jpeg',
+      updatedAt: Date.now(),
+      qrValue: pending.scan && pending.scan.rawValue ? pending.scan.rawValue : ''
+    };
+    putSubmission(record).then(function() {
+      submissions[room.key] = record;
+      delete pendingFiles[room.key];
+      updateUI();
+      showNote('Room submitted', room.label + ' photo has been saved on this phone.', room.color);
+    }).catch(function() {
+      showNote('Could not save photo', 'Storage was blocked on this device. Please try again.', '#c75145');
+    });
+  }
+  function applyRoomFromQuery() {
+    var params = new URLSearchParams(window.location.search || '');
+    var key = (params.get('room') || '').toLowerCase().trim();
+    if (!key) return;
+    var room = roomMap[key];
+    if (!room) {
+      showNote('Room stop not found', 'That QR code did not match one of the room hunt stops.', '#c75145');
+      return;
+    }
+    targetRoomKey = key;
+    updateUI();
+    setTimeout(function() {
+      var card = list.querySelector('[data-room-card="'+key+'"]');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
+    showNote('Room QR opened', 'Take a photo of the '+room.label+' QR code, then confirm the submission.', room.color);
+  }
+  function init() {
+    setDeviceMode();
+    if (desktopQr) desktopQr.src = qrSrc(HUNT_URL);
+    renderRooms();
+    getAllSubmissions().then(function(records) {
+      submissions = {};
+      records.forEach(function(record) {
+        if (record && roomMap[record.room]) submissions[record.room] = record;
+      });
+      updateUI();
+      applyRoomFromQuery();
+    }).catch(function() {
+      updateUI();
+      showNote('Storage unavailable', 'This browser may not keep hunt progress after refresh.', '#c75145');
+      applyRoomFromQuery();
+    });
+  }
+  reset.addEventListener('click', function() {
+    if (!confirm('Reset all room hunt progress on this device?')) return;
+    clearSubmissions().then(function() {
+      submissions = {};
+      pendingFiles = {};
+      badgeShown = false;
+      if (badgeOverlay) badgeOverlay.classList.remove('is-open');
+      updateUI();
+      showNote('Progress reset', 'Your room hunt photos and progress were cleared on this device.', '#c75145');
+    });
+  });
+  window.addEventListener('resize', setDeviceMode);
+  init();
+}());
+</script>
+</body>
+</html>

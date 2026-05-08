@@ -28,7 +28,7 @@
     https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CultureTechLogo.png
 
     LINK TARGETS (update to match your Squarespace page slugs):
-    05-student-inject.html  → student/scavenger page
+    /hunt                  → room scavenger hunt page
     04-map-inject.html      → floor map page
   -->
   <!-- No external font CDN needed — Norwester is embedded below via base64 -->
@@ -111,7 +111,7 @@
 
 body:has(#header) .imm-wrap,
 html.squarespace-damask .imm-wrap {
-  --sqs-header-offset: var(--imm-sqs-header-offset, 76px);
+  --sqs-header-offset: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset, 76px));
 }
 
 /* ── Section base (duplicated from global inject so local preview works) ──
@@ -246,24 +246,6 @@ html {
    SQUARESPACE NOTE: if Squarespace's own nav overlaps this, increase `top`
    to match the Squarespace header height (usually 60–90px). */
 .imm-event-bar { display: none; }
-.imm-event-date {
-  display: block;
-  font-family: var(--d);
-  font-weight: 800;
-  font-size: clamp(1.1rem, 3.4vw, 2rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-}
-.imm-event-place {
-  display: block;
-  font-family: var(--ui);
-  font-weight: 600;
-  font-size: clamp(0.72rem, 1.8vw, 0.96rem);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-top: 3px;
-  opacity: 0.82;
-}
 
 /* ── Hero content wrapper (grid on desktop) ── */
 .imm-hero-content {
@@ -278,7 +260,7 @@ html {
 
 /* ── IMM Ss2 logo (stacked wordmark) ── */
 .imm-hero-logo {
-  width: min(340px, 76vw);
+  width: min(270px, 66vw);
   height: auto;
   margin-bottom: 18px;
   filter: drop-shadow(0 4px 14px rgba(4,14,30,0.55));
@@ -311,17 +293,17 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--d);
-  font-weight: 900;
+  font-family: var(--ui);
+  font-weight: 700;
   text-transform: uppercase;
   color: #ecefd8;
   text-shadow: 0 4px 16px rgba(10, 30, 50, 0.48);
-  letter-spacing: 0.02em;
-  line-height: 0.86;
+  letter-spacing: 0.01em;
+  line-height: 0.94;
 }
-.imm-title .t-imm    { font-size: clamp(5.5rem, 17vw, 11rem); line-height: 0.76; }
-.imm-title .t-senior { font-size: clamp(3.4rem, 10.5vw, 7rem); }
-.imm-title .t-show   { font-size: clamp(3.4rem, 10.5vw, 7rem); }
+.imm-title .t-imm    { font-size: clamp(4.1rem, 13vw, 8.6rem); line-height: 0.88; }
+.imm-title .t-senior { font-size: clamp(2.45rem, 7.6vw, 5rem); }
+.imm-title .t-show   { font-size: clamp(2.45rem, 7.6vw, 5rem); }
 .imm-title .t-year   { color: #e4913e; font-style: normal; }
 
 .imm-tagline {
@@ -354,7 +336,7 @@ html {
   box-shadow: var(--btn-shadow);
   text-align: center;
   font-family: var(--ui);
-  font-weight: 700;
+  font-weight: 650;
   letter-spacing: 0.04em;
   font-size: clamp(1rem, 3.2vw, 1.5rem);
   line-height: 1;
@@ -394,7 +376,7 @@ html {
   border-color: rgba(255, 244, 206, 0.58);
 }
 
-/* Add to Calendar — restored event utility */
+/* Primary video CTA */
 .imm-btn-cal {
   background: linear-gradient(180deg, var(--rust) 0%, #a83d32 100%);
   color: #fff3ea;
@@ -404,32 +386,24 @@ html {
   position: relative;
   width: 24px;
   height: 24px;
-  border-radius: 5px;
-  background: rgba(255, 243, 234, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 243, 234, 0.94);
   border: 2px solid rgba(255, 243, 234, 0.96);
-  box-shadow: inset 0 7px 0 rgba(18, 63, 54, 0.34);
   flex-shrink: 0;
 }
-.imm-btn-cal-icon::before,
-.imm-btn-cal-icon::after {
+.imm-btn-cal-icon::before {
   content: "";
   position: absolute;
-  top: -5px;
-  width: 4px;
-  height: 8px;
-  border-radius: 2px;
-  background: #fff3ea;
+  left: 8px;
+  top: 5px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid rgba(18, 63, 54, 0.72);
 }
-.imm-btn-cal-icon::before { left: 5px; }
-.imm-btn-cal-icon::after { right: 5px; }
 .imm-btn-cal-icon i {
-  position: absolute;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  height: 2px;
-  background: rgba(18, 63, 54, 0.55);
-  box-shadow: 0 -4px 0 rgba(18, 63, 54, 0.28);
+  display: none;
 }
 
 .imm-btn[data-cta-theme="rust"] {
@@ -493,17 +467,18 @@ html {
 }
 .imm-hunt-modal-kicker {
   font-size: 0.72rem;
-  font-weight: 760;
+  font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.84;
 }
 .imm-hunt-modal-title {
   margin-top: 7px;
-  font-family: var(--d);
+  font-family: var(--ui);
   font-size: clamp(2rem, 9vw, 3.2rem);
-  line-height: 0.95;
-  letter-spacing: 0.035em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .imm-hunt-modal-x {
@@ -548,13 +523,15 @@ html {
   border-radius: 999px;
   background: var(--forest);
   color: #fff8ea;
-  font-family: var(--d);
+  font-family: var(--ui);
+  font-weight: 650;
   line-height: 1;
 }
 .imm-hunt-step strong {
   display: block;
   font-family: var(--ui);
   font-size: 0.95rem;
+  font-weight: 650;
   color: var(--forest);
 }
 .imm-hunt-step span {
@@ -581,7 +558,7 @@ html {
   padding: 0 18px;
   border: 1.5px solid rgba(18,63,54,0.22);
   font-family: var(--ui);
-  font-weight: 720;
+  font-weight: 650;
   font-size: 0.86rem;
   letter-spacing: 0.035em;
   text-transform: uppercase;
@@ -589,6 +566,9 @@ html {
 }
 .imm-hunt-modal-link {
   background: var(--forest);
+  color: #fff8ea;
+}
+.imm-wrap .imm-hunt-modal-link {
   color: #fff8ea;
 }
 .imm-hunt-modal-close {
@@ -689,7 +669,7 @@ html {
   text-align: center;
   text-transform: uppercase;
   font-family: var(--d);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(3.1rem, 9vw, 5.4rem);
   line-height: 0.9;
   text-shadow: 0 4px 14px rgba(10, 40, 24, 0.52);
@@ -926,7 +906,320 @@ html {
 .d-ct { background: var(--ct); }
 
 /* ════════════════════════════════════════
-   FOLLOW (Instagram — Section 3)
+   SHOW VIDEO
+════════════════════════════════════════ */
+.imm-video {
+  --video-pad-top: clamp(38px, 5vh, 64px);
+  position: relative;
+  background: #f3edda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--video-pad-top) 20px clamp(42px, 6vh, 70px);
+  color: #123f36;
+  isolation: isolate;
+}
+body:has(#header) .imm-video,
+html.squarespace-damask .imm-video {
+  --video-pad-top: calc(var(--sqs-header-offset) + 42px);
+}
+.imm-section.imm-video {
+  padding-top: var(--video-pad-top);
+}
+.imm-video::before,
+.imm-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.imm-video::before {
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(243,237,218,0.9), rgba(231,221,193,0.88)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/11.png") center / cover no-repeat;
+}
+.imm-video::after {
+  z-index: 1;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(18,63,54,0.09) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(0deg, rgba(18,63,54,0.06) 0 1px, transparent 1px 28px);
+  opacity: 0.42;
+}
+.imm-video-inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1040px);
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+}
+.imm-video-head {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.imm-video .imm-section-title {
+  color: #123f36;
+  text-align: center;
+  text-shadow: none;
+}
+.imm-video-copy {
+  max-width: 54ch;
+  color: #c75145;
+  font-family: var(--ui);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.imm-video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #123f36;
+  border: 3px solid rgba(18,63,54,0.86);
+  box-shadow: 0 14px 30px rgba(18,63,54,0.22);
+  overflow: hidden;
+}
+.imm-video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.imm-video-actions,
+.imm-media-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.imm-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: var(--pill);
+  padding: 0 20px;
+  border: 1.5px solid rgba(255,250,240,0.34);
+  background: linear-gradient(180deg, #c75145 0%, #96362e 100%);
+  color: #fff8e8 !important;
+  font-family: var(--ui);
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 4px 0 rgba(120,35,25,0.28);
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.imm-mini-btn:hover,
+.imm-mini-btn:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+  filter: brightness(1.06);
+}
+@media (max-width: 760px) {
+  .imm-video {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Showcase popup */
+.imm-showcase-modal-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1210;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(5, 18, 12, 0.72);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+.imm-showcase-modal-bg.is-open {
+  display: flex;
+}
+.imm-showcase-modal {
+  width: min(420px, 100%);
+  max-height: calc(100svh - 44px);
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #fff9ed;
+  border: 2px solid rgba(18,63,54,0.24);
+  box-shadow: 0 24px 70px rgba(4,18,12,0.42);
+  color: var(--forest);
+}
+.imm-showcase-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.imm-showcase-modal-title {
+  font-family: var(--ui);
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.imm-showcase-modal-x {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(18,63,54,0.24);
+  background: rgba(18,63,54,0.08);
+  color: var(--forest);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.imm-showcase-phone {
+  width: min(100%, 320px);
+  max-height: calc(100svh - 130px);
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #07140f;
+  border: 2px solid rgba(18,63,54,0.28);
+}
+.imm-showcase-phone video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Bottom motion carousel */
+.imm-media {
+  position: relative;
+  background: #123f36;
+  display: flex;
+  justify-content: center;
+  padding: clamp(42px, 6vh, 72px) 20px clamp(52px, 7vh, 84px);
+  color: #d4f0d8;
+  isolation: isolate;
+  overflow: hidden;
+}
+.imm-media::before,
+.imm-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.imm-media::before {
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(18,63,54,0.9), rgba(9,32,25,0.88)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/18.png") center / cover no-repeat;
+}
+.imm-media::after {
+  z-index: 1;
+  background-image: repeating-linear-gradient(135deg, rgba(212,240,216,0.08) 0 1px, transparent 1px 22px);
+  opacity: 0.5;
+}
+.imm-media-inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1040px);
+  display: grid;
+  justify-items: center;
+  gap: clamp(14px, 2vw, 24px);
+}
+.imm-media .imm-section-title {
+  color: #d4f0d8;
+}
+.imm-carousel {
+  width: 100%;
+  display: grid;
+  gap: 12px;
+}
+.imm-carousel-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  contain: paint;
+  border: 3px solid rgba(212,240,216,0.22);
+  background: #06140f;
+  box-shadow: 0 16px 38px rgba(0,0,0,0.28);
+}
+.imm-carousel-track {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transform: translateX(calc(var(--slide, 0) * -100%));
+  transition: transform 260ms ease;
+}
+.imm-carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background: #06140f;
+}
+.imm-carousel-slide video,
+.imm-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.imm-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.34);
+  background: rgba(18,63,54,0.78);
+  color: #fff8e8;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.imm-carousel-prev { left: 10px; }
+.imm-carousel-next { right: 10px; }
+.imm-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+.imm-carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(212,240,216,0.9);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.imm-carousel-dot.is-on {
+  background: #d4f0d8;
+}
+@media (max-width: 699px) {
+  .imm-media {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .imm-carousel-nav {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* ════════════════════════════════════════
+   FOLLOW (Instagram)
 ════════════════════════════════════════ */
 .imm-follow {
   --follow-pad-top: clamp(44px, 6vh, 76px);
@@ -939,6 +1232,7 @@ html {
   padding: var(--follow-pad-top) 20px clamp(48px, 7vh, 84px);
   color: #d4f0d8;
   isolation: isolate;
+  overflow: hidden;
 }
 body:has(#header) .imm-follow,
 html.squarespace-damask .imm-follow {
@@ -996,7 +1290,7 @@ html.squarespace-damask .imm-follow {
 .imm-ig-embeds iframe {
   width: 100% !important;
   min-width: 0 !important;
-  max-width: none !important;
+  max-width: 100% !important;
   margin: 0 !important;
   border-radius: 12px !important;
   box-shadow: 0 14px 34px rgba(0,0,0,0.24) !important;
@@ -1022,7 +1316,7 @@ html.squarespace-damask .imm-follow {
 }
 
 /* ════════════════════════════════════════
-   SHOP (Shopify — Section 4)
+   POSTER SALE
 ════════════════════════════════════════ */
 .imm-shop {
   --shop-pad-top: clamp(46px, 6.5vh, 76px);
@@ -1074,7 +1368,7 @@ html.squarespace-damask .imm-shop {
   color: #fff8e8;
   font-family: var(--ui);
   font-size: clamp(0.86rem, 1.35vw, 1.05rem);
-  font-weight: 840;
+  font-weight: 650;
   letter-spacing: 0.075em;
   line-height: 1;
   text-transform: uppercase;
@@ -1084,6 +1378,19 @@ html.squarespace-damask .imm-shop {
   margin: 0;
   color: #123f36;
   text-align: center;
+}
+.imm-shop-copy {
+  width: min(100%, 680px);
+  color: #123f36;
+  font-family: var(--ui);
+  font-size: clamp(0.96rem, 1.65vw, 1.12rem);
+  font-weight: 650;
+  line-height: 1.45;
+  text-align: center;
+}
+.imm-shop-copy strong {
+  color: #c75145;
+  font-weight: 700;
 }
 .imm-shop-inner {
   position: relative;
@@ -1098,7 +1405,7 @@ html.squarespace-damask .imm-shop {
 /* Shared section heading styles */
 .imm-section-title {
   font-family: var(--d);
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   font-size: clamp(2.6rem, 8vw, 5rem);
   line-height: 0.9;
@@ -1120,82 +1427,14 @@ html.squarespace-damask .imm-shop {
 .imm-follow .imm-section-sub { color: #8fcfa8; }
 .imm-shop   .imm-section-sub { color: #c75145; }
 
-/* Embed placeholder styling (shown until real embed is added) */
-.imm-embed-placeholder {
-  width: 100%;
-  max-width: 780px;
-  margin: 8px auto 0;
-  border-radius: 16px;
-  padding: 44px 24px;
-  text-align: center;
-  font-family: var(--ui);
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-.imm-follow .imm-embed-placeholder {
-  border: 2px dashed rgba(144,208,168,0.35);
-  color: #5fa882;
-}
-.imm-shop .imm-embed-placeholder {
-  border: 2px dashed rgba(18,63,54,0.28);
-  color: #5a7a72;
-}
-.imm-embed-placeholder strong {
-  display: block;
-  font-family: var(--d);
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.imm-follow .imm-embed-placeholder strong { color: #8fcfa8; }
-.imm-shop   .imm-embed-placeholder strong { color: #123f36; }
-
 .imm-shop-grid {
   width: min(100%, 1100px);
   margin: clamp(6px, 1.2vh, 14px) auto 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: clamp(12px, 2vw, 20px);
 }
-.imm-shop-store-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 9px !important;
-  min-height: 0 !important;
-  border-radius: 0 !important;
-  padding: 0 0 5px !important;
-  background: transparent !important;
-  color: #123f36 !important;
-  font-family: "Avenir Next", "Avenir", sans-serif !important;
-  font-size: clamp(0.78rem, 1.4vw, 0.94rem) !important;
-  font-weight: 860 !important;
-  letter-spacing: 0.055em !important;
-  text-transform: uppercase !important;
-  text-decoration: none !important;
-  border-bottom: 2px solid #c75145 !important;
-  box-shadow: none !important;
-  transition: transform 0.14s, color 0.14s, border-color 0.14s !important;
-  align-self: center !important;
-}
-.imm-shop-store-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: none !important;
-  filter: none !important;
-  color: #c75145 !important;
-  border-color: #123f36 !important;
-  text-decoration: none !important;
-}
-.imm-shop-store-icon {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 auto;
-}
-.imm-shop-store-icon path {
-  stroke: currentColor;
-}
-.imm-shop-product {
+.imm-poster-card {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -1204,143 +1443,31 @@ html.squarespace-damask .imm-shop {
   border: 1px solid rgba(18,63,54,0.10);
   box-shadow: 0 2px 8px rgba(18,63,54,0.08);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-  text-decoration: none !important;
-  color: inherit !important;
 }
-.imm-shop-product:hover,
-.imm-shop-product:focus-visible {
+.imm-poster-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(18,63,54,0.16);
-  text-decoration: none !important;
 }
-.imm-shop-header {
-  padding: 13px 13px 10px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px;
-  border-bottom: 1px solid rgba(18,63,54,0.07);
-}
-.imm-shop-title {
-  font-family: var(--d);
-  font-size: clamp(1rem, 1.75vw, 1.2rem);
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: #123f36;
-  text-transform: uppercase;
-  flex: 1;
-}
-.imm-shop-price {
-  font-family: var(--ui);
-  font-size: 0.84rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #c75145;
-  white-space: nowrap;
-}
-.imm-shop-media {
-  aspect-ratio: 4 / 5;
+.imm-poster-card img {
+  width: 100%;
+  aspect-ratio: 11 / 17;
+  display: block;
+  object-fit: cover;
+  object-position: center;
   background:
     linear-gradient(180deg, rgba(255,250,240,0.76), rgba(245,240,228,0.94)),
     url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/SIGNATURES/Rect%20-%20Black.svg") center / 135% auto no-repeat,
     #f5f0e4;
-  overflow: hidden;
-  position: relative;
 }
-.imm-shop-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.22s ease, filter 0.22s ease;
-}
-.imm-shop-product:hover .imm-shop-media img,
-.imm-shop-product:focus-visible .imm-shop-media img {
-  transform: scale(1.035);
-  filter: saturate(1.04);
-}
-.imm-shop-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: opacity 0.28s ease, transform 0.32s ease;
-}
-.imm-shop-img-front {
-  opacity: 1;
-  transform: scale(1);
-}
-.imm-shop-img-back {
-  opacity: 0;
-  transform: scale(1.03);
-}
-.imm-shop-product:hover .imm-shop-img-front {
-  opacity: 0;
-  transform: scale(1.03);
-}
-.imm-shop-product:hover .imm-shop-img-back {
-  opacity: 1;
-  transform: scale(1);
-}
-.imm-shop-product:hover .imm-shop-img-front.is-only {
-  opacity: 1;
-  transform: scale(1.04);
-}
-.imm-shop-meta {
-  padding: 8px 11px 12px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 3px;
-}
-.imm-shop-swatches {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 6px;
-}
-.imm-shop-swatch {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.18);
-  flex-shrink: 0;
-  transition: transform 0.12s;
-}
-.imm-shop-swatch.is-light { border-color: rgba(0,0,0,0.28); }
-.imm-shop-more {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: auto;
-  min-height: 34px;
-  border-radius: var(--pill);
-  padding: 8px 14px 7px;
-  background: linear-gradient(180deg, #c75145 0%, #963329 100%);
-  border: 1px solid rgba(255, 243, 223, 0.28);
-  box-shadow: 0 2px 0 rgba(120,35,25,0.28);
-  color: #fff8e8 !important;
+.imm-poster-label {
+  padding: 10px 12px 11px;
+  color: #123f36;
   font-family: var(--ui);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-align: center;
   text-transform: uppercase;
-  align-self: flex-start;
-  text-decoration: none !important;
-}
-.imm-shop-note-inline {
-  font-family: var(--ui);
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(18,63,54,0.44);
-  margin-top: 2px;
-  display: block;
 }
 .imm-shop-note {
   width: min(100%, 720px);
@@ -1351,7 +1478,7 @@ html.squarespace-damask .imm-shop {
   box-shadow: 0 8px 20px rgba(18,63,54,0.08);
   font-family: var(--ui);
   font-size: clamp(0.82rem, 1.4vw, 0.94rem);
-  font-weight: 760;
+  font-weight: 600;
   letter-spacing: -0.018em;
   color: #123f36;
   text-align: center;
@@ -1364,16 +1491,6 @@ html.squarespace-damask .imm-shop {
     width: 100%;
     gap: 10px;
   }
-  .imm-shop-title {
-    font-size: 0.82rem;
-  }
-  .imm-shop-price {
-    font-size: 0.76rem;
-  }
-  .imm-shop-more {
-    width: 100%;
-    align-self: stretch;
-  }
 }
 @media (min-width: 600px) and (max-width: 899px) {
   .imm-shop-grid {
@@ -1382,9 +1499,80 @@ html.squarespace-damask .imm-shop {
 }
 @media (min-width: 900px) and (max-width: 1199px) {
   .imm-shop-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* ── Merch shop product grid ── */
+.imm-shop-store-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 0 5px !important;
+  background: transparent !important;
+  color: #123f36 !important;
+  font-family: var(--ui) !important;
+  font-size: clamp(0.78rem, 1.4vw, 0.94rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.055em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-bottom: 2px solid #c75145 !important;
+  box-shadow: none !important;
+  transition: transform 0.14s, color 0.14s, border-color 0.14s !important;
+}
+.imm-shop-store-btn:hover {
+  transform: translateY(-2px) !important;
+  color: #c75145 !important;
+  border-color: #123f36 !important;
+}
+.imm-shop-store-icon { width: 18px; height: 18px; flex: 0 0 auto; }
+.imm-shop-store-icon path { stroke: currentColor; }
+.imm-shop-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 420px);
+  margin: -6px 0 0;
+}
+.imm-shop-divider::before, .imm-shop-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(18,63,54,0.2);
+}
+.imm-shop-divider-dot { width: 5px; height: 5px; border-radius: 50%; background: #c75145; flex-shrink: 0; }
+.imm-shop-product {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fffaf0;
+  border: 1px solid rgba(18,63,54,0.10);
+  box-shadow: 0 2px 8px rgba(18,63,54,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.imm-shop-product:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(18,63,54,0.16); }
+.imm-shop-media { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; background: #f0ebe0; }
+.imm-shop-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.imm-shop-product:hover .imm-shop-media img { transform: scale(1.04); }
+.imm-shop-meta { padding: 9px 10px 10px; display: flex; flex-direction: column; gap: 4px; }
+.imm-shop-topline { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
+.imm-shop-title { font-size: 0.78rem; font-weight: 700; color: #1c2422; letter-spacing: 0.01em; }
+.imm-shop-price { font-size: 0.76rem; font-weight: 800; color: #123f36; white-space: nowrap; }
+.imm-shop-swatches { display: flex; flex-wrap: wrap; gap: 4px; }
+.imm-shop-swatch {
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 1.5px solid rgba(18,63,54,0.22);
+}
+.imm-shop-swatch.is-light { border-color: rgba(18,63,54,0.35); }
+.imm-shop-note-inline { font-size: 0.67rem; color: #7a8f87; font-weight: 600; letter-spacing: 0.035em; }
+.imm-shop-more { font-size: 0.68rem; font-weight: 700; color: #c75145; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px; }
 
 /* ── Inline countdown display (replaces tagline in hero left column) ── */
 .imm-countdown-hero {
@@ -1407,7 +1595,7 @@ html.squarespace-damask .imm-shop {
 }
 .imm-cd-num {
   font-size: clamp(3rem, 9vw, 5rem);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1;
   color: #fff;
@@ -1418,7 +1606,7 @@ html.squarespace-damask .imm-shop {
 }
 .imm-cd-lbl {
   font-size: clamp(0.72rem, 1.45vw, 0.92rem);
-  font-weight: 900;
+  font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.86);
@@ -1426,6 +1614,11 @@ html.squarespace-damask .imm-shop {
 }
 .imm-cd-sep {
   display: none;
+}
+.imm-countdown-hero[data-state="live"] .imm-cd-num,
+.imm-countdown-hero[data-state="ended"] .imm-cd-num {
+  font-size: clamp(1.45rem, 4vw, 2.5rem);
+  white-space: nowrap;
 }
 
 /* ── Responsive ── */
@@ -1435,7 +1628,7 @@ html.squarespace-damask .imm-shop {
   .imm-wrap { --event-bar-h: 0px; }
   body:has(#header) .imm-wrap,
   html.squarespace-damask .imm-wrap {
-    --sqs-header-offset: var(--imm-sqs-header-offset-mobile, 64px);
+    --sqs-header-offset: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset-mobile, 64px));
   }
   /* Hero: stronger tint so logo/countdown pop on mobile */
   [data-theme="blue"]  .imm-hero-tint {
@@ -1454,7 +1647,7 @@ html.squarespace-damask .imm-shop {
   }
   .imm-inner { padding: calc(78px + var(--sqs-header-offset)) 22px 46px; }
   .imm-hero-content { gap: 42px; }
-  .imm-hero-logo { width: min(318px, 84vw); margin-bottom: 8px; }
+  .imm-hero-logo { width: min(220px, 62vw); margin-bottom: 8px; }
   .imm-countdown-hero {
     margin-top: 18px;
     gap: 7px;
@@ -1528,13 +1721,13 @@ html.squarespace-damask .imm-shop {
 
 /* Tablet (700–899px): two cards visible, logo bigger in single-column layout */
 @media (min-width: 700px) {
-  .imm-hero-logo { width: min(380px, 72vw); }
+  .imm-hero-logo { width: min(310px, 62vw); }
   .imm-card { flex-basis: calc(50% - 8px); }
 }
 
 /* Tablet (900–1099px): single column, larger */
 @media (min-width: 900px) {
-  .imm-hero-logo { width: 400px; }
+  .imm-hero-logo { width: 330px; }
   .imm-actions   { max-width: 480px; gap: 18px; }
   .imm-btn       { padding: 20px 40px; font-size: 1.35rem; }
   /* Explore: 3 cards */
@@ -1560,7 +1753,7 @@ html.squarespace-damask .imm-shop {
   }
   .imm-hero-mid  { align-items: center; text-align: center; }
   /* Logo: percentage of column so it scales with viewport but never overflows */
-  .imm-hero-logo { width: min(430px, 94%); margin-bottom: 10px; }
+  .imm-hero-logo { width: min(360px, 82%); margin-bottom: 10px; }
   /* Buttons: left-aligned in their column, matching left column's left edge */
   .imm-actions {
     max-width: 560px;
@@ -1585,7 +1778,7 @@ html.squarespace-damask .imm-shop {
 }
 
 @media (min-width: 1400px) {
-  .imm-hero-logo { width: min(500px, 94%); }
+  .imm-hero-logo { width: min(410px, 84%); }
   .imm-actions   { max-width: 600px; gap: 20px; }
   .imm-btn       { padding: 20px 40px; font-size: 1.38rem; }
   .imm-hero-content { gap: 56px; max-width: 1300px; }
@@ -2206,7 +2399,7 @@ html.squarespace-damask .imm-shop {
   }
 
   .imm-section.imm-shop {
-    min-height: 100svh;
+    min-height: auto;
     justify-content: center;
     padding-left: clamp(30px, 3vw, 62px);
     padding-right: clamp(30px, 3vw, 62px);
@@ -2219,9 +2412,9 @@ html.squarespace-damask .imm-shop {
 
   .imm-shop-grid {
     width: 100%;
-    max-width: none;
+    max-width: 1180px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(16px, 1.35vw, 26px);
+    gap: clamp(14px, 1.35vw, 22px);
   }
 
   .imm-shop-kicker {
@@ -2230,36 +2423,8 @@ html.squarespace-damask .imm-shop {
     box-shadow: 0 5px 0 rgba(120,35,25,0.22), inset 0 1px 0 rgba(255,255,255,0.24);
   }
 
-  .imm-shop-product {
+  .imm-poster-card {
     border-radius: 12px;
-  }
-
-  .imm-shop-media {
-    aspect-ratio: 1 / 1.18;
-  }
-
-  .imm-shop-meta {
-    padding: 12px 14px 16px;
-  }
-
-  .imm-shop-title {
-    font-size: clamp(1.08rem, 1.35vw, 1.52rem);
-  }
-
-  .imm-shop-price {
-    font-family: "Inter", "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
-    font-size: clamp(0.92rem, 0.95vw, 1.05rem);
-    font-weight: 650;
-    letter-spacing: 0;
-    color: #a93c34;
-  }
-
-  .imm-shop-more {
-    background: #b33f36;
-    box-shadow: 0 2px 0 rgba(120,35,25,0.18);
-    border-color: rgba(255,243,223,0.20);
-    font-family: "Inter", "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
-    font-weight: 760;
   }
 }
 
@@ -2326,12 +2491,6 @@ html.squarespace-damask .imm-shop {
 <!-- ══ PAGE WRAPPER (data-theme toggled by JS on load) ══ -->
 <div class="imm-wrap imm-bleed" id="imm-wrap" data-theme="blue">
 
-  <!-- Event bar — fixed at top of viewport, persists across all 4 sections -->
-  <div class="imm-event-bar" role="banner">
-    <span class="imm-event-date">Friday, May 8, 2026 · 5–9 PM</span>
-    <span class="imm-event-place">AIMM · The College of New Jersey · Ewing, NJ</span>
-  </div>
-
   <!-- ══════════ SECTION 1: HERO ══════════ -->
   <section class="imm-section imm-hero" id="imm-home">
 
@@ -2387,9 +2546,9 @@ html.squarespace-damask .imm-shop {
 
         <!-- Right col: CTA buttons -->
         <div class="imm-actions">
-          <button class="imm-btn imm-btn-cal" id="imm-cal-btn" type="button" aria-label="Download calendar event" data-random-cta>
+          <button class="imm-btn imm-btn-cal" id="imm-showcase-open" type="button" aria-label="Watch the showcase motion graphic" data-random-cta>
             <span class="imm-btn-cal-icon" aria-hidden="true"><i></i></span>
-            Add to Calendar
+            Watch the Showcase
           </button>
           <button class="imm-btn imm-btn-hunt" id="imm-hunt-btn" type="button" data-random-cta>
             Start the Scavenger Hunt!
@@ -2614,7 +2773,26 @@ html.squarespace-damask .imm-shop {
 
   </section><!-- end .imm-explore -->
 
-  <!-- ══════════ SECTION 3: INSTAGRAM FEED ══════════ -->
+  <!-- ══════════ SECTION 3: SHOW VIDEO ══════════ -->
+  <section class="imm-section imm-video" id="imm-video">
+    <div class="imm-video-inner">
+      <div class="imm-video-head">
+        <h2 class="imm-section-title">Senior Show</h2>
+        <p class="imm-video-copy">Final showcase motion spot for the web.</p>
+      </div>
+      <div class="imm-video-frame">
+        <video controls playsinline preload="metadata" aria-label="IMM Senior Show motion graphic">
+          <source src="../IMMAdSiteFinal.mp4" type="video/mp4">
+          <source src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMAdSiteFinal.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="imm-video-actions">
+        <button class="imm-mini-btn" id="imm-showcase-open-2" type="button">Watch Madison's Mobile Cut</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 4: INSTAGRAM FEED ══════════ -->
   <section class="imm-section imm-follow" id="imm-follow">
     <div class="imm-follow-inner">
       <h2 class="imm-section-title">Follow the Show</h2>
@@ -2635,8 +2813,8 @@ html.squarespace-damask .imm-shop {
     </div>
   </section>
 
-  <!-- ══════════ SECTION 4: PRINTIFY MERCH ══════════ -->
-  <section class="imm-section imm-shop" id="imm-shop">
+  <!-- ══════════ SECTION 4b: PRINTIFY MERCH ══════════ -->
+  <section class="imm-section imm-shop" id="imm-merch">
     <div class="imm-shop-inner">
       <p class="imm-shop-kicker">Official IMM Senior Show</p>
       <h2 class="imm-section-title imm-shop-heading">Grab Your Merch!</h2>
@@ -2651,7 +2829,73 @@ html.squarespace-damask .imm-shop {
           <path d="M11 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </a>
+      <div class="imm-shop-divider" aria-hidden="true">
+        <span class="imm-shop-divider-dot"></span>
+        <span class="imm-shop-divider-dot"></span>
+        <span class="imm-shop-divider-dot"></span>
+      </div>
       <div class="imm-shop-grid" id="imm-shop-grid" aria-label="Merch products"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 5: POSTER SALE ══════════ -->
+  <section class="imm-section imm-shop" id="imm-shop">
+    <div class="imm-shop-inner">
+      <p class="imm-shop-kicker">11 x 17 Posters</p>
+      <h2 class="imm-section-title imm-shop-heading">Poster Sale</h2>
+      <p class="imm-shop-copy"><strong>$1.50 each</strong> at J&amp;J Innovations. Proceeds support the IMM major.</p>
+      <div class="imm-shop-grid" aria-label="Senior Show poster previews">
+        <article class="imm-poster-card">
+          <img src="../11X17s/1.png" alt="IMM Senior Show poster design 1" loading="lazy">
+          <div class="imm-poster-label">Poster 01</div>
+        </article>
+        <article class="imm-poster-card">
+          <img src="../11X17s/2.png" alt="IMM Senior Show poster design 2" loading="lazy">
+          <div class="imm-poster-label">Poster 02</div>
+        </article>
+        <article class="imm-poster-card">
+          <img src="../11X17s/3.png" alt="IMM Senior Show poster design 3" loading="lazy">
+          <div class="imm-poster-label">Poster 03</div>
+        </article>
+        <article class="imm-poster-card">
+          <img src="../11X17s/4.png" alt="IMM Senior Show poster design 4" loading="lazy">
+          <div class="imm-poster-label">Poster 04</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 6: MOTION GALLERY ══════════ -->
+  <section class="imm-section imm-media" id="imm-media">
+    <div class="imm-media-inner">
+      <h2 class="imm-section-title">Motion Gallery</h2>
+      <p class="imm-section-sub">Promos and animated moments</p>
+      <div class="imm-carousel" id="imm-carousel" aria-label="Motion gallery carousel">
+        <div class="imm-carousel-frame">
+          <div class="imm-carousel-track" id="imm-carousel-track">
+            <div class="imm-carousel-slide" aria-label="Show promotion video 1">
+              <video controls playsinline preload="metadata">
+                <source src="../Motion Graphics/SHOWPROMOTION.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="imm-carousel-slide" aria-label="Show promotion video 2">
+              <video controls playsinline preload="metadata">
+                <source src="../Motion Graphics/SHOWPROMOTION_1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="imm-carousel-slide" aria-label="Animated GIF">
+              <img src="../Motion Graphics/schmellawalkorange.gif" alt="Animated motion graphic preview" loading="lazy">
+            </div>
+          </div>
+          <button class="imm-carousel-nav imm-carousel-prev" id="imm-carousel-prev" type="button" aria-label="Previous gallery item">‹</button>
+          <button class="imm-carousel-nav imm-carousel-next" id="imm-carousel-next" type="button" aria-label="Next gallery item">›</button>
+        </div>
+        <div class="imm-carousel-dots" id="imm-carousel-dots" aria-label="Select gallery item">
+          <button class="imm-carousel-dot is-on" type="button" data-slide="0" aria-label="Show gallery item 1"></button>
+          <button class="imm-carousel-dot" type="button" data-slide="1" aria-label="Show gallery item 2"></button>
+          <button class="imm-carousel-dot" type="button" data-slide="2" aria-label="Show gallery item 3"></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2665,13 +2909,28 @@ html.squarespace-damask .imm-shop {
       <div class="imm-hunt-modal-body">
         <div class="imm-hunt-steps">
           <div class="imm-hunt-step"><div><strong>Open your hunt passport.</strong><span>Start the digital checklist before you walk the show.</span></div></div>
-          <div class="imm-hunt-step"><div><strong>Find each track poster.</strong><span>Visit all six specialization areas around AIMM.</span></div></div>
-          <div class="imm-hunt-step"><div><strong>Scan the stop code.</strong><span>Each poster stamps one stop in your passport.</span></div></div>
-          <div class="imm-hunt-step"><div><strong>Collect all six.</strong><span>Finish the trail after you have visited every track.</span></div></div>
+          <div class="imm-hunt-step"><div><strong>Find each room stop.</strong><span>Visit the project rooms and hallway stops around AIMM.</span></div></div>
+          <div class="imm-hunt-step"><div><strong>Scan the room code.</strong><span>Each QR collects that room or hallway on this phone.</span></div></div>
+          <div class="imm-hunt-step"><div><strong>Collect every stop.</strong><span>Finish the trail after you have checked off all rooms and hallways.</span></div></div>
         </div>
         <div class="imm-hunt-modal-actions">
-          <button class="imm-hunt-modal-close" id="imm-hunt-cancel" type="button">Come Back May 8th</button>
+          <a class="imm-hunt-modal-link" href="/hunt">Open Hunt Passport</a>
+          <button class="imm-hunt-modal-close" id="imm-hunt-cancel" type="button">Close</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imm-showcase-modal-bg" id="imm-showcase-modal" role="dialog" aria-modal="true" aria-labelledby="imm-showcase-modal-title">
+    <div class="imm-showcase-modal">
+      <div class="imm-showcase-modal-head">
+        <div class="imm-showcase-modal-title" id="imm-showcase-modal-title">Madison's Mobile Cut</div>
+        <button class="imm-showcase-modal-x" id="imm-showcase-x" type="button" aria-label="Close showcase video">&times;</button>
+      </div>
+      <div class="imm-showcase-phone">
+        <video id="imm-showcase-video" controls playsinline preload="metadata">
+          <source src="../Motion Graphics/MG_mobile only.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -2684,189 +2943,64 @@ html.squarespace-damask .imm-shop {
 
   const wrap  = document.getElementById("imm-wrap");
   const tint  = document.getElementById("imm-explore-tint");
+  const shopGrid = document.getElementById("imm-shop-grid");
   /* Countdown elements — individual units in the hero left column */
   const cdD   = document.getElementById("imm-cd-d");
   const cdH   = document.getElementById("imm-cd-h");
   const cdM   = document.getElementById("imm-cd-m");
+
+  /* ── Merch shop product data ── */
+  var C = {
+    white:  {hex:"#f5f5f5",light:true}, ltgrey:{hex:"#b8b8b8",light:true},
+    dkgrey: {hex:"#555555"},            black: {hex:"#1a1a1a"},
+    navy:   {hex:"#1a2a5e"},            red:   {hex:"#8b1a1a"},
+    green:  {hex:"#1b4d2e"},            sapph: {hex:"#1e4d8c"},
+    grey:   {hex:"#888888",light:true}, maroon:{hex:"#6b1515"},
+    tgreen: {hex:"#2e7d4e"},            tblue: {hex:"#1f4e8c"},
+    torange:{hex:"#c0571e"},
+  };
+  var SHOP_PRODUCTS = [
+    {title:"Unisex Tee",           price:"$23.00", note:"XS–3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28067519", image:"https://images-api.printify.com/mockup/69e452fcc1781a06ac068df2/12100/92570/unisex-tee.jpg?camera_label=front&revision=1776954736678&s=400"},
+    {title:"Unisex Crewneck",      price:"$33.00", note:"XS–3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28069894", image:"https://images-api.printify.com/mockup/69e48978e1b544748a052959/25443/98502/unisex-crewneck.jpg?camera_label=front&revision=1776955108810&s=400"},
+    {title:"Unisex Hoodie",        price:"$35.00", note:"XS–3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28069936", image:"https://images-api.printify.com/mockup/69e48a0af2671100e10e220a/32880/98424/unisex-hooded-sweatshirt.jpg?camera_label=front&revision=1776954233375&s=400"},
+    {title:"Zip-Up Hoodie",        price:"$38.00", note:"XS–3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy], href:"https://imm-senior-class-store.printify.me/product/28069955", image:"https://images-api.printify.com/mockup/69e48be1e1b544748a052a4e/66102/108335/unisex-zip-up-hooded-sweatshirt.jpg?camera_label=front&revision=1776954535200&s=400"},
+    {title:"Ladies V-Neck Tee",    price:"$24.00", note:"XS–3XL", colors:[C.white,C.black,C.grey,C.red,C.sapph,C.navy], href:"https://imm-senior-class-store.printify.me/product/28153132", image:"https://images-api.printify.com/mockup/69e96a4bb22af0e531010362/78524/106703/ladies-v-neck-tee.jpg?camera_label=front&revision=1776954926459&s=400"},
+    {title:"Tee — Embroidered",    price:"$18.00", note:"XS–3XL", colors:[C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28067347", image:"https://images-api.printify.com/mockup/69e44ff664704ce13e01be4c/11902/102005/unisex-tee-embroidered.jpg?camera_label=front-2&revision=1776954296711&s=400"},
+    {title:"Tote Bag",             price:"$20.00", note:"3 colors · 3 sizes", colors:[C.tgreen,C.tblue,C.torange], href:"https://imm-senior-class-store.printify.me/product/28151456", image:"https://images-api.printify.com/mockup/69e4a1ed15a70dfc4b0d667a/103605/100880/tote-bag-green.jpg?camera_label=front&revision=1776956003112&s=400"},
+    {title:"Baseball Cap",         price:"$20.00", note:"One size", colors:[C.grey,C.black,C.navy,C.maroon], href:"https://imm-senior-class-store.printify.me/product/28067625", image:"https://images-api.printify.com/mockup/69e45574b62bfffb670009e4/118562/109495/baseball-cap-embroidered.jpg?camera_label=front&revision=1776960509485&s=400"},
+    {title:"Roscoe Plush",         price:"$25.00", note:"6 animals", colors:[], href:"https://imm-senior-class-store.printify.me/product/28068194", image:"https://images-api.printify.com/mockup/69e46006e9b8abdb01096c10/81079/50076/roscoe-plush.jpg?camera_label=front&revision=1776954381911&s=400"},
+    {title:"Signature Poster",     price:"$10.00", note:"4 sizes · Matte", colors:[], href:"https://imm-senior-class-store.printify.me/product/28152930", image:"https://images-api.printify.com/mockup/69e96851a66cae3b9e0c35d9/114557/106501/signature-poster.jpg?camera_label=front&revision=1776904469307&s=400"},
+    {title:"Beer Stein Mug",       price:"$23.00", note:"22 oz", colors:[], href:"https://imm-senior-class-store.printify.me/product/28153440", image:"https://images-api.printify.com/mockup/69e96ba330dc29f0a1086658/81535/51660/beer-stein-mug.jpg?camera_label=front&revision=1776956222768&s=400"},
+    {title:"Accent Coffee Mug",    price:"$8.00",  note:"11 oz or 15 oz", colors:[], href:"https://imm-senior-class-store.printify.me/product/28168177", image:"https://images-api.printify.com/mockup/69ea637ce3254713080ada2c/72180/102752/accent-coffee-mug.jpg?camera_label=front&revision=1776970706978&s=400"},
+    {title:"Steel Ring — Engraved",price:"$25.00", note:"Sizes 6–8", colors:[], href:"https://imm-senior-class-store.printify.me/product/28068312", image:"https://images-api.printify.com/mockup/69e4633315a70dfc4b0d5287/164397/112850/stainless-steel-ring-engraved.jpg?camera_label=front&revision=1776956813080&s=400"},
+    {title:"Acrylic Statue",       price:"$18.00", note:"5 × 5 in", colors:[], href:"https://imm-senior-class-store.printify.me/product/28070506", image:"https://images-api.printify.com/mockup/69e4a099f2671100e10e27f6/149512/120384/custom-acrylic-statue-green.jpg?camera_label=front&revision=1776956773283&s=400"},
+  ];
+  function escHtml(v) {
+    return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function renderShopGrid() {
+    if (!shopGrid) return;
+    shopGrid.innerHTML = SHOP_PRODUCTS.map(function(item) {
+      var sw = (item.colors && item.colors.length)
+        ? '<div class="imm-shop-swatches">' + item.colors.map(function(c){
+            return '<span class="imm-shop-swatch'+(c.light?' is-light':'')+'" style="background:'+c.hex+'" aria-hidden="true"></span>';
+          }).join('') + '</div>' : '';
+      return '<a class="imm-shop-product" href="'+escHtml(item.href)+'" target="_blank" rel="noopener">'+
+        '<div class="imm-shop-media"><img src="'+escHtml(item.image)+'" alt="'+escHtml(item.title)+'" loading="lazy"></div>'+
+        '<div class="imm-shop-meta">'+
+          '<div class="imm-shop-topline"><div class="imm-shop-title">'+escHtml(item.title)+'</div><span class="imm-shop-price">'+escHtml(item.price)+'</span></div>'+
+          sw+(item.note?'<span class="imm-shop-note-inline">'+escHtml(item.note)+'</span>':'')+
+          '<span class="imm-shop-more" aria-hidden="true">Shop Now →</span>'+
+        '</div></a>';
+    }).join('');
+  }
+  renderShopGrid();
   const cdS   = document.getElementById("imm-cd-s");
   const scrl  = document.getElementById("imm-cards");
   const cards = [...document.querySelectorAll("#imm-cards .imm-card")];
   const dots  = [...document.querySelectorAll("#imm-dots .imm-dot")];
   const miniPills = [...document.querySelectorAll("#imm-mini-switch .imm-mini-pill")];
-  const shopGrid = document.getElementById("imm-shop-grid");
   const compactExploreQuery = window.matchMedia("(max-width: 1100px)");
-
-  /* Color palette shared across garments */
-  var C = {
-    white:   { hex: "#f5f5f5", light: true  },
-    ltgrey:  { hex: "#b8b8b8", light: true  },
-    dkgrey:  { hex: "#555555"               },
-    black:   { hex: "#1a1a1a"               },
-    navy:    { hex: "#1a2a5e"               },
-    red:     { hex: "#8b1a1a"               },
-    green:   { hex: "#1b4d2e"               },
-    sapph:   { hex: "#1e4d8c"               },
-    grey:    { hex: "#888888", light: true  },
-    maroon:  { hex: "#6b1515"               },
-    tgreen:  { hex: "#2e7d4e"               },
-    tblue:   { hex: "#1f4e8c"               },
-    torange: { hex: "#c0571e"               },
-  };
-
-  const SHOP_PRODUCTS = [
-    {
-      title: "Unisex Tee",
-      price: "$23.00",
-      note: "XS–3XL",
-      colors: [C.white, C.dkgrey, C.black, C.navy, C.red, C.green, C.sapph],
-      href: "https://imm-senior-class-store.printify.me/product/28067519",
-      image: "https://images-api.printify.com/mockup/69e452fcc1781a06ac068df2/12100/92570/unisex-tee.jpg?camera_label=front&revision=1776954736678&s=2048"
-    },
-    {
-      title: "Unisex Crewneck",
-      price: "$33.00",
-      note: "XS–3XL",
-      colors: [C.white, C.dkgrey, C.black, C.navy, C.red, C.green, C.sapph],
-      href: "https://imm-senior-class-store.printify.me/product/28069894",
-      image: "https://images-api.printify.com/mockup/69e48978e1b544748a052959/25443/98502/unisex-crewneck.jpg?camera_label=front&revision=1776955108810&s=2048"
-    },
-    {
-      title: "Unisex Hoodie",
-      price: "$35.00",
-      note: "XS–3XL",
-      colors: [C.ltgrey, C.dkgrey, C.black, C.navy, C.red, C.green, C.sapph],
-      href: "https://imm-senior-class-store.printify.me/product/28069936",
-      image: "https://images-api.printify.com/mockup/69e48a0af2671100e10e220a/32880/98424/unisex-hooded-sweatshirt.jpg?camera_label=front&revision=1776954233375&s=2048"
-    },
-    {
-      title: "Zip-Up Hoodie",
-      price: "$38.00",
-      note: "XS–3XL",
-      colors: [C.ltgrey, C.dkgrey, C.black, C.navy],
-      href: "https://imm-senior-class-store.printify.me/product/28069955",
-      image: "https://images-api.printify.com/mockup/69e48be1e1b544748a052a4e/66102/108335/unisex-zip-up-hooded-sweatshirt.jpg?camera_label=front&revision=1776954535200&s=2048"
-    },
-    {
-      title: "Ladies V-Neck Tee",
-      price: "$24.00",
-      note: "XS–3XL",
-      colors: [C.white, C.black, C.grey, C.red, C.sapph, C.navy],
-      href: "https://imm-senior-class-store.printify.me/product/28153132",
-      image: "https://images-api.printify.com/mockup/69e96a4bb22af0e531010362/78524/106703/ladies-v-neck-tee.jpg?camera_label=front&revision=1776954926459&s=2048"
-    },
-    {
-      title: "Tee — Embroidered",
-      price: "$18.00",
-      note: "XS–3XL",
-      colors: [C.dkgrey, C.black, C.navy, C.red, C.green, C.sapph],
-      href: "https://imm-senior-class-store.printify.me/product/28067347",
-      image: "https://images-api.printify.com/mockup/69e44ff664704ce13e01be4c/11902/102005/unisex-tee-embroidered.jpg?camera_label=front-2&revision=1776954296711&s=2048"
-    },
-    {
-      title: "Tote Bag",
-      price: "$20.00",
-      note: "3 colors · 3 sizes",
-      colors: [C.tgreen, C.tblue, C.torange],
-      href: "https://imm-senior-class-store.printify.me/product/28151456",
-      image: "https://images-api.printify.com/mockup/69e4a1ed15a70dfc4b0d667a/103605/100880/tote-bag-green.jpg?camera_label=front&revision=1776956003112&s=2048"
-    },
-    {
-      title: "Baseball Cap — Embroidered",
-      price: "$20.00",
-      note: "One size",
-      colors: [C.grey, C.black, C.navy, C.maroon],
-      href: "https://imm-senior-class-store.printify.me/product/28067625",
-      image: "https://images-api.printify.com/mockup/69e45574b62bfffb670009e4/118562/109495/baseball-cap-embroidered.jpg?camera_label=front&revision=1776960509485&s=2048"
-    },
-    {
-      title: "Roscoe Plush",
-      price: "$25.00",
-      note: "6 animals",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28068194",
-      image: "https://images-api.printify.com/mockup/69e46006e9b8abdb01096c10/81079/50076/roscoe-plush.jpg?camera_label=front&revision=1776954381911&s=2048"
-    },
-    {
-      title: "Signature Poster",
-      price: "$10.00",
-      note: "4 sizes · Matte",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28152930",
-      image: "https://images-api.printify.com/mockup/69e96851a66cae3b9e0c35d9/114557/106501/signature-poster.jpg?camera_label=front&revision=1776904469307&s=2048"
-    },
-    {
-      title: "Beer Stein Mug",
-      price: "$23.00",
-      note: "22 oz",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28153440",
-      image: "https://images-api.printify.com/mockup/69e96ba330dc29f0a1086658/81535/51660/beer-stein-mug.jpg?camera_label=front&revision=1776956222768&s=2048"
-    },
-    {
-      title: "Accent Coffee Mug",
-      price: "$8.00",
-      note: "11 oz or 15 oz",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28168177",
-      image: "https://images-api.printify.com/mockup/69ea637ce3254713080ada2c/72180/102752/accent-coffee-mug.jpg?camera_label=front&revision=1776970706978&s=2048"
-    },
-    {
-      title: "Steel Ring — Engraved",
-      price: "$25.00",
-      note: "Sizes 6–8",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28068312",
-      image: "https://images-api.printify.com/mockup/69e4633315a70dfc4b0d5287/164397/112850/stainless-steel-ring-engraved.jpg?camera_label=front&revision=1776956813080&s=2048"
-    },
-    {
-      title: "Acrylic Statue",
-      price: "$18.00",
-      note: "5 × 5 in",
-      colors: [],
-      href: "https://imm-senior-class-store.printify.me/product/28070506",
-      image: "https://images-api.printify.com/mockup/69e4a099f2671100e10e27f6/149512/120384/custom-acrylic-statue-green.jpg?camera_label=front&revision=1776956773283&s=2048"
-    }
-  ];
-
-  function escHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/\"/g, "&quot;");
-  }
-
-  function renderShopGrid() {
-    if (!shopGrid) return;
-    shopGrid.innerHTML = SHOP_PRODUCTS.map(function(item) {
-      var swatchHtml = (item.colors && item.colors.length)
-        ? '<div class="imm-shop-swatches">' +
-            item.colors.map(function(c) {
-              return '<span class="imm-shop-swatch' + (c.light ? ' is-light' : '') + '"' +
-                     ' style="background:' + c.hex + '"' +
-                     ' aria-hidden="true"></span>';
-            }).join('') +
-          '</div>'
-        : '';
-      return '' +
-        '<a class="imm-shop-product" href="' + escHtml(item.href) + '" target="_blank" rel="noopener">' +
-          '<div class="imm-shop-media">' +
-            '<img src="' + escHtml(item.image) + '" alt="' + escHtml(item.title) + '" loading="lazy">' +
-          '</div>' +
-          '<div class="imm-shop-meta">' +
-            '<div class="imm-shop-topline">' +
-              '<div class="imm-shop-title">' + escHtml(item.title) + '</div>' +
-              '<span class="imm-shop-price">' + escHtml(item.price) + '</span>' +
-            '</div>' +
-            swatchHtml +
-            (item.note ? '<span class="imm-shop-note-inline">' + escHtml(item.note) + '</span>' : '') +
-            '<span class="imm-shop-more" aria-hidden="true">Shop Now →</span>' +
-          '</div>' +
-        '</a>';
-    }).join('');
-  }
-
-  renderShopGrid();
 
   /* ── Theme: randomise blue / green tint on each load ── */
   wrap.dataset.theme = Math.random() < 0.5 ? "blue" : "green";
@@ -2911,26 +3045,40 @@ html.squarespace-damask .imm-shop {
   }
   setInterval(nextSlide, 6000);
 
-  /* ── Countdown to May 8, 2026 5:00 PM ET ── */
+  /* ── Countdown / live state for May 8, 2026 5:00–9:00 PM ET ── */
   const EVENT = new Date("2026-05-08T17:00:00-04:00");
+  const EVENT_END = new Date("2026-05-08T21:00:00-04:00");
+  const cdWrap = document.querySelector(".imm-countdown-hero");
+  const cdLabels = Array.prototype.slice.call(document.querySelectorAll(".imm-countdown-hero .imm-cd-lbl"));
   function pad(n) { return String(n).padStart(2, "0"); }
+  function setCountdown(values, labels, state, aria) {
+    [cdD, cdH, cdM, cdS].forEach(function(el, i) {
+      if (el) el.textContent = values[i];
+    });
+    cdLabels.forEach(function(el, i) {
+      el.textContent = labels[i] || "";
+    });
+    if (cdWrap) {
+      cdWrap.dataset.state = state;
+      cdWrap.setAttribute("aria-label", aria);
+    }
+  }
   function tick() {
-    const diff = EVENT - Date.now();
+    const now = Date.now();
+    const diff = EVENT - now;
+    if (now >= EVENT_END.getTime()) {
+      setCountdown(["THANK", "YOU", "2026", "SHOW"], ["", "", "", ""], "ended", "The 2026 IMM Senior Show has ended");
+      return;
+    }
     if (diff <= 0) {
-      if (cdD) cdD.textContent = "00";
-      if (cdH) cdH.textContent = "00";
-      if (cdM) cdM.textContent = "00";
-      if (cdS) cdS.textContent = "00";
+      setCountdown(["LIVE", "NOW", "5-9", "PM"], ["", "", "", ""], "live", "The IMM Senior Show is live now from 5 to 9 PM");
       return;
     }
     const d = Math.floor(diff / 86400000);
     const h = Math.floor((diff % 86400000) / 3600000);
     const m = Math.floor((diff % 3600000)  / 60000);
     const s = Math.floor((diff % 60000)    / 1000);
-    if (cdD) cdD.textContent = pad(d);
-    if (cdH) cdH.textContent = pad(h);
-    if (cdM) cdM.textContent = pad(m);
-    if (cdS) cdS.textContent = pad(s);
+    setCountdown([pad(d), pad(h), pad(m), pad(s)], ["Days", "Hrs", "Min", "Sec"], "countdown", "Countdown to the IMM Senior Show");
   }
   tick();
   setInterval(tick, 1000);
@@ -3172,6 +3320,86 @@ html.squarespace-damask .imm-shop {
       closeHuntModal();
     }
   });
+
+  var showcaseModal = document.getElementById("imm-showcase-modal");
+  var showcaseVideo = document.getElementById("imm-showcase-video");
+  var showcaseButtons = [
+    document.getElementById("imm-showcase-open"),
+    document.getElementById("imm-showcase-open-2")
+  ].filter(Boolean);
+  var showcaseClose = document.getElementById("imm-showcase-x");
+  var lastShowcaseFocus = null;
+
+  function openShowcaseModal() {
+    if (!showcaseModal) return;
+    lastShowcaseFocus = document.activeElement;
+    showcaseModal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    if (showcaseClose) showcaseClose.focus();
+  }
+
+  function closeShowcaseModal() {
+    if (!showcaseModal) return;
+    showcaseModal.classList.remove("is-open");
+    if (!huntModal || !huntModal.classList.contains("is-open")) {
+      document.body.style.overflow = "";
+    }
+    if (showcaseVideo) {
+      showcaseVideo.pause();
+      showcaseVideo.currentTime = 0;
+    }
+    if (lastShowcaseFocus && lastShowcaseFocus.focus) lastShowcaseFocus.focus();
+  }
+
+  showcaseButtons.forEach(function(btn) {
+    btn.addEventListener("click", openShowcaseModal);
+  });
+  if (showcaseClose) showcaseClose.addEventListener("click", closeShowcaseModal);
+  if (showcaseModal) {
+    showcaseModal.addEventListener("click", function(event) {
+      if (event.target === showcaseModal) closeShowcaseModal();
+    });
+  }
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && showcaseModal && showcaseModal.classList.contains("is-open")) {
+      closeShowcaseModal();
+    }
+  });
+
+  var carousel = document.getElementById("imm-carousel");
+  var carouselTrack = document.getElementById("imm-carousel-track");
+  var carouselSlides = carousel ? Array.prototype.slice.call(carousel.querySelectorAll(".imm-carousel-slide")) : [];
+  var carouselDots = carousel ? Array.prototype.slice.call(carousel.querySelectorAll(".imm-carousel-dot")) : [];
+  var carouselPrev = document.getElementById("imm-carousel-prev");
+  var carouselNext = document.getElementById("imm-carousel-next");
+  var carouselIndex = 0;
+
+  function pauseCarouselVideos() {
+    if (!carousel) return;
+    Array.prototype.forEach.call(carousel.querySelectorAll("video"), function(video) {
+      video.pause();
+    });
+  }
+
+  function setCarouselSlide(index) {
+    if (!carouselTrack || !carouselSlides.length) return;
+    carouselIndex = (index + carouselSlides.length) % carouselSlides.length;
+    carouselTrack.style.setProperty("--slide", carouselIndex);
+    carouselDots.forEach(function(dot, i) {
+      dot.classList.toggle("is-on", i === carouselIndex);
+      dot.setAttribute("aria-current", i === carouselIndex ? "true" : "false");
+    });
+    pauseCarouselVideos();
+  }
+
+  if (carouselPrev) carouselPrev.addEventListener("click", function() { setCarouselSlide(carouselIndex - 1); });
+  if (carouselNext) carouselNext.addEventListener("click", function() { setCarouselSlide(carouselIndex + 1); });
+  carouselDots.forEach(function(dot) {
+    dot.addEventListener("click", function() {
+      setCarouselSlide(Number(dot.dataset.slide || 0));
+    });
+  });
+  setCarouselSlide(0);
 
   /* ── Trail map station interactions (Mode C) ── */
   var trailStations = [...document.querySelectorAll(".imm-trail-station")];

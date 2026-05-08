@@ -15,7 +15,7 @@
     font-family: "Norwester";
     src: local("Norwester"),
          local("norwester"),
-         url("./fonts/norwester.otf") format("opentype");
+         url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
     font-display: swap;
   }
 
@@ -170,13 +170,16 @@
     width: 100%; overflow-x: auto;
     border: 2px solid var(--forest);
     border-radius: 14px;
-    background: var(--paper);
+    background: #e8e2ce;
     box-shadow: 0 4px 24px rgba(18,63,54,0.13);
   }
   .imm-map-stage {
     min-width: 680px; height: 430px;
     position: relative; margin: 0 auto; max-width: 1060px;
-    background: var(--paper); border-radius: 12px; overflow: hidden;
+    background-color: #e8e2ce;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='70'%3E%3Cg fill='%23365e32' opacity='0.14'%3E%3Cpolygon points='28,5 20,22 36,22'/%3E%3Cpolygon points='28,17 17,36 39,36'/%3E%3Cpolygon points='28,30 13,52 43,52'/%3E%3Crect x='24' y='52' width='8' height='11'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 70px;
+    border-radius: 12px; overflow: hidden;
   }
   .imm-map-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
   .imm-map-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -208,7 +211,7 @@
   }
   .f2-pin-num {
     rotate: 45deg;
-    font-size: 9px; font-weight: 800;
+    font-size: 9px; font-weight: 700;
     font-family: var(--ui);
     color: #fff; letter-spacing: -0.02em;
     line-height: 1;
@@ -224,12 +227,15 @@
   .imm-f1-wrap {
     border: 2px solid var(--forest); border-radius: 14px;
     overflow: hidden; box-shadow: 0 4px 24px rgba(18,63,54,0.13);
-    background: #e8dfc8;
+    background: #e8e2ce;
   }
   .imm-f1-stage {
     position: relative;
     width: 100%;
     aspect-ratio: 1440 / 1024;
+    background-color: #e8e2ce;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='70'%3E%3Cg fill='%23365e32' opacity='0.14'%3E%3Cpolygon points='28,5 20,22 36,22'/%3E%3Cpolygon points='28,17 17,36 39,36'/%3E%3Cpolygon points='28,30 13,52 43,52'/%3E%3Crect x='24' y='52' width='8' height='11'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 70px;
   }
   .imm-f1-stage img {
     position: absolute; inset: 0;
@@ -305,7 +311,7 @@
     border-left: 3.5px solid var(--zone-color, #123f36);
     display: flex; flex-direction: column; gap: 2px;
   }
-  .map-ps-name { font-weight: 800; font-size: 0.79rem; color: #1a2a22; line-height: 1.2; }
+  .map-ps-name { font-weight: 650; font-size: 0.79rem; color: #1a2a22; line-height: 1.2; }
   .map-ps-proj { font-size: 0.71rem; font-weight: 600; color: #4a5a4a; line-height: 1.3; }
   .map-ps-link {
     display: inline-block; margin-top: 3px; padding: 2px 9px;
@@ -317,9 +323,8 @@
   /* ── Sticky filter bar ── */
   .imm-dir-bar {
     position: relative; z-index: 50;
-    background: rgba(243,237,218,0.97);
-    border-bottom: 1px solid rgba(212,201,173,0.85);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: var(--forest);
+    border-bottom: none;
   }
   .imm-dir-bar-inner {
     max-width: 1280px; margin: 0 auto;
@@ -329,33 +334,45 @@
   .imm-dir-search {
     flex: 0 0 auto;
     display: flex; align-items: center; gap: 7px;
-    background: #fff; border: 1px solid var(--line);
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
     border-radius: var(--pill); padding: 7px 13px;
   }
+  .imm-dir-search svg circle, .imm-dir-search svg path { stroke: rgba(243,237,218,0.55); }
   .imm-dir-search input {
     border: none; outline: none; background: transparent;
     font-family: var(--ui); font-size: 0.84rem; font-weight: 600;
-    color: #1c2422; width: 130px;
+    color: var(--paper); width: 130px;
   }
-  .imm-dir-search input::placeholder { color: #9aac9e; }
+  .imm-dir-search input::placeholder { color: rgba(243,237,218,0.48); }
   .imm-dir-filters {
     display: flex; flex-wrap: nowrap; gap: 5px; flex: 1;
     overflow-x: auto; scrollbar-width: none;
   }
   .imm-dir-filters::-webkit-scrollbar { display: none; }
   .imm-filt {
-    background: transparent; border: 1.5px solid var(--fc, #c4b897);
-    color: var(--fc, #56635b); border-radius: var(--pill);
+    background: transparent; border: 1.5px solid rgba(243,237,218,0.3);
+    color: rgba(243,237,218,0.82); border-radius: var(--pill);
     padding: 5px 11px 4px;
     font-family: var(--ui); font-size: 0.63rem; font-weight: 700;
     letter-spacing: 0.05em; text-transform: uppercase;
     cursor: pointer; white-space: nowrap;
-    transition: background 0.13s, color 0.13s;
+    transition: background 0.13s, color 0.13s, border-color 0.13s;
   }
-  .imm-filt:hover { background: rgba(0,0,0,0.06); }
-  .imm-filt.is-on { background: var(--fc, #2a3d32); color: #fff; border-color: var(--fc, #2a3d32); }
-  .imm-dir-count { margin-left: auto; font-size: 0.74rem; font-weight: 700; color: #4a5a4e; white-space: nowrap; }
+  .imm-filt:hover { background: rgba(255,255,255,0.1); }
+  .imm-filt.is-on { background: var(--fc, #f3edda); color: #fff !important; border-color: var(--fc, #f3edda); }
+  .imm-dir-count { margin-left: auto; font-size: 0.74rem; font-weight: 700; color: rgba(243,237,218,0.65); white-space: nowrap; }
   .imm-track-select-wrap { display: none; }
+  .imm-sort-btn {
+    font-family: var(--ui); font-size: 0.63rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 12px 4px; border-radius: var(--pill);
+    border: 1.5px solid rgba(243,237,218,0.3);
+    background: transparent; color: rgba(243,237,218,0.82);
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: background 0.13s, color 0.13s, border-color 0.13s;
+  }
+  .imm-sort-btn:hover { background: rgba(255,255,255,0.1); }
+  .imm-sort-btn.is-on { background: rgba(243,237,218,0.18); color: var(--paper); border-color: rgba(243,237,218,0.6); }
 
   /* ── Grid ── */
   .imm-dir-grid-wrap { max-width: 1280px; margin: 22px auto 0; padding: 0 clamp(12px,2vw,32px); }
@@ -378,7 +395,7 @@
     background: rgba(18,63,54,0.92);
     color: var(--paper);
     font-size: 0.72rem;
-    font-weight: 800;
+    font-weight: 650;
     letter-spacing: 0.10em;
     text-transform: uppercase;
     text-align: left;
@@ -402,7 +419,7 @@
     font-size: 0.92rem;
   }
   .imm-dir-student {
-    font-weight: 800;
+    font-weight: 650;
     color: var(--forest);
   }
   .imm-dir-project {
@@ -417,7 +434,7 @@
     border-radius: var(--pill);
     padding: 5px 11px 4px;
     font-size: 0.62rem;
-    font-weight: 800;
+    font-weight: 650;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -494,7 +511,7 @@
     display: flex; align-items: center; gap: 10px;
   }
   .imm-dir-track-hdr span {
-    font-size: 0.63rem; font-weight: 800; letter-spacing: 0.12em;
+    font-size: 0.63rem; font-weight: 650; letter-spacing: 0.12em;
     text-transform: uppercase; white-space: nowrap;
   }
   .imm-dir-track-hdr::after { content: ''; flex: 1; height: 1px; background: rgba(28,36,34,0.11); }
@@ -610,10 +627,11 @@
     .imm-dir {
       background: #90a675;
       background-image:
-        linear-gradient(180deg, rgba(243,237,218,0.78) 0 220px, rgba(144,166,117,0.94) 220px),
+        linear-gradient(180deg, rgba(243,237,218,0.55) 0px, rgba(18,63,54,0.80) 480px),
         url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/14.png");
       background-size: cover;
       background-position: center top;
+      background-attachment: local;
       padding-bottom: 42px;
     }
     .imm-dir-hero {
@@ -693,7 +711,7 @@
       padding: 11px 46px 10px 20px;
       color: var(--forest);
       font-family: var(--ui);
-      font-weight: 800;
+      font-weight: 650;
       text-align: center;
       text-align-last: center;
       outline: none;
@@ -739,7 +757,7 @@
     }
     .imm-dir-track-count {
       font-size: 0.8rem;
-      font-weight: 800;
+      font-weight: 650;
       color: #fff;
       text-shadow: 0 2px 0 rgba(18,63,54,0.36);
     }
@@ -775,7 +793,7 @@
     .imm-pj-student {
       order: 1;
       font-size: 0.92rem;
-      font-weight: 900;
+      font-weight: 650;
       color: var(--forest);
     }
     .imm-pj-foot {
@@ -1563,7 +1581,7 @@
       display: block;
       color: var(--forest);
       font-size: clamp(0.9rem, 1.3vw, 1.08rem);
-      font-weight: 830;
+      font-weight: 650;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-align: center;
@@ -1944,7 +1962,7 @@
   }
 
   .imm-dir-student {
-    font-weight: 850 !important;
+    font-weight: 650 !important;
     line-height: 1.08 !important;
     letter-spacing: -0.015em !important;
   }
@@ -2090,7 +2108,7 @@
     .imm-dir-side-btn span {
       font-size: 1rem !important;
       line-height: 1.02 !important;
-      font-weight: 850 !important;
+      font-weight: 400 !important;
       letter-spacing: -0.012em !important;
     }
 
@@ -3198,7 +3216,7 @@
 
   .imm-dir-table thead th {
     font-size: clamp(0.86rem, 0.82vw, 0.98rem) !important;
-    font-weight: 850 !important;
+    font-weight: 700 !important;
     line-height: 1 !important;
     letter-spacing: 0.04em !important;
     padding-top: 17px !important;
@@ -3214,12 +3232,12 @@
 
   .imm-dir-student,
   .imm-dir-room-cell {
-    font-weight: 740 !important;
+    font-weight: 650 !important;
   }
 
   .imm-dir .imm-dir-project {
     font-size: clamp(0.98rem, 0.96vw, 1.12rem) !important;
-    font-weight: 760 !important;
+    font-weight: 500 !important;
     line-height: 1.18 !important;
     text-transform: none !important;
   }
@@ -3228,7 +3246,7 @@
     min-width: 128px !important;
     padding: 7px 14px 6px !important;
     font-size: clamp(0.72rem, 0.66vw, 0.82rem) !important;
-    font-weight: 800 !important;
+    font-weight: 650 !important;
     letter-spacing: 0.03em !important;
   }
 
@@ -3269,6 +3287,326 @@
       width: 14% !important;
     }
   }
+
+  /* ── Mobile launch fix: remove hero/filter overlap and respect Squarespace header ── */
+  body:has(#header) .imm-dir,
+  html.squarespace-damask .imm-dir {
+    padding-top: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset, 76px)) !important;
+  }
+
+  @media (max-width: 900px) {
+    body:has(#header) .imm-dir,
+    html.squarespace-damask .imm-dir {
+      padding-top: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset-mobile, 64px)) !important;
+    }
+
+    .imm-dir-hero {
+      padding: 30px 12px 18px !important;
+      min-height: auto !important;
+    }
+
+    .imm-dir-bar {
+      margin-top: 0 !important;
+      padding: 0 12px 16px !important;
+      position: relative !important;
+      z-index: 5 !important;
+    }
+
+    .imm-dir-grid-wrap {
+      padding-top: 0 !important;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .imm-dir-hero {
+      padding-top: 26px !important;
+      padding-bottom: 16px !important;
+    }
+
+    .imm-dir-h1 {
+      font-size: clamp(2.5rem, 13vw, 3.65rem) !important;
+      line-height: 0.9 !important;
+    }
+
+    .imm-dir-sub {
+      font-size: 0.86rem !important;
+      line-height: 1.25 !important;
+    }
+  }
+
+  .imm-dir .imm-dir-table thead th,
+  .imm-dir .imm-dir-cat-badge,
+  .imm-dir .imm-dir-count {
+    font-weight: 650 !important;
+  }
+
+  @media (max-width: 520px) {
+    .imm-dir .imm-dir-h1 {
+      font-size: clamp(2.15rem, 10.8vw, 3.15rem) !important;
+    }
+
+    .imm-dir .imm-dir-track-hdr span {
+      font-size: clamp(1.04rem, 5.2vw, 1.36rem) !important;
+    }
+  }
+
+  /* ── Final Squarespace pass: lighter table type + stable clickable sidebar ── */
+  .imm-dir .imm-dir-table thead th:nth-child(2),
+  .imm-dir .imm-dir-table thead th:nth-child(3) {
+    font-weight: 650 !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .imm-dir .imm-dir-table td:nth-child(2),
+  .imm-dir .imm-dir-project {
+    font-family: var(--ui) !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .imm-dir .imm-dir-table td:nth-child(3),
+  .imm-dir .imm-dir-cat-badge {
+    font-family: var(--ui) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .imm-dir .imm-dir-track-hdr span,
+  .imm-dir .imm-dir-side-btn span {
+    font-family: var(--d) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.035em !important;
+    text-transform: uppercase !important;
+  }
+
+  .imm-dir .imm-dir-track-hdr span {
+    font-size: clamp(1.22rem, 1.9vw, 1.78rem) !important;
+    line-height: 1 !important;
+  }
+
+  @media (max-width: 520px) {
+    .imm-dir .imm-dir-track-hdr span {
+      font-size: clamp(1.1rem, 5.4vw, 1.38rem) !important;
+      line-height: 0.98 !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(1),
+    .imm-dir .imm-dir-table td:nth-child(1) {
+      width: 34% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(2),
+    .imm-dir .imm-dir-table td:nth-child(2) {
+      width: 44% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(3),
+    .imm-dir .imm-dir-table td:nth-child(3) {
+      width: 22% !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .imm-dir .imm-dir-table thead th:nth-child(1),
+    .imm-dir .imm-dir-table td:nth-child(1) {
+      display: table-cell !important;
+      width: 34% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(2),
+    .imm-dir .imm-dir-table td:nth-child(2) {
+      display: table-cell !important;
+      width: 44% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(3),
+    .imm-dir .imm-dir-table td:nth-child(3) {
+      display: table-cell !important;
+      width: 22% !important;
+    }
+  }
+
+  @media (min-width: 901px) {
+    .imm-dir .imm-dir-hero,
+    .imm-dir .imm-dir-map {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+
+    .imm-dir .imm-dir-hero,
+    .imm-dir .imm-dir-content,
+    .imm-dir .imm-dir-track-hdr {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .imm-dir .imm-dir-content {
+      display: grid !important;
+      grid-template-columns: clamp(250px, 22vw, 318px) minmax(0, 1fr) !important;
+      gap: 0 !important;
+      margin-left: 0 !important;
+      margin-top: -3px !important;
+      width: 100% !important;
+      max-width: none !important;
+      padding: 0 !important;
+      align-items: start !important;
+    }
+
+    .imm-dir .imm-dir-side {
+      position: sticky !important;
+      top: var(--imm-sqs-header-visible-offset, 0px) !important;
+      left: auto !important;
+      width: auto !important;
+      height: auto !important;
+      min-height: calc(100svh - var(--imm-sqs-header-visible-offset, 0px)) !important;
+      max-height: calc(100svh - var(--imm-sqs-header-visible-offset, 0px)) !important;
+      overflow-y: auto !important;
+      align-self: start !important;
+      z-index: 20 !important;
+      pointer-events: auto !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .imm-dir .imm-dir-side-btn {
+      position: relative !important;
+      z-index: 3 !important;
+      min-height: 62px !important;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+    }
+
+    .imm-dir .imm-dir-grid-wrap {
+      min-width: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      padding: 0 !important;
+    }
+
+    .imm-dir .imm-dir-grid,
+    .imm-dir .imm-dir-track-hdr,
+    .imm-dir .imm-dir-table-wrap,
+    .imm-dir .imm-dir-table {
+      width: 100% !important;
+      max-width: none !important;
+      min-width: 0 !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(1),
+    .imm-dir .imm-dir-table td:nth-child(1) {
+      width: 24% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(2),
+    .imm-dir .imm-dir-table td:nth-child(2) {
+      width: 60% !important;
+    }
+
+    .imm-dir .imm-dir-table thead th:nth-child(3),
+    .imm-dir .imm-dir-table td:nth-child(3) {
+      width: 16% !important;
+    }
+  }
+
+  /* ── Final type/button guardrail: display stays Norwester, controls stay light ── */
+  .imm-dir .imm-dir-h1,
+  .imm-dir .imm-dir-track-hdr span,
+  .imm-dir .imm-dir-side-btn span,
+  .imm-dir .imm-modal-title,
+  .imm-dir .map-pop-room,
+  .imm-dir .imm-dir-side-title {
+    font-family: var(--d) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.035em !important;
+    text-transform: uppercase !important;
+  }
+
+  .imm-dir button,
+  .imm-dir .imm-floor-btn,
+  .imm-dir .imm-map-clear,
+  .imm-dir .imm-dir-table thead th,
+  .imm-dir .imm-dir-student,
+  .imm-dir .imm-dir-project,
+  .imm-dir .imm-dir-room-cell,
+  .imm-dir .imm-dir-cat-badge,
+  .imm-dir .imm-dir-count,
+  .imm-dir .map-ps-name {
+    font-weight: 650 !important;
+  }
+
+  .imm-dir .imm-dir-side-btn {
+    min-height: 62px !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+
+  .imm-dir .imm-dir-side {
+    pointer-events: auto !important;
+  }
+
+  /* ── Filter bar: force forest green on desktop ── */
+  .imm-dir-bar { background: #123f36 !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .imm-dir-bar::before, .imm-dir-bar::after { display: none !important; }
+  .imm-dir-search { background: rgba(255,255,255,0.12) !important; border: 1px solid rgba(255,255,255,0.22) !important; }
+  .imm-dir-search input { color: #f3edda !important; }
+  .imm-dir-search input::placeholder { color: rgba(243,237,218,0.48) !important; }
+  .imm-dir-search svg circle, .imm-dir-search svg path { stroke: rgba(243,237,218,0.5) !important; }
+  .imm-dir-filters { display: flex !important; flex-wrap: wrap !important; gap: 5px !important; }
+  .imm-filt { border-color: rgba(243,237,218,0.3) !important; color: rgba(243,237,218,0.85) !important; }
+  .imm-filt:hover { background: rgba(255,255,255,0.1) !important; }
+  .imm-filt.is-on { color: #fff !important; }
+  .imm-sort-btn { border-color: rgba(243,237,218,0.3) !important; color: rgba(243,237,218,0.82) !important; }
+  .imm-sort-btn:hover { background: rgba(255,255,255,0.1) !important; }
+  .imm-sort-btn.is-on { background: rgba(243,237,218,0.18) !important; color: #f3edda !important; border-color: rgba(243,237,218,0.6) !important; }
+  .imm-dir-count { color: rgba(243,237,218,0.65) !important; }
+  .imm-track-select { display: none !important; }
+
+  /* ── Mobile: transparent bar so hero photo bleeds into filter area ── */
+  @media (max-width: 640px) {
+    .imm-dir-bar { background: transparent !important; }
+    .imm-dir-bar-inner {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 8px 16px 22px !important;
+      overflow: visible !important;
+    }
+    .imm-dir-search {
+      width: min(100%, 300px) !important;
+      justify-content: center !important;
+      background: rgba(18,63,54,0.45) !important;
+      border: 1px solid rgba(243,237,218,0.3) !important;
+      box-shadow: none !important;
+    }
+    .imm-dir-search input {
+      width: 100% !important;
+      text-align: center !important;
+      color: #f3edda !important;
+    }
+    .imm-dir-filters {
+      justify-content: center !important;
+      max-width: 340px !important;
+    }
+    .imm-dir-count { color: rgba(18,63,54,0.65) !important; }
+    /* pills on light background need dark text/border */
+    .imm-filt {
+      color: rgba(18,63,54,0.88) !important;
+      border-color: rgba(18,63,54,0.32) !important;
+      background: rgba(243,237,218,0.72) !important;
+    }
+    .imm-filt.is-on {
+      background: var(--fc) !important;
+      border-color: var(--fc) !important;
+      color: #fff !important;
+    }
+    .imm-sort-btn {
+      color: rgba(18,63,54,0.88) !important;
+      border-color: rgba(18,63,54,0.32) !important;
+      background: rgba(243,237,218,0.72) !important;
+    }
+  }
   </style>
 </head>
 <body>
@@ -3279,8 +3617,8 @@
   <div class="imm-dir-hero">
     <div class="imm-dir-hero-inner">
       <div class="imm-dir-eyebrow">IMM Senior Show 2026 &middot; TCNJ &middot; May 8, 2026</div>
-      <h1 class="imm-dir-h1">THE PROJECTS</h1>
-      <p class="imm-dir-sub">36 students &middot; Six tracks &middot; One night to see it all</p>
+      <h1 class="imm-dir-h1">The Projects</h1>
+      <p class="imm-dir-sub">40 students &middot; Six tracks &middot; One night to see it all</p>
     </div>
   </div>
 
@@ -3288,10 +3626,10 @@
   <div class="imm-dir-map">
     <div class="imm-dir-map-hdr">
       <div class="imm-dir-map-left">
-        <div class="imm-dir-map-title">FIND THE ROOMS</div>
+        <div class="imm-dir-map-title">Find the Rooms</div>
         <div class="imm-floor-toggle">
-          <button class="imm-floor-btn is-active" data-floor="2">Floor 2 — Projects</button>
-          <button class="imm-floor-btn" data-floor="1">Floor 1 Plan</button>
+          <button class="imm-floor-btn is-active" data-floor="1">Floor 1 — Building Map</button>
+          <button class="imm-floor-btn" data-floor="2">Floor 2 — Projects</button>
         </div>
       </div>
       <div class="imm-map-room-filter" id="mapRoomFilter">
@@ -3301,85 +3639,11 @@
     </div>
 
     <!-- Floor 2 -->
-    <div class="imm-map-panel is-active" id="panel-f2">
+    <div class="imm-map-panel" id="panel-f2">
       <p class="imm-map-hint">Tap a room to filter projects below.</p>
       <div class="imm-map-frame">
         <div class="imm-map-stage" id="mapStageF2">
           <div class="imm-map-layer">
-
-            <!-- Floor plan SVG background — paper/forest architectural style -->
-            <svg class="imm-map-svg" viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg">
-              <!-- Background -->
-              <rect width="1000" height="680" fill="#f3edda"/>
-              <!-- Topo atmosphere lines -->
-              <path fill="none" stroke="#7a9660" stroke-width="0.8" opacity="0.22" d="M0 110 Q250 72 500 118 T1000 95"/>
-              <path fill="none" stroke="#7a9660" stroke-width="0.8" opacity="0.22" d="M0 540 Q300 514 600 548 T1000 525"/>
-              <!-- Corner tree triangles -->
-              <g fill="#123f36" opacity="0.32">
-                <polygon points="46,300 55,282 64,300"/><polygon points="58,316 67,298 76,316"/>
-                <polygon points="936,300 945,282 954,300"/><polygon points="924,318 933,300 942,318"/>
-              </g>
-
-              <!-- Left wing -->
-              <rect x="78" y="48" width="196" height="430" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
-              <!-- Right wing -->
-              <rect x="714" y="48" width="210" height="430" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
-              <!-- Top strip (across center) -->
-              <rect x="274" y="48" width="440" height="106" fill="#faf8f2" stroke="#1a3a30" stroke-width="2" rx="3"/>
-
-              <!-- Atrium -->
-              <path d="M380,154 L380,390 Q380,462 500,462 Q620,462 620,390 L620,154 Z" fill="#ede5cc" opacity="0.65"/>
-              <path d="M380,154 L380,390 Q380,462 500,462 Q620,462 620,390 L620,154" fill="none" stroke="#8c6a4f" stroke-width="3.5" stroke-linejoin="round"/>
-              <text x="500" y="322" text-anchor="middle" font-family="'Norwester','Arial Narrow',sans-serif" font-size="13" fill="#9a7a50" opacity="0.50" letter-spacing="3">ATRIUM</text>
-
-              <!-- Left wing room dividers -->
-              <line x1="78" y1="142" x2="274" y2="142" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="78" y1="226" x2="274" y2="226" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="78" y1="304" x2="274" y2="304" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="176" y1="142" x2="176" y2="304" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <!-- Right wing room dividers -->
-              <line x1="714" y1="142" x2="924" y2="142" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="714" y1="226" x2="924" y2="226" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="714" y1="304" x2="924" y2="304" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="714" y1="386" x2="814" y2="386" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="814" y1="304" x2="814" y2="478" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <!-- Top strip dividers -->
-              <line x1="354" y1="48" x2="354" y2="154" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="424" y1="48" x2="424" y2="154" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="576" y1="48" x2="576" y2="154" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-              <line x1="646" y1="48" x2="646" y2="154" stroke="#1a3a30" stroke-width="1" stroke-dasharray="5 4" opacity="0.28"/>
-
-              <!-- Main hallway -->
-              <rect x="78" y="478" width="856" height="46" fill="#ddd5c0" stroke="#1a3a30" stroke-width="1.5" opacity="0.8"/>
-              <line x1="78" y1="501" x2="934" y2="501" stroke="#8c6a4f" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
-              <line x1="78" y1="501" x2="934" y2="501" stroke="#f3edda" stroke-width="2" stroke-dasharray="13 9" opacity="0.65"/>
-              <!-- Vertical hallways -->
-              <line x1="274" y1="48" x2="274" y2="478" stroke="#8c6a4f" stroke-width="6" opacity="0.22"/>
-              <line x1="274" y1="48" x2="274" y2="478" stroke="#f3edda" stroke-width="2" stroke-dasharray="10 8" opacity="0.55"/>
-              <line x1="714" y1="48" x2="714" y2="478" stroke="#8c6a4f" stroke-width="6" opacity="0.22"/>
-              <line x1="714" y1="48" x2="714" y2="478" stroke="#f3edda" stroke-width="2" stroke-dasharray="10 8" opacity="0.55"/>
-
-              <!-- Below-hallway rooms -->
-              <rect x="78" y="524" width="200" height="106" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
-              <text x="178" y="582" text-anchor="middle" font-size="8.5" fill="#5a6a5a" opacity="0.52" font-family="system-ui,sans-serif">U-Lab · 206</text>
-              <rect x="376" y="524" width="248" height="106" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
-              <text x="500" y="582" text-anchor="middle" font-size="8.5" fill="#5a6a5a" opacity="0.52" font-family="system-ui,sans-serif">Lobby · 202/203</text>
-              <rect x="714" y="524" width="210" height="106" fill="#faf8f2" stroke="#1a3a30" stroke-width="1.5" rx="3"/>
-              <text x="819" y="582" text-anchor="middle" font-size="8.5" fill="#5a6a5a" opacity="0.52" font-family="system-ui,sans-serif">Recording · 235</text>
-
-              <!-- Ghost room labels -->
-              <g font-size="8" fill="#4a5a4a" opacity="0.36" text-anchor="middle" font-family="system-ui,sans-serif">
-                <text x="316" y="108">220</text><text x="390" y="108">221</text>
-                <text x="610" y="108">222</text><text x="680" y="108">224</text>
-                <text x="128" y="104">217</text><text x="128" y="190">215</text>
-                <text x="225" y="190">216</text><text x="178" y="268">214</text>
-                <text x="870" y="104">226</text><text x="870" y="190">227</text>
-                <text x="870" y="268">228</text><text x="870" y="352">230</text>
-                <text x="765" y="350">225</text><text x="765" y="435">224</text>
-                <text x="870" y="435">233</text><text x="596" y="558">236</text>
-              </g>
-            </svg>
-
             <!-- Interactive pins — positioned as % of viewBox 1000×680 -->
             <!-- Creative Coding #3f6f9b -->
             <button class="f2-pin" style="left:38%;top:59%;--zone-color:#3f6f9b" data-room="220" aria-label="Room 220"><div class="f2-pin-head"><span class="f2-pin-num">220</span></div><div class="f2-pin-tail"></div></button>
@@ -3419,23 +3683,23 @@
     </div>
 
     <!-- Floor 1 -->
-    <div class="imm-map-panel" id="panel-f1">
+    <div class="imm-map-panel is-active" id="panel-f1">
       <p class="imm-map-hint">Tap a numbered pin to see who's presenting nearby.</p>
       <div class="imm-f1-wrap">
         <div class="imm-f1-stage" id="f1Stage">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Floor1.svg" alt="Art &amp; IMM Building — Floor 1 layout" draggable="false">
           <!-- Transparent buttons over SVG pin positions (cx/1440 × 100, cy/1024 × 100) -->
-          <button class="f1-pin" style="left:23.5%;top:6.3%"  data-pin="217"     aria-label="Room 217"></button>
+          <button class="f1-pin" style="left:23.5%;top:6.3%"  data-pin="220"     aria-label="Room 220"></button>
           <button class="f1-pin" style="left:8.1%; top:34.9%" data-pin="entrance" aria-label="Entrance"></button>
-          <button class="f1-pin" style="left:23.5%;top:43.9%" data-pin="215-216"  aria-label="Rooms 215 and 216"></button>
-          <button class="f1-pin" style="left:23.5%;top:70.1%" data-pin="214"      aria-label="Room 214"></button>
-          <button class="f1-pin" style="left:23.4%;top:89.8%" data-pin="206"      aria-label="Room 206"></button>
-          <button class="f1-pin" style="left:49.4%;top:70.1%" data-pin="220"      aria-label="Room 220"></button>
-          <button class="f1-pin" style="left:77.2%;top:6.5%"  data-pin="226"      aria-label="Room 226"></button>
-          <button class="f1-pin" style="left:77.2%;top:38.8%" data-pin="224-225"  aria-label="Rooms 224 and 225"></button>
-          <button class="f1-pin" style="left:77.2%;top:70.1%" data-pin="227-230"  aria-label="Rooms 227 228 230"></button>
-          <button class="f1-pin" style="left:78.5%;top:90.3%" data-pin="233"      aria-label="Room 233"></button>
-          <button class="f1-pin" style="left:86.6%;top:90.3%" data-pin="235-236"  aria-label="Rooms 235 and 236"></button>
+          <button class="f1-pin" style="left:23.5%;top:43.9%" data-pin="220"      aria-label="Room 220"></button>
+          <button class="f1-pin" style="left:23.5%;top:70.1%" data-pin="114"      aria-label="Room 114"></button>
+          <button class="f1-pin" style="left:23.4%;top:89.8%" data-pin="f1-hall"  aria-label="First Floor Hall"></button>
+          <button class="f1-pin" style="left:49.4%;top:70.1%" data-pin="202"      aria-label="Room 202"></button>
+          <button class="f1-pin" style="left:77.2%;top:6.5%"  data-pin="223"      aria-label="Room 223"></button>
+          <button class="f1-pin" style="left:77.2%;top:38.8%" data-pin="223"      aria-label="Room 223"></button>
+          <button class="f1-pin" style="left:77.2%;top:70.1%" data-pin="116"      aria-label="Room 116"></button>
+          <button class="f1-pin" style="left:78.5%;top:90.3%" data-pin="f1-hall"  aria-label="First Floor Hall"></button>
+          <button class="f1-pin" style="left:86.6%;top:90.3%" data-pin="f1-hall"  aria-label="First Floor Hall"></button>
           <button class="f1-pin" style="left:90.3%;top:51.0%" data-pin="222"      aria-label="Room 222"></button>
           <button class="f1-pin" style="left:90.3%;top:25.3%" data-pin="221"      aria-label="Room 221"></button>
         </div>
@@ -3460,7 +3724,9 @@
           <option value="all">Specialization</option>
         </select>
       </label>
-      <div class="imm-dir-count" id="imm-count" aria-live="polite">36 projects</div>
+      <button class="imm-sort-btn" id="imm-sort-az" type="button" aria-pressed="false">A–Z</button>
+      <button class="imm-sort-btn" id="imm-sort-room" type="button" aria-pressed="false">Room #</button>
+      <div class="imm-dir-count" id="imm-count" aria-live="polite">40 students</div>
     </div>
   </div>
 
@@ -3530,54 +3796,68 @@
   };
 
   var PROJECTS = [
-    {id:'chase-dimarzio',     name:'Chase Dimarzio',       project:'Designer Depths',                  cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/chase-dimarzio',      blurb:'An interactive deep-sea exploration built with code.'},
+    {id:'chase-dimarzio',     name:'Chase Dimarzio',       project:'Designer Depths',                  cat:'Creative Coding',        room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/chase-dimarzio',      blurb:'An interactive deep-sea exploration built with code.'},
     {id:'jeffrey-ernest',     name:'Jeffrey Ernest',        project:'OpenTomorrow',                     cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/jeffrey-ernest',      blurb:'A speculative coding project looking at future networks.'},
-    {id:'idrissa-fofana',     name:'Idrissa Fofana',        project:'Sentinel Watch',                   cat:'Creative Coding',        room:'221', url:'https://immseniorshow.com/idrissa-fofana',     blurb:'A generative piece powered by real-time data.'},
-    {id:'jennea-jeter',       name:'Jennéa Jeter',          project:'Sonic Lineage: Sampling History',  cat:'Creative Coding',        room:'222', url:'https://immseniorshow.com/jennea-jeter',       blurb:'A visual and auditory experience analyzing music samples.'},
-    {id:'rushil-desai',       name:'Rushil Desai',          project:'Eyes Can See',                     cat:'Culture & Technology',   room:'214', url:'https://immseniorshow.com/rushil-desai',       blurb:'An interactive exhibit exploring surveillance and society.'},
-    {id:'caelan-arroyo',      name:'Caelan Arroyo',         project:'Mumbo Block',                      cat:'Digital Fabrication',    room:'217', url:'https://immseniorshow.com/caelan-arroyo',      blurb:'Physical puzzle blocks constructed using CNC and 3D printing.'},
-    {id:'kelsey-daly',        name:'Kelsey Daly',           project:'Respect The Locals',               cat:'Digital Fabrication',    room:'217', url:'https://immseniorshow.com/kelsey-daly',        blurb:'Poster and sticker designs raising awareness for wildlife conservation.'},
-    {id:'daniel-deleon',      name:'Daniel DeLeon',         project:'CV Lamp',                          cat:'Digital Fabrication',    room:'215', url:'https://immseniorshow.com/daniel-deleon',      blurb:'A custom-fabricated smart lamp responding to computer vision.'},
-    {id:'isabel-difabio',     name:'Isabel DiFabio',        project:'Reactive Runway',                  cat:'Digital Fabrication',    room:'215', url:'https://immseniorshow.com/isabel-difabio',     blurb:'Wearable tech garments utilizing fabrication techniques.'},
-    {id:'caleb-kim',          name:'Caleb Kim',             project:'Restart Energy',                   cat:'Digital Fabrication',    room:'216', url:'https://immseniorshow.com/caleb-kim',          blurb:'A prototype for kinetic energy harvesting.'},
-    {id:'shane-maccarone',    name:'Shane Maccarone',       project:'Layered Perspectives',             cat:'Digital Fabrication',    room:'216', url:'https://immseniorshow.com/shane-maccarone',    blurb:'A multi-depth installation created with laser cutters.'},
-    {id:'jared-morris',       name:'Jared Morris',          project:'3D-Printed Magnetic Poker Chips',  cat:'Digital Fabrication',    room:'206', url:'https://immseniorshow.com/jared-morris',       blurb:'Custom tabletop accessories with embedded magnets.'},
-    {id:'asa-wong',           name:'Asa Wong',              project:'Signage of the Times',             cat:'Digital Fabrication',    room:'206', url:'https://immseniorshow.com/asa-wong',           blurb:'Interactive, LED-infused wayfinding signage.'},
-    {id:'muhammad-wadud',     name:'Mohammad Abdul Wadud',  project:'The Hidden Magic of Action Games', cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/muhammadabdulwadud',  blurb:'A playable exploration of action game design mechanics.'},
-    {id:'michael-berrios',    name:'Michael Berrios',       project:'Toadstool Town',                   cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/michael-berrios',    blurb:'A cozy, flyable fungal village environment.'},
-    {id:'madison-braithwaite',name:'Madison Braithwaite',   project:"A Rat's Tail",                     cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/madison-braithwaite', blurb:'A narrative-driven puzzle platformer.'},
-    {id:'collin-della-sala',  name:'Collin Della Sala',     project:'Post-Fantasy',                     cat:'Games & Playable Media', room:'225', url:'https://immseniorshow.com/collin-della-sala',  blurb:'An RPG where magic has industrialized.'},
-    {id:'robyn-maggio',       name:'Robyn Maggio',          project:'M.A.E.: Music As Energy',          cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/robyn-maggio',       blurb:'A reverse rhythm game where music drives movement.'},
-    {id:'lumber-team',        name:'Aidan Michaels & Griffin Petry', project:'Lumber',                   cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/aidan-michaels',     blurb:'A chaotic logging simulation co-developed by Aidan Michaels and Griffin Petry.'},
-    {id:'anthony-resto',      name:'Anthony Resto',         project:'Guns en Roses',                    cat:'Games & Playable Media', room:'224', url:'https://immseniorshow.com/anthony-resto',      blurb:'A fast-paced twin-stick shooter with a floral twist.'},
-    {id:'andrew-romano',      name:'Andrew Romano',         project:'Ransom: Chaos with a Keyboard',    cat:'Games & Playable Media', room:'236', url:'https://immseniorshow.com/andrew-romano',      blurb:'A typing-based hacker simulation game.'},
-    {id:'tyler-spressert',    name:'Tyler Spressert',       project:'Escape Through Time',              cat:'Games & Playable Media', room:'236', url:'https://immseniorshow.com/tyler-spressert',    blurb:'A puzzle experience with time-travel mechanics.'},
-    {id:'zach-wade',          name:'Zachary Wade',          project:'Funny Fencing',                    cat:'Games & Playable Media', room:'236', url:'https://immseniorshow.com/zach-wade',          blurb:'A comedic multiplayer dueling game.'},
-    {id:'jack-dinnigan',      name:'Jack Dinnigan',         project:'The Dintracks',                    cat:'Music Technology',       room:'233', url:'https://immseniorshow.com/jack-dinnigan',      blurb:'An interactive spatial audio installation.'},
-    {id:'kai-macedo',         name:'Kai Macedo',            project:'Color',                            cat:'Music Technology',       room:'235', url:'https://immseniorshow.com/kai-macedo',         blurb:'A hardware synthesizer linking frequencies to color shifts.'},
-    {id:'alex-cook-1',        name:'Alex Cook',             project:'Cleanup Crew',                     cat:'Visual Storytelling',    room:'226', url:'https://immseniorshow.com/alex-cook-1',        blurb:'A high-octane 3D animated film.'},
-    {id:'naheda-hussain',     name:'Naheda Hussain',        project:'Coffee Outage Brand Book',         cat:'Visual Storytelling',    room:'226', url:'https://immseniorshow.com/naheda-hussain',     blurb:'A full identity and story world for a fictional cafe.'},
-    {id:'ari-lugassy',        name:'Ari Lugassy',           project:'The Flock',                        cat:'Visual Storytelling',    room:'226', url:'https://immseniorshow.com/ari-lugassy',        blurb:'A 2D short about finding your group.'},
-    {id:'kiara-manon',        name:'Kiara Manon',           project:'From Fear to Future',              cat:'Visual Storytelling',    room:'227', url:'https://immseniorshow.com/kiara-manon',        blurb:'A visual essay on innovation and art.'},
-    {id:'carolyn-mcdonough',  name:'Carolyn McDonough',     project:'We Fated Few',                     cat:'Visual Storytelling',    room:'227', url:'https://immseniorshow.com/carolyn-mcdonough',  blurb:'A graphic novel prototype with illustrated worldbuilding.'},
-    {id:'shane-mcgowan',      name:'Shane McGowan',         project:'Therapy: An Animated Music Video', cat:'Visual Storytelling',    room:'227', url:'https://immseniorshow.com/shane-mcgowan',      blurb:'A rotoscoped and digitally painted music video.'},
-    {id:'aaron-pettiford',    name:'Aaron Pettiford',       project:'Project ABO-X03',                  cat:'Visual Storytelling',    room:'228', url:'https://immseniorshow.com/aaron-pettiford',    blurb:'Concept art and story development for a sci-fi world.'},
-    {id:'michael-rasimowicz', name:'Michael Rasimowicz',    project:'AIMM City',                        cat:'Visual Storytelling',    room:'228', url:'https://immseniorshow.com/michael-rasimowicz', blurb:'An interactive comic using AIMM architecture.'},
-    {id:'maya-randall',       name:'Maya Randall',          project:'Liminal',                          cat:'Visual Storytelling',    room:'230', url:'https://immseniorshow.com/maya-randall',       blurb:'A short film exploring transitional emotional spaces.'},
-    {id:'mehmet-sezer',       name:'Mehmet Sezer',          project:'S&M Distributes Brand Book',       cat:'Visual Storytelling',    room:'230', url:'https://mehmetsdesign.com',                     blurb:'A comprehensive storytelling and branding guide.'}
+    {id:'kyle-duverger',      name:'Kyle Duverger',         project:'Civic Vault',                      cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/kyle-duverger',       blurb:'A digital archive and civic engagement platform.'},
+    {id:'idrissa-fofana',     name:'Idrissa Fofana',        project:'Sentinel Watch',                   cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/idrissa-fofana',     blurb:'A generative piece powered by real-time data.'},
+    {id:'jennea-jeter',       name:'Jennéa Jeter',          project:'Sonic Lineage: Sampling History',  cat:'Creative Coding',        room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/jennea-jeter',       blurb:'A visual and auditory experience analyzing music samples.'},
+    {id:'rushil-desai',       name:'Rushil Desai',          project:'Eyes Can See',                     cat:'Culture & Technology',   room:'221', url:'https://immseniorshow.com/rushil-desai',       blurb:'An interactive exhibit exploring surveillance and society.'},
+    {id:'robert-boguslavskiy',name:'Robert Boguslavskiy',   project:'Rental Company',                   cat:'Culture & Technology',   room:'206', url:'https://immseniorshow.com/robert-boguslavskiy',blurb:'Photobooth and event rental company concept.'},
+    {id:'caelan-arroyo',      name:'Caelan Arroyo',         project:'Mumbo Block',                      cat:'Visual Storytelling',    room:'206', url:'https://immseniorshow.com/caelan-arroyo',      blurb:'An incoherent mess of shorts, Adult Swim, and newsreels.'},
+    {id:'kelsey-daly',        name:'Kelsey Daly',           project:'Respect The Locals',               cat:'Digital Fabrication',    room:'f2-hall', displayRoom:'F2 Hall', url:'https://immseniorshow.com/kelsey-daly',        blurb:'Poster and sticker designs raising awareness for wildlife conservation.'},
+    {id:'daniel-deleon',      name:'Daniel DeLeon',         project:'CV Lamp',                          cat:'Digital Fabrication',    room:'114', url:'https://immseniorshow.com/daniel-deleon',      blurb:'A custom-fabricated smart lamp responding to computer vision.'},
+    {id:'isabel-difabio',     name:'Isabel DiFabio',        project:'Reactive Runway',                  cat:'Digital Fabrication',    room:'116', url:'https://immseniorshow.com/isabel-difabio',     blurb:'Wearable tech garments utilizing fabrication techniques.'},
+    {id:'caleb-kim',          name:'Caleb Kim',             project:'Restart Energy',                   cat:'Digital Fabrication',    room:'114', url:'https://immseniorshow.com/caleb-kim',          blurb:'A prototype for kinetic energy harvesting.'},
+    {id:'matt-tonna-trifiro', name:'Matt Tonna Trifiro',    project:'INVICTUS',                         cat:'Digital Fabrication',    room:'116', url:'https://immseniorshow.com/matt-tonna-trifiro', blurb:'A gym brand focused on recycling clothes and giving them a new life through Icarus.'},
+    {id:'shane-maccarone',    name:'Shane Maccarone',       project:'Layered Perspectives',             cat:'Digital Fabrication',    room:'114', url:'https://immseniorshow.com/shane-maccarone',    blurb:'A multi-depth installation created with laser cutters.'},
+    {id:'jared-morris',       name:'Jared Morris',          project:'3D-Printed Magnetic Poker Chips',  cat:'Digital Fabrication',    room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/jared-morris',       blurb:'Custom tabletop accessories with embedded magnets.'},
+    {id:'asa-wong',           name:'Asa Wong',              project:'Signage of the Times',             cat:'Digital Fabrication',    room:'116', url:'https://immseniorshow.com/asa-wong',           blurb:'Interactive, LED-infused wayfinding signage.'},
+    {id:'muhammad-wadud',     name:'Mohammad Abdul Wadud',  project:'The Hidden Magic of Action Games', cat:'Games & Playable Media', room:'222', url:'https://immseniorshow.com/muhammadabdulwadud',  blurb:'A playable exploration of action game design mechanics.'},
+    {id:'michael-berrios',    name:'Michael Berrios',       project:'Toadstool Town',                   cat:'Games & Playable Media', room:'222', url:'https://immseniorshow.com/michael-berrios',    blurb:'A cozy, flyable fungal village environment.'},
+    {id:'madison-braithwaite',name:'Madison Braithwaite',   project:"A Rat's Tail",                     cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/madison-braithwaite', blurb:'A narrative-driven puzzle platformer.'},
+    {id:'collin-della-sala',  name:'Collin Della Sala',     project:'Post-Fantasy',                     cat:'Games & Playable Media', room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/collin-della-sala',  blurb:'An RPG where magic has industrialized.'},
+    {id:'robyn-maggio',       name:'Robyn Maggio',          project:'M.A.E.: Music As Energy',          cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/robyn-maggio',       blurb:'A reverse rhythm game where music drives movement.'},
+    {id:'lumber-team',        name:'Aidan Michaels & Griffin Petry', project:'Lumber',                   cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/aidan-michaels', studentCount:2, links:[{label:'Aidan Michaels', url:'https://immseniorshow.com/aidan-michaels'}, {label:'Griffin Petry', url:'https://immseniorshow.com/griffin-petry'}], blurb:'Lumber is a 2D Metroidvania game demo where you will discover the mysteries of a magical island as you descend a grand mountain fighting monsters and unlocking abilities along the way.'},
+    {id:'anthony-resto',      name:'Anthony Resto',         project:'Guns en Roses',                    cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/anthony-resto',      blurb:'A fast-paced twin-stick shooter with a floral twist.'},
+    {id:'andrew-romano',      name:'Andrew Romano',         project:'Ransom: Chaos with a Keyboard',    cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/andrew-romano',      blurb:'A typing-based hacker simulation game.'},
+    {id:'tyler-spressert',    name:'Tyler Spressert',       project:'Escape Through Time',              cat:'Games & Playable Media', room:'222', url:'https://immseniorshow.com/tyler-spressert',    blurb:'A puzzle experience with time-travel mechanics.'},
+    {id:'zach-wade',          name:'Zachary Wade',          project:'Funny Fencing',                    cat:'Games & Playable Media', room:'221', url:'https://immseniorshow.com/zach-wade',          blurb:'A comedic multiplayer dueling game.'},
+    {id:'jack-dinnigan',      name:'Jack Dinnigan',         project:'The Dintracks',                    cat:'Music Technology',       room:'220', url:'https://immseniorshow.com/jack-dinnigan',      blurb:'An interactive spatial audio installation.'},
+    {id:'kai-macedo',         name:'Kai Macedo',            project:'Color',                            cat:'Music Technology',       room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/kai-macedo',         blurb:'An eight-year collection of musical ideas exploring life and nature, blending personal growth, creative interests, and emotional color into one expressive album.'},
+    {id:'alex-cook-1',        name:'Alex Cook',             project:'Cleanup Crew',                     cat:'Visual Storytelling',    room:'202', url:'https://immseniorshow.com/alex-cook-1',        blurb:'A high-octane 3D animated film.'},
+    {id:'naheda-hussain',     name:'Naheda Hussain',        project:'Coffee Outage Brand Book',         cat:'Visual Storytelling',    room:'202', url:'https://immseniorshow.com/naheda-hussain',     blurb:'A full identity and story world for a fictional cafe.'},
+    {id:'ari-lugassy',        name:'Ari Lugassy',           project:'The Flock',                        cat:'Visual Storytelling',    room:'114', url:'https://immseniorshow.com/ari-lugassy',        blurb:'A 2D short about finding your group.'},
+    {id:'kiara-manon',        name:'Kiara Manon',           project:'From Fear to Future',              cat:'Visual Storytelling',    room:'202', url:'https://immseniorshow.com/kiara-manon',        blurb:'A visual essay on innovation and art.'},
+    {id:'evan-costa',         name:'Evan Costa',            project:'Pitch & Perception',               cat:'Visual Storytelling',    room:'223', url:'https://immseniorshow.com/evan-costa',         blurb:'A visual exploration of how branding shapes our perception of products.'},
+    {id:'carolyn-mcdonough',  name:'Carolyn McDonough',     project:'We Fated Few',                     cat:'Visual Storytelling',    room:'223', url:'https://immseniorshow.com/carolyn-mcdonough',  blurb:'A graphic novel prototype with illustrated worldbuilding.'},
+    {id:'shane-mcgowan',      name:'Shane McGowan',         project:'Therapy: An Animated Music Video', cat:'Visual Storytelling',    room:'202', url:'https://immseniorshow.com/shane-mcgowan',      blurb:'A rotoscoped and digitally painted music video.'},
+    {id:'aaron-pettiford',    name:'Aaron Pettiford',       project:'Project ABO-X03',                  cat:'Visual Storytelling',    room:'223', url:'https://immseniorshow.com/aaron-pettiford',    blurb:'Concept art and story development for a sci-fi world.'},
+    {id:'michael-rasimowicz', name:'Michael Rasimowicz',    project:'AIMM City',                        cat:'Visual Storytelling',    room:'223', url:'https://immseniorshow.com/michael-rasimowicz', blurb:'An interactive comic using AIMM architecture.'},
+    {id:'maya-randall',       name:'Maya Randall',          project:'Liminal',                          cat:'Visual Storytelling',    room:'202', url:'https://immseniorshow.com/maya-randall',       blurb:'A short film exploring transitional emotional spaces.'},
+    {id:'mehmet-sezer',       name:'Mehmet Sezer',          project:'S&M Distributes Brand Book',       cat:'Visual Storytelling',    room:'223', url:'https://mehmetsdesign.com',                     blurb:'A comprehensive storytelling and branding guide.'},
+    {id:'adalmaris-castillo', name:'Adalmaris Castillo',    project:'Ravina',                           cat:'Visual Storytelling',    room:'223', url:'https://immseniorshow.com/adalmaris-castillo', blurb:'A dive into a chapter of the twisted world of Ravina.'}
   ];
 
   var LOGOS = {
-    'caelan-arroyo':     'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Caelan_Arroyo_Mumbo_Block_Logo.png',
-    'kelsey-daly':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Kelsey Daly RTL/Respect The Locals Logo.png',
-    'michael-berrios':   'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Michael Berrios - Toadstool Town/Michael_Berrios_Toadstool_Town_wordmark.png',
-    'collin-della-sala': 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Collin Della Sala Post-Fantasy/Post-Fantasy Logo(No Background).png',
-    'robyn-maggio':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Robyn Maggio - M.A.E./MAE_Logo_Vector_Ver5.png',
-    'anthony-resto':     'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/RestoAnthonyLogo.png',
-    'kai-macedo':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Kai Macedo - Color/kai_macedo_color_project_logo.png',
-    'alex-cook-1':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Alex Cook - Cleanup Crew Logo.png',
-    'maya-randall':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Maya Randall Liminal/2.png',
-    'ari-lugassy':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/Ari L. the flock /IMG_0116.PNG'
+    'caelan-arroyo':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Caelan_Arroyo_Mumbo_Block_Logo.png',
+    'kelsey-daly':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Kelsey%20Daly%20RTL/Respect%20The%20Locals%20Logo.png',
+    'daniel-deleon':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/daniel%20deleon/cv%20lamp%20logo.png',
+    'michael-berrios':    'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Michael%20Berrios%20-%20Toadstool%20Town/Michael_Berrios_Toadstool_Town_wordmark.png',
+    'madison-braithwaite':'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Madison%20Braithwaite%20-%20A%20Rat_s%20Tail/ratstail.png',
+    'collin-della-sala':  'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Collin%20Della%20Sala%20Post-Fantasy/Post-Fantasy%20Logo(No%20Background).png',
+    'robyn-maggio':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Robyn%20Maggio%20-%20M.A.E./MAE_Logo_Vector_Ver5.png',
+    'lumber-team':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/LumberLogo.png',
+    'anthony-resto':      'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/RestoAnthonyLogo.png',
+    'matt-tonna-trifiro': 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/MatTrifiroINVICTUS.png',
+    'tyler-spressert':    'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Tyler%20Spressert%20-%20Escape%20Through%20Time.png',
+    'zach-wade':          'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Funny_fencing_logo_logo.png',
+    'kai-macedo':         'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Kai%20Macedo%20-%20Color/kai_macedo_color_project_logo.png',
+    'alex-cook-1':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Alex%20Cook%20-%20Cleanup%20Crew%20Logo.png',
+    'ari-lugassy':        'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Ari%20L.%20the%20flock%20/IMG_0116.PNG',
+    'carolyn-mcdonough':  'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/CarolynMcDonough_ProjectLogo.png',
+    'aaron-pettiford':    'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Aaron_Pettiford_ABO-X030303%20Logo.jpg',
+    'michael-rasimowicz': 'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/RasimowiczMaimmCityLogo.png',
+    'maya-randall':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Project%20Logos/2026%20IMM%20Project%20Logos_Final/Maya%20Randall%20Liminal/2.png'
   };
   var EMBLEMS = {
     'Creative Coding':       'https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Section%20Logos%20So%20far/CreativeCodingLogo.png',
@@ -3606,19 +3886,20 @@
   function assetUrl(url) {
     return String(url || '').replace(/ /g, '%20');
   }
+  function roomLabel(p) {
+    return p.displayRoom || ('Room ' + p.room);
+  }
   var F1_PINS = {
-    '217':     {label:'Room 217',               rooms:['217']},
-    '215-216': {label:'Rooms 215 · 216',         rooms:['215','216']},
-    '214':     {label:'Room 214',               rooms:['214']},
+    '114':     {label:'Room 114',               rooms:['114']},
+    '116':     {label:'Room 116',               rooms:['116']},
+    '202':     {label:'Room 202',               rooms:['202']},
     '206':     {label:'Room 206',               rooms:['206']},
     '220':     {label:'Room 220',               rooms:['220']},
-    '226':     {label:'Room 226',               rooms:['226']},
-    '224-225': {label:'Rooms 224 · 225',         rooms:['224','225']},
-    '227-230': {label:'Rooms 227 · 228 · 230',   rooms:['227','228','230']},
-    '233':     {label:'Room 233',               rooms:['233']},
-    '235-236': {label:'Rooms 235 · 236',         rooms:['235','236']},
-    '222':     {label:'Room 222',               rooms:['222']},
     '221':     {label:'Room 221',               rooms:['221']},
+    '222':     {label:'Room 222',               rooms:['222']},
+    '223':     {label:'Room 223',               rooms:['223']},
+    'f1-hall': {label:'First Floor Hall',        rooms:['f1-hall']},
+    'f2-hall': {label:'Floor 2 Hall',            rooms:['f2-hall']},
     'entrance':{label:'Building Entrance',       rooms:[]}
   };
 
@@ -3626,6 +3907,8 @@
   var activeCat  = 'all';
   var searchQ    = '';
   var roomFilter = '';
+  var sortByName = false;
+  var sortByRoom = false;
   var TRACK_QUERY_TO_KEY = {
     'all': 'all',
     'gp': 'gp',
@@ -3800,6 +4083,22 @@
     searchQ = e.target.value.trim(); render();
   });
 
+  /* ── Sort buttons ── */
+  function roomSortKey(room) {
+    var n = parseInt(room, 10);
+    return isNaN(n) ? 9999 : n;
+  }
+  var sortAzBtn   = document.getElementById('imm-sort-az');
+  var sortRoomBtn = document.getElementById('imm-sort-room');
+  function setSortMode(name, room) {
+    sortByName = name; sortByRoom = room;
+    if (sortAzBtn)   { sortAzBtn.classList.toggle('is-on', name);   sortAzBtn.setAttribute('aria-pressed',   name   ? 'true' : 'false'); }
+    if (sortRoomBtn) { sortRoomBtn.classList.toggle('is-on', room); sortRoomBtn.setAttribute('aria-pressed', room   ? 'true' : 'false'); }
+    render();
+  }
+  if (sortAzBtn)   sortAzBtn.addEventListener('click',   function() { setSortMode(!sortByName, false); });
+  if (sortRoomBtn) sortRoomBtn.addEventListener('click', function() { setSortMode(false, !sortByRoom); });
+
   /* ── Room filter ── */
   var roomFilterEl = document.getElementById('mapRoomFilter');
   var roomLblEl    = document.getElementById('mapRoomLbl');
@@ -3841,8 +4140,11 @@
 
   function render() {
     var shown = PROJECTS.filter(visible);
+    if (sortByName) shown.sort(function(a, b) { return a.name.localeCompare(b.name); });
+    else if (sortByRoom) shown.sort(function(a, b) { return roomSortKey(a.room) - roomSortKey(b.room); });
+    var studentTotal = shown.reduce(function(total, p) { return total + (p.studentCount || 1); }, 0);
     grid.innerHTML = '';
-    countEl.textContent = shown.length + ' project' + (shown.length===1?'':'s');
+    countEl.textContent = studentTotal + ' student' + (studentTotal===1?'':'s');
 
     if (!shown.length) {
       var el = document.createElement('div');
@@ -3875,7 +4177,8 @@
         sp.textContent = t.label; sp.style.color = t.color;
         var ct = document.createElement('div');
         ct.className = 'imm-dir-track-count';
-        ct.textContent = grp.length + ' Student' + (grp.length === 1 ? '' : 's');
+        var trackStudentTotal = grp.reduce(function(total, p) { return total + (p.studentCount || 1); }, 0);
+        ct.textContent = trackStudentTotal + ' Student' + (trackStudentTotal === 1 ? '' : 's');
         var copy = document.createElement('div');
         copy.className = 'imm-dir-track-copy';
         copy.appendChild(sp);
@@ -3888,7 +4191,7 @@
       tableWrap.className = 'imm-dir-table-wrap imm-dir-table-wrap-' + t.key;
       var table = document.createElement('table');
       table.className = 'imm-dir-table';
-      table.innerHTML = '<thead><tr><th>Student</th><th>Project</th><th>Area</th><th>Room</th></tr></thead><tbody></tbody>';
+      table.innerHTML = '<thead><tr><th>Student</th><th>Project</th><th>Room</th></tr></thead><tbody></tbody>';
       var tbody = table.querySelector('tbody');
       grp.forEach(function(p){
         var tk = trackFor(p.cat);
@@ -3900,8 +4203,7 @@
         row.innerHTML =
           '<td class="imm-dir-student">'+p.name+'</td>'+
           '<td class="imm-dir-project">'+p.project+'</td>'+
-          '<td><span class="imm-dir-cat-badge" style="background:'+tk.pale+';color:'+tk.color+'">'+p.cat+'</span></td>'+
-          '<td class="imm-dir-room-cell">Room '+p.room+'</td>';
+          '<td class="imm-dir-room-cell">'+roomLabel(p)+'</td>';
         row.addEventListener('click', function(){ openModal(p); });
         row.addEventListener('keydown', function(e){
           if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(p); }
@@ -3959,10 +4261,14 @@
     } else {
       students.forEach(function(p){
         var c = TRACK_COLOR[p.cat]||'#123f36';
+        var links = p.links || [{label:'View', url:p.url}];
+        var linkHtml = links.map(function(link) {
+          return '<a href="'+link.url+'" class="map-ps-link" target="_blank" rel="noopener">'+link.label+' ↗</a>';
+        }).join('');
         html += '<div class="map-ps" style="--zone-color:'+c+'">'+
           '<div class="map-ps-name">'+p.name+'</div>'+
           '<div class="map-ps-proj">'+p.project+'</div>'+
-          '<a href="'+p.url+'" class="map-ps-link" target="_blank" rel="noopener">View ↗</a>'+
+          linkHtml+
         '</div>';
       });
     }
@@ -4060,6 +4366,12 @@
   var modalLnk = document.getElementById('imm-modal-link');
   var modalClB = document.getElementById('imm-modal-close-btn');
 
+  function clearGeneratedModalLinks() {
+    Array.prototype.slice.call(document.querySelectorAll('.imm-modal-cta-extra')).forEach(function(link) {
+      link.remove();
+    });
+  }
+
   function openModal(p) {
     var tk = trackFor(p.cat);
     modalBg.style.setProperty('--modal-color', tk.color);
@@ -4078,10 +4390,23 @@
       modalLgB.style.display = 'none';
     }
     modalStu.textContent  = p.name;
-    modalRm.textContent   = 'Room '+p.room;
+    modalRm.textContent   = roomLabel(p);
     modalBlb.textContent  = p.blurb;
-    modalLnk.href         = p.url;
+    clearGeneratedModalLinks();
+    var links = p.links || [{label:'View Project', url:p.url}];
+    modalLnk.href = links[0].url;
+    modalLnk.textContent = links[0].label + ' ↗';
     modalLnk.style.background = tk.color;
+    links.slice(1).forEach(function(link) {
+      var extra = modalLnk.cloneNode(false);
+      extra.className = modalLnk.className + ' imm-modal-cta-extra';
+      extra.href = link.url;
+      extra.target = '_blank';
+      extra.rel = 'noreferrer';
+      extra.textContent = link.label + ' ↗';
+      extra.style.background = tk.color;
+      modalClB.parentNode.insertBefore(extra, modalClB);
+    });
     modalBg.classList.add('is-open');
     modalBg.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';

@@ -507,6 +507,33 @@
   .imm-track-list { grid-template-columns: 1fr; }
   .imm-signature-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Softer launch type ── */
+.imm-hunt .imm-title,
+.imm-hunt h2,
+.imm-hunt .imm-passport-title,
+.imm-hunt .imm-complete strong,
+.imm-hunt .imm-modal h3 {
+  font-family: var(--ui) !important;
+  font-weight: 740 !important;
+  letter-spacing: 0.005em !important;
+  text-transform: none !important;
+}
+
+.imm-hunt .imm-title {
+  font-size: clamp(2rem, 6vw, 3.6rem) !important;
+  line-height: 1.02 !important;
+}
+
+.imm-hunt h2 {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem) !important;
+}
+
+@media (max-width: 640px) {
+  .imm-hunt .imm-title {
+    font-size: clamp(1.9rem, 9vw, 2.75rem) !important;
+  }
+}
 </style>
 
 <div class="imm-hunt">
@@ -561,11 +588,11 @@
 
         <div class="imm-track-list" id="hunt-track-list">
           <label class="imm-track-item"><input type="checkbox" data-key="gp"><span class="imm-track-main"><span class="imm-track-name">Games and Playable Media</span><span class="imm-track-room">Rooms 224, 225, 236</span></span></label>
-          <label class="imm-track-item"><input type="checkbox" data-key="vs"><span class="imm-track-main"><span class="imm-track-name">Visual Storytelling</span><span class="imm-track-room">Rooms 226, 227, 228, 230</span></span></label>
+          <label class="imm-track-item"><input type="checkbox" data-key="vs"><span class="imm-track-main"><span class="imm-track-name">Visual Storytelling</span><span class="imm-track-room">Rooms 217, 226, 227, 228, 230</span></span></label>
           <label class="imm-track-item"><input type="checkbox" data-key="mt"><span class="imm-track-main"><span class="imm-track-name">Music Technology</span><span class="imm-track-room">Rooms 233, 235</span></span></label>
-          <label class="imm-track-item"><input type="checkbox" data-key="df"><span class="imm-track-main"><span class="imm-track-name">Digital Fabrication</span><span class="imm-track-room">Rooms 206, 215, 216, 217</span></span></label>
+          <label class="imm-track-item"><input type="checkbox" data-key="df"><span class="imm-track-main"><span class="imm-track-name">Digital Fabrication</span><span class="imm-track-room">Rooms 114, 116, 206, 215, 216, 217</span></span></label>
           <label class="imm-track-item"><input type="checkbox" data-key="cc"><span class="imm-track-main"><span class="imm-track-name">Creative Coding</span><span class="imm-track-room">Rooms 220, 221, 222</span></span></label>
-          <label class="imm-track-item"><input type="checkbox" data-key="ct"><span class="imm-track-main"><span class="imm-track-name">Culture and Technology</span><span class="imm-track-room">Room 214</span></span></label>
+          <label class="imm-track-item"><input type="checkbox" data-key="ct"><span class="imm-track-main"><span class="imm-track-name">Culture and Technology</span><span class="imm-track-room">Rooms 206, 214</span></span></label>
         </div>
 
         <div class="imm-actions-row">
@@ -636,9 +663,11 @@
     { key:'gp', name:'Michael Berrios', project:'Toadstool Town' },
     { key:'vs', name:'Alex Cook', project:'Cleanup Crew' },
     { key:'vs', name:'Maya Randall', project:'Liminal' },
+    { key:'vs', name:'Caelan Arroyo', project:'Mumbo Block' },
     { key:'mt', name:'Kai Macedo', project:'Color' },
     { key:'mt', name:'Jack Dinnigan', project:'The Dintracks' },
-    { key:'df', name:'Caelan Arroyo', project:'Mumbo Block' },
+    { key:'df', name:'Matt Tonna Trifiro', project:'INVICTUS' },
+    { key:'df', name:'Caleb Kim', project:'Restart Energy' },
     { key:'df', name:'Kelsey Daly', project:'Respect The Locals' },
     { key:'cc', name:'Chase Dimarzio', project:'Designer Depths' },
     { key:'cc', name:'Jennéa Jeter', project:'Sonic Lineage' },
@@ -705,19 +734,30 @@
       return;
     }
     var state = loadState();
+    var wasCollected = !!state[key];
     state[key] = true;
     saveState(state);
     inputs.forEach(function (input) {
       input.checked = !!state[input.dataset.key];
     });
     updateUI();
-    showUnlockNote('Stop collected', track.label + ' has been added to your hunt passport.');
+    var done = inputs.filter(function (input) { return input.checked; }).length;
+    var total = inputs.length;
+    var title = wasCollected ? 'Stop already collected' : 'Stop collected';
+    var message = wasCollected
+      ? track.label + ' was already stamped in your hunt passport.'
+      : track.label + ' has been added to your hunt passport.';
+    if (done === total) {
+      message += ' All six stops are complete.';
+    }
+    showUnlockNote(title, message);
   }
 
   function showUnlockNote(title, message) {
     if (!unlockNote) return;
     unlockNote.innerHTML = '<strong>'+title+'</strong><span>'+message+'</span>';
     unlockNote.classList.add('is-on');
+    unlockNote.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function renderSignatures() {
