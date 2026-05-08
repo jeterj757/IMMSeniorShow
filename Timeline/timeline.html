@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMM Senior Show 2026 — Development Timeline</title>
+<style>
+  :root {
+    --pine:    #415325;
+    --forest:  #4F7B19;
+    --parch:   #F4F7EB;
+    --canyon:  #C05F2B;
+    --rainbow: #D4A843;
+    --ink:     #1a1a1a;
+    --muted:   #6b7280;
+    --rule:    #e5e7eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: var(--parch);
+    color: var(--ink);
+    padding: 3rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  header h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--pine);
+  }
+  header p {
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  /* Stats strip */
+  .stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+  .stat {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.25rem 1.75rem;
+    text-align: center;
+    min-width: 140px;
+  }
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.65rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--rule);
+  }
+  .phase {
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+  .phase-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 0.15rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: var(--forest);
+    border: 2px solid var(--parch);
+    box-shadow: 0 0 0 2px var(--forest);
+  }
+  .phase-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--canyon);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .phase h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--pine);
+    margin-bottom: 0.4rem;
+  }
+  .phase p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 1rem;
+  }
+
+  /* Image grid */
+  .img-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .img-grid figure {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: white;
+  }
+  .img-grid img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+  }
+  .img-grid figcaption {
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 0.4rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Poster grid — taller aspect for portrait */
+  .poster-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .poster-grid figure {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: white;
+  }
+  .poster-grid img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+  }
+  .poster-grid figcaption {
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 0.4rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Code count callout */
+  .code-callout {
+    background: var(--pine);
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .code-callout .big {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--rainbow);
+  }
+  .code-callout div p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    max-width: none;
+    margin-bottom: 0;
+  }
+  .code-callout div strong {
+    color: white;
+    font-size: 1rem;
+  }
+
+  /* File breakdown */
+  .file-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+  .file-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.5rem 0.75rem;
+  }
+  .file-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: monospace;
+    color: var(--ink);
+  }
+  .file-table td:last-child {
+    text-align: right;
+    color: var(--forest);
+    font-weight: 700;
+  }
+  .file-table tr:last-child td { border-bottom: none; }
+  .file-table .total-row td {
+    font-weight: 900;
+    border-top: 2px solid var(--pine);
+    color: var(--pine);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>IMM Senior Show 2026</h1>
+  <p>Development Timeline &nbsp;·&nbsp; JJ Mac &nbsp;·&nbsp; Design & Development Lead</p>
+</header>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">8</div>
+    <div class="stat-label">Weeks</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">4</div>
+    <div class="stat-label">Phases</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">19</div>
+    <div class="stat-label">Pages / Injects</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">36</div>
+    <div class="stat-label">Students Showcased</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">6</div>
+    <div class="stat-label">Rooms + Venues</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">17k+</div>
+    <div class="stat-label">Lines of Code</div>
+  </div>
+</div>
+
+<!-- Timeline -->
+<div class="timeline">
+
+  <!-- Phase 1 -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-label">Phase 1 &nbsp;·&nbsp; Weeks 1–2</div>
+    <h2>Discovery &amp; Wireframes</h2>
+    <p>Audited the existing Squarespace site, mapped all student content, and defined navigation needs across homepage, directory, map, and individual project pages. Initial wireframes sketched in Canva and iterated through multiple layout directions.</p>
+    <div class="img-grid">
+      <figure>
+        <img src="01-wireframe-initial.png" alt="Initial wireframe">
+        <figcaption>Initial wireframe</figcaption>
+      </figure>
+      <figure>
+        <img src="02-wireframe-v2.png" alt="Wireframe v2">
+        <figcaption>Wireframe v2</figcaption>
+      </figure>
+      <figure>
+        <img src="03-wireframe-v3.png" alt="Wireframe v3">
+        <figcaption>Wireframe v3</figcaption>
+      </figure>
+      <figure>
+        <img src="04-wireframe-scroll.png" alt="Scroll wireframe">
+        <figcaption>Scroll behavior</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-label">Phase 2 &nbsp;·&nbsp; Weeks 3–4</div>
+    <h2>Visual System &amp; Brand</h2>
+    <p>Defined the brand kit: Norswester + Auxenr Next typography, five-color palette (Pine, Forest, Parchment, Canyon, Rainbow), and a category-color system for 8 IMM tracks. Explored homepage layout directions before locking the final system.</p>
+    <div class="img-grid">
+      <figure>
+        <img src="05-first-full-overview.png" alt="First full overview">
+        <figcaption>First full overview</figcaption>
+      </figure>
+      <figure>
+        <img src="06-homepage-blue.png" alt="Homepage — blue direction">
+        <figcaption>Homepage — blue direction</figcaption>
+      </figure>
+      <figure>
+        <img src="07-directory-vertical.png" alt="Directory — vertical layout">
+        <figcaption>Directory — vertical layout</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-label">Phase 3 &nbsp;·&nbsp; Weeks 5–6</div>
+    <h2>Prototype &amp; Interaction Build</h2>
+    <p>Built the full Squarespace Code Inject system — 19 HTML/CSS/JS files injected across every page type. Features included the interactive campus map, student directory with filtering, QR scavenger hunt, badge-book archive, and print-ready room maps.</p>
+
+    <div class="code-callout">
+      <div class="big">17,288</div>
+      <div>
+        <strong>Lines of hand-written HTML, CSS &amp; Vanilla JS</strong>
+        <p>Across 19 Code Inject files deployed into Squarespace — no frameworks, no build tools. Semantic, accessible markup throughout.</p>
+      </div>
+    </div>
+
+    <table class="file-table" style="margin-top:1.25rem; background:white; border-radius:8px; border:1px solid var(--rule); overflow:hidden;">
+      <thead>
+        <tr>
+          <th>File</th>
+          <th style="text-align:right">Lines</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>03-directory-inject.html</td><td>4,375</td></tr>
+        <tr><td>02-homepage-inject.html</td><td>3,399</td></tr>
+        <tr><td>index.badgebook-archive.html</td><td>2,176</td></tr>
+        <tr><td>04-map-inject.html</td><td>1,104</td></tr>
+        <tr><td>05-student-inject.html</td><td>823</td></tr>
+        <tr><td>06-about-inject.html</td><td>744</td></tr>
+        <tr><td>brandkit-preview.html</td><td>679</td></tr>
+        <tr><td>brandkit.css</td><td>668</td></tr>
+        <tr><td>+ 11 more pages &amp; utilities</td><td>3,320</td></tr>
+        <tr class="total-row"><td>Total</td><td>17,288</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-label">Phase 4 &nbsp;·&nbsp; Weeks 7–8</div>
+    <h2>QA, Launch &amp; COSA Documentation</h2>
+    <p>Cross-browser testing, accessibility check, print map QA, and final content integration for all 36 student projects. Prepared handoff documentation and conference poster for COSA presentation — three poster iterations developed for different audience contexts.</p>
+    <div class="poster-grid">
+      <figure>
+        <img src="08-poster-cosa-a.png" alt="COSA Poster A — Infographic style">
+        <figcaption>Poster A — Infographic</figcaption>
+      </figure>
+      <figure>
+        <img src="09-poster-cosa-b.png" alt="COSA Poster B — Process detail">
+        <figcaption>Poster B — Process detail</figcaption>
+      </figure>
+      <figure>
+        <img src="10-poster-cosa-c.png" alt="COSA Poster C — Technical handoff">
+        <figcaption>Poster C — Handoff</figcaption>
+      </figure>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  IMM Senior Show 2026 &nbsp;·&nbsp; Celebrating Creativity · Connecting Communities
+</footer>
+
+</body>
+</html>

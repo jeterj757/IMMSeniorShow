@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMM Room Hunt QR Sheet</title>
+  <style>
+  @font-face {
+    font-family: "Norwester";
+    src: local("Norwester"),
+         local("norwester"),
+         url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+    font-display: swap;
+  }
+  @page { size: letter; margin: 0.35in; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f3edda;
+    color: #123f36;
+    font-family: "Avenir Next", system-ui, sans-serif;
+  }
+  .qr-page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.35in;
+    background: #f3edda;
+  }
+  .qr-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 0.2in;
+    padding-bottom: 0.14in;
+    border-bottom: 3px solid #123f36;
+  }
+  .qr-kicker {
+    margin: 0 0 0.03in;
+    color: #c75145;
+    font-size: 10pt;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Avenir Next", system-ui, sans-serif;
+    font-size: 31pt;
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .qr-meta {
+    max-width: 2.25in;
+    text-align: right;
+    font-size: 9pt;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.16in;
+    padding-top: 0.18in;
+  }
+  .qr-card {
+    break-inside: avoid;
+    display: grid;
+    grid-template-columns: 1.28in 1fr;
+    gap: 0.13in;
+    align-items: center;
+    min-height: 1.45in;
+    padding: 0.12in;
+    border: 2px solid var(--track, #123f36);
+    border-radius: 0.08in;
+    background: #fffaf0;
+  }
+  .qr-card img { width: 1.25in; height: 1.25in; display: block; }
+  .qr-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.05in;
+    align-items: center;
+    margin-bottom: 0.06in;
+    font-family: "Avenir Next", system-ui, sans-serif;
+    font-size: 18pt;
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .qr-key {
+    border-radius: 999px;
+    padding: 0.03in 0.07in;
+    background: var(--track, #123f36);
+    color: #fffaf0;
+    font-family: "Avenir Next", system-ui, sans-serif;
+    font-size: 8pt;
+    font-weight: 650;
+  }
+  .qr-url {
+    color: #4d5c56;
+    font-size: 7.2pt;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  .qr-roster {
+    margin-top: 0.05in;
+    color: #1c2422;
+    font-size: 8pt;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .qr-note {
+    margin: 0.15in 0 0;
+    font-size: 8pt;
+    line-height: 1.35;
+  }
+  @media print {
+    body { background: #fff; }
+    .qr-page { margin: 0; padding: 0; width: auto; min-height: auto; }
+  }
+  </style>
+</head>
+<body>
+  <main class="qr-page">
+    <header class="qr-head">
+      <div>
+        <p class="qr-kicker">IMM Senior Show 2026</p>
+        <h1>Room Hunt QR Codes</h1>
+      </div>
+      <div class="qr-meta">Print one code per room/area stop</div>
+    </header>
+    <section class="qr-grid" id="qrGrid" aria-label="Room hunt QR codes"></section>
+    <p class="qr-note">Each QR opens <strong>https://www.immseniorshow.com/hunt?room=...</strong> and collects that stop automatically. If camera scanning is not available, visitors can still tap the matching room card on <strong>/hunt</strong>. If the Squarespace hunt page uses a different slug, update <strong>HUNT_BASE_URL</strong> before printing.</p>
+  </main>
+
+  <script>
+  (function () {
+    'use strict';
+    var HUNT_BASE_URL = 'https://www.immseniorshow.com/hunt';
+    var ROOMS = [
+      { key:'114', label:'Room 114', color:'#4e985f', roster:'Shane, Caleb, Daniel, Ari' },
+      { key:'116', label:'Room 116', color:'#4e985f', roster:'Asa, Isabel, Matt' },
+      { key:'202', label:'Room 202', color:'#cd7028', roster:'Alex, Kiara, Shane, Naheda, Maya' },
+      { key:'206', label:'Room 206', color:'#8d5aa9', roster:'Robert, Caelan' },
+      { key:'220', label:'Room 220', color:'#3f6f9b', roster:'Jack, Jeffrey, Kyle, Idrissa' },
+      { key:'221', label:'Room 221', color:'#c75145', roster:'Aidan/Griffin, Madison, Robyn, Rushil, Anthony, Zachary, Andrew' },
+      { key:'222', label:'Room 222', color:'#c75145', roster:'Mohammad, Tyler, Michael' },
+      { key:'223', label:'Room 223', color:'#cd7028', roster:'Evan, Carolyn, Aaron, Michael, Mehmet, Adalmaris' },
+      { key:'f1-hall', label:'F1 Hall', color:'#1e8ea8', roster:'Kai, Jared, Jennéa, Collin, Chase, Aidan, food' },
+      { key:'f2-hall', label:'F2 Hall', color:'#4e985f', roster:'Kelsey' }
+    ];
+    function stopUrl(key) { return HUNT_BASE_URL + '?room=' + encodeURIComponent(key); }
+    function qrSrc(url) {
+      return 'https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=12&data=' + encodeURIComponent(url);
+    }
+    var grid = document.getElementById('qrGrid');
+    ROOMS.forEach(function(room) {
+      var url = stopUrl(room.key);
+      var card = document.createElement('article');
+      card.className = 'qr-card';
+      card.style.setProperty('--track', room.color);
+      card.innerHTML =
+        '<img src="'+qrSrc(url)+'" alt="QR code for '+room.label+'">' +
+        '<div><div class="qr-title">'+room.label+' <span class="qr-key">'+room.key+'</span></div>' +
+        '<div class="qr-url">'+url+'</div><div class="qr-roster">'+room.roster+'</div></div>';
+      grid.appendChild(card);
+    });
+  }());
+  </script>
+</body>
+</html>
