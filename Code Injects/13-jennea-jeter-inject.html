@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jennéa Jeter — IMM Senior Show 2026</title>
 </head>
-<body style="margin:0;background:#0d1e2e;">
+<body style="margin:0;background:#0b1218;">
 <style>
 @font-face {
   font-family: "Norwester";
@@ -14,936 +14,941 @@
   font-display: swap;
 }
 
-/* Squarespace block reset */
-.page-section:has(.imm-student),
-.page-section:has(.imm-student) .section-border,
-.page-section:has(.imm-student) .section-background,
-.page-section:has(.imm-student) .content,
-.page-section:has(.imm-student) .content-wrapper,
-.sqs-block-code:has(.imm-student),
-.sqs-block-code:has(.imm-student) .sqs-block-content,
-.sqs-layout:has(.imm-student),
-.sqs-layout:has(.imm-student) .sqs-row,
-.sqs-layout:has(.imm-student) .sqs-col-12 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  width: 100% !important;
-  overflow: visible !important;
+/* ── Squarespace reset ── */
+.page-section:has(.jj-page),
+.page-section:has(.jj-page) .section-border,
+.page-section:has(.jj-page) .section-background,
+.page-section:has(.jj-page) .content,
+.page-section:has(.jj-page) .content-wrapper,
+.sqs-block-code:has(.jj-page),
+.sqs-block-code:has(.jj-page) .sqs-block-content,
+.sqs-layout:has(.jj-page),
+.sqs-layout:has(.jj-page) .sqs-row,
+.sqs-layout:has(.jj-page) .sqs-col-12 {
+  margin: 0 !important; padding: 0 !important;
+  min-height: 0 !important; max-width: none !important;
+  width: 100% !important; overflow: visible !important;
 }
 
-.imm-student *, .imm-student *::before, .imm-student *::after { box-sizing: border-box; }
-.imm-student a { color: inherit; text-decoration: none; }
-.imm-student img { display: block; max-width: 100%; }
+/* ── Base ── */
+.jj-page *, .jj-page *::before, .jj-page *::after { box-sizing: border-box; }
+.jj-page a { color: inherit; text-decoration: none; }
+.jj-page img { display: block; max-width: 100%; }
+.jj-page button { font-family: inherit; }
 
-.imm-student {
-  --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
-  --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
-  --forest: #123f36;
-  --paper:  #f3edda;
-  --line:   #d6c9aa;
-  --rust:   #c75145;
-  --cc:     #3f6f9b;
-  --cc-dk:  #2d5278;
-  --gold:   #d6a034;
-  --pill:   999px;
+.jj-page {
+  --d:       "Norwester", "Arial Narrow", Impact, sans-serif;
+  --ui:      "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
+  --paper:   #f3edda;
+  --line:    #d6c9aa;
+  --forest:  #123f36;
+  --rust:    #c75145;
+  --cc:      #3f6f9b;
+  --gold:    #d6a034;
+  --sage:    #4e7a5e;
+  --pill:    999px;
   font-family: var(--ui);
-  background:
-    radial-gradient(80% 140% at 8% -10%,  rgba(63,111,155,0.24), transparent 58%),
-    radial-gradient(80% 140% at 100% 0%,  rgba(199,81,69,0.14),  transparent 56%),
-    linear-gradient(180deg, #0d1e2e 0%, #0e1f2e 45%, #0e1a1f 100%);
-  min-height: 100vh;
+  background: #0b1218;
   color: #1b2822;
 }
 
-/* ── Event bar ── */
-.imm-event-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--rust);
-  color: #fff4ea;
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+.jj-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 80px) clamp(40px, 7vw, 80px);
+}
+
+.jj-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png");
+  background-size: cover;
+  background-position: center 30%;
+  filter: saturate(0.7);
+}
+.jj-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(11,18,24,0.82) 0%,
+      rgba(11,18,24,0.55) 35%,
+      rgba(11,18,24,0.78) 70%,
+      rgba(11,18,24,0.97) 100%);
+}
+
+.jj-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+@keyframes jj-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.jj-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  border: 1px solid rgba(214,201,170,0.3);
+  background: rgba(243,237,218,0.08);
+  color: rgba(220,210,185,0.75);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-bottom: 2px solid rgba(126,40,28,0.52);
-  box-shadow: 0 4px 14px rgba(8,24,16,0.35);
-  text-align: center;
-  padding: 10px 12px 8px;
+  margin-bottom: 18px;
+  animation: jj-up 0.55s ease both;
 }
-.imm-event-date {
-  display: block;
+
+.jj-hero-name {
+  margin: 0;
   font-family: var(--d);
-  font-size: clamp(1.06rem, 2.8vw, 1.55rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
+  font-size: clamp(4rem, 14vw, 10rem);
+  line-height: 0.87;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #f0e8d4;
+  animation: jj-up 0.55s 0.08s ease both;
 }
-.imm-event-place {
-  display: block;
-  margin-top: 3px;
-  font-size: clamp(0.7rem, 1.4vw, 0.86rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  opacity: 0.88;
-}
-
-/* ── Shell ── */
-.imm-shell {
-  width: min(1100px, calc(100% - 24px));
-  margin: 16px auto 64px;
+.jj-hero-name em {
+  font-style: normal;
+  color: rgba(214,160,52,0.9);
 }
 
-/* ── Nav ── */
-.imm-top-nav {
+.jj-hero-body {
+  margin: 24px 0 0;
+  max-width: 58ch;
+  color: rgba(225,215,195,0.82);
+  font-size: clamp(0.95rem, 1.7vw, 1.1rem);
+  line-height: 1.7;
+  animation: jj-up 0.55s 0.16s ease both;
+}
+.jj-hero-body p { margin: 0; }
+.jj-hero-body p + p { margin-top: 12px; }
+
+.jj-chapter-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-top: 28px;
+  animation: jj-up 0.55s 0.24s ease both;
 }
-.imm-top-link {
-  min-height: 36px;
+.jj-chapter-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 12px;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 14px;
   border-radius: var(--pill);
-  border: 1.5px solid rgba(214,201,170,0.36);
-  background: rgba(243,237,218,0.10);
-  color: #e6eddf;
+  border: 1.5px solid rgba(214,201,170,0.28);
+  background: rgba(243,237,218,0.08);
+  color: rgba(225,215,190,0.85);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: background 0.15s;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
 }
-.imm-top-link:hover { background: rgba(243,237,218,0.18); }
-
-/* ── Hero ── */
-.imm-hero {
-  border: 2px solid rgba(63,111,155,0.42);
-  border-radius: 20px;
-  overflow: hidden;
-  background:
-    linear-gradient(132deg, rgba(13,30,46,0.97), rgba(22,55,84,0.93)),
-    radial-gradient(circle at 80% 20%, rgba(63,111,155,0.28), transparent 52%);
-  box-shadow: 0 18px 42px rgba(0,10,25,0.48);
-  color: #e8f2fb;
-  padding: clamp(24px, 5vw, 52px);
-}
-.imm-track-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 30px;
-  border-radius: var(--pill);
-  border: 1.5px solid rgba(63,111,155,0.52);
-  background: rgba(63,111,155,0.18);
-  padding: 5px 12px;
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: #a8d0f0;
-  margin-bottom: 14px;
-}
-.imm-track-dot {
-  width: 8px;
-  height: 8px;
+.jj-chapter-btn:hover { background: rgba(243,237,218,0.16); border-color: rgba(214,201,170,0.5); }
+.jj-chapter-dot {
+  width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--cc);
   flex-shrink: 0;
 }
-.imm-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 28px;
-  align-items: end;
-}
-.imm-student-name {
-  margin: 0 0 6px;
-  font-size: clamp(0.8rem, 1.4vw, 0.96rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(232,242,251,0.62);
-}
-.imm-project-title {
-  margin: 0;
-  font-family: var(--d);
-  font-size: clamp(2rem, 6.5vw, 4.4rem);
-  line-height: 0.92;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #e8f2fb;
-}
-.imm-hero-blurb {
-  margin: 14px 0 0;
-  max-width: 56ch;
-  color: rgba(220,236,250,0.82);
-  line-height: 1.58;
-  font-size: clamp(0.9rem, 1.5vw, 1.04rem);
-}
-.imm-hero-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-.imm-room-badge {
-  border: 1.5px solid rgba(214,201,170,0.34);
-  border-radius: 12px;
-  background: rgba(243,237,218,0.07);
-  padding: 10px 16px;
-  color: rgba(220,236,250,0.68);
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: right;
-  line-height: 1.4;
-}
-.imm-room-badge span {
-  display: block;
-  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
-  font-family: var(--d);
-  letter-spacing: 0.04em;
-  color: #e8f2fb;
-  margin-top: 3px;
+.jj-chapter-btn[data-color="blue"]  .jj-chapter-dot { background: var(--cc); }
+.jj-chapter-btn[data-color="green"] .jj-chapter-dot { background: var(--sage); }
+.jj-chapter-btn[data-color="gold"]  .jj-chapter-dot { background: var(--gold); }
+
+/* ════════════════════════════════
+   CHAPTER WRAPPER
+════════════════════════════════ */
+.jj-chapter {
+  padding: clamp(56px, 9vw, 96px) clamp(20px, 6vw, 80px);
+  position: relative;
 }
 
-/* ── Section divider ── */
-.imm-divider {
+.jj-chapter-01 { background: linear-gradient(180deg, #0b1824 0%, #0d1e2c 100%); }
+.jj-chapter-02 { background: linear-gradient(180deg, #0c1a10 0%, #0e1f14 100%); }
+.jj-chapter-03 { background: linear-gradient(180deg, #130e04 0%, #14100a 100%); }
+
+.jj-chapter-inner { max-width: 1100px; margin: 0 auto; }
+
+/* Chapter header */
+.jj-ch-head {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 36px 0 16px;
-  font-size: 0.64rem;
-  font-weight: 900;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.jj-ch-num {
+  font-family: var(--d);
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(200,228,255,0.46);
+  opacity: 0.38;
 }
-.imm-divider::after {
-  content: '';
-  flex: 1;
+.jj-ch-01 { color: #a8d0f0; }
+.jj-ch-01 .jj-ch-num { color: #a8d0f0; }
+.jj-ch-02 { color: #a8d4b2; }
+.jj-ch-02 .jj-ch-num { color: #a8d4b2; }
+.jj-ch-03 { color: #f0d090; }
+.jj-ch-03 .jj-ch-num { color: #f0d090; }
+
+.jj-ch-title {
+  margin: 0;
+  font-family: var(--d);
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  line-height: 0.92;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+.jj-ch-01 .jj-ch-title { color: #ddeeff; }
+.jj-ch-02 .jj-ch-title { color: #d8edd8; }
+.jj-ch-03 .jj-ch-title { color: #f5e0b0; }
+
+.jj-ch-rule {
+  margin: 16px 0 28px;
   height: 1px;
-  background: rgba(214,201,170,0.16);
+  border: none;
+  opacity: 0.12;
+}
+.jj-ch-01 .jj-ch-rule { background: var(--cc); }
+.jj-ch-02 .jj-ch-rule { background: var(--sage); }
+.jj-ch-03 .jj-ch-rule { background: var(--gold); }
+
+/* ── Shared layouts ── */
+.jj-split {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.jj-split-wide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
 /* ── Cards ── */
-.imm-card {
-  border: 1.5px solid var(--line);
+.jj-card {
   border-radius: 16px;
-  background: var(--paper);
-  padding: clamp(18px, 4vw, 34px);
-  box-shadow: 0 10px 28px rgba(0,10,25,0.3);
+  padding: clamp(18px, 3.5vw, 32px);
+  border: 1.5px solid;
 }
-.imm-card h2 {
+.jj-card-blue  { background: rgba(63,111,155,0.09); border-color: rgba(63,111,155,0.3); color: rgba(220,236,255,0.85); }
+.jj-card-green { background: rgba(78,122,94,0.1);  border-color: rgba(78,122,94,0.3);  color: rgba(216,237,218,0.85); }
+.jj-card-paper { background: var(--paper); border-color: var(--line); color: #2e4540; }
+.jj-card-gold  { background: rgba(214,160,52,0.08); border-color: rgba(214,160,52,0.28); color: rgba(240,224,175,0.88); }
+.jj-card-dark  { background: rgba(243,237,218,0.04); border-color: rgba(243,237,218,0.12); color: rgba(230,220,195,0.75); }
+
+.jj-card h3 {
   margin: 0 0 10px;
-  font-family: var(--d);
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--forest);
-  line-height: 0.95;
-}
-.imm-card h3 {
-  margin: 0 0 6px;
   font-family: var(--d);
   font-size: clamp(1.1rem, 2.2vw, 1.55rem);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
-  color: var(--forest);
   line-height: 0.96;
 }
-.imm-card p {
-  margin: 0;
-  color: #2e4540;
-  line-height: 1.62;
-  font-size: clamp(0.88rem, 1.4vw, 1rem);
-}
-.imm-card p + p { margin-top: 10px; }
+.jj-card-paper h3 { color: var(--forest); }
+.jj-card-blue  h3 { color: #c2dff5; }
+.jj-card-green h3 { color: #b8e0c0; }
+.jj-card-gold  h3 { color: #f0cc78; }
+.jj-card-dark  h3 { color: rgba(243,237,218,0.88); }
 
-/* ── Dark card (for J&J) ── */
-.imm-card-dark {
-  border: 2px solid rgba(214,160,52,0.32);
-  border-radius: 16px;
-  background: linear-gradient(132deg, rgba(16,28,20,0.98), rgba(20,38,28,0.96));
-  padding: clamp(18px, 4vw, 34px);
-  box-shadow: 0 12px 32px rgba(0,10,25,0.4);
-  color: #e8f4e4;
-}
-.imm-card-dark h2 {
-  margin: 0 0 10px;
-  font-family: var(--d);
-  font-size: clamp(1.5rem, 4vw, 2.6rem);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #f3edda;
-  line-height: 0.92;
-}
-.imm-card-dark h3 {
-  margin: 0 0 6px;
-  font-family: var(--d);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #e6f4e0;
-  line-height: 0.96;
-}
-.imm-card-dark p {
-  margin: 0;
-  color: rgba(220,240,220,0.8);
-  line-height: 1.62;
-  font-size: clamp(0.88rem, 1.4vw, 1rem);
-}
-.imm-card-dark p + p { margin-top: 10px; }
-.imm-gold-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: var(--pill);
-  border: 1.5px solid rgba(214,160,52,0.5);
-  background: rgba(214,160,52,0.12);
-  color: var(--gold);
-  font-size: 0.64rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
+.jj-card p { margin: 0; line-height: 1.65; font-size: clamp(0.88rem, 1.4vw, 0.98rem); }
+.jj-card p + p { margin-top: 10px; }
 
 /* ── Tag chips ── */
-.imm-tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 16px;
-}
-.imm-chip {
-  display: inline-flex;
-  align-items: center;
+.jj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.jj-chip {
   padding: 4px 11px;
   border-radius: var(--pill);
-  border: 1.5px solid rgba(63,111,155,0.32);
-  background: rgba(63,111,155,0.07);
-  color: var(--cc-dk);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  border: 1.5px solid;
 }
-.imm-chip-green {
-  border-color: rgba(18,63,54,0.26);
-  background: rgba(18,63,54,0.06);
-  color: var(--forest);
-}
-.imm-chip-gold {
-  border-color: rgba(214,160,52,0.38);
-  background: rgba(214,160,52,0.08);
-  color: #7d5a1c;
-}
+.jj-chip-blue  { color: #7ab8e8; border-color: rgba(63,111,155,0.4);  background: rgba(63,111,155,0.1);  }
+.jj-chip-green { color: #7ec49a; border-color: rgba(78,122,94,0.38);  background: rgba(78,122,94,0.08);  }
+.jj-chip-gold  { color: #c89830; border-color: rgba(214,160,52,0.38); background: rgba(214,160,52,0.08); }
 
 /* ── Link button ── */
-.imm-link-btn {
+.jj-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   min-height: 38px;
-  border-radius: var(--pill);
   padding: 9px 16px;
-  border: 1.5px solid transparent;
-  font-size: 0.72rem;
+  border-radius: var(--pill);
+  border: 1.5px solid;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  cursor: pointer;
   transition: opacity 0.15s;
 }
-.imm-link-btn:hover { opacity: 0.82; }
-.imm-link-btn-rust {
-  background: linear-gradient(180deg, var(--rust), #a43d32);
-  color: #fff4ea;
-  border-color: rgba(255,214,192,0.2);
-}
-.imm-link-btn-outline {
-  background: transparent;
-  border-color: rgba(214,201,170,0.52);
-  color: var(--paper);
-}
-.imm-link-btn-gold {
-  background: linear-gradient(180deg, var(--gold), #b88424);
-  color: #1a1000;
-  border-color: rgba(255,220,120,0.22);
-}
+.jj-btn:hover { opacity: 0.8; }
+.jj-btn-blue  { background: rgba(63,111,155,0.22); border-color: rgba(63,111,155,0.5); color: #a8d0f0; }
+.jj-btn-green { background: rgba(78,122,94,0.2);  border-color: rgba(78,122,94,0.46); color: #a8d4b2; }
+.jj-btn-gold  { background: rgba(214,160,52,0.15); border-color: rgba(214,160,52,0.45); color: #e0b84a; }
 
-/* ── Two-col / three-col layouts ── */
-.imm-two-col {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 14px;
-}
-.imm-two-col-even {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.imm-three-col {
+/* ────────────────────────────────
+   CH 01 — SONIC LINEAGE
+──────────────────────────────── */
+.jj-photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 8px;
+  margin-top: 20px;
 }
-
-/* ── Video card ── */
-.imm-video-card {
-  border: 1.5px solid rgba(63,111,155,0.36);
-  border-radius: 16px;
+.jj-photo {
+  aspect-ratio: 16/9;
+  border-radius: 10px;
   overflow: hidden;
-  background: #0a1622;
+  border: 1px solid rgba(63,111,155,0.2);
+  cursor: zoom-in;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.jj-photo:hover { transform: scale(1.03); box-shadow: 0 14px 32px rgba(0,10,25,0.55); }
+.jj-photo:focus-visible { outline: 2px solid var(--cc); outline-offset: 3px; }
+.jj-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.jj-video-shell {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid rgba(63,111,155,0.28);
+  background: #060e1a;
   display: flex;
   flex-direction: column;
 }
-.imm-video-label {
-  padding: 9px 14px 7px;
-  font-size: 0.64rem;
+.jj-video-label {
+  padding: 9px 14px;
+  font-size: 0.62rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(168,208,240,0.62);
-  border-bottom: 1px solid rgba(63,111,155,0.22);
-  flex-shrink: 0;
+  color: rgba(168,208,240,0.5);
+  border-bottom: 1px solid rgba(63,111,155,0.18);
 }
-.imm-video-wrap {
-  flex: 1;
+.jj-video-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #060f1a;
-  min-height: 180px;
+  min-height: 200px;
+  padding: 28px;
+  text-align: center;
+  color: rgba(168,208,240,0.32);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  flex-direction: column;
+  gap: 10px;
 }
-.imm-video-wrap video {
-  width: 100%;
-  object-fit: contain;
-  display: block;
-  max-height: 320px;
+.jj-video-icon { font-size: 2.4rem; opacity: 0.3; }
+
+/* ────────────────────────────────
+   CH 02 — SENIOR SHOW
+──────────────────────────────── */
+
+/* Poster fan */
+.jj-poster-fan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 8px;
 }
-.imm-video-note {
-  padding: 7px 14px;
-  font-size: 0.62rem;
-  color: rgba(168,208,240,0.42);
-  letter-spacing: 0.04em;
-  border-top: 1px solid rgba(63,111,155,0.16);
-  flex-shrink: 0;
+.jj-poster-wrap {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.55);
+  cursor: zoom-in;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.jj-poster-wrap:nth-child(1) { transform: rotate(-1.4deg) translateY(4px); }
+.jj-poster-wrap:nth-child(2) { transform: rotate(0.9deg) translateY(-2px); }
+.jj-poster-wrap:nth-child(3) { transform: rotate(1.2deg) translateY(2px); }
+.jj-poster-wrap:nth-child(4) { transform: rotate(-0.7deg) translateY(-4px); }
+.jj-poster-wrap:hover { transform: rotate(0) scale(1.02) translateY(-4px) !important; box-shadow: 0 28px 60px rgba(0,0,0,0.65); }
+.jj-poster-wrap img { width: 100%; display: block; }
+
+/* Flyer strip */
+.jj-flyer-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(78,122,94,0.3) transparent;
+}
+.jj-flyer-strip::-webkit-scrollbar { height: 4px; }
+.jj-flyer-strip::-webkit-scrollbar-thumb { background: rgba(78,122,94,0.3); border-radius: 2px; }
+.jj-flyer {
+  flex: 0 0 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  cursor: zoom-in;
+  border: 1px solid rgba(78,122,94,0.2);
+  transition: transform 0.18s;
+}
+.jj-flyer:hover { transform: scale(1.04) translateY(-3px); }
+.jj-flyer img { width: 100%; display: block; }
+
+/* Wireframe scroll */
+.jj-wf-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+.jj-wf-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(78,122,94,0.22);
+  background: rgba(12,25,16,0.6);
+  cursor: zoom-in;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.jj-wf-item:hover { transform: scale(1.04); box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
+.jj-wf-item img { width: 100%; display: block; }
+.jj-wf-caption {
+  padding: 7px 10px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(168,210,180,0.45);
+  border-top: 1px solid rgba(78,122,94,0.15);
 }
 
-/* ── Photo gallery ── */
-.imm-gallery {
+/* Stats row */
+.jj-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-.imm-gallery-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.imm-gallery-item {
+  gap: 1px;
+  background: rgba(78,122,94,0.15);
   border-radius: 12px;
   overflow: hidden;
-  border: 1.5px solid rgba(214,201,170,0.2);
-  aspect-ratio: 16 / 9;
-  background: rgba(12,25,40,0.7);
-  cursor: zoom-in;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  margin-top: 16px;
 }
-.imm-gallery-item:hover {
-  transform: scale(1.025);
-  box-shadow: 0 14px 30px rgba(0,10,25,0.55);
-}
-.imm-gallery-item:focus-visible {
-  outline: 2px solid var(--cc);
-  outline-offset: 2px;
-}
-.imm-gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.imm-gallery-item-tall {
-  aspect-ratio: 4 / 3;
-}
-.imm-gallery-placeholder {
-  border-radius: 12px;
-  border: 1.5px dashed rgba(214,201,170,0.28);
-  aspect-ratio: 16 / 9;
-  background: rgba(243,237,218,0.04);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  color: rgba(214,201,170,0.4);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.jj-stat {
+  background: rgba(243,237,218,0.93);
+  padding: 12px 14px;
   text-align: center;
-  padding: 12px;
+}
+.jj-stat-num {
+  display: block;
+  font-family: var(--d);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing: 0.04em;
+  color: var(--forest);
+  line-height: 1;
+}
+.jj-stat-label {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #4a6056;
 }
 
-/* ── Site preview card ── */
-.imm-site-preview {
-  border: 1.5px solid rgba(214,201,170,0.28);
+/* ────────────────────────────────
+   CH 03 — J&J
+──────────────────────────────── */
+.jj-site-chrome {
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(12,25,40,0.6);
-  display: flex;
-  flex-direction: column;
+  border: 1.5px solid rgba(214,160,52,0.28);
+  background: #0c0a04;
 }
-.imm-site-preview-bar {
+.jj-site-bar {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
-  background: rgba(243,237,218,0.06);
-  border-bottom: 1px solid rgba(214,201,170,0.18);
-  flex-shrink: 0;
+  padding: 9px 12px;
+  background: rgba(214,160,52,0.07);
+  border-bottom: 1px solid rgba(214,160,52,0.18);
 }
-.imm-site-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(214,201,170,0.28);
-}
-.imm-site-url {
+.jj-site-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(214,160,52,0.3); }
+.jj-site-url {
   flex: 1;
-  font-size: 0.66rem;
+  font-size: 0.64rem;
   letter-spacing: 0.04em;
-  color: rgba(214,201,170,0.52);
+  color: rgba(214,160,52,0.42);
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.imm-site-preview-img {
-  flex: 1;
-  min-height: 160px;
-  background: rgba(12,25,40,0.8);
+.jj-site-img {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(214,160,52,0.28);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px;
 }
-.imm-site-preview-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
+.jj-site-img img { width: 100%; display: block; }
 
-/* ── Stat bar ── */
-.imm-stats {
+.jj-placeholder-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(214,201,170,0.18);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 20px;
 }
-.imm-stat {
-  background: rgba(243,237,218,0.92);
-  padding: 12px 14px;
-  text-align: center;
-}
-.imm-stat-num {
-  display: block;
-  font-family: var(--d);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  letter-spacing: 0.04em;
-  color: var(--forest);
-  line-height: 1;
-}
-.imm-stat-label {
-  display: block;
-  margin-top: 3px;
+.jj-placeholder {
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  border: 1.5px dashed rgba(214,160,52,0.22);
+  background: rgba(214,160,52,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  color: rgba(214,160,52,0.28);
   font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px;
+}
+
+/* ── Footer / back link ── */
+.jj-footer {
+  background: #080d11;
+  padding: 32px clamp(20px, 6vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid rgba(243,237,218,0.07);
+}
+.jj-footer-name {
+  font-family: var(--d);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(243,237,218,0.35);
+}
+.jj-footer-link {
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #4a6056;
+  color: rgba(243,237,218,0.38);
+  padding: 7px 12px;
+  border-radius: var(--pill);
+  border: 1px solid rgba(243,237,218,0.15);
+  transition: opacity 0.15s;
 }
+.jj-footer-link:hover { opacity: 0.65; }
 
 /* ── Lightbox ── */
-.imm-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(4,10,20,0.94);
+.jj-lb {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(4,8,14,0.95);
   display: none;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
-.imm-lightbox.is-open { display: flex; }
-.imm-lightbox img {
-  max-width: 100%;
-  max-height: 88vh;
-  border-radius: 10px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.75);
+.jj-lb.open { display: flex; }
+.jj-lb img { max-width: 100%; max-height: 88vh; border-radius: 8px; box-shadow: 0 28px 70px rgba(0,0,0,0.8); }
+.jj-lb-x {
+  position: absolute; top: 16px; right: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,0.12);
+  color: #fff; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
 }
-.imm-lb-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.14);
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.imm-lb-close:hover { background: rgba(255,255,255,0.24); }
+.jj-lb-x:hover { background: rgba(255,255,255,0.22); }
 
 /* ── Responsive ── */
 @media (max-width: 860px) {
-  .imm-hero-grid    { grid-template-columns: 1fr; }
-  .imm-hero-meta    { align-items: flex-start; }
-  .imm-two-col      { grid-template-columns: 1fr; }
-  .imm-two-col-even { grid-template-columns: 1fr; }
-  .imm-three-col    { grid-template-columns: 1fr 1fr; }
-  .imm-gallery      { grid-template-columns: repeat(2, 1fr); }
+  .jj-split, .jj-split-wide { grid-template-columns: 1fr; }
+  .jj-wf-row { grid-template-columns: repeat(2, 1fr); }
+  .jj-photo-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 540px) {
-  .imm-three-col { grid-template-columns: 1fr; }
-  .imm-gallery   { grid-template-columns: 1fr; }
-  .imm-gallery-2 { grid-template-columns: 1fr; }
-  .imm-stats     { grid-template-columns: 1fr; }
+@media (max-width: 560px) {
+  .jj-poster-fan { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .jj-wf-row { grid-template-columns: repeat(2, 1fr); }
+  .jj-photo-grid { grid-template-columns: 1fr; }
+  .jj-placeholder-grid { grid-template-columns: 1fr; }
+  .jj-stats { grid-template-columns: 1fr; }
 }
 </style>
 
-<div class="imm-student">
+<div class="jj-page">
 
-  <div class="imm-event-bar" role="banner">
-    <span class="imm-event-date">Friday, May 8, 2026 · 5–9 PM</span>
-    <span class="imm-event-place">AIMM · The College of New Jersey · Ewing, NJ</span>
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section class="jj-hero" id="top">
+  <div class="jj-hero-bg" aria-hidden="true"></div>
+  <div class="jj-hero-overlay" aria-hidden="true"></div>
+
+  <div class="jj-hero-content">
+    <div class="jj-hero-kicker">AIMM &nbsp;·&nbsp; IMM Class of 2026 &nbsp;·&nbsp; Creative Coding</div>
+
+    <h1 class="jj-hero-name">Jennéa<br><em>Jeter</em></h1>
+
+    <div class="jj-hero-body">
+      <p>I'll be honest — I spent most of senior year not knowing what my thesis was "supposed" to be. I design websites. I code interactive installations. I build things out of felt pads and alligator clips. I run a studio. I made the site you used to find this page. Picking one thing felt like lying about what I actually do.</p>
+      <p>So I didn't. What you're looking at is a collection of the work that challenged me the most this year — three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
+    </div>
+
+    <div class="jj-chapter-row">
+      <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
+      </button>
+      <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show Design
+      </button>
+      <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
+      </button>
+    </div>
   </div>
-
-  <main class="imm-shell">
-
-    <nav class="imm-top-nav" aria-label="Primary">
-      <a class="imm-top-link" href="/directory">← All Projects</a>
-      <a class="imm-top-link" href="/">Home</a>
-      <a class="imm-top-link" href="/map">Map</a>
-      <a class="imm-top-link" href="/about">About</a>
-    </nav>
-
-    <!-- ════════════════════════════════════════════
-         HERO
-    ════════════════════════════════════════════ -->
-    <section class="imm-hero" aria-label="Student hero">
-      <div class="imm-track-pill">
-        <span class="imm-track-dot" aria-hidden="true"></span>
-        Creative Coding
-      </div>
-      <div class="imm-hero-grid">
-        <div>
-          <p class="imm-student-name">Jennéa Jeter</p>
-          <h1 class="imm-project-title">Sonic Lineage:<br>Sampling History</h1>
-          <p class="imm-hero-blurb">A visual and auditory experience tracing the ancestry of music sampling — inviting visitors to physically touch moments in sonic history and hear how rhythms and sounds have traveled across genres and generations.</p>
-        </div>
-        <div class="imm-hero-meta">
-          <div class="imm-room-badge">
-            Location
-            <span>F1 Hall</span>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
 
-    <!-- ════════════════════════════════════════════
-         SONIC LINEAGE — ABOUT + VIDEO
-    ════════════════════════════════════════════ -->
-    <p class="imm-divider">About the Project</p>
-    <div class="imm-two-col">
+<!-- ════════════════════════════════
+     CH 01 — SONIC LINEAGE
+════════════════════════════════ -->
+<section class="jj-chapter jj-chapter-01" id="sonic">
+  <div class="jj-chapter-inner">
 
-      <div class="imm-card">
-        <h2>What Is Sonic Lineage?</h2>
+    <div class="jj-ch-head jj-ch-01">
+      <span class="jj-ch-num">01 / Creative Coding</span>
+    </div>
+    <h2 class="jj-ch-title jj-ch-01">Sonic Lineage:<br>Sampling History</h2>
+    <hr class="jj-ch-rule jj-ch-01">
+
+    <div class="jj-split">
+      <div class="jj-card jj-card-blue">
+        <h3>About the Project</h3>
         <p>Sonic Lineage is an interactive physical computing installation that maps the history of music sampling to touch. Visitors approach a custom-built interface — felt pads wired to a MakeyMakey controller — and physically trigger audio samples spanning decades of recorded music.</p>
-        <p>Each pad represents a node in a sonic family tree. Press one and you hear a sample. Press another and you hear what it became — how a drum break traveled from a 1969 soul record into hip-hop, into electronic music, into today. The piece makes visible what has always existed beneath the surface of popular sound.</p>
-        <div class="imm-tag-row">
-          <span class="imm-chip">Creative Coding</span>
-          <span class="imm-chip">Physical Computing</span>
-          <span class="imm-chip">MakeyMakey</span>
-          <span class="imm-chip">Music Sampling</span>
+        <p>Each pad is a node in a sonic family tree. Press one and you hear a sample. Press another and you hear what it became — how a drum break traveled from a 1969 soul record into hip-hop, into electronic music, into today. The piece makes visible what has always existed beneath the surface of popular sound.</p>
+        <div class="jj-tags">
+          <span class="jj-chip jj-chip-blue">Creative Coding</span>
+          <span class="jj-chip jj-chip-blue">Physical Computing</span>
+          <span class="jj-chip jj-chip-blue">MakeyMakey</span>
+          <span class="jj-chip jj-chip-blue">Music Sampling</span>
         </div>
       </div>
 
-      <div class="imm-video-card">
-        <div class="imm-video-label">Project Demo</div>
-        <div class="imm-video-wrap">
+      <div class="jj-video-shell">
+        <div class="jj-video-label">Project Demo</div>
+        <div class="jj-video-body">
           <!--
-            VIDEO NOTE: The .mov file (118 MB) exceeds GitHub's 100 MB file limit
-            and cannot be served from GitHub CDN. Options:
-              1. Upload to YouTube/Vimeo and replace this with an iframe embed
-              2. Upload to Squarespace and replace src with the asset URL
-              3. Compress the video to under 100 MB and re-host
-            Placeholder shown until video is hosted:
+            Upload the demo video to YouTube or Vimeo, then replace this div with:
+            <iframe width="100%" height="100%" style="aspect-ratio:16/9;border:none;"
+              src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe>
           -->
-          <div style="padding:24px;text-align:center;color:rgba(168,208,240,0.45);font-size:0.78rem;line-height:1.55;">
-            <div style="font-size:2rem;margin-bottom:8px;opacity:0.4;">▶</div>
-            Video coming soon — upload to YouTube or Vimeo<br>and paste the embed link here
-          </div>
-        </div>
-        <div class="imm-video-note">Replace placeholder with YouTube/Vimeo embed once uploaded</div>
-      </div>
-
-    </div>
-
-    <!-- SONIC LINEAGE PHOTO GALLERY -->
-    <p class="imm-divider">Process &amp; Documentation</p>
-    <div class="imm-gallery" id="sl-gallery" role="list">
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg"
-             alt="Overhead view of touch interface — blue felt pads, alligator clips, MakeyMakey controller" loading="lazy">
-      </div>
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg"
-             alt="Touch pads and sample reel discs — prototype layout" loading="lazy">
-      </div>
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg"
-             alt="Color-coded alligator clips wiring pads to controller" loading="lazy">
-      </div>
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg"
-             alt="Detail of touch pad connections and reel disc placement" loading="lazy">
-      </div>
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg"
-             alt="Desk setup — vector circuit diagram on external monitor alongside prototype" loading="lazy">
-      </div>
-
-      <div class="imm-gallery-item" role="listitem" tabindex="0"
-           data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg">
-        <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg"
-             alt="Two-hand interaction with the installation — early prototype test" loading="lazy">
-      </div>
-
-    </div>
-
-
-    <!-- ════════════════════════════════════════════
-         IMM SENIOR SHOW — WEBSITE & BRANDING DESIGN
-    ════════════════════════════════════════════ -->
-    <p class="imm-divider">IMM Senior Show 2026 — Website &amp; Branding Design</p>
-
-    <div class="imm-two-col-even" style="margin-bottom:14px;">
-
-      <div class="imm-card">
-        <h2>Designing the Show</h2>
-        <p>Beyond her own project, Jennéa served as the lead designer for the 2026 IMM Senior Show website — building the full digital identity for the event from the ground up.</p>
-        <p>The site spans a project directory for all 37 seniors, an interactive building map, scavenger hunt, and branded event materials — all coded as custom Squarespace injects to fit the department's existing infrastructure.</p>
-        <div class="imm-tag-row">
-          <span class="imm-chip-green imm-chip">Web Design</span>
-          <span class="imm-chip-green imm-chip">Branding</span>
-          <span class="imm-chip-green imm-chip">Squarespace</span>
-          <span class="imm-chip-green imm-chip">HTML / CSS / JS</span>
-        </div>
-        <div class="imm-stats">
-          <div class="imm-stat">
-            <span class="imm-stat-num">37</span>
-            <span class="imm-stat-label">Students</span>
-          </div>
-          <div class="imm-stat">
-            <span class="imm-stat-num">6</span>
-            <span class="imm-stat-label">Tracks</span>
-          </div>
-          <div class="imm-stat">
-            <span class="imm-stat-num">13+</span>
-            <span class="imm-stat-label">Injects Built</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Site preview — replace href and img src with the live site URL + screenshot -->
-      <a class="imm-site-preview" href="https://immseniorshow.com" target="_blank" rel="noopener" aria-label="Visit IMM Senior Show website">
-        <div class="imm-site-preview-bar">
-          <span class="imm-site-dot"></span>
-          <span class="imm-site-dot"></span>
-          <span class="imm-site-dot"></span>
-          <span class="imm-site-url">immseniorshow.com</span>
-        </div>
-        <div class="imm-site-preview-img">
-          <!--
-            REPLACE: add a screenshot of immseniorshow.com here once available.
-            Upload via Squarespace asset manager or GitHub CDN, then update src.
-          -->
-          <div style="height:220px;display:flex;align-items:center;justify-content:center;color:rgba(214,201,170,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;text-align:center;padding:16px;flex-direction:column;gap:8px;">
-            <div style="font-size:2.5rem;opacity:0.3;">⬚</div>
-            Add site screenshot here
-          </div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- SHOW DESIGN GALLERY — add screenshots / process photos here -->
-    <div class="imm-gallery" id="show-gallery" role="list">
-
-      <!-- REPLACE with actual screenshots / design process images -->
-      <div class="imm-gallery-placeholder">Add screenshot or design photo</div>
-      <div class="imm-gallery-placeholder">Add screenshot or design photo</div>
-      <div class="imm-gallery-placeholder">Add screenshot or design photo</div>
-
-      <!--
-        To add an image, replace a placeholder div with:
-        <div class="imm-gallery-item" role="listitem" tabindex="0"
-             data-src="FULL_IMAGE_URL">
-          <img src="FULL_IMAGE_URL" alt="Description of image" loading="lazy">
-        </div>
-      -->
-
-    </div>
-
-
-    <!-- ════════════════════════════════════════════
-         J&J INNOVATIONS
-    ════════════════════════════════════════════ -->
-    <p class="imm-divider">J&amp;J Innovations</p>
-
-    <div class="imm-card-dark" style="margin-bottom:14px;">
-      <div class="imm-gold-pill">Design &amp; Development Studio</div>
-      <h2>J&amp;J Innovations</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:4px;">
-        <div>
-          <p>J&amp;J Innovations is a design and development studio founded by Jennéa Jeter — building websites, brands, and digital experiences for clients who need thoughtful execution and a strong visual identity.</p>
-          <p>The studio's work spans client websites, branding systems, and creative direction — bridging the gap between design intent and technical delivery.</p>
-          <div class="imm-tag-row">
-            <span class="imm-chip-gold imm-chip">Web Design</span>
-            <span class="imm-chip-gold imm-chip">Branding</span>
-            <span class="imm-chip-gold imm-chip">Creative Direction</span>
-            <span class="imm-chip-gold imm-chip">Development</span>
-          </div>
-          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;">
-            <!--
-              REPLACE: update href with actual J&J Innovations website URL
-            -->
-            <a class="imm-link-btn imm-link-btn-gold" href="#" target="_blank" rel="noopener">
-              Visit J&amp;J Innovations ↗
-            </a>
-            <!--
-              OPTIONAL: add a second button for the old site if you want to show the comparison
-              <a class="imm-link-btn imm-link-btn-outline" href="#" target="_blank" rel="noopener">
-                View Old Site ↗
-              </a>
-            -->
-          </div>
-        </div>
-        <!-- J&J site preview -->
-        <div>
-          <div class="imm-site-preview" style="border-color:rgba(214,160,52,0.3);">
-            <div class="imm-site-preview-bar" style="background:rgba(214,160,52,0.08);border-color:rgba(214,160,52,0.2);">
-              <span class="imm-site-dot" style="background:rgba(214,160,52,0.4);"></span>
-              <span class="imm-site-dot" style="background:rgba(214,160,52,0.4);"></span>
-              <span class="imm-site-dot" style="background:rgba(214,160,52,0.4);"></span>
-              <!--
-                REPLACE: update with actual J&J domain
-              -->
-              <span class="imm-site-url" style="color:rgba(214,160,52,0.5);">jandjinnovations.com</span>
-            </div>
-            <div class="imm-site-preview-img" style="background:#0a0d08;">
-              <!--
-                REPLACE: add J&J website screenshot here
-              -->
-              <div style="height:200px;display:flex;align-items:center;justify-content:center;color:rgba(214,160,52,0.3);font-size:0.72rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;text-align:center;padding:16px;flex-direction:column;gap:8px;">
-                <div style="font-size:2.5rem;opacity:0.35;">⬚</div>
-                Add J&amp;J site screenshot here
-              </div>
-            </div>
-          </div>
+          <div class="jj-video-icon">▶</div>
+          <div>Video coming — upload to YouTube or Vimeo<br>and paste the embed here</div>
         </div>
       </div>
     </div>
 
-    <!-- J&J GALLERY — add client work / branding photos here -->
-    <div class="imm-gallery" id="jj-gallery" role="list">
-
-      <!-- REPLACE with actual J&J project photos / screenshots -->
-      <div class="imm-gallery-placeholder" style="border-color:rgba(214,160,52,0.25);color:rgba(214,160,52,0.35);">Add J&amp;J project photo</div>
-      <div class="imm-gallery-placeholder" style="border-color:rgba(214,160,52,0.25);color:rgba(214,160,52,0.35);">Add J&amp;J project photo</div>
-      <div class="imm-gallery-placeholder" style="border-color:rgba(214,160,52,0.25);color:rgba(214,160,52,0.35);">Add J&amp;J project photo</div>
-
-      <!--
-        To add an image, replace a placeholder div with:
-        <div class="imm-gallery-item" role="listitem" tabindex="0"
-             data-src="FULL_IMAGE_URL">
-          <img src="FULL_IMAGE_URL" alt="Description" loading="lazy">
+    <!-- Process photos -->
+    <div style="margin-top:28px;">
+      <div style="font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:rgba(168,208,240,0.4);margin-bottom:12px;">Process &amp; Documentation</div>
+      <div class="jj-photo-grid" id="sl-grid">
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view — blue felt pads and MakeyMakey controller" loading="lazy">
         </div>
-      -->
-
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg" alt="Touch pads and sample reel discs" loading="lazy">
+        </div>
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg" alt="Color-coded wiring and controller layout" loading="lazy">
+        </div>
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg" alt="Detail of touch pad connections" loading="lazy">
+        </div>
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg" alt="Desk setup — vector circuit diagram on monitor" loading="lazy">
+        </div>
+        <div class="jj-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with the prototype" loading="lazy">
+        </div>
+      </div>
     </div>
 
-  </main>
-
-  <!-- LIGHTBOX -->
-  <div class="imm-lightbox" id="imm-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo lightbox">
-    <button class="imm-lb-close" id="imm-lb-close" aria-label="Close photo">✕</button>
-    <img src="" alt="" id="imm-lb-img">
   </div>
+</section>
 
+
+<!-- ════════════════════════════════
+     CH 02 — IMM SENIOR SHOW DESIGN
+════════════════════════════════ -->
+<section class="jj-chapter jj-chapter-02" id="show">
+  <div class="jj-chapter-inner">
+
+    <div class="jj-ch-head jj-ch-02">
+      <span class="jj-ch-num">02 / Web Design &amp; Branding</span>
+    </div>
+    <h2 class="jj-ch-title jj-ch-02">IMM Senior<br>Show 2026</h2>
+    <hr class="jj-ch-rule jj-ch-02">
+
+    <div class="jj-split-wide" style="align-items:start;">
+
+      <!-- Left: about -->
+      <div>
+        <div class="jj-card jj-card-green" style="margin-bottom:14px;">
+          <h3>I Designed the Whole Thing</h3>
+          <p>On top of my own project, I was the lead designer for the 2026 IMM Senior Show — building the full digital and print identity for the event from scratch. That means the website, the posters, the flyers, the event branding, and every custom code inject you see on the site.</p>
+          <p>I started with wireframes in Canva, went through multiple color directions, and landed on a woodsy, nature-meets-brutalism aesthetic that I'm genuinely proud of. Thirty-seven students across six tracks, all in one cohesive system.</p>
+          <div class="jj-tags">
+            <span class="jj-chip jj-chip-green">Web Design</span>
+            <span class="jj-chip jj-chip-green">Brand Identity</span>
+            <span class="jj-chip jj-chip-green">Poster Design</span>
+            <span class="jj-chip jj-chip-green">Squarespace</span>
+            <span class="jj-chip jj-chip-green">HTML / CSS / JS</span>
+          </div>
+        </div>
+
+        <div class="jj-stats">
+          <div class="jj-stat">
+            <span class="jj-stat-num">37</span>
+            <span class="jj-stat-label">Students</span>
+          </div>
+          <div class="jj-stat">
+            <span class="jj-stat-num">6</span>
+            <span class="jj-stat-label">Tracks</span>
+          </div>
+          <div class="jj-stat">
+            <span class="jj-stat-num">13+</span>
+            <span class="jj-stat-label">Injects Built</span>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <a class="jj-btn jj-btn-green" href="https://immseniorshow.com" target="_blank" rel="noopener">
+            Visit the Live Site ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: posters -->
+      <div>
+        <div style="font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:rgba(168,210,180,0.38);margin-bottom:10px;">11×17 Poster Series</div>
+        <div class="jj-poster-fan" id="poster-fan">
+          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster — coastal cliffs blue" loading="lazy">
+          </div>
+          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster — forest green" loading="lazy">
+          </div>
+          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster — canyon warm" loading="lazy">
+          </div>
+          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster — canyon blue overlay" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Flyers -->
+    <div style="margin-top:36px;">
+      <div style="font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:rgba(168,210,180,0.38);margin-bottom:12px;">Social / Digital Flyers</div>
+      <div class="jj-flyer-strip" id="flyer-strip">
+        <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Flyer — mountain lake nature" loading="lazy">
+        </div>
+        <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png" alt="Flyer — colorful landscape" loading="lazy">
+        </div>
+        <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png" alt="Flyer — fish / ocean" loading="lazy">
+        </div>
+        <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/6.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/6.png" alt="Flyer — jungle forest" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- Wireframes -->
+    <div style="margin-top:36px;">
+      <div style="font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:rgba(168,210,180,0.38);margin-bottom:4px;">Design Process — Wireframes to Final</div>
+      <div style="font-size:0.78rem;color:rgba(168,210,180,0.45);margin-bottom:12px;line-height:1.5;">From early Canva wireframes through color explorations and the final deployed site — this is the full design evolution.</div>
+      <div class="jj-wf-row" id="wf-grid">
+        <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage wireframes — 4 color directions" loading="lazy">
+          <div class="jj-wf-caption">Homepage — color explorations</div>
+        </div>
+        <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes%20(1).png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes%20(1).png" alt="Projects page wireframes" loading="lazy">
+          <div class="jj-wf-caption">Projects page — 3 layouts</div>
+        </div>
+        <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes%20(2).png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes%20(2).png" alt="Projects page — full color range exploration" loading="lazy">
+          <div class="jj-wf-caption">Track cards — full color range</div>
+        </div>
+        <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png" alt="Full site overview wireframe board" loading="lazy">
+          <div class="jj-wf-caption">Full site overview board</div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+      SITE SCREENSHOT — add once you have a screenshot of immseniorshow.com
+      Replace the jj-card-dark block below with an <img> inside .jj-site-chrome + .jj-site-img
+    -->
+    <div class="jj-card jj-card-dark" style="margin-top:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.62rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:rgba(168,210,180,0.4);margin-bottom:6px;">Live Site</div>
+        <div style="font-family:'Norwester','Arial Narrow',sans-serif;font-size:clamp(1rem,2.5vw,1.4rem);letter-spacing:0.04em;text-transform:uppercase;color:rgba(243,237,218,0.7);">immseniorshow.com</div>
+        <div style="margin-top:8px;font-size:0.82rem;color:rgba(200,220,200,0.5);line-height:1.5;">Add a screenshot of the live site here — swap the placeholder once the site is captured.</div>
+      </div>
+      <a class="jj-btn jj-btn-green" href="https://immseniorshow.com" target="_blank" rel="noopener" style="flex-shrink:0;">Visit ↗</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     CH 03 — J&J INNOVATIONS
+════════════════════════════════ -->
+<section class="jj-chapter jj-chapter-03" id="jj">
+  <div class="jj-chapter-inner">
+
+    <div class="jj-ch-head jj-ch-03">
+      <span class="jj-ch-num">03 / Design Studio</span>
+    </div>
+    <h2 class="jj-ch-title jj-ch-03">J&amp;J<br>Innovations</h2>
+    <hr class="jj-ch-rule jj-ch-03">
+
+    <div class="jj-split">
+      <div class="jj-card jj-card-gold">
+        <h3>My Studio</h3>
+        <p>J&amp;J Innovations is my design and development studio — I build websites, brands, and digital experiences for clients who need thoughtful execution and a strong visual identity.</p>
+        <p>Running the studio while finishing my degree pushed me in ways the classroom couldn't. Every client project had real stakes: a real launch, a real audience, a real deadline. That pressure made me better.</p>
+        <div class="jj-tags">
+          <span class="jj-chip jj-chip-gold">Web Design</span>
+          <span class="jj-chip jj-chip-gold">Branding</span>
+          <span class="jj-chip jj-chip-gold">Creative Direction</span>
+          <span class="jj-chip jj-chip-gold">Client Work</span>
+        </div>
+        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;">
+          <!--
+            REPLACE href with your actual J&J Innovations URL
+          -->
+          <a class="jj-btn jj-btn-gold" href="#" target="_blank" rel="noopener">Visit J&amp;J Innovations ↗</a>
+        </div>
+      </div>
+
+      <div class="jj-site-chrome">
+        <div class="jj-site-bar">
+          <span class="jj-site-dot"></span><span class="jj-site-dot"></span><span class="jj-site-dot"></span>
+          <!-- REPLACE with actual J&J domain -->
+          <span class="jj-site-url">jandjinnovations.com</span>
+        </div>
+        <div class="jj-site-img">
+          <!--
+            REPLACE with <img src="YOUR_SCREENSHOT_URL" alt="J&J Innovations website">
+            once you have a screenshot uploaded.
+          -->
+          <div style="font-size:2rem;opacity:0.25;">⬚</div>
+          <div>Add J&amp;J website screenshot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- J&J gallery — replace placeholders with actual project photos/screenshots -->
+    <div class="jj-placeholder-grid" id="jj-grid" style="margin-top:20px;">
+      <div class="jj-placeholder">Add project photo or screenshot</div>
+      <div class="jj-placeholder">Add project photo or screenshot</div>
+      <div class="jj-placeholder">Add project photo or screenshot</div>
+      <!--
+        To add a real image, replace a placeholder with:
+        <div class="jj-photo" style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;cursor:zoom-in;border:1.5px solid rgba(214,160,52,0.2);"
+             tabindex="0" data-src="FULL_URL">
+          <img src="FULL_URL" alt="Description" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="jj-footer">
+  <span class="jj-footer-name">Jennéa Jeter — IMM '26</span>
+  <a class="jj-footer-link" href="/directory">← All Projects</a>
+</footer>
+
+
+<!-- Lightbox -->
+<div class="jj-lb" id="jj-lb" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="jj-lb-x" id="jj-lb-x" aria-label="Close">✕</button>
+  <img src="" alt="" id="jj-lb-img">
 </div>
+
+</div><!-- /jj-page -->
 
 <script>
 (function () {
-  var galleries = document.querySelectorAll('.imm-gallery, .imm-gallery-2');
-  var lb     = document.getElementById('imm-lightbox');
-  var lbImg  = document.getElementById('imm-lb-img');
-  var lbClose = document.getElementById('imm-lb-close');
+  var lb    = document.getElementById('jj-lb');
+  var lbImg = document.getElementById('jj-lb-img');
+  var lbX   = document.getElementById('jj-lb-x');
 
   function open(src, alt) {
-    lbImg.src = src;
-    lbImg.alt = alt || '';
-    lb.classList.add('is-open');
+    lbImg.src = src; lbImg.alt = alt || '';
+    lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
   }
   function close() {
-    lb.classList.remove('is-open');
+    lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
     lbImg.src = '';
   }
 
-  Array.prototype.forEach.call(galleries, function (gallery) {
-    var items = gallery.querySelectorAll('.imm-gallery-item');
-    Array.prototype.forEach.call(items, function (item) {
-      item.addEventListener('click', function () {
-        var img = item.querySelector('img');
-        open(item.dataset.src, img ? img.alt : '');
-      });
-      item.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
-      });
+  var clickables = document.querySelectorAll('[data-src]');
+  Array.prototype.forEach.call(clickables, function (el) {
+    el.addEventListener('click', function () {
+      var img = el.querySelector('img');
+      open(el.dataset.src, img ? img.alt : '');
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
     });
   });
 
-  lbClose.addEventListener('click', close);
+  lbX.addEventListener('click', close);
   lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 }());
