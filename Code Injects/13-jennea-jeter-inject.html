@@ -302,7 +302,18 @@
    CH 02: SENIOR SHOW
 ──────────────────────────────── */
 
-/* Poster fan */
+/* Poster strip (horizontal scroll) */
+.jj-poster-strip-item {
+  flex: 0 0 auto; width: 200px;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+  cursor: zoom-in; border: 1px solid rgba(78,122,94,0.2);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.jj-poster-strip-item:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 20px 44px rgba(0,0,0,0.38); }
+.jj-poster-strip-item img { width: 100%; display: block; }
+
+/* Poster fan (kept for mobile @media) */
 .jj-poster-fan { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 6px; }
 .jj-poster-wrap {
   border-radius: 6px; overflow: hidden;
@@ -644,8 +655,8 @@
     <div class="jj-hero-kicker">AIMM &nbsp;·&nbsp; IMM Class of 2026 &nbsp;·&nbsp; Creative Coding</div>
     <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
     <div class="jj-hero-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>I'll be honest — I spent most of senior year not knowing what my thesis was "supposed" to be. I design websites. I code interactive installations. I build things with 3D printers. I run a studio. I made the site you used to find this page. Picking one thing felt like lying about what I actually do.</p>
+      <p>So I didn't. What you're looking at is a collection of the work that challenged me the most this year — three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
     </div>
     <div class="jj-chapter-row">
       <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
@@ -697,24 +708,20 @@
 
     <!-- Video scroller -->
     <div style="margin-bottom:32px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.58);margin-bottom:12px;">Demo Videos</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:12px;">Demo Videos</div>
       <div class="jj-h-scroll jj-h-scroll-blue" id="sonic-videos">
         <div class="jj-video-reel">
           <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo.mp4"
             controls muted playsinline preload="none"></video>
           <div class="jj-wf-caption">Sonic Lineage — Demo</div>
         </div>
-        <div class="jj-video-reel-placeholder">
-          <div style="font-size:1.6rem;opacity:0.35;">▶</div>
-          <div>Coming Soon</div>
-        </div>
       </div>
     </div>
 
     <!-- Before Design — process photo gallery -->
     <div>
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.58);margin-bottom:4px;">Before Design — Process Photos</div>
-      <div style="font-size:1rem;color:rgba(30,55,95,0.52);margin-bottom:12px;">Early prototype builds before the final installation.</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:4px;">Before Design — Process Photos</div>
+      <div style="font-size:1rem;color:rgba(30,55,95,0.80);margin-bottom:12px;">Early prototype builds before the final installation.</div>
       <div class="jj-h-scroll jj-h-scroll-blue" id="sl-gallery">
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view: felt pads and MakeyMakey" loading="lazy">
@@ -733,6 +740,9 @@
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with the prototype" loading="lazy">
+        </div>
+        <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png" alt="Max/MSP patch view" loading="lazy">
         </div>
       </div>
     </div>
@@ -753,9 +763,9 @@
     <h2 class="jj-ch-title jj-ch-02">IMM Senior<br>Show 2026</h2>
     <hr class="jj-ch-rule jj-ch-02">
 
-    <div class="jj-split-wide" style="align-items:stretch;">
-      <div style="display:flex;flex-direction:column;">
-        <div class="jj-card jj-card-green" style="margin-bottom:14px;flex:1;">
+    <div class="jj-split-wide" style="align-items:start;">
+      <div>
+        <div class="jj-card jj-card-green" style="margin-bottom:14px;">
           <h3>Web Designer &amp; Brand Kit</h3>
           <p>On top of my own project, I was the lead designer for the 2026 IMM Senior Show: building the full digital and print identity from scratch. The website, the posters, the flyers, the event branding, and every custom code inject on the site.</p>
           <p>I started with wireframes in Canva, went through multiple color directions, and landed on a woodsy, nature-meets-brutalism aesthetic. Thirty-seven students across six tracks, all in one cohesive system.</p>
@@ -776,18 +786,18 @@
 
       <!-- Poster fan -->
       <div>
-        <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.55);margin-bottom:10px;">11×17 Poster Series</div>
-        <div class="jj-poster-fan" id="poster-fan">
-          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
+        <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:10px;">11×17 Poster Series</div>
+        <div class="jj-h-scroll" id="poster-fan">
+          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster" loading="lazy">
           </div>
-          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
+          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster: forest green" loading="lazy">
           </div>
-          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
+          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster: canyon warm" loading="lazy">
           </div>
-          <div class="jj-poster-wrap" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
+          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster: canyon blue" loading="lazy">
           </div>
         </div>
@@ -796,7 +806,7 @@
 
     <!-- Site preview video -->
     <div style="margin-top:36px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.58);margin-bottom:10px;">Live Site Recording</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:10px;">Live Site Recording</div>
       <div class="jj-site-chrome" style="border-color:rgba(78,122,94,0.3);">
         <div class="jj-site-bar" style="border-bottom-color:rgba(78,122,94,0.2);">
           <span class="jj-site-dot" style="background:rgba(78,122,94,0.4);"></span>
@@ -815,7 +825,7 @@
 
     <!-- Flyer strip -->
     <div style="margin-top:36px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.58);margin-bottom:12px;">Social &amp; Digital Flyers</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:12px;">Social &amp; Digital Flyers</div>
       <div class="jj-h-scroll" id="flyer-strip">
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Flyer: mountain lake" loading="lazy">
@@ -834,8 +844,8 @@
 
     <!-- Wireframe scroller: Canva sketches -->
     <div style="margin-top:36px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.58);margin-bottom:4px;">Design Process: Early Sketches</div>
-      <div style="font-size:1rem;color:rgba(18,63,54,0.55);margin-bottom:12px;line-height:1.5;">Early Canva wireframes — color direction explorations before any code was written.</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:4px;">Design Process: Early Sketches</div>
+      <div style="font-size:1rem;color:rgba(18,63,54,0.80);margin-bottom:12px;line-height:1.5;">Early Canva wireframes — color direction explorations before any code was written.</div>
       <div class="jj-h-scroll" id="wf-scroll">
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage: 4 color directions" loading="lazy">
@@ -858,8 +868,8 @@
 
     <!-- Wireframe scroller: coded prototypes -->
     <div style="margin-top:24px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.58);margin-bottom:4px;">Coded Prototypes</div>
-      <div style="font-size:1rem;color:rgba(18,63,54,0.55);margin-bottom:12px;line-height:1.5;">Live HTML mockups built during development. Click any to open full-size.</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:4px;">Coded Prototypes</div>
+      <div style="font-size:1rem;color:rgba(18,63,54,0.80);margin-bottom:12px;line-height:1.5;">Live HTML mockups built during development. Click any to open full-size.</div>
       <div class="jj-h-scroll" id="wf-prototypes">
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
@@ -943,7 +953,7 @@
 
     <!-- Product cards pulled from the shop -->
     <div style="margin-top:32px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.55);margin-bottom:14px;">Products</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.82);margin-bottom:14px;">Products</div>
       <div class="jj-product-grid">
 
         <div class="jj-product-card">
@@ -1007,7 +1017,7 @@
 
     <!-- J&J photo strip -->
     <div style="margin-top:32px;">
-      <div style="font-size:0.9rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.55);margin-bottom:12px;">Photos</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.82);margin-bottom:12px;">Photos</div>
       <div class="jj-h-scroll jj-h-scroll-gold" id="jj-photo-strip">
         <!--
           Drop J&J product/process photos here as they come in.
