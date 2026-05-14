@@ -79,7 +79,12 @@
     rgba(11,18,24,0.80) 68%,
     rgba(11,18,24,0.97) 100%);
 }
-.jj-hero-content { position: relative; z-index: 2; max-width: 860px; }
+.jj-hero-content {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1100px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.jj-hero-right { display: flex; flex-direction: column; }
 
 @keyframes jj-up {
   from { opacity: 0; transform: translateY(18px); }
@@ -116,11 +121,10 @@
 .jj-hero-name em { font-style: normal; color: rgba(192,57,43,0.88); }
 
 .jj-hero-body {
-  margin: 22px 0 0;
-  max-width: 58ch;
-  color: rgba(225,215,195,0.8);
-  font-size: clamp(0.95rem,1.7vw,1.1rem);
-  line-height: 1.72;
+  margin: 16px 0 0;
+  color: rgba(225,215,195,0.92);
+  font-size: clamp(1rem,1.5vw,1.14rem);
+  line-height: 1.75;
   animation: jj-up 0.55s 0.16s ease both;
 }
 .jj-hero-body p { margin: 0; }
@@ -490,6 +494,12 @@
 .jj-lb-x:hover { background:rgba(255,255,255,0.2); }
 
 /* ── Responsive ── */
+@media (min-width: 760px) {
+  .jj-hero-content { flex-direction: row; align-items: flex-end; gap: clamp(40px,5vw,72px); }
+  .jj-hero-left { flex: 0 0 auto; }
+  .jj-hero-right { flex: 1 1 0; }
+  .jj-hero-name { font-size: clamp(3rem,8vw,7.5rem); }
+}
 @media (max-width: 900px) {
   .jj-split, .jj-split-wide { grid-template-columns: 1fr; }
   .jj-product-grid { grid-template-columns: repeat(2,1fr); }
@@ -517,7 +527,7 @@
 .jj-hero-name { color: var(--forest); }
 .jj-hero-name em { color: var(--rust); }
 .jj-hero-kicker { color: rgba(18,63,54,0.62); border-color: rgba(18,63,54,0.2); background: rgba(18,63,54,0.05); }
-.jj-hero-body { color: rgba(27,40,34,0.78); }
+.jj-hero-body { color: rgba(27,40,34,0.92); }
 .jj-chapter-btn { color: rgba(27,40,34,0.78); border-color: rgba(18,63,54,0.25); background: rgba(18,63,54,0.06); }
 .jj-chapter-btn:hover { background: rgba(18,63,54,0.12); border-color: rgba(18,63,54,0.4); }
 
@@ -652,22 +662,27 @@
   <div class="jj-hero-bg" aria-hidden="true"></div>
   <div class="jj-hero-overlay" aria-hidden="true"></div>
   <div class="jj-hero-content">
-    <div class="jj-hero-kicker">AIMM &nbsp;·&nbsp; IMM Class of 2026 &nbsp;·&nbsp; Creative Coding</div>
-    <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
-    <div class="jj-hero-body">
-      <p>I'll be honest — I spent most of senior year not knowing what my thesis was "supposed" to be. I design websites. I code interactive installations. I build things with 3D printers. I run a studio. I made the site you used to find this page. Picking one thing felt like lying about what I actually do.</p>
-      <p>So I didn't. What you're looking at is a collection of the work that challenged me the most this year — three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
+    <div class="jj-hero-left">
+      <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
     </div>
-    <div class="jj-chapter-row">
-      <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
-      </button>
-      <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show
-      </button>
-      <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
-      </button>
+    <div class="jj-hero-right">
+      <div class="jj-hero-kicker">AIMM &nbsp;·&nbsp; IMM Class of 2026 &nbsp;·&nbsp; Creative Coding</div>
+      <div class="jj-hero-body">
+        <p>I spent most of my senior year not knowing what my thesis was "supposed" to be. I can do graphic design and branding. I code websites (including the site you are reading this on). I even co-founded a small business. Picking one thing felt like restricting all of what I actually do.</p>
+        <p>What you're looking at is a collection of the work that challenged me the most this year: three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
+        <p>This multidisciplinary mindset is something I am carrying with me into my next chapter. This fall, I will be attending William Paterson University for their Master's in Clinical and Counseling Psychology program. My goal is to eventually merge my technical and design background with clinical practice, using these creative tools to innovate wherever I go. This portfolio is not just a wrap-up of my time at TCNJ, but the foundation for everything I plan to build next.</p>
+      </div>
+      <div class="jj-chapter-row">
+        <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
+          <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
+        </button>
+        <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
+          <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show
+        </button>
+        <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
+          <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
+        </button>
+      </div>
     </div>
   </div>
 </section>
