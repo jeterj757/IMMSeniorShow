@@ -50,6 +50,7 @@
   font-family: var(--ui);
   background: #0b1218;
   color: #1b2822;
+  overflow-x: hidden;
 }
 
 /* ════════════════════════════════
@@ -158,7 +159,7 @@
 /* ════════════════════════════════
    CHAPTER WRAPPER
 ════════════════════════════════ */
-.jj-chapter { padding: clamp(56px,9vw,96px) clamp(20px,6vw,80px); position: relative; }
+.jj-chapter { padding: clamp(56px,9vw,96px) clamp(20px,6vw,80px); position: relative; overflow-x: hidden; }
 .jj-chapter-01 { background: linear-gradient(180deg, #0b1824 0%, #0d1e2c 100%); }
 .jj-chapter-02 { background: linear-gradient(180deg, #0c1a10 0%, #0e1f14 100%); }
 .jj-chapter-03 { background: linear-gradient(180deg, #180808 0%, #1c0a0a 100%); }
@@ -196,6 +197,7 @@
 /* ── Layouts ── */
 .jj-split      { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
 .jj-split-wide { display: grid; grid-template-columns: 1fr 1fr;   gap: 20px; align-items: start; }
+.jj-split > *, .jj-split-wide > * { min-width: 0; }
 
 /* ── Cards ── */
 .jj-card { border-radius: 16px; padding: clamp(18px,3.5vw,32px); border: 1.5px solid; }
@@ -446,6 +448,11 @@
 
 /* J&J site chrome */
 .jj-site-chrome { border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(192,57,43,0.24); background: #0c0a04; }
+.jj-jj-bleed {
+  margin-left: calc(-1 * clamp(20px,6vw,80px));
+  margin-right: calc(-1 * clamp(20px,6vw,80px));
+  border-radius: 0;
+}
 .jj-site-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: rgba(192,57,43,0.06); border-bottom: 1px solid rgba(192,57,43,0.16); }
 .jj-site-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(192,57,43,0.28); }
 .jj-site-url { flex:1; font-size:0.75rem; letter-spacing:0.04em; color:rgba(192,57,43,0.38); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -510,6 +517,8 @@
   .jj-photo-grid { grid-template-columns: 1fr; }
   .jj-product-grid { grid-template-columns: 1fr 1fr; }
   .jj-stats { grid-template-columns: 1fr; }
+  .jj-video-reel { width: 82vw; }
+  .jj-wf-iframe-item, .jj-wf-iframe-shell { width: 82vw; }
 }
 
 /* ── LIGHT MODE ── */
@@ -720,15 +729,14 @@
       </div>
     </div>
 
-    <!-- Video scroller -->
+    <!-- Demo video (full width) -->
     <div style="margin-bottom:32px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:12px;">Demo Videos</div>
-      <div class="jj-h-scroll jj-h-scroll-blue" id="sonic-videos">
-        <div class="jj-video-reel">
-          <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo.mp4"
-            controls muted playsinline preload="none"></video>
-          <div class="jj-wf-caption">Sonic Lineage — Demo</div>
-        </div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:12px;">Demo Video</div>
+      <div class="jj-video-shell">
+        <div class="jj-video-label">Sonic Lineage — Demo</div>
+        <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo.mp4"
+          controls muted playsinline preload="none"
+          style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#060e1a;"></video>
       </div>
     </div>
 
@@ -934,35 +942,35 @@
     <h2 class="jj-ch-title jj-ch-03">J&amp;J<br>Innovations</h2>
     <hr class="jj-ch-rule jj-ch-03">
 
-    <div class="jj-split" style="align-items:start;">
-      <div class="jj-card jj-card-gold">
-        <h3>Our Studio</h3>
-        <p>J&amp;J Innovations is a digital fabrication business I run with Jared Morris: we design and 3D print products, from precision gear mechanisms to event merch. Getting something to actually print the way you designed it is its own discipline, and I learned that fast.</p>
-        <p>The IMM logo went through way more iterations than I expected: small tweaks to wall thickness, infill, tolerances: until it actually looked the way it was supposed to look off the printer. And then there's the poster: we accidentally printed "26'" with an apostrophe instead of "26": which, depending on who you ask, is either a mistake or a feature at this point.</p>
-        <p>Running the studio while finishing senior year was a real test. Real orders, real deadlines, real physical product that has to be right before it ships.</p>
-        <div class="jj-tags">
-          <span class="jj-chip jj-chip-gold">Digital Fabrication</span>
-          <span class="jj-chip jj-chip-gold">3D Printing</span>
-          <span class="jj-chip jj-chip-gold">Product Design</span>
-          <span class="jj-chip jj-chip-gold">Shopify</span>
-        </div>
-        <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;">
-          <a class="jj-btn jj-btn-gold" href="https://jandjinnovation.com" target="_blank" rel="noopener">Visit the Shop ↗</a>
-          <a class="jj-btn jj-btn-ghost" href="https://jandjinnovation.com/collections/all" target="_blank" rel="noopener">All Products</a>
-        </div>
+    <!-- Studio card -->
+    <div class="jj-card jj-card-gold" style="margin-bottom:28px;">
+      <h3>Our Studio</h3>
+      <p>J&amp;J Innovations is a digital fabrication business I run with Jared Morris: we design and 3D print products, from precision gear mechanisms to event merch. Getting something to actually print the way you designed it is its own discipline, and I learned that fast.</p>
+      <p>The IMM logo went through way more iterations than I expected: small tweaks to wall thickness, infill, tolerances: until it actually looked the way it was supposed to look off the printer. And then there's the poster: we accidentally printed "26'" with an apostrophe instead of "26": which, depending on who you ask, is either a mistake or a feature at this point.</p>
+      <p>Running the studio while finishing senior year was a real test. Real orders, real deadlines, real physical product that has to be right before it ships.</p>
+      <div class="jj-tags">
+        <span class="jj-chip jj-chip-gold">Digital Fabrication</span>
+        <span class="jj-chip jj-chip-gold">3D Printing</span>
+        <span class="jj-chip jj-chip-gold">Product Design</span>
+        <span class="jj-chip jj-chip-gold">Shopify</span>
       </div>
+      <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;">
+        <a class="jj-btn jj-btn-gold" href="https://jandjinnovation.com" target="_blank" rel="noopener">Visit the Shop ↗</a>
+        <a class="jj-btn jj-btn-ghost" href="https://jandjinnovation.com/collections/all" target="_blank" rel="noopener">All Products</a>
+      </div>
+    </div>
 
-      <div class="jj-site-chrome">
-        <div class="jj-site-bar">
-          <span class="jj-site-dot"></span><span class="jj-site-dot"></span><span class="jj-site-dot"></span>
-          <span class="jj-site-url">jandjinnovation.com</span>
-        </div>
-        <video
-          src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/jj-site-preview.webm"
-          autoplay loop muted playsinline
-          style="width:100%;display:block;border-radius:0 0 12px 12px;min-height:280px;max-height:420px;object-fit:cover;object-position:top;background:#0c0804;">
-        </video>
+    <!-- Full-bleed site recording -->
+    <div class="jj-site-chrome jj-jj-bleed">
+      <div class="jj-site-bar">
+        <span class="jj-site-dot"></span><span class="jj-site-dot"></span><span class="jj-site-dot"></span>
+        <span class="jj-site-url">jandjinnovation.com</span>
       </div>
+      <video
+        src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/jj-desktop-preview.mp4"
+        autoplay loop muted playsinline
+        style="width:100%;display:block;border-radius:0 0 12px 12px;object-fit:cover;object-position:top;background:#0c0804;">
+      </video>
     </div>
 
     <!-- Product cards pulled from the shop -->
