@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jennea Jeter | IMM Senior Show 2026</title>
 </head>
-<body style="margin:0;background:#f3edda;">
+<body style="margin:0;background:#f0ece0;">
 <style>
 @font-face {
   font-family: "Norwester";
@@ -40,45 +40,47 @@
   --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
   --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
   --paper:  #f3edda;
-  --line:   #d6c9aa;
+  --line:   rgba(18,63,54,0.15);
   --forest: #123f36;
   --rust:   #c75145;
-  --cc:     #3f6f9b;
-  --gold:   #c0392b;
   --sage:   #4e7a5e;
   --pill:   999px;
   font-family: var(--ui);
-  background: #0b1218;
-  color: #1b2822;
+  color: #1c2422;
   overflow-x: hidden;
+  /* Paper + dot grid — matches about/home page */
+  background: #f0ece0;
+  background-image:
+    linear-gradient(180deg, rgba(240,236,224,0.88), rgba(240,236,224,0.90)),
+    radial-gradient(rgba(18,63,54,0.07) 1.2px, transparent 1.2px);
+  background-size: auto, 22px 22px;
+  background-position: center top, center;
 }
 
 /* ════════════════════════════════
-   HERO
+   HERO — dark, full-bleed
 ════════════════════════════════ */
 .jj-hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 88svh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  padding: clamp(32px,6vw,72px) clamp(20px,6vw,80px) clamp(40px,7vw,80px);
+  padding: clamp(32px,6vw,72px) clamp(20px,6vw,80px) clamp(48px,7vw,80px);
+  background: var(--forest);
 }
 .jj-hero-bg {
   position: absolute; inset: 0;
-  background-image: url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png");
-  background-size: cover;
-  background-position: center 30%;
-  filter: saturate(0.65);
+  background-image:
+    linear-gradient(180deg, rgba(8,28,22,0.08) 0%, rgba(8,28,22,0.58) 55%, rgba(8,28,22,0.94) 100%),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png") center 30% / cover no-repeat;
 }
-.jj-hero-overlay {
+.jj-hero-bg::after {
+  content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(11,18,24,0.84) 0%,
-    rgba(11,18,24,0.52) 30%,
-    rgba(11,18,24,0.80) 68%,
-    rgba(11,18,24,0.97) 100%);
+  background-image: repeating-linear-gradient(135deg, rgba(243,237,218,0.04) 0 1px, transparent 1px 20px);
+  background-size: 24px 24px;
 }
 .jj-hero-content {
   position: relative; z-index: 2;
@@ -92,41 +94,22 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.jj-hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px;
-  border-radius: var(--pill);
-  border: 1px solid rgba(214,201,170,0.28);
-  background: rgba(243,237,218,0.07);
-  color: rgba(220,210,185,0.7);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  animation: jj-up 0.55s ease both;
-}
-
 .jj-hero-name {
   margin: 0;
   font-family: var(--d);
-  font-size: clamp(4rem, 14vw, 10rem);
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: #f0e8d4;
-  animation: jj-up 0.55s 0.08s ease both;
+  font-size: clamp(4rem,14vw,10rem);
+  line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase;
+  color: var(--paper);
+  animation: jj-up 0.55s 0.06s ease both;
 }
-.jj-hero-name em { font-style: normal; color: rgba(192,57,43,0.88); }
+.jj-hero-name em { font-style: normal; color: var(--rust); }
 
 .jj-hero-body {
   margin: 16px 0 0;
-  color: rgba(225,215,195,0.92);
+  color: rgba(243,237,218,0.88);
   font-size: clamp(1rem,1.5vw,1.14rem);
   line-height: 1.75;
-  animation: jj-up 0.55s 0.16s ease both;
+  animation: jj-up 0.55s 0.14s ease both;
 }
 .jj-hero-body p { margin: 0; }
 .jj-hero-body p + p { margin-top: 12px; }
@@ -134,93 +117,83 @@
 .jj-chapter-row {
   display: flex; flex-wrap: wrap; gap: 8px;
   margin-top: 28px;
-  animation: jj-up 0.55s 0.24s ease both;
+  animation: jj-up 0.55s 0.22s ease both;
 }
 .jj-chapter-btn {
   display: inline-flex; align-items: center; gap: 7px;
   min-height: 38px; padding: 8px 16px;
   border-radius: var(--pill);
-  border: 1px solid rgba(214,201,170,0.26);
+  border: 1px solid rgba(243,237,218,0.24);
   background: rgba(243,237,218,0.07);
-  color: rgba(225,215,190,0.82);
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  color: rgba(243,237,218,0.82);
+  font-size: 0.95rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  cursor: pointer; transition: background 0.15s, border-color 0.15s;
 }
-.jj-chapter-btn:hover { background: rgba(243,237,218,0.14); border-color: rgba(214,201,170,0.46); }
+.jj-chapter-btn:hover { background: rgba(243,237,218,0.14); border-color: rgba(243,237,218,0.44); }
 .jj-chapter-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.jj-chapter-btn[data-color="blue"]  .jj-chapter-dot { background: var(--cc); }
-.jj-chapter-btn[data-color="green"] .jj-chapter-dot { background: var(--sage); }
-.jj-chapter-btn[data-color="gold"]  .jj-chapter-dot { background: var(--gold); }
+.jj-chapter-btn[data-color="blue"]  .jj-chapter-dot { background: #6baed6; }
+.jj-chapter-btn[data-color="green"] .jj-chapter-dot { background: #74c476; }
+.jj-chapter-btn[data-color="gold"]  .jj-chapter-dot { background: var(--rust); }
 
 /* ════════════════════════════════
-   CHAPTER WRAPPER
+   CHAPTERS — editorial, paper
 ════════════════════════════════ */
-.jj-chapter { padding: clamp(56px,9vw,96px) clamp(20px,6vw,80px); position: relative; overflow-x: hidden; }
-.jj-chapter-01 { background: linear-gradient(180deg, #0b1824 0%, #0d1e2c 100%); }
-.jj-chapter-02 { background: linear-gradient(180deg, #0c1a10 0%, #0e1f14 100%); }
-.jj-chapter-03 { background: linear-gradient(180deg, #180808 0%, #1c0a0a 100%); }
+.jj-chapter {
+  padding: clamp(56px,9vw,96px) clamp(20px,6vw,80px);
+  position: relative;
+  border-top: 2px solid rgba(18,63,54,0.13);
+  overflow-x: hidden;
+}
+.jj-chapter::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: clamp(20px,6vw,80px);
+  width: clamp(100px,18vw,180px); height: 2px;
+  background: var(--rust);
+}
 .jj-chapter-inner { max-width: 1100px; margin: 0 auto; }
 
-.jj-ch-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+.jj-ch-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
 .jj-ch-num {
   font-family: var(--d);
-  font-size: clamp(0.8rem,1.2vw,0.92rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.6;
+  font-size: clamp(0.78rem,1.1vw,0.88rem);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(18,63,54,0.5);
 }
-.jj-ch-01 { color: #a8d0f0; }
-.jj-ch-02 { color: #a8d4b2; }
-.jj-ch-03 { color: #f5a090; }
 
 .jj-ch-title {
   margin: 0;
   font-family: var(--d);
-  font-size: clamp(2rem,5.5vw,3.8rem);
-  line-height: 1.1;
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
+  font-size: clamp(2.2rem,5.5vw,4rem);
+  line-height: 1.06; letter-spacing: 0.025em; text-transform: uppercase;
+  color: var(--forest);
 }
-.jj-ch-01 .jj-ch-title { color: #ddeeff; }
-.jj-ch-02 .jj-ch-title { color: #d8edd8; }
-.jj-ch-03 .jj-ch-title { color: #fde8e4; }
 
-.jj-ch-rule { margin: 16px 0 28px; height: 1px; border: none; opacity: 0.11; }
-.jj-ch-01 .jj-ch-rule { background: var(--cc); }
-.jj-ch-02 .jj-ch-rule { background: var(--sage); }
-.jj-ch-03 .jj-ch-rule { background: var(--gold); }
+.jj-ch-rule { margin: 14px 0 28px; height: 1px; border: none; background: rgba(18,63,54,0.12); }
 
 /* ── Layouts ── */
-.jj-split      { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
-.jj-split-wide { display: grid; grid-template-columns: 1fr 1fr;   gap: 20px; align-items: start; }
+.jj-split      { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+.jj-split-wide { display: grid; grid-template-columns: 1fr 1fr;   gap: 24px; align-items: start; }
 .jj-split > *, .jj-split-wide > * { min-width: 0; }
 
 /* ── Cards ── */
-.jj-card { border-radius: 16px; padding: clamp(18px,3.5vw,32px); border: 1.5px solid; }
-.jj-card-blue  { background: rgba(63,111,155,0.09);  border-color: rgba(63,111,155,0.28);  color: rgba(220,236,255,0.84); }
-.jj-card-green { background: rgba(78,122,94,0.1);    border-color: rgba(78,122,94,0.28);   color: rgba(216,237,218,0.84); }
-.jj-card-gold  { background: rgba(192,57,43,0.08);  border-color: rgba(192,57,43,0.26);  color: rgba(255,218,212,0.88); }
-.jj-card-dark  { background: rgba(243,237,218,0.04); border-color: rgba(243,237,218,0.11); color: rgba(230,220,195,0.72); }
-.jj-card-paper { background: var(--paper); border-color: var(--line); color: #2e4540; }
-
+.jj-card {
+  border-radius: 14px;
+  padding: clamp(18px,3.5vw,32px);
+  background: #fffdf5;
+  border: 1.5px solid rgba(18,63,54,0.12);
+  color: #20352f;
+  box-shadow: 0 2px 0 rgba(18,63,54,0.06);
+}
 .jj-card h3 {
   margin: 0 0 10px;
   font-family: var(--d);
-  font-size: clamp(1.1rem,2.2vw,1.55rem);
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: clamp(1.1rem,2.2vw,1.5rem);
+  letter-spacing: 0.025em; text-transform: uppercase; line-height: 1.1;
+  color: var(--forest);
 }
-.jj-card-paper h3 { color: var(--forest); }
-.jj-card-blue  h3 { color: #c2dff5; }
-.jj-card-green h3 { color: #b8e0c0; }
-.jj-card-gold  h3 { color: #f5a090; }
-.jj-card-dark  h3 { color: rgba(243,237,218,0.86); }
-.jj-card p { margin: 0; line-height: 1.65; font-size: clamp(1rem,1.5vw,1.1rem); }
+.jj-card p { margin: 0; line-height: 1.68; font-size: clamp(1rem,1.5vw,1.08rem); color: #20352f; }
 .jj-card p + p { margin-top: 10px; }
 
 /* ── Chips ── */
@@ -230,79 +203,70 @@
   font-size: 0.75rem; font-weight: 600;
   letter-spacing: 0.07em; text-transform: uppercase; border: 1px solid;
 }
-.jj-chip-blue  { color: #7ab8e8; border-color: rgba(63,111,155,0.36); background: rgba(63,111,155,0.09); }
-.jj-chip-green { color: #7ec49a; border-color: rgba(78,122,94,0.34);  background: rgba(78,122,94,0.07);  }
-.jj-chip-gold  { color: #d04838; border-color: rgba(192,57,43,0.34); background: rgba(192,57,43,0.07); }
+.jj-chip-blue  { color: #2860a0; border-color: rgba(40,96,160,0.3); background: rgba(40,96,160,0.08); }
+.jj-chip-green { color: var(--forest); border-color: rgba(18,63,54,0.28); background: rgba(18,63,54,0.07); }
+.jj-chip-gold  { color: var(--rust); border-color: rgba(199,81,69,0.3); background: rgba(199,81,69,0.07); }
 
 /* ── Buttons ── */
 .jj-btn {
   display: inline-flex; align-items: center; gap: 6px;
   min-height: 38px; padding: 9px 18px;
   border-radius: var(--pill); border: 1px solid;
-  font-size: 0.95rem; font-weight: 500;
+  font-size: 0.95rem; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase;
   transition: opacity 0.15s;
 }
 .jj-btn:hover { opacity: 0.78; }
-.jj-btn-blue  { background: rgba(63,111,155,0.18);  border-color: rgba(63,111,155,0.42);  color: #a8d0f0; }
-.jj-btn-green { background: rgba(78,122,94,0.18);   border-color: rgba(78,122,94,0.42);   color: #a8d4b2; }
-.jj-btn-gold  { background: rgba(192,57,43,0.12);  border-color: rgba(192,57,43,0.4);   color: #f08878; }
-.jj-btn-ghost { background: transparent; border-color: rgba(243,237,218,0.42); color: rgba(243,237,218,0.92); }
+.jj-btn-blue  { background: var(--forest); border-color: var(--forest); color: var(--paper); }
+.jj-btn-green { background: var(--forest); border-color: var(--forest); color: var(--paper); }
+.jj-btn-gold  { background: var(--rust);   border-color: var(--rust);   color: #fff; }
+.jj-btn-ghost { background: transparent; border-color: rgba(18,63,54,0.4); color: var(--forest); }
 
 /* ────────────────────────────────
    CH 01: SONIC LINEAGE
 ──────────────────────────────── */
-.jj-photo-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 8px; margin-top: 20px;
-}
-.jj-photo {
-  aspect-ratio: 16/9; border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(63,111,155,0.18);
-  cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
-}
-.jj-photo:hover { transform: scale(1.03); box-shadow: 0 14px 32px rgba(0,10,25,0.55); }
-.jj-photo:focus-visible { outline: 2px solid var(--cc); outline-offset: 3px; }
-.jj-photo img { width:100%; height:100%; object-fit:cover; display:block; }
-
 .jj-video-shell {
   border-radius: 14px; overflow: hidden;
-  border: 1.5px solid rgba(63,111,155,0.26);
-  background: #060e1a; display: flex; flex-direction: column;
+  border: 1.5px solid rgba(18,63,54,0.2);
+  background: var(--forest);
+  display: flex; flex-direction: column;
 }
 .jj-video-label {
   padding: 9px 14px;
-  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
-  color: rgba(168,208,240,0.48);
-  border-bottom: 1px solid rgba(63,111,155,0.16);
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  color: rgba(243,237,218,0.65);
+  border-bottom: 1px solid rgba(243,237,218,0.1);
 }
-.jj-video-body {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 200px; padding: 28px; text-align: center;
-  color: rgba(168,208,240,0.72); font-size: 0.9rem; line-height: 1.55;
-  flex-direction: column; gap: 10px;
-}
-.jj-video-icon { font-size: 2.2rem; opacity: 0.28; }
 
-/* maxpat download bar */
+/* Maxpat bar */
 .jj-maxpat {
   margin-top: 16px;
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(63,111,155,0.22);
-  background: rgba(63,111,155,0.06);
+  padding: 14px 16px; border-radius: 12px;
+  border: 1.5px solid rgba(18,63,54,0.15);
+  background: rgba(18,63,54,0.04);
 }
-.jj-maxpat-label {
-  flex: 1; min-width: 180px;
-  font-size: 0.9rem; color: rgba(168,208,240,0.55); line-height: 1.45;
-}
+.jj-maxpat-label { flex: 1; min-width: 180px; font-size: 0.9rem; color: rgba(18,63,54,0.7); line-height: 1.45; }
 .jj-maxpat-label strong {
-  display: block; font-weight: 600;
+  display: block; font-weight: 700;
   font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase;
-  color: rgba(168,208,240,0.7); margin-bottom: 2px;
+  color: var(--forest); margin-bottom: 2px;
 }
+
+/* JS files grid */
+.jj-js-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;
+  margin-top: 14px;
+}
+.jj-js-file {
+  border-radius: 10px; padding: 12px 14px;
+  background: #fffdf5; border: 1.5px solid rgba(18,63,54,0.12);
+}
+.jj-js-name {
+  font-family: monospace; font-size: 0.82rem; font-weight: 700;
+  color: var(--forest); margin-bottom: 4px;
+}
+.jj-js-desc { font-size: 0.85rem; color: rgba(18,63,54,0.65); line-height: 1.45; }
 
 /* ────────────────────────────────
    CH 02: SENIOR SHOW
@@ -312,74 +276,60 @@
 .jj-poster-strip-item {
   flex: 0 0 auto; width: 200px;
   border-radius: 8px; overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.28);
-  cursor: zoom-in; border: 1px solid rgba(78,122,94,0.2);
+  box-shadow: 0 8px 24px rgba(18,63,54,0.16);
+  cursor: zoom-in; border: 1px solid rgba(18,63,54,0.14);
   transition: transform 0.18s, box-shadow 0.18s;
 }
-.jj-poster-strip-item:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 20px 44px rgba(0,0,0,0.38); }
+.jj-poster-strip-item:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 18px 40px rgba(18,63,54,0.22); }
 .jj-poster-strip-item img { width: 100%; display: block; }
 
-/* Poster fan (kept for mobile @media) */
-.jj-poster-fan { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 6px; }
-.jj-poster-wrap {
-  border-radius: 6px; overflow: hidden;
-  box-shadow: 0 20px 48px rgba(0,0,0,0.55);
-  cursor: zoom-in; transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.jj-poster-wrap:nth-child(1) { transform: rotate(-1.4deg) translateY(4px); }
-.jj-poster-wrap:nth-child(2) { transform: rotate(0.9deg) translateY(-2px); }
-.jj-poster-wrap:nth-child(3) { transform: rotate(1.2deg) translateY(2px); }
-.jj-poster-wrap:nth-child(4) { transform: rotate(-0.7deg) translateY(-4px); }
-.jj-poster-wrap:hover { transform: rotate(0) scale(1.02) translateY(-4px) !important; box-shadow: 0 28px 60px rgba(0,0,0,0.65); }
-.jj-poster-wrap img { width: 100%; display: block; }
-
-/* Horizontal scroll strip (flyers + wireframes) */
+/* Horizontal scroll strip */
 .jj-h-scroll {
   display: flex; gap: 12px;
   overflow-x: auto; padding-bottom: 10px;
-  scrollbar-width: thin; scrollbar-color: rgba(78,122,94,0.25) transparent;
+  scrollbar-width: thin; scrollbar-color: rgba(18,63,54,0.2) transparent;
 }
 .jj-h-scroll::-webkit-scrollbar { height: 3px; }
-.jj-h-scroll::-webkit-scrollbar-thumb { background: rgba(78,122,94,0.25); border-radius: 2px; }
+.jj-h-scroll::-webkit-scrollbar-thumb { background: rgba(18,63,54,0.2); border-radius: 2px; }
 
 .jj-flyer {
   flex: 0 0 auto; width: 180px;
   border-radius: 10px; overflow: hidden;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.42);
-  cursor: zoom-in; border: 1px solid rgba(78,122,94,0.18);
+  box-shadow: 0 8px 22px rgba(18,63,54,0.14);
+  cursor: zoom-in; border: 1px solid rgba(18,63,54,0.14);
   transition: transform 0.18s;
 }
 .jj-flyer:hover { transform: scale(1.04) translateY(-3px); }
 .jj-flyer img { width: 100%; display: block; }
 
-/* Wireframe scroller items: natural height, no fixed aspect ratio */
+/* Canva wireframe items */
 .jj-wf-item {
   flex: 0 0 auto; width: 260px;
   border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(78,122,94,0.2);
-  background: rgba(12,25,16,0.6);
+  border: 1px solid rgba(18,63,54,0.14);
+  background: #fffdf5;
   cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
 }
-.jj-wf-item:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
+.jj-wf-item:hover { transform: scale(1.03); box-shadow: 0 10px 24px rgba(18,63,54,0.14); }
 .jj-wf-item img { width: 100%; display: block; }
 .jj-wf-caption {
   padding: 7px 10px;
-  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-  color: rgba(168,210,180,0.42);
-  border-top: 1px solid rgba(78,122,94,0.14);
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: rgba(18,63,54,0.5);
+  border-top: 1px solid rgba(18,63,54,0.1);
 }
 
-/* Wireframe scroller — live HTML iframe previews */
+/* Iframe prototype items */
 .jj-wf-iframe-item {
   flex: 0 0 auto; width: 420px;
   border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(78,122,94,0.22);
+  border: 1px solid rgba(18,63,54,0.16);
   background: #fff;
   cursor: pointer; text-decoration: none;
   transition: transform 0.18s, box-shadow 0.18s;
   display: flex; flex-direction: column;
 }
-.jj-wf-iframe-item:hover { transform: scale(1.02) translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
+.jj-wf-iframe-item:hover { transform: scale(1.02) translateY(-3px); box-shadow: 0 14px 32px rgba(18,63,54,0.14); }
 .jj-wf-iframe-shell {
   width: 420px; height: 280px;
   overflow: hidden; position: relative; flex-shrink: 0;
@@ -389,115 +339,111 @@
   transform: scale(0.3333); transform-origin: top left;
   border: none; display: block; pointer-events: none;
 }
-.jj-wf-iframe-item .jj-wf-caption { color: rgba(18,63,54,0.55); border-top-color: rgba(78,122,94,0.15); }
+.jj-wf-iframe-item .jj-wf-caption { color: rgba(18,63,54,0.5); border-top-color: rgba(18,63,54,0.1); }
 
 /* Stats */
 .jj-stats {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
-  background: rgba(78,122,94,0.14); border-radius: 12px; overflow: hidden; margin-top: 16px;
+  background: rgba(18,63,54,0.12); border-radius: 12px; overflow: hidden; margin-top: 16px;
 }
-.jj-stat { background: rgba(243,237,218,0.93); padding: 12px 14px; text-align: center; }
-.jj-stat-num { display: block; font-family: var(--d); font-size: clamp(1.5rem,3vw,2.2rem); letter-spacing: 0.04em; color: var(--forest); line-height: 1; }
-.jj-stat-label { display: block; margin-top: 3px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4a6056; }
+.jj-stat { background: var(--forest); padding: 14px; text-align: center; }
+.jj-stat-num { display: block; font-family: var(--d); font-size: clamp(1.5rem,3vw,2.2rem); letter-spacing: 0.04em; color: var(--paper); line-height: 1; }
+.jj-stat-label { display: block; margin-top: 3px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(243,237,218,0.62); }
+
+/* Site chrome (for senior show live recording) */
+.jj-site-chrome { border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(18,63,54,0.2); background: #0c1a10; }
+.jj-site-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: rgba(18,63,54,0.12); border-bottom: 1px solid rgba(18,63,54,0.14); }
+.jj-site-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(18,63,54,0.3); }
+.jj-site-url { flex:1; font-size:0.75rem; letter-spacing:0.04em; color:rgba(18,63,54,0.48); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* ────────────────────────────────
    CH 03: J&J INNOVATIONS
 ──────────────────────────────── */
 
-/* Product grid */
 .jj-product-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 24px; }
 .jj-product-card {
   border-radius: 14px; overflow: hidden;
-  border: 1px solid rgba(192,57,43,0.22);
-  background: rgba(243,237,218,0.04);
+  border: 1.5px solid rgba(199,81,69,0.18);
+  background: #fffdf5;
   display: flex; flex-direction: column;
   transition: transform 0.18s, box-shadow 0.18s;
 }
-.jj-product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.45); }
-.jj-product-img {
-  aspect-ratio: 1;
-  overflow: hidden; background: rgba(192,57,43,0.05);
-  cursor: zoom-in;
-}
+.jj-product-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(18,63,54,0.12); }
+.jj-product-img { aspect-ratio: 1; overflow: hidden; background: rgba(18,63,54,0.04); cursor: zoom-in; }
 .jj-product-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.22s; }
 .jj-product-card:hover .jj-product-img img { transform: scale(1.05); }
 .jj-product-info { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.jj-product-name {
-  font-family: var(--d); font-size: clamp(0.82rem,1.4vw,1rem);
-  letter-spacing: 0.04em; text-transform: uppercase;
-  color: #fde8e4; line-height: 1.15;
-}
-.jj-product-price {
-  font-size: 1rem; font-weight: 600; color: rgba(192,57,43,0.7);
-  letter-spacing: 0.04em;
-}
-.jj-product-desc {
-  font-size: 1rem; color: rgba(240,224,175,0.5); line-height: 1.5;
-  flex: 1;
-}
+.jj-product-name { font-family: var(--d); font-size: clamp(0.82rem,1.4vw,1rem); letter-spacing: 0.04em; text-transform: uppercase; color: var(--forest); line-height: 1.15; }
+.jj-product-price { font-size: 1rem; font-weight: 700; color: var(--rust); letter-spacing: 0.02em; }
+.jj-product-desc { font-size: 0.9rem; color: rgba(18,63,54,0.6); line-height: 1.5; flex: 1; }
 .jj-product-link {
   display: inline-flex; align-items: center; gap: 4px;
   margin-top: 10px; padding: 6px 12px;
-  border-radius: var(--pill); border: 1px solid rgba(192,57,43,0.3);
-  background: rgba(192,57,43,0.08); color: rgba(192,57,43,0.75);
-  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
-  align-self: flex-start;
-  transition: opacity 0.15s;
+  border-radius: var(--pill); border: 1px solid rgba(199,81,69,0.3);
+  background: rgba(199,81,69,0.07); color: var(--rust);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+  align-self: flex-start; transition: opacity 0.15s;
 }
 .jj-product-link:hover { opacity: 0.72; }
 
-/* J&J site chrome */
-.jj-site-chrome { border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(192,57,43,0.24); background: #0c0a04; }
+/* J&J site chrome — rust themed */
+.jj-site-chrome-rust { border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(199,81,69,0.22); background: #0c0804; }
+.jj-site-bar-rust { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: rgba(199,81,69,0.07); border-bottom: 1px solid rgba(199,81,69,0.14); }
+.jj-site-dot-rust { width: 10px; height: 10px; border-radius: 50%; background: rgba(199,81,69,0.3); }
+.jj-site-url-rust { flex:1; font-size:0.75rem; letter-spacing:0.04em; color:rgba(120,40,28,0.45); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* Full-bleed site recording */
 .jj-jj-bleed {
   margin-left: calc(-1 * clamp(20px,6vw,80px));
   margin-right: calc(-1 * clamp(20px,6vw,80px));
   border-radius: 0;
 }
-.jj-site-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: rgba(192,57,43,0.06); border-bottom: 1px solid rgba(192,57,43,0.16); }
-.jj-site-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(192,57,43,0.28); }
-.jj-site-url { flex:1; font-size:0.75rem; letter-spacing:0.04em; color:rgba(192,57,43,0.38); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.jj-site-placeholder { min-height:180px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; color:rgba(192,57,43,0.24); font-size:0.75rem; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; text-align:center; padding:16px; }
 
-/* J&J photo strip (same scroll treatment as flyers) */
-.jj-h-scroll-gold { scrollbar-color: rgba(192,57,43,0.22) transparent; }
-.jj-h-scroll-gold::-webkit-scrollbar-thumb { background: rgba(192,57,43,0.22); }
-.jj-jj-photo {
-  flex: 0 0 auto; width: 260px;
-  border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(192,57,43,0.18);
-  cursor: zoom-in; transition: transform 0.18s;
-}
-.jj-jj-photo:hover { transform: scale(1.03) translateY(-3px); }
-.jj-jj-photo img { width:100%; display:block; }
-
-/* Placeholder strip item */
+/* J&J photo placeholder */
 .jj-strip-placeholder {
-  flex: 0 0 240px; height: 160px;
-  border-radius: 10px;
-  border: 1px dashed rgba(192,57,43,0.2);
-  background: rgba(192,57,43,0.03);
+  flex: 0 0 240px; height: 160px; border-radius: 10px;
+  border: 1.5px dashed rgba(199,81,69,0.2); background: rgba(199,81,69,0.03);
   display: flex; align-items: center; justify-content: center;
-  color: rgba(192,57,43,0.65); font-size: 0.85rem; font-weight: 500;
+  color: rgba(199,81,69,0.5); font-size: 0.82rem; font-weight: 600;
   letter-spacing: 0.07em; text-transform: uppercase; text-align: center;
   padding: 12px; flex-shrink: 0;
 }
 
+/* ── Process photo strip ── */
+.jj-sl-photo {
+  flex: 0 0 auto; width: 300px;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(18,63,54,0.14);
+  cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
+  background: #fffdf5;
+}
+.jj-sl-photo:hover { transform: scale(1.03) translateY(-3px); box-shadow: 0 12px 28px rgba(18,63,54,0.14); }
+.jj-sl-photo img { width: 100%; display: block; }
+
+/* J&J shop photo strip */
+.jj-jj-photo {
+  flex: 0 0 auto; width: 260px; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(199,81,69,0.16); cursor: zoom-in; transition: transform 0.18s;
+}
+.jj-jj-photo:hover { transform: scale(1.03) translateY(-3px); }
+.jj-jj-photo img { width:100%; display:block; }
+
 /* ── Footer ── */
 .jj-footer {
-  background: #080d11; padding: 32px clamp(20px,6vw,80px);
+  background: var(--forest); padding: 32px clamp(20px,6vw,80px);
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 12px;
-  border-top: 1px solid rgba(243,237,218,0.06);
+  border-top: 1px solid rgba(18,63,54,0.2);
 }
-.jj-footer-name { font-family: var(--d); font-size: 1.1rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243,237,218,0.3); }
-.jj-footer-link { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(243,237,218,0.82); padding: 7px 12px; border-radius: var(--pill); border: 1px solid rgba(243,237,218,0.38); transition: opacity 0.15s; }
+.jj-footer-name { font-family: var(--d); font-size: 1.1rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243,237,218,0.5); }
+.jj-footer-link { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(243,237,218,0.88); padding: 7px 14px; border-radius: var(--pill); border: 1px solid rgba(243,237,218,0.38); transition: opacity 0.15s; }
 .jj-footer-link:hover { opacity: 0.6; }
 
 /* ── Lightbox ── */
-.jj-lb { position:fixed; inset:0; z-index:300; background:rgba(4,8,14,0.95); display:none; align-items:center; justify-content:center; padding:20px; }
+.jj-lb { position:fixed; inset:0; z-index:300; background:rgba(4,14,8,0.96); display:none; align-items:center; justify-content:center; padding:20px; }
 .jj-lb.open { display:flex; }
-.jj-lb img { max-width:100%; max-height:88vh; border-radius:8px; box-shadow:0 28px 70px rgba(0,0,0,0.8); }
-.jj-lb-x { position:absolute; top:16px; right:16px; width:38px; height:38px; border-radius:50%; border:none; background:rgba(255,255,255,0.11); color:#fff; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.jj-lb img { max-width:100%; max-height:88vh; border-radius:8px; box-shadow:0 28px 70px rgba(0,0,0,0.7); }
+.jj-lb-x { position:absolute; top:16px; right:16px; width:38px; height:38px; border-radius:50%; border:none; background:rgba(255,255,255,0.1); color:#fff; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .jj-lb-x:hover { background:rgba(255,255,255,0.2); }
 
 /* ── Responsive ── */
@@ -510,156 +456,14 @@
 @media (max-width: 900px) {
   .jj-split, .jj-split-wide { grid-template-columns: 1fr; }
   .jj-product-grid { grid-template-columns: repeat(2,1fr); }
-  .jj-photo-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 560px) {
-  .jj-poster-fan { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .jj-photo-grid { grid-template-columns: 1fr; }
   .jj-product-grid { grid-template-columns: 1fr 1fr; }
   .jj-stats { grid-template-columns: 1fr; }
   .jj-video-reel { width: 82vw; }
   .jj-wf-iframe-item, .jj-wf-iframe-shell { width: 82vw; }
+  .jj-js-grid { grid-template-columns: 1fr; }
 }
-
-/* ── LIGHT MODE ── */
-.jj-page { background: var(--paper); }
-
-.jj-hero {
-  background:
-    linear-gradient(rgba(243,237,218,0.78) 0%, rgba(243,237,218,0.92) 65%, rgba(243,237,218,0.98) 100%),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/7.png") center / cover no-repeat;
-  border-bottom: 1px solid var(--line);
-  min-height: 80svh;
-}
-.jj-hero-bg { display: none; }
-.jj-hero-overlay { display: none; }
-.jj-hero-name { color: var(--forest); }
-.jj-hero-name em { color: var(--rust); }
-.jj-hero-kicker { color: rgba(18,63,54,0.62); border-color: rgba(18,63,54,0.2); background: rgba(18,63,54,0.05); }
-.jj-hero-body { color: rgba(27,40,34,0.92); }
-.jj-chapter-btn { color: rgba(27,40,34,0.78); border-color: rgba(18,63,54,0.25); background: rgba(18,63,54,0.06); }
-.jj-chapter-btn:hover { background: rgba(18,63,54,0.12); border-color: rgba(18,63,54,0.4); }
-
-.jj-chapter-01 {
-  background:
-    linear-gradient(rgba(220,232,245,0.84) 0%, rgba(220,232,245,0.94) 100%),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/1.png") center / cover no-repeat;
-}
-.jj-chapter-02 {
-  background:
-    linear-gradient(rgba(213,236,223,0.84) 0%, rgba(213,236,223,0.94) 100%),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/10.png") center / cover no-repeat;
-}
-.jj-chapter-03 {
-  background:
-    linear-gradient(rgba(252,228,224,0.84) 0%, rgba(252,228,224,0.94) 100%),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/AlyosiusPatrimonoAssets/landscapes/4.png") center / cover no-repeat;
-}
-
-.jj-ch-01 { color: #2860a0; }
-.jj-ch-02 { color: #1a6035; }
-.jj-ch-03 { color: #991a12; }
-.jj-ch-01 .jj-ch-title { color: #1a3d6e; }
-.jj-ch-02 .jj-ch-title { color: var(--forest); }
-.jj-ch-03 .jj-ch-title { color: #6e0e0a; }
-.jj-ch-01 .jj-ch-rule { background: var(--cc); opacity: 0.3; }
-.jj-ch-02 .jj-ch-rule { background: var(--forest); opacity: 0.22; }
-.jj-ch-03 .jj-ch-rule { background: var(--gold); opacity: 0.45; }
-
-.jj-card-blue  { background: #fff; border-color: rgba(63,111,155,0.3); color: #1b2a3a; }
-.jj-card-green { background: #fff; border-color: rgba(78,122,94,0.32); color: #1b2e22; }
-.jj-card-gold  { background: #fff; border-color: rgba(192,57,43,0.35); color: #2e1010; }
-.jj-card-dark  { background: rgba(18,63,54,0.06); border-color: rgba(18,63,54,0.14); }
-.jj-card-blue  h3 { color: #2860a0; }
-.jj-card-green h3 { color: var(--forest); }
-.jj-card-gold  h3 { color: #8a1414; }
-
-.jj-chip-blue  { color: #2860a0; border-color: rgba(63,111,155,0.38); background: rgba(63,111,155,0.09); }
-.jj-chip-green { color: var(--forest); border-color: rgba(18,63,54,0.32); background: rgba(18,63,54,0.07); }
-.jj-chip-gold  { color: #8a1414; border-color: rgba(192,57,43,0.4); background: rgba(192,57,43,0.09); }
-
-.jj-btn-blue  { background: var(--cc);     border-color: var(--cc);     color: #fff !important; }
-.jj-btn-green { background: var(--forest); border-color: var(--forest); color: #fff !important; }
-.jj-btn-gold  { background: #c0392b; border-color: #c0392b; color: #fff !important; }
-.jj-btn-ghost { background: transparent; border-color: rgba(18,63,54,0.5); color: rgba(18,63,54,0.92) !important; }
-
-.jj-stats { background: rgba(18,63,54,0.1); }
-.jj-stat { background: var(--forest); }
-.jj-stat-num { color: var(--paper); }
-.jj-stat-label { color: rgba(243,237,218,0.68); }
-
-.jj-maxpat { border-color: rgba(63,111,155,0.22); background: rgba(63,111,155,0.05); }
-.jj-maxpat-label { color: rgba(30,55,95,0.7); }
-.jj-maxpat-label strong { color: rgba(30,55,95,0.86); }
-
-.jj-video-shell { border-color: rgba(63,111,155,0.28); background: #e6eff8; }
-.jj-video-label { color: rgba(30,55,95,0.52); border-color: rgba(63,111,155,0.18); }
-.jj-video-body { color: rgba(30,55,95,0.45); }
-.jj-photo { border-color: rgba(63,111,155,0.2); }
-
-.jj-poster-wrap { box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
-.jj-poster-wrap img { width: 100%; display: block; }
-
-.jj-wf-item { border-color: rgba(78,122,94,0.22); background: #fff; }
-.jj-wf-caption { color: rgba(18,63,54,0.52); border-top-color: rgba(78,122,94,0.15); }
-.jj-flyer { border-color: rgba(78,122,94,0.22); }
-
-.jj-product-card { background: #fff; border-color: rgba(192,57,43,0.28); }
-.jj-product-name { color: #6e0e0a; }
-.jj-product-price { color: #991a12; }
-.jj-product-desc { color: rgba(80,18,14,0.62); }
-.jj-product-link { background: rgba(192,57,43,0.08); border-color: rgba(192,57,43,0.28); color: #8a1414; }
-
-.jj-site-chrome { border-color: rgba(192,57,43,0.3); background: #fdf0ee; }
-.jj-site-bar { background: rgba(192,57,43,0.08); border-bottom-color: rgba(192,57,43,0.18); }
-.jj-site-url { color: rgba(90,18,14,0.42); }
-.jj-site-placeholder { color: rgba(90,18,14,0.65); }
-
-.jj-jj-photo { border-color: rgba(192,57,43,0.22); }
-.jj-strip-placeholder { border-color: rgba(192,57,43,0.28); background: rgba(192,57,43,0.04); color: rgba(90,18,14,0.72); }
-
-.jj-footer { background: var(--forest); }
-.jj-footer-name { color: rgba(243,237,218,0.58); }
-.jj-footer-link { color: rgba(243,237,218,0.88) !important; border-color: rgba(243,237,218,0.42); }
-
-/* ── Blue scroll strip ── */
-.jj-h-scroll-blue { scrollbar-color: rgba(63,111,155,0.28) transparent; }
-.jj-h-scroll-blue::-webkit-scrollbar-thumb { background: rgba(63,111,155,0.28); }
-
-/* ── Video reel item ── */
-.jj-video-reel {
-  flex: 0 0 auto; width: 480px;
-  border-radius: 12px; overflow: hidden;
-  border: 1px solid rgba(63,111,155,0.24);
-  background: #fff;
-  display: flex; flex-direction: column;
-}
-.jj-video-reel video {
-  width: 100%; display: block;
-  aspect-ratio: 16/9; object-fit: cover;
-  background: #060e1a;
-}
-.jj-video-reel-placeholder {
-  flex: 0 0 auto; width: 360px; aspect-ratio: 16/9;
-  border-radius: 12px;
-  border: 1px dashed rgba(63,111,155,0.26);
-  background: rgba(63,111,155,0.04);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 8px;
-  color: rgba(30,55,95,0.7); font-size: 0.75rem; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase; flex-shrink: 0;
-}
-
-/* ── Process photo strip ── */
-.jj-sl-photo {
-  flex: 0 0 auto; width: 300px;
-  border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(63,111,155,0.2);
-  cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
-  background: #fff;
-}
-.jj-sl-photo:hover { transform: scale(1.03) translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
-.jj-sl-photo img { width: 100%; display: block; }
 </style>
 
 <div class="jj-page">
@@ -669,7 +473,6 @@
 ════════════════════════════════ -->
 <section class="jj-hero" id="top">
   <div class="jj-hero-bg" aria-hidden="true"></div>
-  <div class="jj-hero-overlay" aria-hidden="true"></div>
   <div class="jj-hero-content">
     <div class="jj-hero-left">
       <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
@@ -699,54 +502,79 @@
 <!-- ════════════════════════════════
      CH 01: SONIC LINEAGE
 ════════════════════════════════ -->
-<section class="jj-chapter jj-chapter-01" id="sonic">
+<section class="jj-chapter" id="sonic">
   <div class="jj-chapter-inner">
 
-    <div class="jj-ch-head jj-ch-01">
+    <div class="jj-ch-head">
       <span class="jj-ch-num">01 / Creative Coding</span>
     </div>
-    <h2 class="jj-ch-title jj-ch-01">Sonic Lineage:<br>Sampling History</h2>
-    <hr class="jj-ch-rule jj-ch-01">
+    <h2 class="jj-ch-title">Sonic Lineage:<br>Sampling History</h2>
+    <hr class="jj-ch-rule">
 
     <!-- About card (full width) -->
-    <div class="jj-card jj-card-blue" style="margin-bottom:28px;">
+    <div class="jj-card" style="margin-bottom:28px;">
       <h3>About the Project</h3>
-      <p>Sonic Lineage is an interactive physical computing installation that maps the history of music sampling to touch. Visitors approach a custom-built interface: felt pads wired to a MakeyMakey controller: and physically trigger audio samples spanning decades of recorded music.</p>
-      <p>Each pad is a node in a sonic family tree. Press one and you hear a sample. Press another and you hear what it became: how a drum break traveled from a 1969 soul record into hip-hop, into electronic music, into today. The piece makes visible what has always existed beneath the surface of popular sound.</p>
+      <p>Sonic Lineage is an interactive installation that maps the history of music sampling through direct sound exploration. Visitors use a keyboard-and-mouse interface to trigger individual audio stems — isolated tracks spanning decades of recorded music.</p>
+      <p>Each stem is a node in a sonic family tree. Trigger one and you hear a fragment: a drum break, a bass line, a vocal hook. Trigger another and you hear how it traveled — from a 1969 soul record into hip-hop, into electronic music, into today. The piece makes audible what has always existed beneath the surface of popular sound.</p>
+      <p>The project evolved significantly in development. Originally conceived around a physical Makey Makey interface with felt pads, live testing revealed that a streamlined keyboard-and-mouse control system allowed for much more reliable real-time performance. The live mixing component was removed entirely to prioritize playback stability — the final version focuses on getting every stem to play flawlessly across a global clock.</p>
       <div class="jj-tags">
         <span class="jj-chip jj-chip-blue">Creative Coding</span>
-        <span class="jj-chip jj-chip-blue">Physical Computing</span>
-        <span class="jj-chip jj-chip-blue">MakeyMakey</span>
         <span class="jj-chip jj-chip-blue">Max/MSP</span>
+        <span class="jj-chip jj-chip-blue">JavaScript</span>
         <span class="jj-chip jj-chip-blue">Music Sampling</span>
+        <span class="jj-chip jj-chip-blue">Physical Computing</span>
       </div>
-      <div class="jj-maxpat" style="margin-top:18px;">
+      <div class="jj-maxpat" style="margin-top:20px;">
         <div class="jj-maxpat-label">
-          <strong>Max/MSP Patch</strong>
-          Download the .maxpat file to open and explore the patch in Max 8 or later.
+          <strong>Max/MSP Patch — Final Build</strong>
+          Download FINAL_SonicLineageV2_COMPLETE.maxpat to open in Max 8 or later. Requires the four JS files included in the bundle.
         </div>
-        <a class="jj-btn jj-btn-blue" href="#" download>Download .maxpat</a>
+        <a class="jj-btn jj-btn-blue" href="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Jeter_SubmissionBundle/Jeter_SubmissionBundle/Maxpat%20%26%20JS/FINAL_SonicLineageV2_COMPLETE.maxpat" download>Download .maxpat</a>
       </div>
     </div>
 
     <!-- Demo video (full width) -->
     <div style="margin-bottom:32px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:12px;">Demo Video</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Demo Video</div>
       <div class="jj-video-shell">
-        <div class="jj-video-label">Sonic Lineage — Demo</div>
-        <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo.mp4"
+        <div class="jj-video-label">Sonic Lineage — Live Demo</div>
+        <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo-final.mp4"
           controls muted playsinline preload="none"
-          style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#060e1a;"></video>
+          style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#061208;"></video>
       </div>
     </div>
 
-    <!-- Before Design — process photo gallery -->
+    <!-- JS Architecture -->
+    <div style="margin-bottom:32px;">
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:10px;">JavaScript Architecture</div>
+      <p style="font-size:0.95rem;color:rgba(18,63,54,0.7);margin-bottom:14px;line-height:1.6;">Four JS files power the patch's control and sync logic. Max loads them at runtime — if missing, scripted features fail.</p>
+      <div class="jj-js-grid">
+        <div class="jj-js-file">
+          <div class="jj-js-name">active_stems_status.js</div>
+          <div class="jj-js-desc">Tracks which stems are active and builds the UI status text in real time.</div>
+        </div>
+        <div class="jj-js-file">
+          <div class="jj-js-name">song_sync_clock.js</div>
+          <div class="jj-js-desc">Maintains shared timing state so all events stay aligned to song playback.</div>
+        </div>
+        <div class="jj-js-file">
+          <div class="jj-js-name">stem_availability_gate.js</div>
+          <div class="jj-js-desc">Enforces valid stem controls per song — prevents invalid trigger combinations.</div>
+        </div>
+        <div class="jj-js-file">
+          <div class="jj-js-name">simple_stem_router.js</div>
+          <div class="jj-js-desc">Routes keyboard controls into the correct play/stop paths for each stem.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process photo gallery -->
     <div>
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(30,55,95,0.82);margin-bottom:4px;">Before Design — Process Photos</div>
-      <div style="font-size:1rem;color:rgba(30,55,95,0.80);margin-bottom:12px;">Early prototype builds before the final installation.</div>
-      <div class="jj-h-scroll jj-h-scroll-blue" id="sl-gallery">
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:4px;">Process Photos</div>
+      <div style="font-size:0.95rem;color:rgba(18,63,54,0.6);margin-bottom:12px;">Earlier hardware prototypes before the final keyboard-based build.</div>
+      <div class="jj-h-scroll" id="sl-gallery">
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view: felt pads and MakeyMakey" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view: felt pads and MakeyMakey prototype" loading="lazy">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg" alt="Touch pads and reel discs" loading="lazy">
@@ -761,7 +589,7 @@
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg" alt="Desk setup: vector diagram on monitor" loading="lazy">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with the prototype" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with prototype" loading="lazy">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png" alt="Max/MSP patch view" loading="lazy">
@@ -776,18 +604,18 @@
 <!-- ════════════════════════════════
      CH 02: IMM SENIOR SHOW DESIGN
 ════════════════════════════════ -->
-<section class="jj-chapter jj-chapter-02" id="show">
+<section class="jj-chapter" id="show">
   <div class="jj-chapter-inner">
 
-    <div class="jj-ch-head jj-ch-02">
+    <div class="jj-ch-head">
       <span class="jj-ch-num">02 / Web Design &amp; Branding</span>
     </div>
-    <h2 class="jj-ch-title jj-ch-02">IMM Senior<br>Show 2026</h2>
-    <hr class="jj-ch-rule jj-ch-02">
+    <h2 class="jj-ch-title">IMM Senior<br>Show 2026</h2>
+    <hr class="jj-ch-rule">
 
     <div class="jj-split-wide" style="align-items:start;">
       <div>
-        <div class="jj-card jj-card-green" style="margin-bottom:14px;">
+        <div class="jj-card" style="margin-bottom:16px;">
           <h3>Web Designer &amp; Brand Kit</h3>
           <p>On top of my own project, I was the lead designer for the 2026 IMM Senior Show: building the full digital and print identity from scratch. The website, the posters, the flyers, the event branding, and every custom code inject on the site.</p>
           <p>I started with wireframes in Canva, went through multiple color directions, and landed on a woodsy, nature-meets-brutalism aesthetic. Thirty-seven students across six tracks, all in one cohesive system.</p>
@@ -806,9 +634,9 @@
         </div>
       </div>
 
-      <!-- Poster fan -->
+      <!-- Poster strip -->
       <div>
-        <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:10px;">11×17 Poster Series</div>
+        <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:10px;">11×17 Poster Series</div>
         <div class="jj-h-scroll" id="poster-fan">
           <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster" loading="lazy">
@@ -826,28 +654,26 @@
       </div>
     </div>
 
-    <!-- Site preview video -->
+    <!-- Live site recording -->
     <div style="margin-top:36px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:10px;">Live Site Recording</div>
-      <div class="jj-site-chrome" style="border-color:rgba(78,122,94,0.3);">
-        <div class="jj-site-bar" style="border-bottom-color:rgba(78,122,94,0.2);">
-          <span class="jj-site-dot" style="background:rgba(78,122,94,0.4);"></span>
-          <span class="jj-site-dot" style="background:rgba(78,122,94,0.4);"></span>
-          <span class="jj-site-dot" style="background:rgba(78,122,94,0.4);"></span>
-          <span class="jj-site-url" style="color:rgba(18,63,54,0.5);">immseniorshow.com</span>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Live Site Recording</div>
+      <div class="jj-site-chrome">
+        <div class="jj-site-bar">
+          <span class="jj-site-dot"></span><span class="jj-site-dot"></span><span class="jj-site-dot"></span>
+          <span class="jj-site-url">immseniorshow.com</span>
         </div>
         <video
           src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-preview.webm"
           poster="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-poster.png"
           autoplay loop muted playsinline
-          style="width:100%;display:block;border-radius:0 0 12px 12px;min-height:360px;max-height:480px;object-fit:cover;object-position:top;background:#1a2e1a;">
+          style="width:100%;display:block;border-radius:0 0 12px 12px;min-height:340px;max-height:460px;object-fit:cover;object-position:top;background:#0c1a10;">
         </video>
       </div>
     </div>
 
     <!-- Flyer strip -->
     <div style="margin-top:36px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:12px;">Social &amp; Digital Flyers</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Social &amp; Digital Flyers</div>
       <div class="jj-h-scroll" id="flyer-strip">
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Flyer: mountain lake" loading="lazy">
@@ -866,8 +692,8 @@
 
     <!-- Wireframe scroller: Canva sketches -->
     <div style="margin-top:36px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:4px;">Design Process: Early Sketches</div>
-      <div style="font-size:1rem;color:rgba(18,63,54,0.80);margin-bottom:12px;line-height:1.5;">Early Canva wireframes — color direction explorations before any code was written.</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:4px;">Design Process: Early Sketches</div>
+      <div style="font-size:0.95rem;color:rgba(18,63,54,0.65);margin-bottom:12px;line-height:1.55;">Early Canva wireframes — color direction explorations before any code was written.</div>
       <div class="jj-h-scroll" id="wf-scroll">
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage: 4 color directions" loading="lazy">
@@ -888,20 +714,20 @@
       </div>
     </div>
 
-    <!-- Wireframe scroller: coded prototypes -->
-    <div style="margin-top:24px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.82);margin-bottom:4px;">Coded Prototypes</div>
-      <div style="font-size:1rem;color:rgba(18,63,54,0.80);margin-bottom:12px;line-height:1.5;">Live HTML mockups built during development. Click any to open full-size.</div>
+    <!-- Coded prototypes -->
+    <div style="margin-top:28px;">
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:4px;">Coded Prototypes</div>
+      <div style="font-size:0.95rem;color:rgba(18,63,54,0.65);margin-bottom:12px;line-height:1.55;">Live HTML mockups built during development. Click any to open full-size.</div>
       <div class="jj-h-scroll" id="wf-prototypes">
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" loading="lazy" title="Coded prototype: homepage + directory, early direction"></iframe>
+            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" loading="lazy" title="Coded prototype: early direction"></iframe>
           </div>
           <div class="jj-wf-caption">Early direction ↗</div>
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" loading="lazy" title="Coded homepage: second pass"></iframe>
+            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" loading="lazy" title="Second pass"></iframe>
           </div>
           <div class="jj-wf-caption">Second pass ↗</div>
         </a>
@@ -919,9 +745,9 @@
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" loading="lazy" title="Brand kit: final system"></iframe>
+            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" loading="lazy" title="Brand kit"></iframe>
           </div>
-          <div class="jj-wf-caption">Brand kit — final system ↗</div>
+          <div class="jj-wf-caption">Brand kit — final ↗</div>
         </a>
       </div>
     </div>
@@ -933,20 +759,20 @@
 <!-- ════════════════════════════════
      CH 03: J&J INNOVATIONS
 ════════════════════════════════ -->
-<section class="jj-chapter jj-chapter-03" id="jj">
+<section class="jj-chapter" id="jj">
   <div class="jj-chapter-inner">
 
-    <div class="jj-ch-head jj-ch-03">
+    <div class="jj-ch-head">
       <span class="jj-ch-num">03 / Digital Fabrication Studio</span>
     </div>
-    <h2 class="jj-ch-title jj-ch-03">J&amp;J<br>Innovations</h2>
-    <hr class="jj-ch-rule jj-ch-03">
+    <h2 class="jj-ch-title">J&amp;J<br>Innovations</h2>
+    <hr class="jj-ch-rule">
 
-    <!-- Studio card -->
-    <div class="jj-card jj-card-gold" style="margin-bottom:28px;">
+    <!-- Studio card full width -->
+    <div class="jj-card" style="margin-bottom:28px;">
       <h3>Our Studio</h3>
       <p>J&amp;J Innovations is a digital fabrication business I run with Jared Morris: we design and 3D print products, from precision gear mechanisms to event merch. Getting something to actually print the way you designed it is its own discipline, and I learned that fast.</p>
-      <p>The IMM logo went through way more iterations than I expected: small tweaks to wall thickness, infill, tolerances: until it actually looked the way it was supposed to look off the printer. And then there's the poster: we accidentally printed "26'" with an apostrophe instead of "26": which, depending on who you ask, is either a mistake or a feature at this point.</p>
+      <p>The IMM logo went through way more iterations than I expected — small tweaks to wall thickness, infill, tolerances — until it actually looked the way it was supposed to look off the printer. And then there's the poster: we accidentally printed "26'" with an apostrophe instead of "26" which, depending on who you ask, is either a mistake or a feature at this point.</p>
       <p>Running the studio while finishing senior year was a real test. Real orders, real deadlines, real physical product that has to be right before it ships.</p>
       <div class="jj-tags">
         <span class="jj-chip jj-chip-gold">Digital Fabrication</span>
@@ -961,42 +787,36 @@
     </div>
 
     <!-- Full-bleed site recording -->
-    <div class="jj-site-chrome jj-jj-bleed">
-      <div class="jj-site-bar">
-        <span class="jj-site-dot"></span><span class="jj-site-dot"></span><span class="jj-site-dot"></span>
-        <span class="jj-site-url">jandjinnovation.com</span>
+    <div class="jj-site-chrome-rust jj-jj-bleed">
+      <div class="jj-site-bar-rust">
+        <span class="jj-site-dot-rust"></span><span class="jj-site-dot-rust"></span><span class="jj-site-dot-rust"></span>
+        <span class="jj-site-url-rust">jandjinnovation.com</span>
       </div>
       <video
         src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/jj-desktop-preview.mp4"
         autoplay loop muted playsinline
-        style="width:100%;display:block;border-radius:0 0 12px 12px;object-fit:cover;object-position:top;background:#0c0804;">
+        style="width:100%;display:block;object-fit:cover;object-position:top;background:#0c0804;max-height:520px;">
       </video>
     </div>
 
-    <!-- Product cards pulled from the shop -->
-    <div style="margin-top:32px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.82);margin-bottom:14px;">Products</div>
+    <!-- Product cards -->
+    <div style="margin-top:36px;">
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:14px;">Products</div>
       <div class="jj-product-grid">
-
         <div class="jj-product-card">
-          <div class="jj-product-img" tabindex="0"
-               data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=600"
-                 alt="Herringbone Prime (Basic)" loading="lazy">
+          <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=800">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime" loading="lazy">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">Herringbone Prime</div>
             <div class="jj-product-price">$8.00</div>
-            <div class="jj-product-desc">3D printed planetary gear set with herringbone teeth: precision transmission design you can hold.</div>
+            <div class="jj-product-desc">3D printed planetary gear set with herringbone teeth — precision transmission design you can hold.</div>
             <a class="jj-product-link" href="https://jandjinnovation.com/products/herringbone-prime" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
-
         <div class="jj-product-card">
-          <div class="jj-product-img" tabindex="0"
-               data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=600"
-                 alt="Herringbone Prime Two Colors" loading="lazy">
+          <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=800">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime Two Colors" loading="lazy">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">Herringbone Prime (Two Colors)</div>
@@ -1005,49 +825,35 @@
             <a class="jj-product-link" href="https://jandjinnovation.com/products/herringbone-prime-two-colors" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
-
         <div class="jj-product-card">
-          <div class="jj-product-img" tabindex="0"
-               data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=600"
-                 alt="IMM Logo 3D print" loading="lazy">
+          <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=800">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=600" alt="IMM Logo 3D print" loading="lazy">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">IMM Logo</div>
             <div class="jj-product-price">$5.00</div>
-            <div class="jj-product-desc">A piece of the IMM 2026 Senior Showcase: 3D printed by the design committee. Available in green or blue.</div>
+            <div class="jj-product-desc">A piece of the IMM 2026 Senior Showcase: 3D printed by the design committee. Green or blue.</div>
             <a class="jj-product-link" href="https://jandjinnovation.com/products/imm-logo" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
-
         <div class="jj-product-card">
-          <div class="jj-product-img" tabindex="0"
-               data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=600"
-                 alt="IMM Posters print" loading="lazy">
+          <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=800">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=600" alt="IMM Posters print" loading="lazy">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">IMM Posters</div>
             <div class="jj-product-price">$5.00</div>
-            <div class="jj-product-desc">Official 2026 IMM Senior Showcase poster print: gallery-quality keepsake designed by the committee.</div>
+            <div class="jj-product-desc">Official 2026 IMM Senior Showcase poster — gallery-quality keepsake designed by the committee.</div>
             <a class="jj-product-link" href="https://jandjinnovation.com/products/imm-posters" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- J&J photo strip -->
     <div style="margin-top:32px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(90,18,14,0.82);margin-bottom:12px;">Photos</div>
-      <div class="jj-h-scroll jj-h-scroll-gold" id="jj-photo-strip">
-        <!--
-          Drop J&J product/process photos here as they come in.
-          Pattern:
-          <div class="jj-jj-photo" tabindex="0" data-src="FULL_URL">
-            <img src="FULL_URL" alt="Description" loading="lazy">
-          </div>
-        -->
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Photos</div>
+      <div class="jj-h-scroll" id="jj-photo-strip">
         <div class="jj-strip-placeholder">Coming Soon</div>
         <div class="jj-strip-placeholder">Coming Soon</div>
         <div class="jj-strip-placeholder">Coming Soon</div>
@@ -1060,7 +866,7 @@
 
 <!-- Footer -->
 <footer class="jj-footer">
-  <span class="jj-footer-name">Jennea Jeter: IMM '26</span>
+  <span class="jj-footer-name">Jennea Jeter &nbsp;·&nbsp; IMM '26</span>
   <a class="jj-footer-link" href="/directory">← All Projects</a>
 </footer>
 
