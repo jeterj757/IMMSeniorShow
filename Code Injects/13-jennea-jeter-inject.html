@@ -287,16 +287,20 @@
    CH 02: SENIOR SHOW
 ──────────────────────────────── */
 
-/* Poster strip (horizontal scroll) */
-.jj-poster-strip-item {
-  flex: 0 0 auto; width: 200px;
+/* Poster 2×2 grid (fills column height) */
+.jj-poster-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  flex: 1; min-height: 0;
+}
+.jj-poster-grid-item {
   border-radius: 8px; overflow: hidden;
   box-shadow: 0 8px 24px rgba(18,63,54,0.16);
   cursor: zoom-in; border: 1px solid rgba(18,63,54,0.14);
   transition: transform 0.18s, box-shadow 0.18s;
+  min-height: 0;
 }
-.jj-poster-strip-item:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 18px 40px rgba(18,63,54,0.22); }
-.jj-poster-strip-item img { width: 100%; display: block; }
+.jj-poster-grid-item:hover { transform: scale(1.02); box-shadow: 0 16px 36px rgba(18,63,54,0.22); }
+.jj-poster-grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
 /* Horizontal scroll strip */
 .jj-h-scroll {
@@ -678,7 +682,7 @@
     <h2 class="jj-ch-title">IMM Senior<br>Show 2026</h2>
     <hr class="jj-ch-rule">
 
-    <div class="jj-split-wide" style="align-items:start;">
+    <div class="jj-split-wide" style="align-items:stretch;">
       <div>
         <div class="jj-card" style="margin-bottom:16px;">
           <h3>Web Designer &amp; Brand Kit</h3>
@@ -694,25 +698,25 @@
         </div>
         <div class="jj-stats">
           <div class="jj-stat"><span class="jj-stat-num">37</span><span class="jj-stat-label">Students</span></div>
-          <div class="jj-stat"><span class="jj-stat-num">6</span><span class="jj-stat-label">Tracks</span></div>
+          <div class="jj-stat"><span class="jj-stat-num">6</span><span class="jj-stat-label">Specializations</span></div>
           <div class="jj-stat"><span class="jj-stat-num">13+</span><span class="jj-stat-label">Injects Built</span></div>
         </div>
       </div>
 
-      <!-- Poster strip -->
-      <div>
-        <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:10px;">11×17 Poster Series</div>
-        <div class="jj-h-scroll" id="poster-fan">
-          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
+      <!-- Poster 2×2 grid — stretches to match left column -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);">11×17 Poster Series</div>
+        <div class="jj-poster-grid" id="poster-fan">
+          <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster" loading="lazy">
           </div>
-          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
+          <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster: forest green" loading="lazy">
           </div>
-          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
+          <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster: canyon warm" loading="lazy">
           </div>
-          <div class="jj-poster-strip-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
+          <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
             <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster: canyon blue" loading="lazy">
           </div>
         </div>
