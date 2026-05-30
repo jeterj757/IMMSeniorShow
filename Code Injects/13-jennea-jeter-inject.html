@@ -58,36 +58,42 @@
 }
 
 /* ════════════════════════════════
-   HERO — dark, full-bleed
+   HERO — full-bleed photo
 ════════════════════════════════ */
 .jj-hero {
   position: relative;
-  min-height: 88svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  min-height: 92svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   overflow: hidden;
-  padding: clamp(32px,6vw,72px) clamp(20px,6vw,80px) clamp(48px,7vw,80px);
   background: var(--forest);
 }
-.jj-hero-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(180deg, rgba(8,28,22,0.08) 0%, rgba(8,28,22,0.58) 55%, rgba(8,28,22,0.94) 100%),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png") center 30% / cover no-repeat;
+
+/* Left: photo fills full height */
+.jj-hero-photo {
+  position: relative;
+  overflow: hidden;
 }
-.jj-hero-bg::after {
+.jj-hero-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.jj-hero-photo::after {
   content: "";
   position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(8,28,22,0.65) 100%);
+}
+
+/* Right: name + bio on dark bg */
+.jj-hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(40px,6vw,80px) clamp(32px,5vw,64px) clamp(48px,7vw,80px);
   background-image: repeating-linear-gradient(135deg, rgba(243,237,218,0.04) 0 1px, transparent 1px 20px);
   background-size: 24px 24px;
 }
-.jj-hero-content {
-  position: relative; z-index: 2;
-  width: 100%; max-width: 1100px;
-  display: flex; flex-direction: column; gap: 24px;
-}
-.jj-hero-right { display: flex; flex-direction: column; }
 
 @keyframes jj-up {
   from { opacity: 0; transform: translateY(18px); }
@@ -113,6 +119,15 @@
 }
 .jj-hero-body p { margin: 0; }
 .jj-hero-body p + p { margin-top: 12px; }
+
+.jj-hero-body {
+  margin: 16px 0 0;
+  color: rgba(243,237,218,0.86);
+  font-size: clamp(1rem,1.4vw,1.1rem);
+  line-height: 1.75;
+}
+.jj-hero-body p { margin: 0; }
+.jj-hero-body p + p { margin-top: 10px; }
 
 .jj-chapter-row {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -428,6 +443,55 @@
 .jj-jj-photo:hover { transform: scale(1.03) translateY(-3px); }
 .jj-jj-photo img { width:100%; display:block; }
 
+/* ── Next Chapter section ── */
+.jj-next-chapter {
+  padding: clamp(56px,9vw,96px) clamp(20px,6vw,80px);
+  background: var(--forest);
+  position: relative;
+}
+.jj-next-chapter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(135deg, rgba(243,237,218,0.04) 0 1px, transparent 1px 20px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.jj-next-chapter > * { position: relative; z-index: 1; }
+.jj-next-inner { max-width: 1100px; margin: 0 auto; }
+.jj-next-eyebrow {
+  font-family: var(--d);
+  font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(243,237,218,0.45); margin-bottom: 10px;
+}
+.jj-next-title {
+  font-family: var(--d);
+  font-size: clamp(2rem,5vw,3.6rem);
+  line-height: 1.06; letter-spacing: 0.025em; text-transform: uppercase;
+  color: var(--paper); margin: 0 0 20px;
+}
+.jj-next-title em { font-style: normal; color: rgba(199,81,69,0.9); }
+.jj-next-body {
+  font-size: clamp(1rem,1.6vw,1.12rem); line-height: 1.72;
+  color: rgba(243,237,218,0.82); max-width: 60ch; margin-bottom: 32px;
+}
+.jj-next-body p { margin: 0; }
+.jj-next-body p + p { margin-top: 12px; }
+.jj-social-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.jj-social-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--pill);
+  border: 1.5px solid rgba(243,237,218,0.28);
+  background: rgba(243,237,218,0.07);
+  color: rgba(243,237,218,0.88);
+  font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+.jj-social-link:hover { background: rgba(243,237,218,0.14); border-color: rgba(243,237,218,0.5); }
+.jj-social-icon { font-size: 1.1rem; line-height: 1; }
+
 /* ── Footer ── */
 .jj-footer {
   background: var(--forest); padding: 32px clamp(20px,6vw,80px);
@@ -447,11 +511,11 @@
 .jj-lb-x:hover { background:rgba(255,255,255,0.2); }
 
 /* ── Responsive ── */
-@media (min-width: 760px) {
-  .jj-hero-content { flex-direction: row; align-items: center; gap: clamp(40px,5vw,64px); }
-  .jj-hero-left { flex: 1 1 0; }
-  .jj-hero-right { flex: 1.5 1 0; }
-  .jj-hero-name { font-size: clamp(3.5rem,9vw,9rem); }
+@media (max-width: 760px) {
+  .jj-hero { grid-template-columns: 1fr; grid-template-rows: 55vw auto; }
+  .jj-hero-photo::after { background: linear-gradient(to bottom, transparent 60%, rgba(8,28,22,0.8) 100%); }
+  .jj-hero-content { padding: clamp(24px,5vw,48px) clamp(20px,5vw,40px) 40px; }
+  .jj-hero-name { font-size: clamp(3.2rem,12vw,6rem); }
 }
 @media (max-width: 900px) {
   .jj-split, .jj-split-wide { grid-template-columns: 1fr; }
@@ -472,28 +536,30 @@
      HERO
 ════════════════════════════════ -->
 <section class="jj-hero" id="top">
-  <div class="jj-hero-bg" aria-hidden="true"></div>
+  <!-- Left: graduation photo -->
+  <div class="jj-hero-photo">
+    <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/jennea-graduation.jpg"
+         alt="Jennea Jeter at graduation, The College of New Jersey"
+         onerror="this.closest('.jj-hero-photo').style.background='linear-gradient(160deg,#1a3d30 0%,#0c1a10 100%)'">
+  </div>
+
+  <!-- Right: name + bio + nav -->
   <div class="jj-hero-content">
-    <div class="jj-hero-left">
-      <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
+    <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
+    <div class="jj-hero-body">
+      <p>I spent most of my senior year not knowing what my thesis was "supposed" to be. I can do graphic design and branding. I code websites (including the site you are reading this on). I even co-founded a small business. Picking one thing felt like restricting all of what I actually do.</p>
+      <p>What you're looking at is a collection of the work that challenged me the most this year — three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
     </div>
-    <div class="jj-hero-right">
-      <div class="jj-hero-body">
-        <p>I spent most of my senior year not knowing what my thesis was "supposed" to be. I can do graphic design and branding. I code websites (including the site you are reading this on). I even co-founded a small business. Picking one thing felt like restricting all of what I actually do.</p>
-        <p>What you're looking at is a collection of the work that challenged me the most this year: three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
-        <p>This multidisciplinary mindset is something I am carrying with me into my next chapter. This fall, I will be attending William Paterson University for their Master's in Clinical and Counseling Psychology program. My goal is to eventually merge my technical and design background with clinical practice, using these creative tools to innovate wherever I go. This portfolio is not just a wrap-up of my time at TCNJ, but the foundation for everything I plan to build next.</p>
-      </div>
-      <div class="jj-chapter-row">
-        <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
-          <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
-        </button>
-        <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
-          <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show
-        </button>
-        <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
-          <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
-        </button>
-      </div>
+    <div class="jj-chapter-row">
+      <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
+      </button>
+      <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show
+      </button>
+      <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
+        <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
+      </button>
     </div>
   </div>
 </section>
@@ -863,6 +929,31 @@
   </div>
 </section>
 
+
+<!-- ════════════════════════════════
+     NEXT CHAPTER
+════════════════════════════════ -->
+<section class="jj-next-chapter" id="next">
+  <div class="jj-next-inner">
+    <div class="jj-next-eyebrow">What's Next</div>
+    <h2 class="jj-next-title">William Paterson<br><em>University</em></h2>
+    <div class="jj-next-body">
+      <p>This fall I'll be pursuing a Master's in Clinical and Counseling Psychology at William Paterson University. My goal is to merge my technical and design background with clinical practice — using creative tools to innovate wherever I go.</p>
+      <p>This portfolio is not just a wrap-up of my time at TCNJ. It's the foundation for everything I plan to build next.</p>
+    </div>
+    <div class="jj-social-row">
+      <a class="jj-social-link" href="https://www.linkedin.com/in/jennea-jeter" target="_blank" rel="noopener">
+        <span class="jj-social-icon">in</span> LinkedIn
+      </a>
+      <a class="jj-social-link" href="https://jandjinnovation.com" target="_blank" rel="noopener">
+        <span class="jj-social-icon">↗</span> J&amp;J Innovations
+      </a>
+      <a class="jj-social-link" href="https://www.instagram.com" target="_blank" rel="noopener">
+        <span class="jj-social-icon">◎</span> Instagram
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="jj-footer">
