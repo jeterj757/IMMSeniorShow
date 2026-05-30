@@ -36,6 +36,23 @@
 .jj-page img { display: block; max-width: 100%; }
 .jj-page button { font-family: inherit; }
 
+/* Force Norwester — overrides Squarespace's site-wide font injections */
+.jj-hero-name,
+.jj-ch-title,
+.jj-ch-num,
+.jj-card h3,
+.jj-stat-num,
+.jj-footer-name,
+.jj-next-eyebrow,
+.jj-next-title,
+.jj-product-name,
+.jj-maxpat-label strong,
+.jj-wf-caption,
+.jj-video-label,
+.jj-js-name {
+  font-family: "Norwester", "Arial Narrow", Impact, sans-serif !important;
+}
+
 .jj-page {
   --d:      "Norwester", "Arial Narrow", Impact, sans-serif;
   --ui:     "Avenir Next", "Avenir", system-ui, -apple-system, sans-serif;
@@ -69,6 +86,14 @@
   background: var(--forest);
 }
 
+/* ── Squarespace header offset ── */
+/* Default: no header (local preview). Squarespace sets --imm-sqs-header-offset. */
+.jj-page { --jj-hw: 0px; }
+body:has(#header) .jj-page,
+html.squarespace-damask .jj-page {
+  --jj-hw: var(--imm-sqs-header-visible-offset, var(--imm-sqs-header-offset, 76px));
+}
+
 /* Left: photo fills full height */
 .jj-hero-photo {
   position: relative;
@@ -76,7 +101,9 @@
 }
 .jj-hero-photo img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
+  object-fit: cover;
+  /* Shift image down by header height so face clears the nav bar */
+  object-position: center max(calc(var(--jj-hw) + 4%), 8%);
   display: block;
 }
 .jj-hero-photo::after {
@@ -91,6 +118,8 @@
   display: flex; flex-direction: column;
   justify-content: flex-end;
   padding: clamp(40px,6vw,80px) clamp(32px,5vw,64px) clamp(48px,7vw,80px);
+  /* Also shift content below the header */
+  padding-top: max(calc(var(--jj-hw) + 40px), 48px);
   background-image: repeating-linear-gradient(135deg, rgba(243,237,218,0.04) 0 1px, transparent 1px 20px);
   background-size: 24px 24px;
 }
