@@ -1564,7 +1564,6 @@ html.squarespace-damask .imm-shop {
 .imm-shop-meta { padding: 9px 10px 10px; display: flex; flex-direction: column; gap: 4px; }
 .imm-shop-topline { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
 .imm-shop-title { font-size: 0.78rem; font-weight: 700; color: #1c2422; letter-spacing: 0.01em; }
-.imm-shop-price { font-size: 0.76rem; font-weight: 800; color: #123f36; white-space: nowrap; }
 .imm-shop-swatches { display: flex; flex-wrap: wrap; gap: 4px; }
 .imm-shop-swatch {
   width: 11px; height: 11px; border-radius: 50%;
@@ -2813,24 +2812,14 @@ html.squarespace-damask .imm-shop {
   <section class="imm-section imm-shop" id="imm-merch">
     <div class="imm-shop-inner">
       <p class="imm-shop-kicker">Official IMM Senior Show</p>
-      <h2 class="imm-section-title imm-shop-heading">Grab Your Merch!</h2>
-      <a class="imm-shop-store-btn"
-         href="https://imm-senior-class-store.printify.me/"
-         target="_blank" rel="noopener"
-         aria-label="Open full merch store">
-        Open Full Store
-        <svg class="imm-shop-store-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
-          <path d="M14 4h6v6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M20 4 10 14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M11 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </a>
+      <h2 class="imm-section-title imm-shop-heading">Merch Archive</h2>
+      <p class="imm-shop-copy">The 2026 merch shop is now closed. This gallery shows what was available during the Senior Show.</p>
       <div class="imm-shop-divider" aria-hidden="true">
         <span class="imm-shop-divider-dot"></span>
         <span class="imm-shop-divider-dot"></span>
         <span class="imm-shop-divider-dot"></span>
       </div>
-      <div class="imm-shop-grid" id="imm-shop-grid" aria-label="Merch products"></div>
+      <div class="imm-shop-grid" id="imm-shop-grid" aria-label="Senior Show merch archive"></div>
     </div>
   </section>
 
@@ -2838,8 +2827,8 @@ html.squarespace-damask .imm-shop {
   <section class="imm-section imm-shop" id="imm-shop">
     <div class="imm-shop-inner">
       <p class="imm-shop-kicker">11 x 17 Posters</p>
-      <h2 class="imm-section-title imm-shop-heading">Poster Sale</h2>
-      <p class="imm-shop-copy"><strong>$1.50 each</strong> at J&amp;J Innovations. Proceeds support the IMM major.</p>
+      <h2 class="imm-section-title imm-shop-heading">Poster Archive</h2>
+      <p class="imm-shop-copy">The 2026 poster series from the Senior Show merch table.</p>
       <div class="imm-shop-grid" aria-label="Senior Show poster previews">
         <article class="imm-poster-card">
           <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Show poster design 1" loading="lazy">
@@ -2923,20 +2912,20 @@ html.squarespace-damask .imm-shop {
     torange:{hex:"#c0571e"},
   };
   var SHOP_PRODUCTS = [
-    {title:"Unisex Tee",           price:"$23.00", note:"XS–3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28067519", image:"https://images-api.printify.com/mockup/69e452fcc1781a06ac068df2/12100/92570/unisex-tee.jpg?camera_label=front&revision=1776954736678&s=400"},
-    {title:"Unisex Crewneck",      price:"$33.00", note:"XS–3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28069894", image:"https://images-api.printify.com/mockup/69e48978e1b544748a052959/25443/98502/unisex-crewneck.jpg?camera_label=front&revision=1776955108810&s=400"},
-    {title:"Unisex Hoodie",        price:"$35.00", note:"XS–3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28069936", image:"https://images-api.printify.com/mockup/69e48a0af2671100e10e220a/32880/98424/unisex-hooded-sweatshirt.jpg?camera_label=front&revision=1776954233375&s=400"},
-    {title:"Zip-Up Hoodie",        price:"$38.00", note:"XS–3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy], href:"https://imm-senior-class-store.printify.me/product/28069955", image:"https://images-api.printify.com/mockup/69e48be1e1b544748a052a4e/66102/108335/unisex-zip-up-hooded-sweatshirt.jpg?camera_label=front&revision=1776954535200&s=400"},
-    {title:"Ladies V-Neck Tee",    price:"$24.00", note:"XS–3XL", colors:[C.white,C.black,C.grey,C.red,C.sapph,C.navy], href:"https://imm-senior-class-store.printify.me/product/28153132", image:"https://images-api.printify.com/mockup/69e96a4bb22af0e531010362/78524/106703/ladies-v-neck-tee.jpg?camera_label=front&revision=1776954926459&s=400"},
-    {title:"Tee — Embroidered",    price:"$18.00", note:"XS–3XL", colors:[C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], href:"https://imm-senior-class-store.printify.me/product/28067347", image:"https://images-api.printify.com/mockup/69e44ff664704ce13e01be4c/11902/102005/unisex-tee-embroidered.jpg?camera_label=front-2&revision=1776954296711&s=400"},
-    {title:"Tote Bag",             price:"$20.00", note:"3 colors · 3 sizes", colors:[C.tgreen,C.tblue,C.torange], href:"https://imm-senior-class-store.printify.me/product/28151456", image:"https://images-api.printify.com/mockup/69e4a1ed15a70dfc4b0d667a/103605/100880/tote-bag-green.jpg?camera_label=front&revision=1776956003112&s=400"},
-    {title:"Baseball Cap",         price:"$20.00", note:"One size", colors:[C.grey,C.black,C.navy,C.maroon], href:"https://imm-senior-class-store.printify.me/product/28067625", image:"https://images-api.printify.com/mockup/69e45574b62bfffb670009e4/118562/109495/baseball-cap-embroidered.jpg?camera_label=front&revision=1776960509485&s=400"},
-    {title:"Roscoe Plush",         price:"$25.00", note:"6 animals", colors:[], href:"https://imm-senior-class-store.printify.me/product/28068194", image:"https://images-api.printify.com/mockup/69e46006e9b8abdb01096c10/81079/50076/roscoe-plush.jpg?camera_label=front&revision=1776954381911&s=400"},
-    {title:"Signature Poster",     price:"$10.00", note:"4 sizes · Matte", colors:[], href:"https://imm-senior-class-store.printify.me/product/28152930", image:"https://images-api.printify.com/mockup/69e96851a66cae3b9e0c35d9/114557/106501/signature-poster.jpg?camera_label=front&revision=1776904469307&s=400"},
-    {title:"Beer Stein Mug",       price:"$23.00", note:"22 oz", colors:[], href:"https://imm-senior-class-store.printify.me/product/28153440", image:"https://images-api.printify.com/mockup/69e96ba330dc29f0a1086658/81535/51660/beer-stein-mug.jpg?camera_label=front&revision=1776956222768&s=400"},
-    {title:"Accent Coffee Mug",    price:"$8.00",  note:"11 oz or 15 oz", colors:[], href:"https://imm-senior-class-store.printify.me/product/28168177", image:"https://images-api.printify.com/mockup/69ea637ce3254713080ada2c/72180/102752/accent-coffee-mug.jpg?camera_label=front&revision=1776970706978&s=400"},
-    {title:"Steel Ring — Engraved",price:"$25.00", note:"Sizes 6–8", colors:[], href:"https://imm-senior-class-store.printify.me/product/28068312", image:"https://images-api.printify.com/mockup/69e4633315a70dfc4b0d5287/164397/112850/stainless-steel-ring-engraved.jpg?camera_label=front&revision=1776956813080&s=400"},
-    {title:"Acrylic Statue",       price:"$18.00", note:"5 × 5 in", colors:[], href:"https://imm-senior-class-store.printify.me/product/28070506", image:"https://images-api.printify.com/mockup/69e4a099f2671100e10e27f6/149512/120384/custom-acrylic-statue-green.jpg?camera_label=front&revision=1776956773283&s=400"},
+    {title:"Unisex Tee",           note:"XS-3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], image:"https://images-api.printify.com/mockup/69e452fcc1781a06ac068df2/12100/92570/unisex-tee.jpg?camera_label=front&revision=1776954736678&s=400"},
+    {title:"Unisex Crewneck",      note:"XS-3XL", colors:[C.white,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], image:"https://images-api.printify.com/mockup/69e48978e1b544748a052959/25443/98502/unisex-crewneck.jpg?camera_label=front&revision=1776955108810&s=400"},
+    {title:"Unisex Hoodie",        note:"XS-3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], image:"https://images-api.printify.com/mockup/69e48a0af2671100e10e220a/32880/98424/unisex-hooded-sweatshirt.jpg?camera_label=front&revision=1776954233375&s=400"},
+    {title:"Zip-Up Hoodie",        note:"XS-3XL", colors:[C.ltgrey,C.dkgrey,C.black,C.navy], image:"https://images-api.printify.com/mockup/69e48be1e1b544748a052a4e/66102/108335/unisex-zip-up-hooded-sweatshirt.jpg?camera_label=front&revision=1776954535200&s=400"},
+    {title:"Ladies V-Neck Tee",    note:"XS-3XL", colors:[C.white,C.black,C.grey,C.red,C.sapph,C.navy], image:"https://images-api.printify.com/mockup/69e96a4bb22af0e531010362/78524/106703/ladies-v-neck-tee.jpg?camera_label=front&revision=1776954926459&s=400"},
+    {title:"Tee - Embroidered",    note:"XS-3XL", colors:[C.dkgrey,C.black,C.navy,C.red,C.green,C.sapph], image:"https://images-api.printify.com/mockup/69e44ff664704ce13e01be4c/11902/102005/unisex-tee-embroidered.jpg?camera_label=front-2&revision=1776954296711&s=400"},
+    {title:"Tote Bag",             note:"3 colors / 3 sizes", colors:[C.tgreen,C.tblue,C.torange], image:"https://images-api.printify.com/mockup/69e4a1ed15a70dfc4b0d667a/103605/100880/tote-bag-green.jpg?camera_label=front&revision=1776956003112&s=400"},
+    {title:"Baseball Cap",         note:"One size", colors:[C.grey,C.black,C.navy,C.maroon], image:"https://images-api.printify.com/mockup/69e45574b62bfffb670009e4/118562/109495/baseball-cap-embroidered.jpg?camera_label=front&revision=1776960509485&s=400"},
+    {title:"Roscoe Plush",         note:"6 animals", colors:[], image:"https://images-api.printify.com/mockup/69e46006e9b8abdb01096c10/81079/50076/roscoe-plush.jpg?camera_label=front&revision=1776954381911&s=400"},
+    {title:"Signature Poster",     note:"4 sizes / matte", colors:[], image:"https://images-api.printify.com/mockup/69e96851a66cae3b9e0c35d9/114557/106501/signature-poster.jpg?camera_label=front&revision=1776904469307&s=400"},
+    {title:"Beer Stein Mug",       note:"22 oz", colors:[], image:"https://images-api.printify.com/mockup/69e96ba330dc29f0a1086658/81535/51660/beer-stein-mug.jpg?camera_label=front&revision=1776956222768&s=400"},
+    {title:"Accent Coffee Mug",    note:"11 oz or 15 oz", colors:[], image:"https://images-api.printify.com/mockup/69ea637ce3254713080ada2c/72180/102752/accent-coffee-mug.jpg?camera_label=front&revision=1776970706978&s=400"},
+    {title:"Steel Ring - Engraved",note:"Sizes 6-8", colors:[], image:"https://images-api.printify.com/mockup/69e4633315a70dfc4b0d5287/164397/112850/stainless-steel-ring-engraved.jpg?camera_label=front&revision=1776956813080&s=400"},
+    {title:"Acrylic Statue",       note:"5 x 5 in", colors:[], image:"https://images-api.printify.com/mockup/69e4a099f2671100e10e27f6/149512/120384/custom-acrylic-statue-green.jpg?camera_label=front&revision=1776956773283&s=400"},
   ];
   function escHtml(v) {
     return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -2948,13 +2937,12 @@ html.squarespace-damask .imm-shop {
         ? '<div class="imm-shop-swatches">' + item.colors.map(function(c){
             return '<span class="imm-shop-swatch'+(c.light?' is-light':'')+'" style="background:'+c.hex+'" aria-hidden="true"></span>';
           }).join('') + '</div>' : '';
-      return '<a class="imm-shop-product" href="'+escHtml(item.href)+'" target="_blank" rel="noopener">'+
-        '<div class="imm-shop-media"><img src="'+escHtml(item.image)+'" alt="'+escHtml(item.title)+'" loading="lazy"></div>'+
+      return '<article class="imm-shop-product">'+
+        '<div class="imm-shop-media"><img src="'+escHtml(item.image)+'" alt="'+escHtml(item.title)+'" loading="eager"></div>'+
         '<div class="imm-shop-meta">'+
-          '<div class="imm-shop-topline"><div class="imm-shop-title">'+escHtml(item.title)+'</div><span class="imm-shop-price">'+escHtml(item.price)+'</span></div>'+
+          '<div class="imm-shop-topline"><div class="imm-shop-title">'+escHtml(item.title)+'</div></div>'+
           sw+(item.note?'<span class="imm-shop-note-inline">'+escHtml(item.note)+'</span>':'')+
-          '<span class="imm-shop-more" aria-hidden="true">Shop Now →</span>'+
-        '</div></a>';
+        '</div></article>';
     }).join('');
   }
   renderShopGrid();
