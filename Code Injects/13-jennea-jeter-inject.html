@@ -563,17 +563,7 @@ html.squarespace-damask .jj-page {
   pointer-events: none;
 }
 .jj-next-chapter::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 0 auto;
-  width: min(38vw,520px);
-  background-image:
-    linear-gradient(90deg, rgba(18,63,54,1), rgba(18,63,54,0.8) 34%, rgba(18,63,54,0.42)),
-    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/8891B317-48CC-497A-BC9F-3DED18F2F498_1_105_c.jpeg");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.22;
-  pointer-events: none;
+  content: none;
 }
 .jj-next-chapter > * { position: relative; z-index: 1; }
 .jj-next-inner {
@@ -623,14 +613,73 @@ html.squarespace-damask .jj-page {
 
 /* ── Footer ── */
 .jj-footer {
-  background: var(--forest); padding: 32px clamp(16px,3.5vw,52px);
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-  border-top: 1px solid rgba(18,63,54,0.2);
+  background: #071f19;
+  padding: clamp(34px,5vw,56px) clamp(18px,4vw,64px);
+  border-top: 1px solid rgba(243,237,218,0.16);
+  color: rgba(243,237,218,0.8);
 }
-.jj-footer-name { font-family: var(--d); font-size: 1.1rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243,237,218,0.5); }
-.jj-footer-link { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(243,237,218,0.88) !important; padding: 7px 14px; border-radius: var(--pill); border: 1px solid rgba(243,237,218,0.38); transition: opacity 0.15s; }
-.jj-footer-link:hover { opacity: 0.6; }
+.jj-footer-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px,1.25fr) repeat(2,minmax(180px,0.5fr));
+  gap: clamp(24px,4vw,52px);
+  align-items: start;
+}
+.jj-footer-name {
+  display: block;
+  font-family: var(--d);
+  font-size: clamp(1.7rem,3vw,2.35rem);
+  letter-spacing: 0.04em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.jj-footer-note {
+  max-width: 48ch;
+  margin: 14px 0 0;
+  font-size: clamp(0.98rem,1.35vw,1.08rem);
+  line-height: 1.62;
+  color: rgba(243,237,218,0.68);
+}
+.jj-footer-group {
+  display: grid;
+  gap: 8px;
+}
+.jj-footer-label {
+  font-family: var(--d);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243,237,218,0.45);
+  margin-bottom: 4px;
+}
+.jj-footer-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 13px;
+  border-radius: var(--pill);
+  border: 1px solid rgba(243,237,218,0.26);
+  background: rgba(243,237,218,0.06);
+  color: rgba(243,237,218,0.88) !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.jj-footer-link:hover {
+  background: rgba(243,237,218,0.14);
+  border-color: rgba(243,237,218,0.44);
+  color: var(--paper) !important;
+}
+.jj-footer-link.is-primary {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: #071f19 !important;
+}
 
 /* ── Lightbox ── */
 .jj-lb { position:fixed; inset:0; z-index:300; background:rgba(4,14,8,0.96); display:none; align-items:center; justify-content:center; padding:20px; }
@@ -695,14 +744,15 @@ html.squarespace-damask .jj-page {
     align-items: stretch;
   }
   .jj-social-link { justify-content: center; width: 100%; min-height: 44px; }
-  .jj-footer {
-    justify-content: center;
+  .jj-footer-inner {
+    grid-template-columns: 1fr;
     text-align: center;
-    padding-bottom: 38px;
+    justify-items: center;
   }
-  .jj-footer-link { width: min(100%, 260px); text-align: center; color: #111 !important; background: rgba(243,237,218,0.88); }
+  .jj-footer-note { margin-left: auto; margin-right: auto; }
+  .jj-footer-group { justify-items: center; }
+  .jj-footer-link { justify-content: center; width: min(100%, 280px); }
   .jj-chapter::after { opacity: 0.065; }
-  .jj-next-chapter::after { width: 100%; opacity: 0.12; }
 }
 </style>
 
@@ -1117,8 +1167,24 @@ html.squarespace-damask .jj-page {
 
 <!-- Footer -->
 <footer class="jj-footer">
-  <span class="jj-footer-name">Jennea Jeter &nbsp;·&nbsp; IMM '26</span>
-  <a class="jj-footer-link" href="/projects-26">← All Projects</a>
+  <div class="jj-footer-inner">
+    <div>
+      <span class="jj-footer-name">Jennea<br>Jeter</span>
+      <p class="jj-footer-note">Core handoff links for Sonic Lineage, the IMM Senior Show brand system, and the full 2026 project directory.</p>
+    </div>
+    <nav class="jj-footer-group" aria-label="Jennea project links">
+      <div class="jj-footer-label">Projects</div>
+      <a class="jj-footer-link is-primary" href="/sonic-lineage">Sonic Lineage</a>
+      <a class="jj-footer-link" href="/brandkit-26">Brand Kit 26</a>
+      <a class="jj-footer-link" href="/projects-26">All Projects</a>
+    </nav>
+    <nav class="jj-footer-group" aria-label="Jennea external links">
+      <div class="jj-footer-label">Elsewhere</div>
+      <a class="jj-footer-link" href="https://jenneajeter.com" target="_blank" rel="noopener">JenneaJeter.com</a>
+      <a class="jj-footer-link" href="https://www.linkedin.com/in/jennea-jeter" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="jj-footer-link" href="https://jandjinnovation.com" target="_blank" rel="noopener">J&amp;J Innovations</a>
+    </nav>
+  </div>
 </footer>
 
 <!-- Lightbox -->

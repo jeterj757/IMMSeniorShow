@@ -90,10 +90,23 @@
 .bk-card h3 { margin: 0 0 12px; color: var(--sage); font-size: clamp(1.45rem,2.5vw,2rem); }
 .bk-card p { margin: 0; font-size: clamp(1.03rem,1.45vw,1.14rem); line-height: 1.72; }
 .bk-card p + p { margin-top: 12px; }
-.bk-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 18px; border-radius: 12px; overflow: hidden; background: rgba(18,63,54,0.14); }
-.bk-stat { background: var(--forest); text-align: center; padding: 16px 12px; }
-.bk-stat-num { display: block; color: var(--paper); font-size: clamp(1.65rem,3vw,2.35rem); line-height: 1; }
-.bk-stat-label { display: block; margin-top: 4px; color: rgba(243,237,218,0.66); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.bk-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  margin-top: 18px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--forest);
+  border: 1.5px solid rgba(18,63,54,0.14);
+}
+.bk-stat {
+  text-align: center;
+  padding: clamp(12px,2.2vw,18px) 8px;
+  border-left: 1px solid rgba(243,237,218,0.38);
+}
+.bk-stat:first-child { border-left: 0; }
+.bk-stat-num { display: block; color: var(--paper); font-size: clamp(1.5rem,3vw,2.35rem); line-height: 1; }
+.bk-stat-label { display: block; margin-top: 4px; color: rgba(243,237,218,0.66); font-size: clamp(0.68rem,1.6vw,0.82rem); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
 .bk-posters { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
 .bk-poster { border-radius: 10px; overflow: hidden; aspect-ratio: 11 / 17; border: 1px solid rgba(18,63,54,0.14); box-shadow: 0 10px 24px rgba(18,63,54,0.16); }
 .bk-poster img { width: 100%; height: 100%; object-fit: cover; }
@@ -103,6 +116,25 @@
 .bk-caption { padding: 8px 10px; color: var(--sage); font-size: 1rem; border-top: 1px solid rgba(18,63,54,0.1); }
 .bk-video { overflow: hidden; border-radius: 14px; border: 1.5px solid rgba(18,63,54,0.18); background: #0c1a10; }
 .bk-video video { width: 100%; display: block; min-height: 320px; max-height: 500px; object-fit: cover; object-position: top; }
+.bk-link-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-top: 16px; }
+.bk-version-link {
+  display: flex;
+  min-height: 70px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(18,63,54,0.14);
+  background: #fffdf5;
+}
+.bk-version-link strong {
+  font-family: var(--d);
+  color: var(--sage);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.bk-version-link span { color: rgba(18,63,54,0.66); line-height: 1.4; }
 .bk-footer {
   display: flex;
   justify-content: space-between;
@@ -115,7 +147,7 @@
 .bk-footer a { color: var(--paper) !important; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
 @media (max-width: 800px) {
   .bk-grid { grid-template-columns: 1fr; }
-  .bk-stats { grid-template-columns: 1fr; }
+  .bk-link-grid { grid-template-columns: 1fr; }
   .bk-title { font-size: clamp(3rem,16vw,5.2rem); }
 }
 </style>
@@ -162,6 +194,28 @@
       <div class="bk-section-kicker">Live Site Recording</div>
       <div class="bk-video">
         <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-preview.webm" poster="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-poster.png" autoplay loop muted playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-inner bk-grid">
+      <div class="bk-card">
+        <div class="bk-section-kicker">Code Inject Workflow</div>
+        <h3>Building Around Squarespace</h3>
+        <p>The site uses code injects: custom HTML, CSS, and JavaScript blocks added on top of Squarespace pages to create interactions the template could not handle by itself. That included the homepage, project directory, student pages, hunt flow, maps, modals, filters, and brand kit previews.</p>
+        <p>AI tools were useful in my workflow when I treated them like an iteration partner instead of a replacement: I used them to test layout directions, generate throwaway versions, debug CSS/JS issues, and compare approaches before rebuilding the final pieces with my own design decisions.</p>
+      </div>
+      <div class="bk-card">
+        <div class="bk-section-kicker">Older Versions</div>
+        <h3>Prototype Links</h3>
+        <p>These older pages show the path from rough generated experiments and wireframes into the final handoff system.</p>
+        <div class="bk-link-grid">
+          <a class="bk-version-link" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" target="_blank" rel="noopener"><strong>Early Direction</strong><span>Homepage and directory structure test.</span></a>
+          <a class="bk-version-link" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" target="_blank" rel="noopener"><strong>Second Pass</strong><span>Alternate AI-assisted layout version.</span></a>
+          <a class="bk-version-link" href="https://jeterj757.github.io/IMMSeniorShow/Wireframes/senior-show-26-wireframes.html" target="_blank" rel="noopener"><strong>Wireframe Spec</strong><span>Full page planning and feature notes.</span></a>
+          <a class="bk-version-link" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" target="_blank" rel="noopener"><strong>Brand Kit Preview</strong><span>Final brand-system reference page.</span></a>
+        </div>
       </div>
     </div>
   </section>
