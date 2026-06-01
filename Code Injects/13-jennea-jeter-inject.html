@@ -38,6 +38,7 @@
 
 /* Force Norwester — overrides Squarespace's site-wide font injections */
 .jj-hero-name,
+.jj-chapter-btn,
 .jj-ch-title,
 .jj-ch-num,
 .jj-card h3,
@@ -65,13 +66,13 @@
   font-family: var(--ui);
   color: #1c2422;
   overflow-x: hidden;
-  /* Paper + dot grid — matches about/home page */
   background: #f0ece0;
   background-image:
-    linear-gradient(180deg, rgba(240,236,224,0.88), rgba(240,236,224,0.90)),
-    radial-gradient(rgba(18,63,54,0.07) 1.2px, transparent 1.2px);
-  background-size: auto, 22px 22px;
-  background-position: center top, center;
+    linear-gradient(180deg, rgba(240,236,224,0.88), rgba(240,236,224,0.92)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
+  background-size: auto, cover;
+  background-position: center top, center center;
+  background-attachment: scroll, fixed;
 }
 
 /* ════════════════════════════════
@@ -169,8 +170,9 @@ html.squarespace-damask .jj-page {
   border-radius: var(--pill);
   border: 1px solid rgba(243,237,218,0.24);
   background: rgba(243,237,218,0.07);
-  color: rgba(243,237,218,0.82);
-  font-size: 0.95rem; font-weight: 500;
+  color: rgba(243,237,218,0.9) !important;
+  font-family: var(--d);
+  font-size: 0.95rem; font-weight: 800;
   letter-spacing: 0.05em; text-transform: uppercase;
   cursor: pointer; transition: background 0.15s, border-color 0.15s;
 }
@@ -184,26 +186,57 @@ html.squarespace-damask .jj-page {
    CHAPTERS — editorial, paper
 ════════════════════════════════ */
 .jj-chapter {
+  --section-accent: var(--forest);
   padding: clamp(48px,7vw,80px) clamp(16px,3.5vw,52px);
   position: relative;
   border-top: 2px solid rgba(18,63,54,0.13);
-  overflow-x: hidden;
+  overflow: hidden;
 }
+#sonic { --section-accent: #2860a0; }
+#show { --section-accent: #2f6f4f; }
+#jj { --section-accent: var(--rust); }
 .jj-chapter::before {
   content: "";
   position: absolute;
   top: -2px; left: clamp(16px,3.5vw,52px);
   width: clamp(100px,18vw,180px); height: 2px;
   background: var(--rust);
+  z-index: 1;
 }
-.jj-chapter-inner { max-width: 1380px; margin: 0 auto; }
+.jj-chapter::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.085;
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.82) contrast(1.08);
+  pointer-events: none;
+}
+#sonic::after {
+  background-image:
+    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
+}
+#show::after {
+  background-image:
+    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
+}
+#jj::after {
+  background-image:
+    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
+}
+.jj-chapter-inner { max-width: 1380px; margin: 0 auto; position: relative; z-index: 2; }
 
 .jj-ch-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
 .jj-ch-num {
   font-family: var(--d);
-  font-size: clamp(0.78rem,1.1vw,0.88rem);
+  font-size: clamp(1.05rem,1.45vw,1.28rem);
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(18,63,54,0.5);
+  color: var(--section-accent);
 }
 
 .jj-ch-title {
@@ -233,11 +266,11 @@ html.squarespace-damask .jj-page {
 .jj-card h3 {
   margin: 0 0 10px;
   font-family: var(--d);
-  font-size: clamp(1.1rem,2.2vw,1.5rem);
+  font-size: clamp(1.46rem,2.7vw,2.05rem);
   letter-spacing: 0.025em; text-transform: uppercase; line-height: 1.1;
-  color: var(--forest);
+  color: var(--section-accent);
 }
-.jj-card p { margin: 0; line-height: 1.68; font-size: clamp(1rem,1.5vw,1.08rem); color: #20352f; }
+.jj-card p { margin: 0; line-height: 1.68; font-size: clamp(1.06rem,1.55vw,1.16rem); color: #20352f; }
 .jj-card p + p { margin-top: 10px; }
 
 /* ── Chips ── */
@@ -261,10 +294,22 @@ html.squarespace-damask .jj-page {
   transition: opacity 0.15s;
 }
 .jj-btn:hover { opacity: 0.78; }
-.jj-btn-blue  { background: var(--forest); border-color: var(--forest); color: var(--paper); }
-.jj-btn-green { background: var(--forest); border-color: var(--forest); color: var(--paper); }
-.jj-btn-gold  { background: var(--rust);   border-color: var(--rust);   color: #fff; }
-.jj-btn-ghost { background: transparent; border-color: rgba(18,63,54,0.4); color: var(--forest); }
+.jj-btn-blue  { background: var(--forest); border-color: var(--forest); color: var(--paper) !important; }
+.jj-btn-green { background: var(--forest); border-color: var(--forest); color: var(--paper) !important; }
+.jj-btn-gold  { background: var(--rust);   border-color: var(--rust);   color: #fff !important; }
+.jj-btn-ghost { background: transparent; border-color: rgba(18,63,54,0.4); color: var(--forest) !important; }
+.jj-landing-more {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.jj-landing-note {
+  margin-top: 12px;
+  color: rgba(18,63,54,0.64);
+  font-size: clamp(1rem,1.35vw,1.08rem);
+  line-height: 1.55;
+}
 
 /* ────────────────────────────────
    CH 01: SONIC LINEAGE
@@ -274,10 +319,13 @@ html.squarespace-damask .jj-page {
   border: 1.5px solid rgba(18,63,54,0.2);
   background: var(--forest);
   display: flex; flex-direction: column;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .jj-video-label {
   padding: 9px 14px;
-  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
   color: rgba(243,237,218,0.65);
   border-bottom: 1px solid rgba(243,237,218,0.1);
 }
@@ -293,8 +341,8 @@ html.squarespace-damask .jj-page {
 .jj-maxpat-label { flex: 1; min-width: 180px; font-size: 0.9rem; color: rgba(18,63,54,0.7); line-height: 1.45; }
 .jj-maxpat-label strong {
   display: block; font-weight: 700;
-  font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--forest); margin-bottom: 2px;
+  font-size: 0.95rem; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--section-accent); margin-bottom: 2px;
 }
 
 /* JS files grid */
@@ -307,10 +355,10 @@ html.squarespace-damask .jj-page {
   background: #fffdf5; border: 1.5px solid rgba(18,63,54,0.12);
 }
 .jj-js-name {
-  font-family: monospace; font-size: 0.82rem; font-weight: 700;
-  color: var(--forest); margin-bottom: 4px;
+  font-family: monospace; font-size: 1rem; font-weight: 700;
+  color: var(--section-accent); margin-bottom: 4px;
 }
-.jj-js-desc { font-size: 0.85rem; color: rgba(18,63,54,0.65); line-height: 1.45; }
+.jj-js-desc { font-size: 1rem; color: rgba(18,63,54,0.65); line-height: 1.45; }
 
 /* ────────────────────────────────
    CH 02: SENIOR SHOW
@@ -320,6 +368,7 @@ html.squarespace-damask .jj-page {
 .jj-poster-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
   flex: 1; min-height: 0;
+  max-width: 600px;
 }
 .jj-poster-grid-item {
   border-radius: 8px; overflow: hidden;
@@ -327,13 +376,24 @@ html.squarespace-damask .jj-page {
   cursor: zoom-in; border: 1px solid rgba(18,63,54,0.14);
   transition: transform 0.18s, box-shadow 0.18s;
   min-height: 0;
+  aspect-ratio: 11 / 17;
 }
 .jj-poster-grid-item:hover { transform: scale(1.02); box-shadow: 0 16px 36px rgba(18,63,54,0.22); }
 .jj-poster-grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+#show .jj-split-wide {
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  gap: clamp(24px,4vw,42px);
+  align-items: start !important;
+}
+#show .jj-card { padding: clamp(24px,3.2vw,42px); }
+#show .jj-card p { font-size: clamp(1.08rem,1.6vw,1.22rem); line-height: 1.72; }
+#show .jj-stats { max-width: 100%; }
+#poster-fan { justify-self: start; }
 
 /* Horizontal scroll strip */
 .jj-h-scroll {
   display: flex; gap: 12px;
+  align-items: flex-start;
   overflow-x: auto; padding-bottom: 10px;
   scrollbar-width: thin; scrollbar-color: rgba(18,63,54,0.2) transparent;
 }
@@ -342,29 +402,33 @@ html.squarespace-damask .jj-page {
 
 .jj-flyer {
   flex: 0 0 auto; width: 180px;
+  aspect-ratio: 1;
   border-radius: 10px; overflow: hidden;
   box-shadow: 0 8px 22px rgba(18,63,54,0.14);
   cursor: zoom-in; border: 1px solid rgba(18,63,54,0.14);
   transition: transform 0.18s;
 }
 .jj-flyer:hover { transform: scale(1.04) translateY(-3px); }
-.jj-flyer img { width: 100%; display: block; }
+.jj-flyer img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Canva wireframe items */
 .jj-wf-item {
-  flex: 0 0 auto; width: 260px;
+  flex: 0 0 auto; width: 310px;
   border-radius: 10px; overflow: hidden;
   border: 1px solid rgba(18,63,54,0.14);
   background: #fffdf5;
   cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
+  display: flex; flex-direction: column;
 }
 .jj-wf-item:hover { transform: scale(1.03); box-shadow: 0 10px 24px rgba(18,63,54,0.14); }
-.jj-wf-item img { width: 100%; display: block; }
+.jj-wf-item img { width: 100%; height: 390px; object-fit: contain; object-position: center top; display: block; background: #fff; }
 .jj-wf-caption {
   padding: 7px 10px;
-  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-  color: rgba(18,63,54,0.5);
+  font-size: 1.05rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--section-accent);
   border-top: 1px solid rgba(18,63,54,0.1);
+  min-height: 38px;
+  display: flex; align-items: center;
 }
 
 /* Iframe prototype items */
@@ -387,7 +451,7 @@ html.squarespace-damask .jj-page {
   transform: scale(0.3333); transform-origin: top left;
   border: none; display: block; pointer-events: none;
 }
-.jj-wf-iframe-item .jj-wf-caption { color: rgba(18,63,54,0.5); border-top-color: rgba(18,63,54,0.1); }
+.jj-wf-iframe-item .jj-wf-caption { color: var(--section-accent); border-top-color: rgba(18,63,54,0.1); }
 
 /* Stats */
 .jj-stats {
@@ -408,7 +472,7 @@ html.squarespace-damask .jj-page {
    CH 03: J&J INNOVATIONS
 ──────────────────────────────── */
 
-.jj-product-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 24px; }
+.jj-product-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 24px; }
 .jj-product-card {
   border-radius: 14px; overflow: hidden;
   border: 1.5px solid rgba(199,81,69,0.18);
@@ -421,8 +485,7 @@ html.squarespace-damask .jj-page {
 .jj-product-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.22s; }
 .jj-product-card:hover .jj-product-img img { transform: scale(1.05); }
 .jj-product-info { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.jj-product-name { font-family: var(--d); font-size: clamp(0.82rem,1.4vw,1rem); letter-spacing: 0.04em; text-transform: uppercase; color: var(--forest); line-height: 1.15; }
-.jj-product-price { font-size: 1rem; font-weight: 700; color: var(--rust); letter-spacing: 0.02em; }
+.jj-product-name { font-family: var(--d); font-size: clamp(1.14rem,1.7vw,1.34rem); letter-spacing: 0.04em; text-transform: uppercase; color: var(--section-accent); line-height: 1.15; }
 .jj-product-desc { font-size: 0.9rem; color: rgba(18,63,54,0.6); line-height: 1.5; flex: 1; }
 .jj-product-link {
   display: inline-flex; align-items: center; gap: 4px;
@@ -433,9 +496,15 @@ html.squarespace-damask .jj-page {
   align-self: flex-start; transition: opacity 0.15s;
 }
 .jj-product-link:hover { opacity: 0.72; }
+#sonic .jj-card ~ div,
+#show .jj-split-wide ~ div,
+#show .jj-split-wide > div:nth-child(2),
+#jj .jj-site-chrome-rust {
+  display: none !important;
+}
 
 /* J&J site chrome — rust themed */
-.jj-site-chrome-rust { border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(199,81,69,0.22); background: #0c0804; }
+.jj-site-chrome-rust { border-radius: 0; overflow: hidden; border: none; background: transparent; }
 .jj-site-bar-rust { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: rgba(199,81,69,0.07); border-bottom: 1px solid rgba(199,81,69,0.14); }
 .jj-site-dot-rust { width: 10px; height: 10px; border-radius: 50%; background: rgba(199,81,69,0.3); }
 .jj-site-url-rust { flex:1; font-size:0.75rem; letter-spacing:0.04em; color:rgba(120,40,28,0.45); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -446,6 +515,7 @@ html.squarespace-damask .jj-page {
   margin-right: calc(-1 * clamp(20px,6vw,80px));
   border-radius: 0;
 }
+.jj-jj-bleed .jj-site-bar-rust { display: none; }
 
 /* J&J photo placeholder */
 .jj-strip-placeholder {
@@ -459,28 +529,30 @@ html.squarespace-damask .jj-page {
 
 /* ── Process photo strip ── */
 .jj-sl-photo {
-  flex: 0 0 auto; width: 300px;
+  flex: 0 0 auto; width: min(420px, 76vw);
+  aspect-ratio: 16 / 9;
   border-radius: 10px; overflow: hidden;
   border: 1px solid rgba(18,63,54,0.14);
   cursor: zoom-in; transition: transform 0.18s, box-shadow 0.18s;
   background: #fffdf5;
 }
 .jj-sl-photo:hover { transform: scale(1.03) translateY(-3px); box-shadow: 0 12px 28px rgba(18,63,54,0.14); }
-.jj-sl-photo img { width: 100%; display: block; }
+.jj-sl-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* J&J shop photo strip */
 .jj-jj-photo {
-  flex: 0 0 auto; width: 260px; border-radius: 10px; overflow: hidden;
+  flex: 0 0 auto; width: min(380px, 76vw); aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
   border: 1px solid rgba(199,81,69,0.16); cursor: zoom-in; transition: transform 0.18s;
 }
 .jj-jj-photo:hover { transform: scale(1.03) translateY(-3px); }
-.jj-jj-photo img { width:100%; display:block; }
+.jj-jj-photo img { width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ── Next Chapter section ── */
 .jj-next-chapter {
   padding: clamp(48px,7vw,80px) clamp(16px,3.5vw,52px);
   background: var(--forest);
   position: relative;
+  overflow: hidden;
 }
 .jj-next-chapter::before {
   content: "";
@@ -490,8 +562,26 @@ html.squarespace-damask .jj-page {
   background-size: 24px 24px;
   pointer-events: none;
 }
+.jj-next-chapter::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(38vw,520px);
+  background-image:
+    linear-gradient(90deg, rgba(18,63,54,1), rgba(18,63,54,0.8) 34%, rgba(18,63,54,0.42)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/8891B317-48CC-497A-BC9F-3DED18F2F498_1_105_c.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22;
+  pointer-events: none;
+}
 .jj-next-chapter > * { position: relative; z-index: 1; }
-.jj-next-inner { max-width: 1380px; margin: 0 auto; }
+.jj-next-inner {
+  max-width: 1380px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.jj-next-body { max-width: 56ch; }
+.jj-social-row { justify-content: center; }
 .jj-next-eyebrow {
   font-family: var(--d);
   font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -516,7 +606,7 @@ html.squarespace-damask .jj-page {
   padding: 10px 18px; border-radius: var(--pill);
   border: 1.5px solid rgba(243,237,218,0.28);
   background: rgba(243,237,218,0.07);
-  color: rgba(243,237,218,0.88);
+  color: rgba(243,237,218,0.9) !important;
   font-size: 0.9rem; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase;
   transition: background 0.15s, border-color 0.15s;
@@ -524,6 +614,12 @@ html.squarespace-damask .jj-page {
 }
 .jj-social-link:hover { background: rgba(243,237,218,0.14); border-color: rgba(243,237,218,0.5); }
 .jj-social-icon { font-size: 1.1rem; line-height: 1; }
+
+.jj-chapter [style*="Norwester"][style*="uppercase"] {
+  font-size: clamp(1.28rem,1.75vw,1.55rem) !important;
+  line-height: 1.15 !important;
+  color: var(--section-accent) !important;
+}
 
 /* ── Footer ── */
 .jj-footer {
@@ -533,7 +629,7 @@ html.squarespace-damask .jj-page {
   border-top: 1px solid rgba(18,63,54,0.2);
 }
 .jj-footer-name { font-family: var(--d); font-size: 1.1rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243,237,218,0.5); }
-.jj-footer-link { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(243,237,218,0.88); padding: 7px 14px; border-radius: var(--pill); border: 1px solid rgba(243,237,218,0.38); transition: opacity 0.15s; }
+.jj-footer-link { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(243,237,218,0.88) !important; padding: 7px 14px; border-radius: var(--pill); border: 1px solid rgba(243,237,218,0.38); transition: opacity 0.15s; }
 .jj-footer-link:hover { opacity: 0.6; }
 
 /* ── Lightbox ── */
@@ -547,19 +643,66 @@ html.squarespace-damask .jj-page {
 @media (max-width: 760px) {
   .jj-hero { grid-template-columns: 1fr; grid-template-rows: 55vw auto; }
   .jj-hero-photo::after { background: linear-gradient(to bottom, transparent 60%, rgba(8,28,22,0.8) 100%); }
-  .jj-hero-content { padding: clamp(24px,5vw,48px) clamp(20px,5vw,40px) 40px; }
-  .jj-hero-name { font-size: clamp(3.2rem,12vw,6rem); }
+  .jj-hero-content {
+    align-items: center;
+    text-align: center;
+    padding: clamp(24px,5vw,48px) clamp(20px,5vw,40px) 40px;
+  }
+  .jj-hero-name {
+    font-size: clamp(2.7rem,13vw,4.1rem);
+    line-height: 0.98;
+    white-space: nowrap;
+  }
+  .jj-hero-name br { display: none; }
+  .jj-hero-name em { margin-left: 0.14em; }
+  .jj-hero-name em::before { content: ""; }
+  .jj-hero-body {
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .jj-chapter-row { justify-content: center; }
 }
 @media (max-width: 900px) {
   .jj-split, .jj-split-wide { grid-template-columns: 1fr; }
+  #show .jj-split-wide { grid-template-columns: 1fr; }
   .jj-product-grid { grid-template-columns: repeat(2,1fr); }
+  .jj-chapter::after { opacity: 0.075; }
 }
 @media (max-width: 560px) {
-  .jj-product-grid { grid-template-columns: 1fr 1fr; }
+  .jj-product-grid { grid-template-columns: 1fr; gap: 12px; }
+  .jj-product-card { border-radius: 12px; }
+  .jj-product-info { padding: 16px; }
+  .jj-product-link,
+  .jj-btn { justify-content: center; }
   .jj-stats { grid-template-columns: 1fr; }
   .jj-video-reel { width: 82vw; }
   .jj-wf-iframe-item, .jj-wf-iframe-shell { width: 82vw; }
+  .jj-wf-iframe-shell iframe {
+    width: 246vw;
+    height: 164vw;
+  }
   .jj-js-grid { grid-template-columns: 1fr; }
+  .jj-chapter-row { flex-direction: column; align-items: stretch; }
+  .jj-chapter-btn { justify-content: center; width: 100%; }
+  .jj-maxpat { align-items: stretch; }
+  .jj-maxpat .jj-btn { width: 100%; }
+  .jj-social-row {
+    width: 100%;
+    max-width: 320px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .jj-social-link { justify-content: center; width: 100%; min-height: 44px; }
+  .jj-footer {
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 38px;
+  }
+  .jj-footer-link { width: min(100%, 260px); text-align: center; color: #111 !important; background: rgba(243,237,218,0.88); }
+  .jj-chapter::after { opacity: 0.065; }
+  .jj-next-chapter::after { width: 100%; opacity: 0.12; }
 }
 </style>
 
@@ -580,17 +723,17 @@ html.squarespace-damask .jj-page {
     <h1 class="jj-hero-name">Jennea<br><em>Jeter</em></h1>
     <div class="jj-hero-body">
       <p>I spent most of my senior year not knowing what my thesis was "supposed" to be. I can do graphic design and branding. I code websites (including the site you are reading this on). I even co-founded a small business. Picking one thing felt like restricting all of what I actually do.</p>
-      <p>What you're looking at is a collection of the work that challenged me the most this year — three very different projects that each pushed a different side of what I'm capable of. Some of it was my thesis. Some of it was freelance. All of it is mine.</p>
+      <p>This page is now the front door to the work I need reviewed for handoff: Sonic Lineage and the IMM Senior Show brand system. J&amp;J Innovations stays here as supporting product work and a record of the merch that was available.</p>
     </div>
     <div class="jj-chapter-row">
-      <button class="jj-chapter-btn" data-color="blue" onclick="document.getElementById('sonic').scrollIntoView({behavior:'smooth'})">
+      <a class="jj-chapter-btn" data-color="blue" href="/sonic-lineage">
         <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
-      </button>
-      <button class="jj-chapter-btn" data-color="green" onclick="document.getElementById('show').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>02 &nbsp;IMM Senior Show
-      </button>
+      </a>
+      <a class="jj-chapter-btn" data-color="green" href="/brandkit-26">
+        <span class="jj-chapter-dot"></span>02 &nbsp;Brand Kit 26
+      </a>
       <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>03 &nbsp;J&amp;J Innovations
+        <span class="jj-chapter-dot"></span>03 &nbsp;Merch Gallery
       </button>
     </div>
   </div>
@@ -611,10 +754,9 @@ html.squarespace-damask .jj-page {
 
     <!-- About card (full width) -->
     <div class="jj-card" style="margin-bottom:28px;">
-      <h3>About the Project</h3>
-      <p>Sonic Lineage is an interactive installation that maps the history of music sampling through direct sound exploration. Visitors use a keyboard-and-mouse interface to trigger individual audio stems — isolated tracks spanning decades of recorded music.</p>
-      <p>Each stem is a node in a sonic family tree. Trigger one and you hear a fragment: a drum break, a bass line, a vocal hook. Trigger another and you hear how it traveled — from a 1969 soul record into hip-hop, into electronic music, into today. The piece makes audible what has always existed beneath the surface of popular sound.</p>
-      <p>The project evolved significantly in development. Originally conceived around a physical Makey Makey interface with felt pads, live testing revealed that a streamlined keyboard-and-mouse control system allowed for much more reliable real-time performance. The live mixing component was removed entirely to prioritize playback stability — the final version focuses on getting every stem to play flawlessly across a global clock.</p>
+      <h3>Core Project Landing</h3>
+      <p>Sonic Lineage is my thesis installation: an interactive system for exploring music sampling history through playable stems, timing logic, and a keyboard-and-mouse interface.</p>
+      <p>The full handoff page holds the demo video, Max/MSP patch notes, JavaScript architecture, process photos, and project context.</p>
       <div class="jj-tags">
         <span class="jj-chip jj-chip-blue">Creative Coding</span>
         <span class="jj-chip jj-chip-blue">Max/MSP</span>
@@ -622,12 +764,8 @@ html.squarespace-damask .jj-page {
         <span class="jj-chip jj-chip-blue">Music Sampling</span>
         <span class="jj-chip jj-chip-blue">Physical Computing</span>
       </div>
-      <div class="jj-maxpat" style="margin-top:20px;">
-        <div class="jj-maxpat-label">
-          <strong>Max/MSP Patch — Final Build</strong>
-          Download FINAL_SonicLineageV2_COMPLETE.maxpat to open in Max 8 or later. Requires the four JS files included in the bundle.
-        </div>
-        <a class="jj-btn jj-btn-blue" href="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Jeter_SubmissionBundle/Jeter_SubmissionBundle/Maxpat%20%26%20JS/FINAL_SonicLineageV2_COMPLETE.maxpat" download>Download .maxpat</a>
+      <div class="jj-landing-more">
+        <a class="jj-btn jj-btn-blue" href="/sonic-lineage">Open Sonic Lineage ↗</a>
       </div>
     </div>
 
@@ -672,25 +810,25 @@ html.squarespace-damask .jj-page {
       <div style="font-size:0.95rem;color:rgba(18,63,54,0.6);margin-bottom:12px;">Earlier hardware prototypes before the final keyboard-based build.</div>
       <div class="jj-h-scroll" id="sl-gallery">
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view: felt pads and MakeyMakey prototype" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead view: felt pads and MakeyMakey prototype" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg" alt="Touch pads and reel discs" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg" alt="Touch pads and reel discs" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg" alt="Wiring and controller layout" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg" alt="Wiring and controller layout" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg" alt="Touch pad connections detail" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/E443C6DA-B586-424D-97F1-FD7D0881364B_1_105_c.jpeg" alt="Touch pad connections detail" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg" alt="Desk setup: vector diagram on monitor" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/4F23386C-FE6A-47FD-B9CE-7F4D348F6678_1_105_c.jpeg" alt="Desk setup: vector diagram on monitor" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with prototype" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/13515348-7658-4DEB-A426-5DBDA3FD43CB_4_5005_c.jpeg" alt="Two-hand interaction with prototype" loading="eager">
         </div>
         <div class="jj-sl-photo" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png" alt="Max/MSP patch view" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png" alt="Max/MSP patch view" loading="eager">
         </div>
       </div>
     </div>
@@ -714,9 +852,9 @@ html.squarespace-damask .jj-page {
     <div class="jj-split-wide" style="align-items:stretch;">
       <div>
         <div class="jj-card" style="margin-bottom:16px;">
-          <h3>Web Designer &amp; Brand Kit</h3>
-          <p>On top of my own project, I was the lead designer for the 2026 IMM Senior Show: building the full digital and print identity from scratch. The website, the posters, the flyers, the event branding, and every custom code inject on the site.</p>
-          <p>I started with wireframes in Canva, went through multiple color directions, and landed on a woodsy, nature-meets-brutalism aesthetic. Thirty-seven students across six tracks, all in one cohesive system.</p>
+          <h3>Senior Show Brand Kit</h3>
+          <p>I led the 2026 IMM Senior Show visual system: the website, posters, flyers, event branding, directory experience, and custom code injects that held the showcase together.</p>
+          <p>The full handoff page documents the brand system and the build process for a 41-student, six-track showcase.</p>
           <div class="jj-tags">
             <span class="jj-chip jj-chip-green">Web Design</span>
             <span class="jj-chip jj-chip-green">Brand Identity</span>
@@ -724,9 +862,12 @@ html.squarespace-damask .jj-page {
             <span class="jj-chip jj-chip-green">Squarespace</span>
             <span class="jj-chip jj-chip-green">HTML / CSS / JS</span>
           </div>
+          <div class="jj-landing-more">
+            <a class="jj-btn jj-btn-green" href="/brandkit-26">Open Brand Kit 26 ↗</a>
+          </div>
         </div>
         <div class="jj-stats">
-          <div class="jj-stat"><span class="jj-stat-num">37</span><span class="jj-stat-label">Students</span></div>
+          <div class="jj-stat"><span class="jj-stat-num">41</span><span class="jj-stat-label">Students</span></div>
           <div class="jj-stat"><span class="jj-stat-num">6</span><span class="jj-stat-label">Specializations</span></div>
           <div class="jj-stat"><span class="jj-stat-num">13+</span><span class="jj-stat-label">Injects Built</span></div>
         </div>
@@ -737,16 +878,16 @@ html.squarespace-damask .jj-page {
         <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);">11×17 Poster Series</div>
         <div class="jj-poster-grid" id="poster-fan">
           <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png">
-            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster" loading="lazy">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster" loading="eager">
           </div>
           <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png">
-            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster: forest green" loading="lazy">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster: forest green" loading="eager">
           </div>
           <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png">
-            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster: canyon warm" loading="lazy">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster: canyon warm" loading="eager">
           </div>
           <div class="jj-poster-grid-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png">
-            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster: canyon blue" loading="lazy">
+            <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster: canyon blue" loading="eager">
           </div>
         </div>
       </div>
@@ -774,16 +915,16 @@ html.squarespace-damask .jj-page {
       <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Social &amp; Digital Flyers</div>
       <div class="jj-h-scroll" id="flyer-strip">
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Flyer: mountain lake" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Flyer: mountain lake" loading="eager">
         </div>
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png" alt="Flyer: colorful landscape" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png" alt="Flyer: colorful landscape" loading="eager">
         </div>
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png" alt="Flyer: ocean fish" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png" alt="Flyer: ocean fish" loading="eager">
         </div>
         <div class="jj-flyer" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/6.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/6.png" alt="Flyer: jungle forest" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/6.png" alt="Flyer: jungle forest" loading="eager">
         </div>
       </div>
     </div>
@@ -794,19 +935,19 @@ html.squarespace-damask .jj-page {
       <div style="font-size:0.95rem;color:rgba(18,63,54,0.65);margin-bottom:12px;line-height:1.55;">Early Canva wireframes — color direction explorations before any code was written.</div>
       <div class="jj-h-scroll" id="wf-scroll">
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage: 4 color directions" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage: 4 color directions" loading="eager">
           <div class="jj-wf-caption">Homepage: color explorations</div>
         </div>
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png" alt="Full site overview board" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png" alt="Full site overview board" loading="eager">
           <div class="jj-wf-caption">Full overview board</div>
         </div>
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(HomeGreen).png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(HomeGreen).png" alt="Homepage: green direction" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(HomeGreen).png" alt="Homepage: green direction" loading="eager">
           <div class="jj-wf-caption">Homepage: green direction</div>
         </div>
         <div class="jj-wf-item" tabindex="0" data-src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(ProjectsVertical).png">
-          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(ProjectsVertical).png" alt="Projects page: vertical layout" loading="lazy">
+          <img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/IMM%20Senior%20Showcase%20Kit%20(ProjectsVertical).png" alt="Projects page: vertical layout" loading="eager">
           <div class="jj-wf-caption">Projects: vertical layout</div>
         </div>
       </div>
@@ -819,31 +960,31 @@ html.squarespace-damask .jj-page {
       <div class="jj-h-scroll" id="wf-prototypes">
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm_homepage_directory_wireframes.html" loading="lazy" title="Coded prototype: early direction"></iframe>
+            <iframe src="about:blank" loading="lazy" title="Coded prototype: early direction"></iframe>
           </div>
           <div class="jj-wf-caption">Early direction ↗</div>
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/imm-senior-show%20(1).html" loading="lazy" title="Second pass"></iframe>
+            <iframe src="about:blank" loading="lazy" title="Second pass"></iframe>
           </div>
           <div class="jj-wf-caption">Second pass ↗</div>
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Wireframes/senior-show-26-wireframes.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Wireframes/senior-show-26-wireframes.html" loading="lazy" title="Full wireframe spec"></iframe>
+            <iframe src="about:blank" loading="lazy" title="Full wireframe spec"></iframe>
           </div>
           <div class="jj-wf-caption">Full wireframe spec ↗</div>
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Wireframes/senior-show-26-mobile-concept.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Wireframes/senior-show-26-mobile-concept.html" loading="lazy" title="Mobile concept"></iframe>
+            <iframe src="about:blank" loading="lazy" title="Mobile concept"></iframe>
           </div>
           <div class="jj-wf-caption">Mobile concept ↗</div>
         </a>
         <a class="jj-wf-iframe-item" href="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" target="_blank" rel="noopener">
           <div class="jj-wf-iframe-shell">
-            <iframe src="https://jeterj757.github.io/IMMSeniorShow/Code%20Injects/brandkit-preview.html" loading="lazy" title="Brand kit"></iframe>
+            <iframe src="about:blank" loading="lazy" title="Brand kit"></iframe>
           </div>
           <div class="jj-wf-caption">Brand kit — final ↗</div>
         </a>
@@ -861,17 +1002,16 @@ html.squarespace-damask .jj-page {
   <div class="jj-chapter-inner">
 
     <div class="jj-ch-head">
-      <span class="jj-ch-num">03 / Digital Fabrication Studio</span>
+      <span class="jj-ch-num">03 / Supporting Product Work</span>
     </div>
-    <h2 class="jj-ch-title">J&amp;J<br>Innovations</h2>
+    <h2 class="jj-ch-title">Merch<br>Gallery</h2>
     <hr class="jj-ch-rule">
 
     <!-- Studio card full width -->
     <div class="jj-card" style="margin-bottom:28px;">
-      <h3>Our Studio</h3>
-      <p>J&amp;J Innovations is a digital fabrication business I run with Jared Morris: we design and 3D print products, from precision gear mechanisms to event merch. Getting something to actually print the way you designed it is its own discipline, and I learned that fast.</p>
-      <p>The IMM logo went through way more iterations than I expected — small tweaks to wall thickness, infill, tolerances — until it actually looked the way it was supposed to look off the printer. And then there's the poster: we accidentally printed "26'" with an apostrophe instead of "26" which, depending on who you ask, is either a mistake or a feature at this point.</p>
-      <p>Running the studio while finishing senior year was a real test. Real orders, real deadlines, real physical product that has to be right before it ships.</p>
+      <h3>Available Merch Archive</h3>
+      <p>J&amp;J Innovations is included here as supporting product work. The shop is closing soon, so this section keeps a record of the merch and printed products that were available without presenting it like an active sales catalog.</p>
+      <p>The external site remains the reference point for the studio and product context.</p>
       <div class="jj-tags">
         <span class="jj-chip jj-chip-gold">Digital Fabrication</span>
         <span class="jj-chip jj-chip-gold">3D Printing</span>
@@ -879,8 +1019,7 @@ html.squarespace-damask .jj-page {
         <span class="jj-chip jj-chip-gold">Shopify</span>
       </div>
       <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;">
-        <a class="jj-btn jj-btn-gold" href="https://jandjinnovation.com" target="_blank" rel="noopener">Visit the Shop ↗</a>
-        <a class="jj-btn jj-btn-ghost" href="https://jandjinnovation.com/collections/all" target="_blank" rel="noopener">All Products</a>
+        <a class="jj-btn jj-btn-gold" href="https://jandjinnovation.com" target="_blank" rel="noopener">J&amp;J Website ↗</a>
       </div>
     </div>
 
@@ -899,50 +1038,33 @@ html.squarespace-damask .jj-page {
 
     <!-- Product cards -->
     <div style="margin-top:36px;">
-      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:14px;">Products</div>
+      <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:14px;">Merch Available</div>
       <div class="jj-product-grid">
         <div class="jj-product-card">
           <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime" loading="lazy">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/1F6A46BB-A812-487A-90EC-A017C2A9FCC5_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime" loading="eager">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">Herringbone Prime</div>
-            <div class="jj-product-price">$8.00</div>
             <div class="jj-product-desc">3D printed planetary gear set with herringbone teeth — precision transmission design you can hold.</div>
-            <a class="jj-product-link" href="https://jandjinnovation.com/products/herringbone-prime" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
         <div class="jj-product-card">
           <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime Two Colors" loading="lazy">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/D450269D-D899-4647-A59D-1BC8807D355C_1_201_a.heic?format=jpg&width=600" alt="Herringbone Prime Two Colors" loading="eager">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">Herringbone Prime (Two Colors)</div>
-            <div class="jj-product-price">$10.00</div>
             <div class="jj-product-desc">Same herringbone gear set, two-tone filament. Available in Black + Gold and more.</div>
-            <a class="jj-product-link" href="https://jandjinnovation.com/products/herringbone-prime-two-colors" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
         <div class="jj-product-card">
           <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=600" alt="IMM Logo 3D print" loading="lazy">
+            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/98FFDED8-ECB2-48A5-A769-FB05392C2EB3_1_201_a.heic?format=jpg&width=600" alt="IMM Logo 3D print" loading="eager">
           </div>
           <div class="jj-product-info">
             <div class="jj-product-name">IMM Logo</div>
-            <div class="jj-product-price">$5.00</div>
             <div class="jj-product-desc">A piece of the IMM 2026 Senior Showcase: 3D printed by the design committee. Green or blue.</div>
-            <a class="jj-product-link" href="https://jandjinnovation.com/products/imm-logo" target="_blank" rel="noopener">Buy ↗</a>
-          </div>
-        </div>
-        <div class="jj-product-card">
-          <div class="jj-product-img" tabindex="0" data-src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=800">
-            <img src="https://cdn.shopify.com/s/files/1/0717/9016/6104/files/FD8FF798-C234-405E-81FB-871B64043B8C_1_201_a.heic?format=jpg&width=600" alt="IMM Posters print" loading="lazy">
-          </div>
-          <div class="jj-product-info">
-            <div class="jj-product-name">IMM Posters</div>
-            <div class="jj-product-price">$5.00</div>
-            <div class="jj-product-desc">Official 2026 IMM Senior Showcase poster — gallery-quality keepsake designed by the committee.</div>
-            <a class="jj-product-link" href="https://jandjinnovation.com/products/imm-posters" target="_blank" rel="noopener">Buy ↗</a>
           </div>
         </div>
       </div>
@@ -952,9 +1074,12 @@ html.squarespace-damask .jj-page {
     <div style="margin-top:32px;">
       <div style="font-family:'Norwester','Arial Narrow',Impact,sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(18,63,54,0.75);margin-bottom:12px;">Photos</div>
       <div class="jj-h-scroll" id="jj-photo-strip">
-        <div class="jj-strip-placeholder">Coming Soon</div>
-        <div class="jj-strip-placeholder">Coming Soon</div>
-        <div class="jj-strip-placeholder">Coming Soon</div>
+        <div class="jj-jj-photo" tabindex="0" data-src="../Jennea's Subsection/jj-booth-products.jpg">
+          <img src="../Jennea's Subsection/jj-booth-products.jpg" alt="J&J Innovations product booth" loading="eager">
+        </div>
+        <div class="jj-jj-photo" tabindex="0" data-src="../Jennea's Subsection/jj-booth-detail.jpg">
+          <img src="../Jennea's Subsection/jj-booth-detail.jpg" alt="3D printed product display detail" loading="eager">
+        </div>
       </div>
     </div>
 
@@ -977,14 +1102,14 @@ html.squarespace-damask .jj-page {
       <p>This portfolio is not just a wrap-up of my time at TCNJ. It's the foundation for everything I plan to build next.</p>
     </div>
     <div class="jj-social-row">
+      <a class="jj-social-link" href="https://jenneajeter.com" target="_blank" rel="noopener">
+        <span class="jj-social-icon">↗</span> JenneaJeter.com
+      </a>
       <a class="jj-social-link" href="https://www.linkedin.com/in/jennea-jeter" target="_blank" rel="noopener">
         <span class="jj-social-icon">in</span> LinkedIn
       </a>
       <a class="jj-social-link" href="https://jandjinnovation.com" target="_blank" rel="noopener">
         <span class="jj-social-icon">↗</span> J&amp;J Innovations
-      </a>
-      <a class="jj-social-link" href="https://www.instagram.com" target="_blank" rel="noopener">
-        <span class="jj-social-icon">◎</span> Instagram
       </a>
     </div>
   </div>
@@ -993,7 +1118,7 @@ html.squarespace-damask .jj-page {
 <!-- Footer -->
 <footer class="jj-footer">
   <span class="jj-footer-name">Jennea Jeter &nbsp;·&nbsp; IMM '26</span>
-  <a class="jj-footer-link" href="/directory">← All Projects</a>
+  <a class="jj-footer-link" href="/projects-26">← All Projects</a>
 </footer>
 
 <!-- Lightbox -->
@@ -1035,6 +1160,27 @@ html.squarespace-damask .jj-page {
   lbX.addEventListener('click', close);
   lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+  var autoGallery = document.getElementById('sl-gallery');
+  if (autoGallery && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var paused = false;
+    var speed = 0.45;
+    autoGallery.addEventListener('mouseenter', function () { paused = true; });
+    autoGallery.addEventListener('mouseleave', function () { paused = false; });
+    autoGallery.addEventListener('focusin', function () { paused = true; });
+    autoGallery.addEventListener('focusout', function () { paused = false; });
+
+    function moveGallery() {
+      if (!paused && autoGallery.scrollWidth > autoGallery.clientWidth) {
+        autoGallery.scrollLeft += speed;
+        if (autoGallery.scrollLeft >= autoGallery.scrollWidth - autoGallery.clientWidth - 1) {
+          autoGallery.scrollLeft = 0;
+        }
+      }
+      window.requestAnimationFrame(moveGallery);
+    }
+    window.requestAnimationFrame(moveGallery);
+  }
 }());
 </script>
 </body>

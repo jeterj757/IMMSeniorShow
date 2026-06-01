@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonic Lineage | Jennea Jeter</title>
+</head>
+<body style="margin:0;background:#f0ece0;">
+<style>
+@font-face {
+  font-family: "Norwester";
+  src: local("Norwester"),
+       url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+  font-display: swap;
+}
+.sl-page *, .sl-page *::before, .sl-page *::after { box-sizing: border-box; }
+.sl-page a { color: inherit; text-decoration: none; }
+.sl-page img { display: block; max-width: 100%; }
+.sl-page {
+  --d: "Norwester", "Arial Narrow", Impact, sans-serif;
+  --ui: "Avenir Next", Avenir, system-ui, -apple-system, sans-serif;
+  --paper: #f3edda;
+  --forest: #123f36;
+  --blue: #2860a0;
+  font-family: var(--ui);
+  color: #20352f;
+  background:
+    linear-gradient(180deg, rgba(240,236,224,0.9), rgba(240,236,224,0.94)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png") center / cover fixed;
+  overflow-x: hidden;
+}
+.sl-hero {
+  min-height: 82svh;
+  display: grid;
+  place-items: end start;
+  padding: clamp(42px,8vw,96px) clamp(20px,6vw,84px);
+  background:
+    linear-gradient(90deg, rgba(18,63,54,0.96), rgba(18,63,54,0.72), rgba(18,63,54,0.28)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg") center / cover;
+}
+.sl-hero-inner { max-width: 900px; color: var(--paper); }
+.sl-kicker,
+.sl-section-kicker,
+.sl-card h3,
+.sl-file-name,
+.sl-footer-name {
+  font-family: var(--d);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sl-kicker { color: rgba(243,237,218,0.62); font-size: clamp(1rem,1.7vw,1.28rem); }
+.sl-title {
+  margin: 10px 0 18px;
+  font-family: var(--d);
+  font-size: clamp(3.4rem,12vw,8.8rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.sl-title em { color: #6baed6; font-style: normal; }
+.sl-lede { max-width: 62ch; font-size: clamp(1.08rem,1.8vw,1.32rem); line-height: 1.65; color: rgba(243,237,218,0.88); }
+.sl-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.sl-btn {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(243,237,218,0.34);
+  background: rgba(243,237,218,0.1);
+  color: var(--paper) !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.sl-btn.primary { background: var(--paper); color: var(--forest) !important; border-color: var(--paper); }
+.sl-section { padding: clamp(42px,7vw,78px) clamp(18px,5vw,76px); }
+.sl-inner { max-width: 1240px; margin: 0 auto; }
+.sl-section-kicker { color: var(--blue); font-size: clamp(1.2rem,2vw,1.55rem); margin-bottom: 10px; }
+.sl-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(320px,0.92fr); gap: clamp(20px,4vw,42px); align-items: start; }
+.sl-card {
+  border-radius: 14px;
+  border: 1.5px solid rgba(18,63,54,0.13);
+  background: #fffdf5;
+  padding: clamp(20px,3.4vw,34px);
+  box-shadow: 0 2px 0 rgba(18,63,54,0.05);
+}
+.sl-card h3 { margin: 0 0 12px; color: var(--blue); font-size: clamp(1.45rem,2.5vw,2rem); }
+.sl-card p { margin: 0; font-size: clamp(1.03rem,1.45vw,1.14rem); line-height: 1.72; }
+.sl-card p + p { margin-top: 12px; }
+.sl-video {
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1.5px solid rgba(18,63,54,0.2);
+  background: #061208;
+}
+.sl-video video { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: contain; background: #061208; }
+.sl-files { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-top: 18px; }
+.sl-file { border-radius: 10px; border: 1.5px solid rgba(18,63,54,0.12); background: #fffdf5; padding: 14px; }
+.sl-file-name { color: var(--blue); font-size: 1rem; margin-bottom: 5px; }
+.sl-file-desc { color: rgba(18,63,54,0.66); line-height: 1.45; }
+.sl-gallery { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
+.sl-shot { flex: 0 0 min(420px,78vw); aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; border: 1px solid rgba(18,63,54,0.14); background: #fffdf5; }
+.sl-shot img { width: 100%; height: 100%; object-fit: cover; }
+.sl-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 30px clamp(18px,5vw,76px);
+  background: var(--forest);
+  color: rgba(243,237,218,0.76);
+}
+.sl-footer a { color: var(--paper) !important; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+@media (max-width: 800px) {
+  .sl-grid { grid-template-columns: 1fr; }
+  .sl-files { grid-template-columns: 1fr; }
+  .sl-title { font-size: clamp(3rem,16vw,5.2rem); }
+}
+</style>
+
+<main class="sl-page">
+  <section class="sl-hero">
+    <div class="sl-hero-inner">
+      <div class="sl-kicker">Jennea Jeter · Core Project 01</div>
+      <h1 class="sl-title">Sonic<br><em>Lineage</em></h1>
+      <p class="sl-lede">An interactive installation that maps the history of music sampling through direct sound exploration, playable stems, and a shared timing system.</p>
+      <div class="sl-actions">
+        <a class="sl-btn primary" href="#demo">Watch Demo</a>
+        <a class="sl-btn" href="/jennea-jeter">Back to Jennea</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section">
+    <div class="sl-inner sl-grid">
+      <div class="sl-card">
+        <div class="sl-section-kicker">Project Context</div>
+        <h3>Sampling History as an Interface</h3>
+        <p>Visitors use a keyboard-and-mouse interface to trigger isolated stems from related songs. Each stem acts like a node in a sonic family tree, making relationships between source material and later music audible.</p>
+        <p>The project moved from a Makey Makey felt-pad prototype into a more reliable software-controlled final build. The live mixing feature was removed so playback, timing, and stem availability could stay stable.</p>
+      </div>
+      <div class="sl-video" id="demo">
+        <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/sonic-demo-final.mp4" controls muted playsinline preload="none"></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section">
+    <div class="sl-inner">
+      <div class="sl-section-kicker">Patch Architecture</div>
+      <div class="sl-files">
+        <div class="sl-file"><div class="sl-file-name">active_stems_status.js</div><div class="sl-file-desc">Tracks active stems and updates the UI status text in real time.</div></div>
+        <div class="sl-file"><div class="sl-file-name">song_sync_clock.js</div><div class="sl-file-desc">Maintains shared timing state so events stay aligned to playback.</div></div>
+        <div class="sl-file"><div class="sl-file-name">stem_availability_gate.js</div><div class="sl-file-desc">Prevents invalid trigger combinations for each song.</div></div>
+        <div class="sl-file"><div class="sl-file-name">simple_stem_router.js</div><div class="sl-file-desc">Routes keyboard controls into the correct Max play and stop paths.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section">
+    <div class="sl-inner">
+      <div class="sl-section-kicker">Process Photos</div>
+      <div class="sl-gallery">
+        <div class="sl-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/097201EA-E4A3-48EF-9FB8-96F96971C3D4_1_105_c.jpeg" alt="Overhead Makey Makey prototype"></div>
+        <div class="sl-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/1E99F2F0-68EB-44B3-82E9-FEAF871BD992_1_105_c.jpeg" alt="Touch pads and reel discs"></div>
+        <div class="sl-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/57ACE137-D898-4A3A-9EF5-6B1712F75617_1_105_c.jpeg" alt="Wiring and controller layout"></div>
+        <div class="sl-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Jennea%27s%20Subsection/Screenshot%202026-05-13%20at%2010.59.02%E2%80%AFPM.png" alt="Max patch view"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sl-footer">
+    <span class="sl-footer-name">Sonic Lineage · Jennea Jeter</span>
+    <a href="/projects-26">All Projects</a>
+  </footer>
+</main>
+</body>
+</html>

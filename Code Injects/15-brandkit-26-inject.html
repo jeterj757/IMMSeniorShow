@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Kit 26 | Jennea Jeter</title>
+</head>
+<body style="margin:0;background:#f0ece0;">
+<style>
+@font-face {
+  font-family: "Norwester";
+  src: local("Norwester"),
+       url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Code%20Injects/fonts/norwester.otf") format("opentype");
+  font-display: swap;
+}
+.bk-page *, .bk-page *::before, .bk-page *::after { box-sizing: border-box; }
+.bk-page a { color: inherit; text-decoration: none; }
+.bk-page img { display: block; max-width: 100%; }
+.bk-page {
+  --d: "Norwester", "Arial Narrow", Impact, sans-serif;
+  --ui: "Avenir Next", Avenir, system-ui, -apple-system, sans-serif;
+  --paper: #f3edda;
+  --forest: #123f36;
+  --sage: #2f6f4f;
+  font-family: var(--ui);
+  color: #20352f;
+  background:
+    linear-gradient(180deg, rgba(240,236,224,0.88), rgba(240,236,224,0.94)),
+    url("../AlyosiusPatrimonoAssets/landscapes/18.png") center / cover fixed;
+  overflow-x: hidden;
+}
+.bk-hero {
+  min-height: 76svh;
+  display: grid;
+  place-items: end start;
+  padding: clamp(42px,8vw,96px) clamp(20px,6vw,84px);
+  background:
+    linear-gradient(90deg, rgba(18,63,54,0.95), rgba(18,63,54,0.68), rgba(18,63,54,0.2)),
+    url("https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png") center / cover;
+}
+.bk-hero-inner { max-width: 950px; color: var(--paper); }
+.bk-kicker,
+.bk-section-kicker,
+.bk-card h3,
+.bk-stat-num,
+.bk-caption,
+.bk-footer-name {
+  font-family: var(--d);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bk-kicker { color: rgba(243,237,218,0.66); font-size: clamp(1rem,1.7vw,1.28rem); }
+.bk-title {
+  margin: 10px 0 18px;
+  font-family: var(--d);
+  font-size: clamp(3.2rem,11vw,8.4rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.bk-title em { color: #74c476; font-style: normal; }
+.bk-lede { max-width: 66ch; font-size: clamp(1.08rem,1.8vw,1.32rem); line-height: 1.65; color: rgba(243,237,218,0.88); }
+.bk-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.bk-btn {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(243,237,218,0.34);
+  background: rgba(243,237,218,0.1);
+  color: var(--paper) !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.bk-btn.primary { background: var(--paper); color: var(--forest) !important; border-color: var(--paper); }
+.bk-section { padding: clamp(42px,7vw,78px) clamp(18px,5vw,76px); }
+.bk-inner { max-width: 1280px; margin: 0 auto; }
+.bk-section-kicker { color: var(--sage); font-size: clamp(1.2rem,2vw,1.55rem); margin-bottom: 10px; }
+.bk-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(320px,0.92fr); gap: clamp(20px,4vw,42px); align-items: start; }
+.bk-card {
+  border-radius: 14px;
+  border: 1.5px solid rgba(18,63,54,0.13);
+  background: #fffdf5;
+  padding: clamp(20px,3.4vw,34px);
+  box-shadow: 0 2px 0 rgba(18,63,54,0.05);
+}
+.bk-card h3 { margin: 0 0 12px; color: var(--sage); font-size: clamp(1.45rem,2.5vw,2rem); }
+.bk-card p { margin: 0; font-size: clamp(1.03rem,1.45vw,1.14rem); line-height: 1.72; }
+.bk-card p + p { margin-top: 12px; }
+.bk-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 18px; border-radius: 12px; overflow: hidden; background: rgba(18,63,54,0.14); }
+.bk-stat { background: var(--forest); text-align: center; padding: 16px 12px; }
+.bk-stat-num { display: block; color: var(--paper); font-size: clamp(1.65rem,3vw,2.35rem); line-height: 1; }
+.bk-stat-label { display: block; margin-top: 4px; color: rgba(243,237,218,0.66); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.bk-posters { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.bk-poster { border-radius: 10px; overflow: hidden; aspect-ratio: 11 / 17; border: 1px solid rgba(18,63,54,0.14); box-shadow: 0 10px 24px rgba(18,63,54,0.16); }
+.bk-poster img { width: 100%; height: 100%; object-fit: cover; }
+.bk-strip { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
+.bk-shot { flex: 0 0 min(320px,78vw); border-radius: 10px; overflow: hidden; border: 1px solid rgba(18,63,54,0.14); background: #fffdf5; }
+.bk-shot img { width: 100%; height: 300px; object-fit: contain; object-position: center top; background: #fff; }
+.bk-caption { padding: 8px 10px; color: var(--sage); font-size: 1rem; border-top: 1px solid rgba(18,63,54,0.1); }
+.bk-video { overflow: hidden; border-radius: 14px; border: 1.5px solid rgba(18,63,54,0.18); background: #0c1a10; }
+.bk-video video { width: 100%; display: block; min-height: 320px; max-height: 500px; object-fit: cover; object-position: top; }
+.bk-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 30px clamp(18px,5vw,76px);
+  background: var(--forest);
+  color: rgba(243,237,218,0.76);
+}
+.bk-footer a { color: var(--paper) !important; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+@media (max-width: 800px) {
+  .bk-grid { grid-template-columns: 1fr; }
+  .bk-stats { grid-template-columns: 1fr; }
+  .bk-title { font-size: clamp(3rem,16vw,5.2rem); }
+}
+</style>
+
+<main class="bk-page">
+  <section class="bk-hero">
+    <div class="bk-hero-inner">
+      <div class="bk-kicker">Jennea Jeter · Core Project 02</div>
+      <h1 class="bk-title">Brand<br><em>Kit 26</em></h1>
+      <p class="bk-lede">The visual identity, website system, poster series, flyers, directory experience, and code inject work behind the 2026 IMM Senior Show.</p>
+      <div class="bk-actions">
+        <a class="bk-btn primary" href="#artifacts">View Artifacts</a>
+        <a class="bk-btn" href="/jennea-jeter">Back to Jennea</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-inner bk-grid">
+      <div>
+        <div class="bk-card">
+          <div class="bk-section-kicker">Role</div>
+          <h3>Web Designer &amp; Brand System Lead</h3>
+          <p>I built the full digital and print identity for the 2026 IMM Senior Show: the public website, student directory, posters, flyers, event graphics, and custom HTML/CSS/JS injects.</p>
+          <p>The direction moved from Canva wireframes into a woodsy, nature-meets-brutalism system that could support six tracks and 41 students without feeling disconnected.</p>
+        </div>
+        <div class="bk-stats">
+          <div class="bk-stat"><span class="bk-stat-num">41</span><span class="bk-stat-label">Students</span></div>
+          <div class="bk-stat"><span class="bk-stat-num">6</span><span class="bk-stat-label">Tracks</span></div>
+          <div class="bk-stat"><span class="bk-stat-num">13+</span><span class="bk-stat-label">Injects</span></div>
+        </div>
+      </div>
+      <div class="bk-posters" id="artifacts">
+        <div class="bk-poster"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/1.png" alt="IMM Senior Showcase poster, blue mountain"></div>
+        <div class="bk-poster"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/2.png" alt="IMM Senior Showcase poster, green forest"></div>
+        <div class="bk-poster"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/3.png" alt="IMM Senior Showcase poster, warm canyon"></div>
+        <div class="bk-poster"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/11X17s/4.png" alt="IMM Senior Showcase poster, cool canyon"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-inner">
+      <div class="bk-section-kicker">Live Site Recording</div>
+      <div class="bk-video">
+        <video src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-preview.webm" poster="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/site-poster.png" autoplay loop muted playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-inner">
+      <div class="bk-section-kicker">Flyers &amp; Process</div>
+      <div class="bk-strip">
+        <div class="bk-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/3.png" alt="Mountain lake flyer"><div class="bk-caption">Digital Flyer</div></div>
+        <div class="bk-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/4.png" alt="Colorful landscape flyer"><div class="bk-caption">Digital Flyer</div></div>
+        <div class="bk-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Flyers/5.png" alt="Ocean fish flyer"><div class="bk-caption">Digital Flyer</div></div>
+        <div class="bk-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/IMMWireframesCanva/_%20%20IMMWireframes.png" alt="Homepage color explorations"><div class="bk-caption">Color Explorations</div></div>
+        <div class="bk-shot"><img src="https://raw.githubusercontent.com/jeterj757/IMMSeniorShow/main/Wireframes/Full%20overview%20so%20far.png" alt="Full site overview board"><div class="bk-caption">Overview Board</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bk-footer">
+    <span class="bk-footer-name">Brand Kit 26 · Jennea Jeter</span>
+    <a href="/projects-26">All Projects</a>
+  </footer>
+</main>
+</body>
+</html>

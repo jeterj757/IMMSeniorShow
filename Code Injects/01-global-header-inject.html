@@ -158,9 +158,9 @@ strong {
 <script>
 (function() {
   var EVENT_BADGE_ID = "imm-nav-event";
-  var EVENT_TEXT_FULL = "Friday, May 8, 2026 · 5–9 PM";
-  var EVENT_TEXT_SHORT = "May 8 · 5–9 PM";
-  var EVENT_PLACE = "AIMM · TCNJ";
+  var EVENT_TEXT_FULL = "";
+  var EVENT_TEXT_SHORT = "";
+  var EVENT_PLACE = "";
   var lastScrollY = window.scrollY || window.pageYOffset || 0;
   var ticking = false;
 
@@ -241,16 +241,13 @@ strong {
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function() {
-      injectEventBadge();
       scheduleMeasure();
     });
   } else {
-    injectEventBadge();
     scheduleMeasure();
   }
 
   window.addEventListener("load", function() {
-    injectEventBadge();
     scheduleMeasure();
   });
   window.addEventListener("resize", scheduleMeasure);

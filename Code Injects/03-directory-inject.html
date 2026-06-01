@@ -3618,7 +3618,7 @@
     <div class="imm-dir-hero-inner">
       <div class="imm-dir-eyebrow">IMM Senior Show 2026 &middot; TCNJ &middot; May 8, 2026</div>
       <h1 class="imm-dir-h1">The Projects</h1>
-      <p class="imm-dir-sub">40 students &middot; Six tracks &middot; One night to see it all</p>
+      <p class="imm-dir-sub">41 students &middot; Six tracks &middot; One night to see it all</p>
     </div>
   </div>
 
@@ -3726,7 +3726,7 @@
       </label>
       <button class="imm-sort-btn" id="imm-sort-az" type="button" aria-pressed="false">A–Z</button>
       <button class="imm-sort-btn" id="imm-sort-room" type="button" aria-pressed="false">Room #</button>
-      <div class="imm-dir-count" id="imm-count" aria-live="polite">40 students</div>
+      <div class="imm-dir-count" id="imm-count" aria-live="polite">41 students</div>
     </div>
   </div>
 
@@ -3800,7 +3800,7 @@
     {id:'jeffrey-ernest',     name:'Jeffrey Ernest',        project:'OpenTomorrow',                     cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/jeffrey-ernest',      blurb:'A speculative coding project looking at future networks.'},
     {id:'kyle-duverger',      name:'Kyle Duverger',         project:'Civic Vault',                      cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/kyle-duverger',       blurb:'A digital archive and civic engagement platform.'},
     {id:'idrissa-fofana',     name:'Idrissa Fofana',        project:'Sentinel Watch',                   cat:'Creative Coding',        room:'220', url:'https://immseniorshow.com/idrissa-fofana',     blurb:'A generative piece powered by real-time data.'},
-    {id:'jennea-jeter',       name:'Jennéa Jeter',          project:'Sonic Lineage: Sampling History',  cat:'Creative Coding',        room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/jennea-jeter',       blurb:'A visual and auditory experience analyzing music samples.'},
+    {id:'jennea-jeter',       name:'Jennéa Jeter',          project:'Sonic Lineage: Sampling History',  cat:'Creative Coding',        room:'f1-hall', displayRoom:'F1 Hall', url:'https://immseniorshow.com/sonic-lineage',     blurb:'A visual and auditory experience analyzing music samples.'},
     {id:'rushil-desai',       name:'Rushil Desai',          project:'Eyes Can See',                     cat:'Culture & Technology',   room:'221', url:'https://immseniorshow.com/rushil-desai',       blurb:'An interactive exhibit exploring surveillance and society.'},
     {id:'robert-boguslavskiy',name:'Robert Boguslavskiy',   project:'Rental Company',                   cat:'Culture & Technology',   room:'206', url:'https://immseniorshow.com/robert-boguslavskiy',blurb:'Photobooth and event rental company concept.'},
     {id:'caelan-arroyo',      name:'Caelan Arroyo',         project:'Mumbo Block',                      cat:'Visual Storytelling',    room:'206', url:'https://immseniorshow.com/caelan-arroyo',      blurb:'An incoherent mess of shorts, Adult Swim, and newsreels.'},
@@ -3888,6 +3888,10 @@
   }
   function roomLabel(p) {
     return p.displayRoom || ('Room ' + p.room);
+  }
+  function studentCountForProject(p) {
+    if (p.links && p.links.length) return p.links.length;
+    return p.studentCount || 1;
   }
   var F1_PINS = {
     '114':     {label:'Room 114',               rooms:['114']},
@@ -4142,7 +4146,7 @@
     var shown = PROJECTS.filter(visible);
     if (sortByName) shown.sort(function(a, b) { return a.name.localeCompare(b.name); });
     else if (sortByRoom) shown.sort(function(a, b) { return roomSortKey(a.room) - roomSortKey(b.room); });
-    var studentTotal = shown.reduce(function(total, p) { return total + (p.studentCount || 1); }, 0);
+    var studentTotal = shown.reduce(function(total, p) { return total + studentCountForProject(p); }, 0);
     grid.innerHTML = '';
     countEl.textContent = studentTotal + ' student' + (studentTotal===1?'':'s');
 
@@ -4177,7 +4181,7 @@
         sp.textContent = t.label; sp.style.color = t.color;
         var ct = document.createElement('div');
         ct.className = 'imm-dir-track-count';
-        var trackStudentTotal = grp.reduce(function(total, p) { return total + (p.studentCount || 1); }, 0);
+        var trackStudentTotal = grp.reduce(function(total, p) { return total + studentCountForProject(p); }, 0);
         ct.textContent = trackStudentTotal + ' Student' + (trackStudentTotal === 1 ? '' : 's');
         var copy = document.createElement('div');
         copy.className = 'imm-dir-track-copy';
