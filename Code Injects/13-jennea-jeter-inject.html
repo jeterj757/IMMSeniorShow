@@ -165,21 +165,17 @@ html.squarespace-damask .jj-page {
 }
 .jj-chapter-btn {
   display: inline-flex; align-items: center; gap: 7px;
-  min-height: 38px; padding: 8px 16px;
-  border-radius: var(--pill);
-  border: 1px solid rgba(243,237,218,0.24);
-  background: rgba(243,237,218,0.07);
+  min-height: 0; padding: 0 0 6px;
+  border: 0;
+  border-bottom: 2px solid rgba(243,237,218,0.28);
+  background: transparent;
   color: rgba(243,237,218,0.9) !important;
   font-family: var(--d);
   font-size: 0.95rem; font-weight: 800;
   letter-spacing: 0.05em; text-transform: uppercase;
   cursor: pointer; transition: background 0.15s, border-color 0.15s;
 }
-.jj-chapter-btn:hover { background: rgba(243,237,218,0.14); border-color: rgba(243,237,218,0.44); }
-.jj-chapter-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.jj-chapter-btn[data-color="blue"]  .jj-chapter-dot { background: #6baed6; }
-.jj-chapter-btn[data-color="green"] .jj-chapter-dot { background: #74c476; }
-.jj-chapter-btn[data-color="gold"]  .jj-chapter-dot { background: var(--rust); }
+.jj-chapter-btn:hover { border-color: rgba(243,237,218,0.72); }
 
 /* ════════════════════════════════
    CHAPTERS — editorial, paper
@@ -201,32 +197,6 @@ html.squarespace-damask .jj-page {
   width: clamp(100px,18vw,180px); height: 2px;
   background: var(--rust);
   z-index: 1;
-}
-.jj-chapter::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  opacity: 0.085;
-  background-position: center;
-  background-size: cover;
-  filter: saturate(0.82) contrast(1.08);
-  pointer-events: none;
-}
-#sonic::after {
-  background-image:
-    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
-    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
-}
-#show::after {
-  background-image:
-    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
-    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
-}
-#jj::after {
-  background-image:
-    linear-gradient(180deg, rgba(240,236,224,0.38), rgba(240,236,224,0.78)),
-    url("../AlyosiusPatrimonoAssets/landscapes/18.png");
 }
 .jj-chapter-inner { max-width: 1380px; margin: 0 auto; position: relative; z-index: 2; }
 
@@ -720,13 +690,13 @@ html.squarespace-damask .jj-page {
     </div>
     <div class="jj-chapter-row">
       <a class="jj-chapter-btn" data-color="blue" href="/sonic-lineage">
-        <span class="jj-chapter-dot"></span>01 &nbsp;Sonic Lineage
+        01 &nbsp;Sonic Lineage
       </a>
       <a class="jj-chapter-btn" data-color="green" href="/brandkit-26">
-        <span class="jj-chapter-dot"></span>02 &nbsp;Brand Kit 26
+        02 &nbsp;Brand Kit 26
       </a>
       <button class="jj-chapter-btn" data-color="gold" onclick="document.getElementById('jj').scrollIntoView({behavior:'smooth'})">
-        <span class="jj-chapter-dot"></span>03 &nbsp;Merch Gallery
+        03 &nbsp;Merch Gallery
       </button>
     </div>
   </div>
