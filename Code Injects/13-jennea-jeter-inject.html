@@ -184,19 +184,14 @@ html.squarespace-damask .jj-page {
   --section-accent: var(--forest);
   padding: clamp(48px,7vw,80px) clamp(16px,3.5vw,52px);
   position: relative;
-  border-top: 2px solid rgba(18,63,54,0.13);
+  border-top: 0;
   overflow: hidden;
 }
 #sonic { --section-accent: #2860a0; }
 #show { --section-accent: #2f6f4f; }
 #jj { --section-accent: var(--rust); }
 .jj-chapter::before {
-  content: "";
-  position: absolute;
-  top: -2px; left: clamp(16px,3.5vw,52px);
-  width: clamp(100px,18vw,180px); height: 2px;
-  background: var(--rust);
-  z-index: 1;
+  content: none;
 }
 .jj-chapter-inner { max-width: 1380px; margin: 0 auto; position: relative; z-index: 2; }
 
@@ -216,7 +211,7 @@ html.squarespace-damask .jj-page {
   color: var(--forest);
 }
 
-.jj-ch-rule { margin: 14px 0 28px; height: 1px; border: none; background: rgba(18,63,54,0.12); }
+.jj-ch-rule { display: none; }
 .jj-ch-head,
 .jj-ch-title,
 .jj-ch-rule {
@@ -1048,7 +1043,7 @@ html.squarespace-damask .jj-page {
     <div class="jj-next-eyebrow">What's Next</div>
     <h2 class="jj-next-title">William Paterson<br><em>University</em></h2>
     <div class="jj-next-body">
-      <p>This fall I'll be pursuing a Master's in Clinical and Counseling Psychology at William Paterson University. My goal is to merge my technical and design background with clinical practice — using creative tools to innovate wherever I go.</p>
+      <p>This fall I'll be pursuing a Master's in Clinical and Counseling Psychology at William Paterson University. My goal is to merge my technical and design background with clinical practice, using creative tools to innovate in every space I enter.</p>
       <p>This portfolio is not just a wrap-up of my time at TCNJ. It's the foundation for everything I plan to build next.</p>
     </div>
     <div class="jj-social-row">
